@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Lubricar web</title>
+    <title>Lubricar Deliver</title>
 	<!-- CSS Files -->
     <link href="<?php base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php base_url() ?>assets/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -38,7 +38,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<ul class="dropdown-menu animated fadeInRight m-t-xs">
 								<li><a href="profile.html">Perfil</a></li>
 								<li><a href="contacts.html">Contactos</a></li>
-								<li><a href="mailbox.html">Mailbox</a></li>
 								<li class="divider"></li>
 								<li><a href="login.html">Cerrar Sesión</a></li>
 							</ul>
@@ -46,6 +45,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="logo-element">
 							IN+
 						</div>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-user-o"></i> <span class="nav-label">Usuarios</span><span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level collapse">
+							<li><a href="search_results.html">Perfiles</a></li>
+							<li><a href="lockscreen.html">Empleados</a></li>
+							
+						</ul>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-building"></i> <span class="nav-label">Franquicias</span><span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level collapse">
+							<li><a href="search_results.html">Edición de Datos / Asignación de Servicios</a></li>
+							<li><a href="lockscreen.html">Resumen Financiero</a></li>
+							<li><a href="lockscreen.html">Perfil Franquicia</a></li>
+							
+						</ul>
+					</li>
+					
+					<li>
+						<a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Ordenes de Servicio</span></a>
+						
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-delicious"></i> <span class="nav-label">Servicios</span></a>
+						
 					</li>
 					<li>
 						<a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Other Pages</span><span class="fa arrow"></span></a>
@@ -75,13 +100,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
 						<form role="search" class="navbar-form-custom" action="search_results.html">
 							<div class="form-group">
-								<input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+								<input type="text" placeholder="Buscar..." class="form-control" name="top-search" id="top-search">
 							</div>
 						</form>
 					</div>
 					<ul class="nav navbar-top-links navbar-right">
 						<li>
-							<span class="m-r-sm text-muted welcome-message">Bienvenido a lubricar-web.</span>
+							<span class="m-r-sm text-muted welcome-message">Bienvenido a Lubricar Deliver - Web.</span>
 						</li>
 						<li class="dropdown">
 							<a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
@@ -182,7 +207,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 						<li>
 							<a href="login.html">
-								<i class="fa fa-sign-out"></i> Log out
+								<i class="fa fa-sign-out"></i> Cerrar Sesión
 							</a>
 						</li>
 					</ul>

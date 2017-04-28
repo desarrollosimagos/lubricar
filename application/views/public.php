@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>INSPINIA - Landing Page</title>
+    <title>Lubricar Web</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
@@ -32,16 +32,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">WEBAPPLAYERS</a>
+                    <a class="navbar-brand" href="admin">BACK-OFFICE</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a class="page-scroll" href="#page-top">Home</a></li>
-                        <li><a class="page-scroll" href="#features">Features</a></li>
-                        <li><a class="page-scroll" href="#team">Team</a></li>
-                        <li><a class="page-scroll" href="#testimonials">Testimonials</a></li>
-                        <li><a class="page-scroll" href="#pricing">Pricing</a></li>
-                        <li><a class="page-scroll" href="#contact">Contact</a></li>
+                        <li><a class="page-scroll" href="#page-top">Inicio</a></li>
+                        <li><a class="page-scroll" href="#features">Quienes Somos</a></li>
+                        <li><a class="page-scroll" href="#team">Servicios</a></li>
+                        <li><a class="page-scroll" href="#testimonials">Solicitud de Servicio</a></li>
+                        <li><a class="page-scroll" href="#pricing">Noticias</a></li>
+                        <li><a class="page-scroll" href="#contact">Mi cuenta</a>
+                        
+                        <!--<ul>
+                           <li>Mis Datos</li>
+                           <li>Mis Ordenes</li>
+                           <li>Mis Vehiculos</li>
+                           <li>Mis Direcciones</li>
+                        </ul>-->
+                        </li>
+                        
                     </ul>
                 </div>
             </div>
