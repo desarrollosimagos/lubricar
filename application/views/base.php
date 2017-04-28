@@ -206,7 +206,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			
 						<li>
-							<a href="login.html">
+							<a href="<?php echo base_url();?>logout">
 								<i class="fa fa-sign-out"></i> Cerrar Sesión
 							</a>
 						</li>
