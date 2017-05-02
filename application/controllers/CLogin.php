@@ -1,19 +1,10 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+//~ defined('BASEPATH') OR exit('No direct script access allowed');
 
 Class CLogin extends CI_Controller {
 
     public function __construct() {
         @parent::__construct();
-
-// Load form helper library
-        //~ $this->load->helper('form');
-
-// Load form validation library
-        //~ $this->load->library('form_validation');
-
-// Load session library
-        //~ $this->load->library('session');
 
 // Load database
         $this->load->model('MLogin');
@@ -34,7 +25,9 @@ Class CLogin extends CI_Controller {
 			//~ echo "contraseña: ".$this->input->post('password');
 			$usuario = $this->input->post('username');
 			$password = 'pbkdf2_sha256$12000$'.hash( "sha256", $this->input->post('password') );
+			
 			$respuesta = $this->basicauth->login($usuario, $password);
+			
 			if(!isset($respuesta['error'])){
 				redirect('home');
 			}else{
@@ -42,7 +35,6 @@ Class CLogin extends CI_Controller {
 				$this->load->view('login_form', $data);
 			}
 		}
-        //~ $this->load->view('login_form');
     }
 
 	// Logout from admin page
