@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body id="page-top" class="landing-page no-skin-config">
 <div class="navbar-wrapper">
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-default navbar-fixed-top navbar-scroll" role="navigation">
             <div class="container">
                 <div class="navbar-header page-scroll">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -36,12 +36,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a class="page-scroll" href="<?php echo base_url(); ?>public">Inicio</a></li>
-                        <li><a class="page-scroll" href="<?php echo base_url(); ?>somos">Quienes Somos</a></li>
-                        <li><a class="page-scroll" href="<?php echo base_url(); ?>servicios">Servicios</a></li>
-                        <li><a class="page-scroll" href="<?php echo base_url(); ?>solicitud">Solicitud de Servicio</a></li>
-                        <li><a class="page-scroll" href="<?php echo base_url(); ?>noticias">Noticias</a></li>
-                        <li><a class="page-scroll" href="<?php echo base_url(); ?>cuenta">Mi cuenta</a>
+                        <li><a  href="<?php echo base_url(); ?>">Inicio</a></li>
+                        <li><a  href="<?php echo base_url(); ?>somos">Quienes Somos</a></li>
+                        <li><a  href="<?php echo base_url(); ?>servicios">Servicios</a></li>
+                        <li><a  href="<?php echo base_url(); ?>solicitud">Solicitud de Servicio</a></li>
+                        <li><a  href="<?php echo base_url(); ?>noticias">Noticias</a></li>
+                        <li><a  href="<?php echo base_url(); ?>cuenta">Mi cuenta</a>
                         
                         <!--<ul>
                            <li>Mis Datos</li>
@@ -56,7 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </nav>
 </div>
-<div id="inSlider" class="carousel carousel-fade" data-ride="carousel">
+<!--<div id="inSlider" class="carousel carousel-fade" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#inSlider" data-slide-to="0" class="active"></li>
         <li data-target="#inSlider" data-slide-to="1"></li>
@@ -80,7 +80,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
             <!-- Set background for slide in css -->
-            <div class="header-back one"></div>
+           <!-- <div class="header-back one"></div>
 
         </div>
         <div class="item">
@@ -92,7 +92,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
             <!-- Set background for slide in css -->
-            <div class="header-back two"></div>
+          <!--  <div class="header-back two"></div>
         </div>
     </div>
     <a class="left carousel-control" href="#inSlider" role="button" data-slide="prev">
@@ -103,11 +103,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
-</div>
+</div>-->
 
 
-<!--<section id="features" class="container services">
-    <div class="row">
+<section id="features" class="container services">
+    <div class="row" style="margin-top:8%">
         <div class="col-sm-3">
             <h2>Full responsive</h2>
             <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
@@ -129,7 +129,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>
         </div>
     </div>
-</section>-->
+</section>
 
 <section  class="container features">
     <div class="row">
@@ -652,53 +652,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <script>
 
-    $(document).ready(function () {
-
-        $('body').scrollspy({
-            target: '.navbar-fixed-top',
-            offset: 80
-        });
-
-        // Page scrolling feature
-        $('a.page-scroll').bind('click', function(event) {
-            var link = $(this);
-            $('html, body').stop().animate({
-                scrollTop: $(link.attr('href')).offset().top - 50
-            }, 500);
-            event.preventDefault();
-            $("#navbar").collapse('hide');
-        });
-    });
-
-    var cbpAnimatedHeader = (function() {
-        var docElem = document.documentElement,
-                header = document.querySelector( '.navbar-default' ),
-                didScroll = false,
-                changeHeaderOn = 200;
-        function init() {
-            window.addEventListener( 'scroll', function( event ) {
-                if( !didScroll ) {
-                    didScroll = true;
-                    setTimeout( scrollPage, 250 );
-                }
-            }, false );
-        }
-        function scrollPage() {
-            var sy = scrollY();
-            if ( sy >= changeHeaderOn ) {
-                $(header).addClass('navbar-scroll')
-            }
-            else {
-                $(header).removeClass('navbar-scroll')
-            }
-            didScroll = false;
-        }
-        function scrollY() {
-            return window.pageYOffset || docElem.scrollTop;
-        }
-        init();
-
-    })();
+  
 
     // Activate WOW.js plugin for animation on scrol
     new WOW().init();
