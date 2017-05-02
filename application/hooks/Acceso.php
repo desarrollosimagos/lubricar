@@ -24,7 +24,7 @@ class Acceso
 		//~ echo $this->CI->session->userdata('logged_in');
 		//~ print_r($this->CI->session->userdata());
 		
-		if(isset($this->CI->session->userdata['logged_in']) && $this->CI->router->method == 'login'){
+		if(isset($this->CI->session->userdata['logged_in']) && ($this->CI->router->method == 'login' || $this->CI->router->method == 'admin')){
 			redirect('home');
 		}
 		
