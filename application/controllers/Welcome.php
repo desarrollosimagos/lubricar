@@ -27,4 +27,30 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('login_form');
 	}
+	
+	public function somos()
+	{
+		$this->load->view('somos');
+	}
+	
+	public function servicios()
+	{
+		$this->load->view('servicios');
+	}
+	
+	public function solicitud()
+	{
+		$this->load->view('solicitud');
+	}
+	
+	public function noticias()
+	{
+		$this->load->view('noticias');
+	}
+	
+	public function cuenta()
+	{
+		$this->load->view('cuenta');
+	}
+	
 }
