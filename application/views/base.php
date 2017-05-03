@@ -9,11 +9,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <title>Lubricar Deliver</title>
 	<!-- CSS Files -->
-    <link href="<?php base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php base_url() ?>assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="<?php echo assets_url('css/bootstrap.min.css');?>" rel="stylesheet">
+    <link href="<?php echo assets_url('font-awesome/css/font-awesome.css');?>" rel="stylesheet">
+	<link href="<?php echo assets_url('css/plugins/dataTables/datatables.min.css');?>" rel="stylesheet">
+    <link href="<?php echo assets_url('css/animate.css');?>" rel="stylesheet">
+    <link href="<?php echo assets_url('css/style.css');?>" rel="stylesheet">
+	
+	 <!-- Sweet Alert -->
+    <link href="<?php echo assets_url('css/plugins/sweetalert/sweetalert.css');?>" rel="stylesheet">
+	
+	<!-- Custom and plugin javascript -->
+	<script src="<?php echo assets_url('js/jquery-3.1.1.min.js');?>"></script>
+	<script src="<?php echo assets_url('js/bootstrap.min.js');?>"></script>
+	<script src="<?php echo assets_url('js/plugins/metisMenu/jquery.metisMenu.js');?>"></script>
+	<script src="<?php echo assets_url('js/plugins/slimscroll/jquery.slimscroll.min.js');?>"></script>
+	<script src="<?php echo assets_url('js/plugins/dataTables/datatables.min.js');?>"></script>
 
-    <link href="<?php base_url() ?>assets/css/animate.css" rel="stylesheet">
-    <link href="<?php base_url() ?>assets/css/style.css" rel="stylesheet">
+	
+	<script src="<?php echo assets_url('js/inspinia.js');?>"></script>
+	<script src="<?php echo assets_url('js/plugins/pace/pace.min.js');?>"></script>
+	
+	<script src="<?php echo assets_url('js/plugins/slimscroll/jquery.slimscroll.min.js');?>"></script>
+	
+	 <!-- Sweet alert -->
+    <script src="<?php echo assets_url('js/plugins/sweetalert/sweetalert.min.js');?>"></script>
 </head>
 <body class="md-skin fixed-nav no-skin-config">
 	<div id="wrapper">
@@ -23,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<li class="nav-header">
 						<div class="dropdown profile-element">
 							<span>
-								<img alt="image" class="img-circle" src="<?php base_url() ?>assets/img/profile_small.jpg" />
+								<img alt="image" class="img-circle" src="<?php echo assets_url('img/profile_small.jpg'); ?>" />
 							</span>
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<span class="clear">
@@ -36,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</span>
 							</a>
 							<ul class="dropdown-menu animated fadeInRight m-t-xs">
-								<li><a href="profile.html">Perfil</a></li>
+								<li><a href="">Perfil</a></li>
 								<li><a href="contacts.html">Contactos</a></li>
 								<li class="divider"></li>
 								<li><a href="login.html">Cerrar Sesión</a></li>
@@ -49,8 +68,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<li>
 						<a href="#"><i class="fa fa-user-o"></i> <span class="nav-label">Usuarios</span><span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level collapse">
-							<li><a href="search_results.html">Perfiles</a></li>
-							<li><a href="lockscreen.html">Empleados</a></li>
+							<li><a href="<?php echo base_url() ?>profile">Perfiles</a></li>
+							<li><a href="user/profile">Empleados</a></li>
 							
 						</ul>
 					</li>
@@ -116,7 +135,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<li>
 									<div class="dropdown-messages-box">
 										<a href="profile.html" class="pull-left">
-											<img alt="image" class="img-circle" src="img/a7.jpg">
+											<img alt="image" class="img-circle" src="<?php echo assets_url('img/a7.jpg'); ?>">
 										</a>
 										<div class="media-body">
 											<small class="pull-right">46h ago</small>
@@ -129,7 +148,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<li>
 									<div class="dropdown-messages-box">
 										<a href="profile.html" class="pull-left">
-											<img alt="image" class="img-circle" src="img/a4.jpg">
+											<img alt="image" class="img-circle" src="<?php echo assets_url('img/a4.jpg'); ?>">
 										</a>
 										<div class="media-body ">
 											<small class="pull-right text-navy">5h ago</small>
@@ -142,7 +161,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<li>
 									<div class="dropdown-messages-box">
 										<a href="profile.html" class="pull-left">
-											<img alt="image" class="img-circle" src="img/profile.jpg">
+											<img alt="image" class="img-circle" src="<?php echo assets_url('img/profile.jpg');?>">
 										</a>
 										<div class="media-body ">
 											<small class="pull-right">23h ago</small>
@@ -216,56 +235,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 
 
-			<div class="wrapper wrapper-content animated fadeInRight">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="ibox float-e-margins m-t-xl">
-							<div class="ibox-content text-center p-xl">
 			
-								<h2><span class="text-navy">Material Design Skin for Inspinia</span>
-								<br/><small>Example view</small></h2>
 			
-								<p>
-									If you want to apply Material Design Skin, all you need to do is to add 'md-skin' class to your open body tag, like this:
-			
-								</p>
-								<pre class="text-left">
-			
-			&lt;body class="md-skin"&gt;&lt;/body&gt;
-								</pre>
-								<p>
-									Additional in current demo we also enable fixed option for navbar and sidebar - more about fixed options you can find in documentation.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="footer">
-				<div class="pull-right">
-				   <!-- 10GB of <strong>250GB</strong> Free.-->
-				</div>
-				<div>
-					<strong>Copyright</strong> Exampley Company &copy; 2017
-				</div>
-			</div>
-		</div>
-	</div>
-	
-
-	<!-- Mainly scripts -->
-	<script src="<?php base_url() ?>assets/js/jquery-3.1.1.min.js"></script>
-	<script src="<?php base_url() ?>assets/js/bootstrap.min.js"></script>
-	<script src="<?php base_url() ?>assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-	<script src="<?php base_url() ?>assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-	
-	<!-- Custom and plugin javascript -->
-	<script src="<?php base_url() ?>assets/js/inspinia.js"></script>
-	<script src="<?php base_url() ?>assets/js/plugins/pace/pace.min.js"></script>
-	
-	<script src="<?php base_url() ?>assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-	
-
-</body>
-</html>
+		
