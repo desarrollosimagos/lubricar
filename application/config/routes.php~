@@ -57,18 +57,10 @@ $route['login'] = 'CLogin/login/';
 $route['logout'] = 'CLogin/logout/';
 $route['home'] = 'Home/home/';
 $route['admin'] = 'Welcome/admin/';
-/* page public*/
+
 $route['public'] = 'welcome';
 $route['somos'] = 'welcome/somos';
 $route['servicios'] = 'welcome/servicios';
 $route['solicitud'] = 'welcome/solicitud';
 $route['noticias'] = 'welcome/noticias';
 $route['cuenta'] = 'welcome/cuenta';
-
-/* perfiles */
-$route['profile'] = 'CPerfil';
-$route['profile_register'] = 'CPerfil/register';
-$route['profile_edit/(:num)'] = 'CPerfil/edit/$1';
-$route['profile_delete'] = 'CPerfil/delete';
-/*assets*/
-$route['assets/(:any)'] = 'assets/$1';
