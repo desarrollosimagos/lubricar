@@ -36,12 +36,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                       <li><a  href="<?php echo base_url(); ?>">Inicio</a></li>
-                        <li><a  href="<?php echo base_url(); ?>somos">Quienes Somos</a></li>
-                        <li><a  href="<?php echo base_url(); ?>servicios">Servicios</a></li>
-                        <li><a  href="<?php echo base_url(); ?>solicitud">Solicitud de Servicio</a></li>
-                        <li><a  href="<?php echo base_url(); ?>noticias">Noticias</a></li>
-                        <li><a  href="<?php echo base_url(); ?>cuenta">Mi cuenta</a>
+                       <li><a  href="public">Inicio</a></li>
+                        <li><a  href="somos">Quienes Somos</a></li>
+                        <li><a  href="servicios">Servicios</a></li>
+                        <li><a  href="solicitud">Solicitud de Servicio</a></li>
+                        <li><a  href="noticias">Noticias</a></li>
+                        <li><a  href="cuenta">Mi cuenta</a>
                         
                         <!--<ul>
                            <li>Mis Datos</li>

@@ -58,6 +58,7 @@ $route['logout'] = 'CLogin/logout/';
 $route['home'] = 'Home/home/';
 $route['admin'] = 'Welcome/admin/';
 
+$route['public'] = 'welcome';
 $route['somos'] = 'welcome/somos';
 $route['servicios'] = 'welcome/servicios';
 $route['solicitud'] = 'welcome/solicitud';
