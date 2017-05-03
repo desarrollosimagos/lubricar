@@ -69,6 +69,6 @@ $route['cuenta'] = 'welcome/cuenta';
 $route['profile'] = 'CPerfil';
 $route['profile_register'] = 'CPerfil/register';
 $route['profile_edit/(:num)'] = 'CPerfil/edit/$1';
-$route['profile_delete'] = 'CPerfil/delete';
+$route['profile_delete/(:num)'] = 'CPerfil/delete/$1';
 /*assets*/
 $route['assets/(:any)'] = 'assets/$1';
