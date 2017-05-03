@@ -62,8 +62,16 @@ class MPerfil extends CI_Model {
 
     // Metodo publico, para eliminar un registro 
      public function delete($id) {
-        $result = $this->db->delete('profile', array('id' => $id));
-        return $result;
+        $result = $this->db->where('profile_id =', $id);
+        $result = $this->db->get('users');
+
+        if ($result->num_rows() > 0) {
+            echo 'existe';
+        } else {
+            $result = $this->db->delete('profile', array('id' => $id));
+            return $result;
+        }
+       
     }
     
 

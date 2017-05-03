@@ -30,7 +30,7 @@ class CPerfil extends CI_Controller {
 	  //metodo para guardar un nuevo registro
     public function add() {
 
-        $result = $this->MPerfil->insertar($this->input->post());
+        $result = $this->MPerfil->insert($this->input->post());
         if ($result) {
 			print_r('guardo');
            /* $this->libreria->generateActivity('Nuevo Grupo de Usuario', $this->session->userdata['logged_in']['id']);*/
