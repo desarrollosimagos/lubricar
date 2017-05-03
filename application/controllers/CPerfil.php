@@ -30,36 +30,34 @@ class CPerfil extends CI_Controller {
 	  //metodo para guardar un nuevo registro
     public function add() {
 
-        $result = $this->MPerfil->insert($this->input->post());
+        $result = $this->MPerfil->insertar($this->input->post());
         if ($result) {
 			print_r('guardo');
            /* $this->libreria->generateActivity('Nuevo Grupo de Usuario', $this->session->userdata['logged_in']['id']);*/
        
         }
     }
-	
-	  //metodo para editar
-    function edit() {		
+	 //metodo para editar
+    public function edit() {		
         $data['id'] = $this->uri->segment(2);
         $data['editar'] = $this->MPerfil->obtenerPerfiles($data['id']);
         $this->load->view('perfiles/editar', $data);
     }
 	
 	//Metodo para actualizar
-    function update() {
+    public function update() {
+		
         $result = $this->MPerfil->update($this->input->post());
         if ($result) {
         /*    $this->libreria->generateActivity('Actualizado Grupo de Usuario', $this->session->userdata['logged_in']['id']);*/
      
         }
     }
-	
 	//Metodo para eliminar
 	function delete($id) {
         $result = $this->MPerfil->delete($id);
-         if ($result) {
-            /*$this->libreria->generateActivity('Eliminar Parroquia', $this->session->userdata['logged_in']['id']);*/
-          
+        if ($result) {
+          /*  $this->libreria->generateActivity('Eliminado País', $this->session->userdata['logged_in']['id']);*/
         }
     }
 	

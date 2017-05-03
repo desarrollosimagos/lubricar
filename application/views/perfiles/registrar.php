@@ -71,7 +71,15 @@
 				if (response[0] == '1') {
                     swal("Disculpe,", "este nombre se encuentra registrado");
                 }else{
-					swal("Registro,", "guardado con exito", "success");
+					swal({ 
+						title: "Registro",
+						 text: "Guardado con exito",
+						  type: "success" 
+						},
+					function(){
+					  window.location.href = '<?php echo base_url(); ?>profile';
+					});
+				
 
 				}
 

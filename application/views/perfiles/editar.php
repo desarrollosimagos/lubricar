@@ -30,6 +30,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-4 col-sm-offset-2">
+								 <input class="form-control"  type='hidden' id="id" name="id" value="<?php echo $id ?>"/>
 								<button class="btn btn-white" id="volver" type="button">Volver</button>
 								<button class="btn btn-primary" id="edit" type="submit">Actualizar</button>
 							</div>
@@ -65,13 +66,22 @@
 		   swal("Disculpe,", "para continuar debe ingresar nombre");
 
         } else {
+			
 
-            $.post('<?php echo base_url(); ?>CPerfil/add', $('#form_perfil').serialize(), function (response) {
-
+            $.post('<?php echo base_url(); ?>CPerfil/update', $('#form_perfil').serialize(), function (response) {
+				
 				if (response[0] == '1') {
-                    swal("Disculpe,", "este nombre se encuentra registrado");
+                    swal("Disculpe,", "este nombre ya existe");
                 }else{
-					swal("Registro,", "guardado con exito", "success");
+					swal({ 
+						title: "Actualizar",
+						 text: "Registro actualizado con exito",
+						  type: "success" 
+						},
+					function(){
+					  window.location.href = '<?php echo base_url(); ?>profile';
+					});
+					
 
 				}
 

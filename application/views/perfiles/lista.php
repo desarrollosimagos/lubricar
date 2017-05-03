@@ -52,7 +52,8 @@
                                     <a href="<?php echo base_url() ?>profile_edit/<?= $perfil->id; ?>" title="Editar"><i class="fa fa-pencil"></i></a>
                                 </td>
                                 <td style='text-align: center'>
-                                    <a href="<?php echo base_url() ?>CPerfil/delete/<?= $perfil->id; ?>" title="Eliminar"><i class="fa fa-trash-o"></i></a>
+                                    
+                                    <a class='borrar' id='<?php echo $perfil->id; ?>'><i class="fa fa-trash-o"></i></a>
                                 </td>
                             </tr>
                             <?php $i++ ?>
@@ -106,6 +107,42 @@
                     {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false}
                 ]
             });
+             
+         // Validacion para borrar
+    $("table#tab_perfiles").on('click', 'a.borrar', function (e) {
+        e.preventDefault();
+        var id = this.getAttribute('id');
+
+        swal({
+            title: "Borrar registro",
+            text: "¿Está seguro de borrar el perfil?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Eliminar",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false,
+            closeOnCancel: true
+          },
+          function(isConfirm){
+            if (isConfirm) {
+             
+              $.post('<?php echo base_url(); ?>profile_delete/' + id + '', function (response) {
+
+              swal({ 
+                title: "Eliminar",
+                 text: "Registro eliminado con exito",
+                  type: "success" 
+                },
+                function(){
+                  window.location.href = '<?php echo base_url(); ?>profile';
+              });
+   
+             });
+            } 
+          });
+        
+    });
             
         });
         
