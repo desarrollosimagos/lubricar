@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
-
+	<?php
+    //~ if (isset($this->session->userdata['logged_in'])) {
+        //~ redirect('home');
+        //~ header("location: ".base_url()."home");
+    //~ }
+    ?>
 <head>
 
     <meta charset="utf-8">
