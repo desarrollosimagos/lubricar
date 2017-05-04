@@ -79,6 +79,11 @@ $route['franchises'] = 'CFranchises';
 $route['franchises/register'] = 'CFranchises/register';
 $route['franchises/edit/(:num)'] = 'CFranchises/edit/$1';
 $route['franchises/delete/(:num)'] = 'CFranchises/delete/$1';
+/*   Services */
+$route['services'] = 'CServices';
+$route['services/register'] = 'CServices/register';
+$route['services/edit/(:num)'] = 'CServices/edit/$1';
+$route['services/delete/(:num)'] = 'CServices/delete/$1';
 
 /*assets*/
 $route['assets/(:any)'] = 'assets/$1';
