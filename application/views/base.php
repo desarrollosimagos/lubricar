@@ -47,9 +47,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<span class="clear">
 									<span class="block m-t-xs">
-										<strong class="font-bold">David Williams</strong>
+										<strong class="font-bold"><?php echo $this->session->userdata('logged_in')['username'];?></strong>
 									</span>
-									<span class="text-muted text-xs block">Art Director
+									<span class="text-muted text-xs block"><?php echo $this->session->userdata('logged_in')['profile_name'];?>
 										<b class="caret"></b>
 									</span>
 								</span>
@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<li><a href="">Perfil</a></li>
 								<li><a href="contacts.html">Contactos</a></li>
 								<li class="divider"></li>
-								<li><a href="login.html">Cerrar Sesión</a></li>
+								<li><a href="logout">Cerrar Sesión</a></li>
 							</ul>
 						</div>
 						<div class="logo-element">
