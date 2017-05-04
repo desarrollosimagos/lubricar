@@ -74,5 +74,11 @@ $route['profile_delete/(:num)'] = 'CPerfil/delete/$1';
 $route['users'] = 'CUser';
 $route['users_register'] = 'CUser/register';
 $route['users_edit/(:num)'] = 'CUser/edit/$1';
+/*   Franchises */
+$route['franchises'] = 'CFranchises';
+$route['franchises/register'] = 'CFranchises/register';
+$route['franchises/edit/(:num)'] = 'CFranchises/edit/$1';
+$route['franchises/delete/(:num)'] = 'CFranchises/delete/$1';
+
 /*assets*/
 $route['assets/(:any)'] = 'assets/$1';
