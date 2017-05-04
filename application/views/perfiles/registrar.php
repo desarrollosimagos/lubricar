@@ -62,8 +62,8 @@
         if ($('#name').val().trim() === "") {
 
           
-		   swal("Disculpe,", "para continuar debe ingresar nombre");
-
+			swal("Disculpe,", "para continuar debe ingresar nombre");
+			$('#name').parent('div').addClass('has-error');
         } else {
 
             $.post('<?php echo base_url(); ?>CPerfil/add', $('#form_perfil').serialize(), function (response) {

@@ -63,8 +63,8 @@
         if ($('#name').val().trim() === "") {
 
           
-		   swal("Disculpe,", "para continuar debe ingresar nombre");
-
+			swal("Disculpe,", "para continuar debe ingresar nombre");
+			$('#name').parent('div').addClass('has-error');
         } else {
 			
 
