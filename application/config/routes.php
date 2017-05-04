@@ -70,5 +70,9 @@ $route['profile'] = 'CPerfil';
 $route['profile_register'] = 'CPerfil/register';
 $route['profile_edit/(:num)'] = 'CPerfil/edit/$1';
 $route['profile_delete/(:num)'] = 'CPerfil/delete/$1';
+/*   Users */
+$route['users'] = 'CUser';
+$route['users_register'] = 'CUser/register';
+$route['users_edit/(:num)'] = 'CUser/edit/$1';
 /*assets*/
 $route['assets/(:any)'] = 'assets/$1';
