@@ -74,8 +74,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</ul>
 					</li>
 					<li>
+						<a href="#"><i class="fa fa-building"></i> <span class="nav-label">Clientes</span><span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level collapse">
+							<li><a href="<?php echo base_url() ?>client">Clientes</a></li>
+
+						</ul>
+					</li>
+					<li>
 						<a href="#"><i class="fa fa-building"></i> <span class="nav-label">Franquicias</span><span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level collapse">
+							<li><a href="<?php echo base_url() ?>franchises">Franquicias</a></li>
 							<li><a href="search_results.html">Edición de Datos / Asignación de Servicios</a></li>
 							<li><a href="lockscreen.html">Resumen Financiero</a></li>
 							<li><a href="lockscreen.html">Perfil Franquicia</a></li>
