@@ -69,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<a href="#"><i class="fa fa-user-o"></i> <span class="nav-label">Usuarios</span><span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level collapse">
 							<li><a href="<?php echo base_url() ?>profile">Perfiles</a></li>
-							<li><a href="user/profile">Empleados</a></li>
+							<li><a href="<?php echo base_url() ?>users">Usuarios</a></li>
 							
 						</ul>
 					</li>
