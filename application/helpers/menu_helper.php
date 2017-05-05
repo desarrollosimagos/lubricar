@@ -49,7 +49,11 @@ if (!function_exists('menu')) {
 		?>
 			<li>
 				<?php 
-				echo $menu->description;
+				if($menu->route != ""){
+					echo "<a href='".base_url().$menu->route."'><i class='fa fa-user-o'></i> <span class='nav-label'>".$menu->name."</span><span class='fa arrow'></span></a>";
+				}else{
+					echo "<a href='".base_url().$menu->route."'><i class='fa fa-user-o'></i> <span class='nav-label'>".$menu->name."</span><span class='fa arrow'></span></a>";
+				}
 				
 				// Verificamos si hay submenús para el menú
 				foreach($ci->session->userdata('logged_in')['submenus'] as $submenus){
@@ -66,9 +70,7 @@ if (!function_exists('menu')) {
 					foreach($ci->session->userdata('logged_in')['submenus'] as $submenus){
 						foreach($submenus as $submenu){
 							if($submenu->menu_id == $menu->id){
-					?>
-								<?php echo $submenu->description;?>
-					<?php
+								echo "<li><a href='".base_url().$submenu->route."'>".$submenu->name."</a></li>";
 							}
 						}
 					}
