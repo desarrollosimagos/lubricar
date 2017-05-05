@@ -9,7 +9,7 @@
                 <a>Usuarios</a>
             </li>
             <li class="active">
-                <strong>Perfiles</strong>
+                <strong>Registrar Perfiles</strong>
             </li>
         </ol>
     </div>
@@ -20,13 +20,14 @@
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
 					<h5>Registrar Perfil <small></small></h5>
-					
 				</div>
 				<div class="ibox-content">
 					<form id="form_perfil" method="post" accept-charset="utf-8" class="form-horizontal">
-						<div class="form-group"><label class="col-sm-2 control-label" >Nombre</label>
-
-							<div class="col-sm-10"><input type="text" class="form-control"  placeholder="Introduzca nombre" name="name" id="name"></div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" >Nombre</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control"  placeholder="Introduzca nombre" name="name" id="name">
+							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-4 col-sm-offset-2">
@@ -41,7 +42,7 @@
     </div>
 </div>
 <script>
-	$(document).ready(function(){
+$(document).ready(function(){
 
     $('input').on({
         keypress: function () {
@@ -53,7 +54,6 @@
         url = '<?php echo base_url() ?>profile/';
         window.location = url;
     });
-
 
     $("#registrar").click(function (e) {
 
@@ -79,13 +79,9 @@
 					function(){
 					  window.location.href = '<?php echo base_url(); ?>profile';
 					});
-				
-
 				}
-
             });
         }
-
     });
 });
 

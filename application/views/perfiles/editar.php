@@ -9,7 +9,7 @@
                 <a>Usuarios</a>
             </li>
             <li class="active">
-                <strong>Perfiles</strong>
+                <strong>Editar Perfiles</strong>
             </li>
         </ol>
     </div>
@@ -24,9 +24,11 @@
 				</div>
 				<div class="ibox-content">
 					<form id="form_perfil" method="post" accept-charset="utf-8" class="form-horizontal">
-						<div class="form-group"><label class="col-sm-2 control-label" >Nombre</label>
-
-							<div class="col-sm-10"><input type="text" class="form-control"  placeholder="Introduzca nombre" name="name" id="name" value="<?php echo $editar[0]->name ?>"></div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" >Nombre</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control"  placeholder="Introduzca nombre" name="name" id="name" value="<?php echo $editar[0]->name ?>">
+							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-4 col-sm-offset-2">
@@ -42,7 +44,7 @@
     </div>
 </div>
 <script>
-	$(document).ready(function(){
+$(document).ready(function(){
 
     $('input').on({
         keypress: function () {
@@ -62,12 +64,11 @@
 
         if ($('#name').val().trim() === "") {
 
-          
 			swal("Disculpe,", "para continuar debe ingresar nombre");
 			$('#name').parent('div').addClass('has-error');
+			
         } else {
 			
-
             $.post('<?php echo base_url(); ?>CPerfil/update', $('#form_perfil').serialize(), function (response) {
 				
 				if (response[0] == '1') {
@@ -81,13 +82,9 @@
 					function(){
 					  window.location.href = '<?php echo base_url(); ?>profile';
 					});
-					
-
 				}
-
             });
         }
-
     });
 });
 

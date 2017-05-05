@@ -32,7 +32,7 @@ class CFranchises extends CI_Controller {
 
         $result = $this->MFranchises->insert($this->input->post());
         if ($result) {
-			print_r('guardo');
+	
            /* $this->libreria->generateActivity('Nuevo Grupo de Usuario', $this->session->userdata['logged_in']['id']);*/
        
         }
@@ -42,6 +42,7 @@ class CFranchises extends CI_Controller {
         $data['id'] = $this->uri->segment(3);
         $data['editar'] = $this->MFranchises->obtenerFranchises($data['id']);
         $this->load->view('franchises/editar', $data);
+		$this->load->view('footer');
     }
 	
 	//Metodo para actualizar

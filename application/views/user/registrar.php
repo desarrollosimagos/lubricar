@@ -20,7 +20,6 @@
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
 					<h5>Registrar Usuario <small></small></h5>
-					
 				</div>
 				<div class="ibox-content">
 					<form id="form_users" method="post" accept-charset="utf-8" class="form-horizontal">

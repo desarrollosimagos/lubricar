@@ -9,7 +9,7 @@
                 <a>Franquicias</a>
             </li>
             <li class="active">
-                <strong>Franquicias</strong>
+                <strong>Registrar Franquicias</strong>
             </li>
         </ol>
     </div>
@@ -24,13 +24,17 @@
 				</div>
 				<div class="ibox-content">
 					<form id="form_franchises" method="post" accept-charset="utf-8" class="form-horizontal">
-						<div class="form-group"><label class="col-sm-2 control-label" >Nombre *</label>
-
-							<div class="col-sm-10"><input type="text" class="form-control"   name="name" id="name"></div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" >Nombre *</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control"   name="name" id="name">
+							</div>
 						</div>
-						<div class="form-group"><label class="col-sm-2 control-label" >Dirección *</label>
-
-							<div class="col-sm-10"><input type="text" class="form-control"  name="address" id="address"></div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" >Dirección *</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control"  name="address" id="address">
+							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label" >Estatus *</label>
@@ -55,7 +59,7 @@
     </div>
 </div>
 <script>
-	$(document).ready(function(){
+$(document).ready(function(){
 
     $('input').on({
         keypress: function () {
@@ -100,13 +104,9 @@
 					function(){
 					  window.location.href = '<?php echo base_url(); ?>franchises';
 					});
-				
-
 				}
-
             });
         }
-
     });
 });
 

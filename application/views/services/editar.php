@@ -18,21 +18,26 @@
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
 					<h5>Registrar Servicios <small></small></h5>
-					
 				</div>
 				<div class="ibox-content">
 					<form id="form_services" method="post" accept-charset="utf-8" class="form-horizontal">
-						<div class="form-group"><label class="col-sm-2 control-label" >Nombre *</label>
-
-							<div class="col-sm-10"><input type="text" class="form-control"   name="name" id="name" maxlength="150" value="<?php echo $editar[0]->name ?>"></div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" >Nombre *</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control"   name="name" id="name" maxlength="150" value="<?php echo $editar[0]->name ?>">
+							</div>
 						</div>
-						<div class="form-group"><label class="col-sm-2 control-label" >Descripción *</label>
-
-							<div class="col-sm-10"><input type="text" class="form-control"  name="description" maxlength="200" id="description" value="<?php echo $editar[0]->description ?>"></div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" >Descripción *</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control"  name="description" maxlength="200" id="description" value="<?php echo $editar[0]->description ?>">
+							</div>
 						</div>
-						<div class="form-group"><label class="col-sm-2 control-label" >Precio *</label>
-
-							<div class="col-sm-10"><input type="text" class="form-control"  name="price" maxlength="11" id="price" value="<?php echo $editar[0]->price ?>"></div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" >Precio *</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control"  name="price" maxlength="11" id="price" value="<?php echo $editar[0]->price ?>">
+							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label" >Estatus *</label>
@@ -59,7 +64,7 @@
     </div>
 </div>
 <script>
-	$(document).ready(function(){
+$(document).ready(function(){
 
     $('input').on({
         keypress: function () {
@@ -111,13 +116,9 @@
 					function(){
 					  window.location.href = '<?php echo base_url(); ?>services';
 					});
-				
-
 				}
-
             });
         }
-
     });
 });
 
