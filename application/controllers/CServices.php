@@ -42,6 +42,7 @@ class CServices extends CI_Controller {
         $data['id'] = $this->uri->segment(3);
         $data['editar'] = $this->MServices->obtenerServices($data['id']);
         $this->load->view('services/editar', $data);
+		$this->load->view('footer');
     }
 	
 	//Metodo para actualizar

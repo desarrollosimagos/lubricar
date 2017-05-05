@@ -55,6 +55,7 @@ class CUser extends CI_Controller {
 		$data['list_perfil'] = $this->MPerfil->obtener();
         $data['editar'] = $this->MUser->obtenerUsers($data['id']);
         $this->load->view('user/editar', $data);
+		$this->load->view('footer');
     }
 	
 	//Metodo para actualizar

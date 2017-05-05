@@ -29,7 +29,7 @@ $(document).ready(function() {
        "iDisplayStart": 0,
        "sPaginationType": "full_numbers",
        "aLengthMenu": [5, 10, 15],
-       "oLanguage": {"sUrl": "assets/js/es.txt"},
+       "oLanguage": {"sUrl": "../assets/js/es.txt"},
        "aoColumns": [
            {"sClass": "registro center", "sWidth": "5%"},
            {"sClass": "registro center", "sWidth": "10%"},

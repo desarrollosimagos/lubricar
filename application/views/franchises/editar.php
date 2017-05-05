@@ -9,7 +9,7 @@
                 <a>Franquicias</a>
             </li>
             <li class="active">
-                <strong>Franquicias</strong>
+                <strong>Editar Franquicias</strong>
             </li>
         </ol>
     </div>
@@ -19,18 +19,21 @@
         <div class="col-lg-12">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<h5>Registrar Franquicias <small></small></h5>
-					
+					<h5>Editar Franquicias <small></small></h5>
 				</div>
 				<div class="ibox-content">
 					<form id="form_franchises" method="post" accept-charset="utf-8" class="form-horizontal">
-						<div class="form-group"><label class="col-sm-2 control-label" >Nombre *</label>
-
-							<div class="col-sm-10"><input type="text" class="form-control"   name="name" id="name" value="<?php echo $editar[0]->name ?>"></div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" >Nombre *</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control"   name="name" id="name" value="<?php echo $editar[0]->name ?>">
+							</div>
 						</div>
-						<div class="form-group"><label class="col-sm-2 control-label" >Dirección *</label>
-
-							<div class="col-sm-10"><input type="text" class="form-control"  name="address" id="address" value="<?php echo $editar[0]->address ?>"></div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" >Dirección *</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control"  name="address" id="address" value="<?php echo $editar[0]->address ?>">
+							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label" >Estatus *</label>
@@ -38,7 +41,6 @@
 								<select class="form-control m-b" name="status" id="status">
 									<option value="1" selected="">Activo</option>
 									<option value="0">Inactivo</option>
-
 								</select>
 							</div>
 						</div>
@@ -57,7 +59,7 @@
     </div>
 </div>
 <script>
-	$(document).ready(function(){
+$(document).ready(function(){
 
     $('input').on({
         keypress: function () {
@@ -103,13 +105,9 @@
 					function(){
 					  window.location.href = '<?php echo base_url(); ?>franchises';
 					});
-				
-
 				}
-
             });
         }
-
     });
 });
 

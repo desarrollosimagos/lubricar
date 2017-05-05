@@ -32,7 +32,6 @@ class CPerfil extends CI_Controller {
 
         $result = $this->MPerfil->insert($this->input->post());
         if ($result) {
-			print_r('guardo');
            /* $this->libreria->generateActivity('Nuevo Grupo de Usuario', $this->session->userdata['logged_in']['id']);*/
        
         }
@@ -42,6 +41,7 @@ class CPerfil extends CI_Controller {
         $data['id'] = $this->uri->segment(2);
         $data['editar'] = $this->MPerfil->obtenerPerfiles($data['id']);
         $this->load->view('perfiles/editar', $data);
+		$this->load->view('footer');
     }
 	
 	//Metodo para actualizar
