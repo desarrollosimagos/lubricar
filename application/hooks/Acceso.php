@@ -11,63 +11,55 @@ class Acceso
 	function identificado()
 	{
 		$this->CI =&get_instance();
-		//~ $controllersprivados = array('Clogin', 'Home');
-		$controllersprivados = array('Home');
+		$controllersprivados = array('Home', 'CPerfil');  // Controladores restringidos sin logueo
+		$controllerspermitidos = array();  // Controladores permitidos para el usuario logueado
+		$accionespermitidas = array();  // Ids de las acciones (módulos) permitidos para el usuario logueado
+		$rutaspermitidas = array();  // Rutas permitidas para el usuario logueado
 		
-		//~ print_r($controllersprivados);
-		
-		//~ echo "Controlador: ".$this->CI->router->class;
-		//~ echo "Método: ".$this->CI->router->method;
-		//~ exit();
-		
-		//~ echo "Sesión: ";
-		//~ echo $this->CI->session->userdata('logged_in');
-		
+		// Si estamos logueados e intenamos volver al login o admin nos redirige al home
 		if(isset($this->CI->session->userdata['logged_in']) && ($this->CI->router->method == 'login' || $this->CI->router->method == 'admin')){
 			redirect('home');
 		}
 		
+		// Si no estamos logueados e intentamos acceder a un controlador restringido nos redirige al login
 		if(!isset($this->CI->session->userdata['logged_in']) && $this->CI->router->method != 'login' && in_array($this->CI->router->class, $controllersprivados)){
 			redirect('login');
 		}
 		
+		// Si estamos logueados validamos los controladores y métodos permitidos según el perfil del usuario
 		if(isset($this->CI->session->userdata['logged_in']) && ($this->CI->router->method != 'login' || $this->CI->router->method != 'admin')){
 			//~ print_r($this->CI->session->userdata('logged_in'));echo "<br>";
-			//~ echo "Usuario: ".$this->CI->session->userdata('logged_in')['username'];
-			//~ echo "Id: ".$this->CI->session->userdata('logged_in')['id'];
-			// Recorrido de los datos del usurio
-			/*foreach($this->CI->session->userdata('logged_in') as $clave => $userdata){
+			// Recorrido de los datos del usuario
+			foreach($this->CI->session->userdata('logged_in') as $clave => $userdata){
 				if($clave == "acciones"){
-					print_r($clave);
-					echo " - ";
-					//~ print_r($userdata);
 					foreach($userdata as $accion){
-						echo $accion[0]->name.", ";
+						$controllerspermitidos[] = $accion[0]->class;
+						$accionespermitidas[] = $accion[0]->id;
+						$rutaspermitidas[] = $accion[0]->route;
 					}
-					echo "<br>";
 				}else if($clave == "permisos"){
-					print_r($clave);
-					echo " - ";
-					//~ print_r($userdata);
 					foreach($userdata as $permiso){
-						echo $permiso[0]->name.", ";
+						$controllerspermitidos[] = $permiso[0]->class;
+						$accionespermitidas[] = $permiso[0]->id;
+						$rutaspermitidas[] = $permiso[0]->route;
 					}
-					echo "<br>";
 				}else if($clave == "franquicia"){
-					print_r($clave);
-					echo " - ";
-					//~ print_r($userdata);
 					foreach($userdata as $franquicia){
-						echo $franquicia[0]->name.", ";
+						//~ echo $franquicia[0]->name.", ";
+						//~ echo "";
 					}
-					echo "<br>";
 				}else{
-					echo $clave." - ".$userdata;
-					echo "<br>";
+					//~ print_r($userdata);
+					//~ echo "<br>";
 				}
 				
-			}*/
-			//~ exit();
+			}
+			//~ Si ingresamos en un controlador al que no tenemos acceso
+			if(!in_array($this->CI->router->class, $controllerspermitidos)){
+				//~ echo "Acceso denegado...";
+				redirect('home');
+			}
+			
 		}
 		
 	}

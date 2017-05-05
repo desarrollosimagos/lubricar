@@ -4,47 +4,83 @@ if (!defined('BASEPATH')) {
 }
 if (!function_exists('menu')) {
 
-    function menu($datos_sesion) {
+    //~ function menu($datos_sesion) {
+    function menu() {
         $ci = & get_instance();
-        //~ if(isset($ci->session->userdata['logged_in'])){
-			//~ print_r($ci->session->userdata['logged_in']);
-		//~ }
-        ?>
-        
-        <li>
-			<a href="#"><i class="fa fa-user-o"></i> <span class="nav-label">Usuarios</span><span class="fa arrow"></span></a>
-			<ul class="nav nav-second-level collapse">
-				<li><a href="<?php echo base_url() ?>profile">Perfiles</a></li>
-				<li><a href="<?php echo base_url() ?>users">Usuarios</a></li>
-				
-			</ul>
-		</li>
-		<li>
-			<a href="#"><i class="fa fa-building"></i> <span class="nav-label">Clientes</span><span class="fa arrow"></span></a>
-			<ul class="nav nav-second-level collapse">
-				<li><a href="<?php echo base_url() ?>client">Clientes</a></li>
-
-			</ul>
-		</li>
-		<li>
-			<a href="#"><i class="fa fa-building"></i> <span class="nav-label">Franquicias</span><span class="fa arrow"></span></a>
-			<ul class="nav nav-second-level collapse">
-				<li><a href="<?php echo base_url() ?>franchises">Franquicias</a></li>
-				<li><a href="search_results.html">Edición de Datos / Asignación de Servicios</a></li>
-				<li><a href="lockscreen.html">Resumen Financiero</a></li>
-				<li><a href="lockscreen.html">Perfil Franquicia</a></li>
-				
-			</ul>
-		</li>
+        $controllerspermitidos = array();  // Controladores permitidos para el usuario logueado
+		$accionespermitidas = array();  // Ids de las acciones (módulos) permitidos para el usuario logueado
+		$rutaspermitidas = array();  // Rutas permitidas para el usuario logueado
 		
-		<li>
-			<a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Ordenes de Servicio</span></a>
+		// Si estamos logueados validamos los controladores y métodos permitidos según el perfil del usuario
+		if(isset($ci->session->userdata['logged_in'])){
+			// Recorrido de los datos del usuario
+			foreach($ci->session->userdata('logged_in') as $clave => $userdata){
+				if($clave == "acciones"){
+					foreach($userdata as $accion){
+						$controllerspermitidos[] = $accion[0]->class;
+						$accionespermitidas[] = $accion[0]->id;
+						$rutaspermitidas[] = $accion[0]->route;
+					}
+				}else if($clave == "permisos"){
+					foreach($userdata as $permiso){
+						$controllerspermitidos[] = $permiso[0]->class;
+						$accionespermitidas[] = $permiso[0]->id;
+						$rutaspermitidas[] = $permiso[0]->route;
+					}
+				}else if($clave == "franquicia"){
+					foreach($userdata as $franquicia){
+						//~ echo $franquicia[0]->name.", ";
+					}
+				}else{
+					//~ echo $clave." - ";
+					//~ print_r($userdata);
+				}				
+			}
 			
-		</li>
-		<li>
-			<a href="<?php echo base_url() ?>services"><i class="fa fa-delicious"></i> <span class="nav-label">Servicios</span></a>
-			
-		</li>
+		}
+		
+        ?>
+
+		<!-- Cargamos los menús y submenús correspondientes al perfil -->
+		<?php 
+		// Imprimiendo los menús
+		foreach($ci->session->userdata('logged_in')['menus'] as $menus){
+			foreach($menus as $menu){
+		?>
+			<li>
+				<?php 
+				echo $menu->description;
+				
+				// Verificamos si hay submenús para el menú
+				foreach($ci->session->userdata('logged_in')['submenus'] as $submenus){
+					$num_submenus = 0;  // Contador de submenús
+					foreach($submenus as $submenu){
+						if($submenu->menu_id == $menu->id){
+							$num_submenus += 1;
+						}
+					}
+				}
+				if($num_submenus > 0){
+					echo "<ul class='nav nav-second-level collapse'>";
+					// Imprimiendo los submenús
+					foreach($ci->session->userdata('logged_in')['submenus'] as $submenus){
+						foreach($submenus as $submenu){
+							if($submenu->menu_id == $menu->id){
+					?>
+								<?php echo $submenu->description;?>
+					<?php
+							}
+						}
+					}
+					echo "</ul>";
+				}
+				?>
+			</li>
+		<?php
+			}
+		} 
+		?>
+		<!-- Cargamos los menús y submenús correspondientes al perfil -->
 
         <?php
     }

@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$datos_sesion = array();
+//~ $datos_sesion = array();
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,7 +68,7 @@ $datos_sesion = array();
 					</li>
 					
 					<!-- Carga de menú lateral -->
-					<?php echo menu($datos_sesion); ?>
+					<?php echo menu(); ?>
 					<!-- Carga de menú lateral -->
 
 				</ul>
@@ -197,8 +197,4 @@ $datos_sesion = array();
 			
 				</nav>
 			</div>
-
-
-			
-			
 		
