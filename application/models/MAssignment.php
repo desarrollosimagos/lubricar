@@ -12,7 +12,7 @@ class MAssignment extends CI_Model {
         $this->load->database();
     }
 
-    //Metodo publico para obterner los perfiles
+    //Public method to obtain the services of the franchises
     public function obtener() {
         $query = $this->db->get('franchises_services');
 
@@ -22,7 +22,7 @@ class MAssignment extends CI_Model {
             return $query->result();
     }
 
-    // Metodo publico, forma de insertar los datos
+    // Public method to insert the data
     public function insert($datos) {
         
         $result = $this->db->where('franchise_id =', $datos['franchise_id']);
@@ -36,7 +36,7 @@ class MAssignment extends CI_Model {
         }
     }
 
-    // Metodo publico, para obterner la unidad de medida por id
+    // Public method to obtain the services of the franchises by id
     public function obtenerServices($id) {
         $this->db->where('id', $id);
         $query = $this->db->get('franchises_services');
@@ -46,16 +46,13 @@ class MAssignment extends CI_Model {
             return $query->result();
     }
 
-    // Metodo publico, para actualizar un registro 
+    // Public method to update a record
     public function update($datos) {
        
         $result = $this->db->where('franchise_id =', $datos['franchise_id']);
         $result = $this->db->where('service_id =', $datos['service_id']);
         $result = $this->db->where('id !=', $datos['id']);
         $result = $this->db->get('franchises_services');
-
-
-
 
         if ($result->num_rows() > 0) {
             echo '1';
@@ -67,7 +64,7 @@ class MAssignment extends CI_Model {
     }
 
 
-    // Metodo publico, para eliminar un registro 
+    // Public method to delete a record
      public function delete($id) {
         $result = $this->db->where('service_id =', $id);
         $result = $this->db->get('orders_services');

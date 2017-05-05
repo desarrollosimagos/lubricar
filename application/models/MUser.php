@@ -12,7 +12,7 @@ class MUser extends CI_Model {
         $this->load->database();
     }
 
-    //Metodo publico para obterner los perfiles
+    //Public method to obtain the users
     public function obtener() {
         $query = $this->db->get('users');
 
@@ -22,7 +22,7 @@ class MUser extends CI_Model {
             return $query->result();
     }
 
-    // Metodo publico, forma de insertar los datos
+    // Public method to insert the data
     public function insert($datos) {
         $result = $this->db->where('username =', $datos['username']);
         $result = $this->db->get('users');
@@ -34,7 +34,7 @@ class MUser extends CI_Model {
         }
     }
 
-    // Metodo publico, para obterner la unidad de medida por id
+    // Public method to obtain the users by id
     public function obtenerUsers($id) {
         $this->db->where('id', $id);
         $query = $this->db->get('users');
@@ -44,7 +44,7 @@ class MUser extends CI_Model {
             return $query->result();
     }
 
-    // Metodo publico, para actualizar un registro 
+    // Public method to update a record 
     public function update($datos) {
         $result = $this->db->where('username =', $datos['username']);
         $result = $this->db->where('id !=', $datos['id']);
@@ -60,7 +60,7 @@ class MUser extends CI_Model {
     }
 
 
-    // Metodo publico, para eliminar un registro 
+    // Public method to delete a record
      public function delete($id) {
         $result = $this->db->delete('users', array('id' => $id));
         return $result;
