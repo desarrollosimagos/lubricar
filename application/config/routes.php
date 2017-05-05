@@ -84,6 +84,15 @@ $route['services'] = 'CServices';
 $route['services/register'] = 'CServices/register';
 $route['services/edit/(:num)'] = 'CServices/edit/$1';
 $route['services/delete/(:num)'] = 'CServices/delete/$1';
-
+/*   clients */
+$route['clients'] = 'CClient';
+$route['clients/register'] = 'CClient/register';
+$route['clients/edit/(:num)'] = 'CClient/edit/$1';
+$route['clients/delete/(:num)'] = 'CFranchises/delete/$1';
+/*   Assignment */
+$route['assignment'] = 'CAssignment';
+$route['assignment/register'] = 'CAssignment/register';
+$route['assignment/edit/(:num)'] = 'CAssignment/edit/$1';
+$route['assignment/delete/(:num)'] = 'CAssignment/delete/$1';
 /*assets*/
 $route['assets/(:any)'] = 'assets/$1';
