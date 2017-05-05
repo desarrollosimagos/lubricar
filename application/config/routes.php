@@ -94,5 +94,15 @@ $route['assignment'] = 'CAssignment';
 $route['assignment/register'] = 'CAssignment/register';
 $route['assignment/edit/(:num)'] = 'CAssignment/edit/$1';
 $route['assignment/delete/(:num)'] = 'CAssignment/delete/$1';
+/*   Menús */
+$route['menus'] = 'CMenus';
+$route['menus/register'] = 'CMenus/register';
+$route['menus/edit/(:num)'] = 'CMenus/edit/$1';
+$route['menus/delete/(:num)'] = 'CMenus/delete/$1';
+/*   Submenús */
+$route['submenus'] = 'CSubMenus';
+$route['submenus/register'] = 'CSubMenus/register';
+$route['submenus/edit/(:num)'] = 'CSubMenus/edit/$1';
+$route['submenus/delete/(:num)'] = 'CSubMenus/delete/$1';
 /*assets*/
 $route['assets/(:any)'] = 'assets/$1';
