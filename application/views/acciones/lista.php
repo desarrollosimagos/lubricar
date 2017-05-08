@@ -1,13 +1,13 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Menús</h2>
+        <h2>Acciones</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="">Inicio</a>
             </li>
    
             <li class="active">
-                <strong>Menús</strong>
+                <strong>Acciones</strong>
             </li>
         </ol>
        
@@ -19,11 +19,11 @@
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
-            <a href="<?php echo base_url() ?>menus/register">
+            <a href="<?php echo base_url() ?>acciones/register">
             <button class="btn btn-outline btn-primary dim" type="button"><i class="fa fa-plus"></i> Agregar</button></a>
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Listado de Menús</h5>
+                <h5>Listado de Acciones</h5>
             </div>
             <div class="ibox-content">
                 <div class="table-responsive">
@@ -32,6 +32,7 @@
                     <tr>
                         <th>#</th>
                         <th>Nombre</th>
+                        <th>Clase</th>
                         <th>Ruta</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
@@ -39,23 +40,26 @@
                     </thead>
                     <tbody>
                         <?php $i = 1; ?>
-                        <?php foreach ($listar as $menu) { ?>
+                        <?php foreach ($listar as $accion) { ?>
                             <tr style="text-align: center">
                                 <td>
                                     <?php echo $i; ?>
                                 </td>
                                 <td>
-                                    <?php echo $menu->name; ?>
+                                    <?php echo $accion->name; ?>
                                 </td>
                                 <td>
-                                    <?php echo $menu->description; ?>
+                                    <?php echo $accion->class; ?>
+                                </td>
+                                <td>
+                                    <?php echo $accion->route; ?>
                                 </td>
                                 <td style='text-align: center'>
-                                    <a href="<?php echo base_url() ?>menus/edit/<?= $menu->id; ?>" title="Editar"><i class="fa fa-pencil"></i></a>
+                                    <a href="<?php echo base_url() ?>acciones/edit/<?= $accion->id; ?>" title="Editar"><i class="fa fa-pencil"></i></a>
                                 </td>
                                 <td style='text-align: center'>
                                     
-                                    <a class='borrar' id='<?php echo $menu->id; ?>'><i class="fa fa-trash-o"></i></a>
+                                    <a class='borrar' id='<?php echo $accion->id; ?>'><i class="fa fa-trash-o"></i></a>
                                 </td>
                             </tr>
                             <?php $i++ ?>
@@ -106,6 +110,7 @@
                     {"sClass": "registro center", "sWidth": "5%"},
                     {"sClass": "registro center", "sWidth": "20%"},
                     {"sClass": "registro center", "sWidth": "20%"},
+                    {"sClass": "registro center", "sWidth": "20%"},
                     {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
                     {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false}
                 ]
@@ -130,7 +135,7 @@
           function(isConfirm){
             if (isConfirm) {
              
-              $.post('<?php echo base_url(); ?>menus/delete/' + id + '', function (response) {
+              $.post('<?php echo base_url(); ?>acciones/delete/' + id + '', function (response) {
 
                  if (response[0] == "e") {
                     
@@ -149,7 +154,7 @@
                           type: "success" 
                         },
                         function(){
-                          window.location.href = '<?php echo base_url(); ?>menus';
+                          window.location.href = '<?php echo base_url(); ?>acciones';
                       });
                     
                     
