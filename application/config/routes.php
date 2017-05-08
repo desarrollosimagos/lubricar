@@ -104,5 +104,10 @@ $route['submenus'] = 'CSubMenus';
 $route['submenus/register'] = 'CSubMenus/register';
 $route['submenus/edit/(:num)'] = 'CSubMenus/edit/$1';
 $route['submenus/delete/(:num)'] = 'CSubMenus/delete/$1';
+/*   Acciones */
+$route['acciones'] = 'CAcciones';
+$route['acciones/register'] = 'CAcciones/register';
+$route['acciones/edit/(:num)'] = 'CAcciones/edit/$1';
+$route['acciones/delete/(:num)'] = 'CAcciones/delete/$1';
 /*assets*/
 $route['assets/(:any)'] = 'assets/$1';

@@ -1,13 +1,13 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Menús</h2>
+        <h2>Sub Menús</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="">Inicio</a>
             </li>
    
             <li class="active">
-                <strong>Menús</strong>
+                <strong>Sub Menús</strong>
             </li>
         </ol>
        
@@ -19,11 +19,11 @@
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
-            <a href="<?php echo base_url() ?>menus/register">
+            <a href="<?php echo base_url() ?>submenus/register">
             <button class="btn btn-outline btn-primary dim" type="button"><i class="fa fa-plus"></i> Agregar</button></a>
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Listado de Menús</h5>
+                <h5>Listado de Sub Menús</h5>
             </div>
             <div class="ibox-content">
                 <div class="table-responsive">
@@ -33,29 +33,52 @@
                         <th>#</th>
                         <th>Nombre</th>
                         <th>Ruta</th>
+                        <th>Acción</th>
+                        <th>Menú</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
                     </thead>
                     <tbody>
                         <?php $i = 1; ?>
-                        <?php foreach ($listar as $menu) { ?>
+                        <?php foreach ($listar as $submenu) { ?>
                             <tr style="text-align: center">
                                 <td>
                                     <?php echo $i; ?>
                                 </td>
                                 <td>
-                                    <?php echo $menu->name; ?>
+                                    <?php echo $submenu->name; ?>
                                 </td>
                                 <td>
-                                    <?php echo $menu->description; ?>
+                                    <?php echo $submenu->route; ?>
+                                </td>
+                                <td>
+									<?php 
+									foreach ($acciones as $accion){
+										if($submenu->action_id == $accion->id){
+											echo $accion->name;
+										}else{
+											echo "";
+										}
+									}
+									?>
+                                </td>
+                                <td>
+									<?php 
+									foreach ($menus as $menu){
+										if($submenu->menu_id == $menu->id){
+											echo $menu->name;
+										}else{
+											echo "";
+										}
+									}
+									?>
                                 </td>
                                 <td style='text-align: center'>
-                                    <a href="<?php echo base_url() ?>menus/edit/<?= $menu->id; ?>" title="Editar"><i class="fa fa-pencil"></i></a>
+                                    <a href="<?php echo base_url() ?>submenus/edit/<?= $submenu->id; ?>" title="Editar"><i class="fa fa-pencil"></i></a>
                                 </td>
                                 <td style='text-align: center'>
-                                    
-                                    <a class='borrar' id='<?php echo $menu->id; ?>'><i class="fa fa-trash-o"></i></a>
+                                    <a class='borrar' id='<?php echo $submenu->id; ?>'><i class="fa fa-trash-o"></i></a>
                                 </td>
                             </tr>
                             <?php $i++ ?>
@@ -106,6 +129,8 @@
                     {"sClass": "registro center", "sWidth": "5%"},
                     {"sClass": "registro center", "sWidth": "20%"},
                     {"sClass": "registro center", "sWidth": "20%"},
+                    {"sClass": "registro center", "sWidth": "20%"},
+                    {"sClass": "registro center", "sWidth": "20%"},
                     {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
                     {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false}
                 ]
@@ -130,30 +155,29 @@
           function(isConfirm){
             if (isConfirm) {
              
-              $.post('<?php echo base_url(); ?>menus/delete/' + id + '', function (response) {
+              $.post('<?php echo base_url(); ?>submenus/delete/' + id + '', function (response) {
 
-                 if (response[0] == "e") {
-                    
-                      swal({ 
-                        title: "Disculpe,",
-                         text: "No se puede eliminar se encuentra asociado a un submenú",
-                          type: "warning" 
-                        },
-                        function(){
-                          
-                      });
-                 }else{
-                      swal({ 
+                 //~ if (response[0] == "e") {
+                    //~ 
+                      //~ swal({ 
+                        //~ title: "Disculpe,",
+                         //~ text: "No se puede eliminar se encuentra asociado a un submenú",
+                          //~ type: "warning" 
+                        //~ },
+                        //~ function(){
+                          //~ 
+                      //~ });
+                 //~ }else{
+                      swal({
                         title: "Eliminar",
                          text: "Registro eliminado con exito",
                           type: "success" 
                         },
                         function(){
-                          window.location.href = '<?php echo base_url(); ?>menus';
+                          window.location.href = '<?php echo base_url(); ?>submenus';
                       });
                     
-                    
-                 }
+                 //~ }
             
    
              });
