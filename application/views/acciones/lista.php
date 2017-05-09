@@ -3,7 +3,7 @@
         <h2>Acciones</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="">Inicio</a>
+                <a href="<?php echo base_url() ?>home">Inicio</a>
             </li>
    
             <li class="active">

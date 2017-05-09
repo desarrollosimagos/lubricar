@@ -3,7 +3,7 @@
         <h2>Menús</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="">Inicio</a>
+                <a href="<?php echo base_url() ?>home">Inicio</a>
             </li>
    
             <li class="active">
@@ -33,6 +33,7 @@
                         <th>#</th>
                         <th>Nombre</th>
                         <th>Ruta</th>
+                        <th>Acción</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
@@ -48,7 +49,18 @@
                                     <?php echo $menu->name; ?>
                                 </td>
                                 <td>
-                                    <?php echo $menu->description; ?>
+                                    <?php echo $menu->route; ?>
+                                </td>
+                                <td>
+									<?php 
+									foreach ($acciones as $accion){
+										if($menu->action_id == $accion->id){
+											echo $accion->name;
+										}else{
+											echo "";
+										}
+									}
+									?>
                                 </td>
                                 <td style='text-align: center'>
                                     <a href="<?php echo base_url() ?>menus/edit/<?= $menu->id; ?>" title="Editar"><i class="fa fa-pencil"></i></a>
@@ -104,6 +116,7 @@
                 "oLanguage": {"sUrl": "<?= assets_url() ?>js/es.txt"},
                 "aoColumns": [
                     {"sClass": "registro center", "sWidth": "5%"},
+                    {"sClass": "registro center", "sWidth": "20%"},
                     {"sClass": "registro center", "sWidth": "20%"},
                     {"sClass": "registro center", "sWidth": "20%"},
                     {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
