@@ -3,11 +3,15 @@
         <h2>Menús </h2>
         <ol class="breadcrumb">
             <li>
-                <a href="index.html">Inicio</a>
+                <a href="<?php echo base_url() ?>home">Inicio</a>
+            </li>
+            
+            <li>
+                <a href="<?php echo base_url() ?>menus">Menús</a>
             </li>
            
             <li class="active">
-                <strong>Menús</strong>
+                <strong>Editar Menú</strong>
             </li>
         </ol>
     </div>
@@ -23,19 +27,26 @@
 				<div class="ibox-content">
 					<form id="form_menus" method="post" accept-charset="utf-8" class="form-horizontal">
 						<div class="form-group"><label class="col-sm-2 control-label" >Nombre *</label>
-
 							<div class="col-sm-10"><input type="text" class="form-control" name="name" id="name" maxlength="150" value="<?php echo $editar[0]->name ?>"></div>
 						</div>
-						<div class="form-group"><label class="col-sm-2 control-label" >Descripción *</label>
+						<div class="form-group"><label class="col-sm-2 control-label" >Ruta</label>
+							<div class="col-sm-10"><input type="text" class="form-control"  maxlength="100" name="route" id="route" value="<?php echo $editar[0]->route ?>"></div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" >Acción</label>
 							<div class="col-sm-10">
-								<textarea class="form-control" name="description" id="description">
-									<?php echo $editar[0]->description ?>
-								</textarea>
+								<select class="form-control m-b" name="action_id" id="action_id">
+									<option value="0" selected="">Seleccione</option>
+									<?php foreach ($acciones as $accion) { ?>
+										<option value="<?php echo $accion->id ?>"><?php echo $accion->name ?></option>
+									<?php } ?>
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-4 col-sm-offset-2">
-								 <input class="form-control"  type='hidden' id="id" name="id" value="<?php echo $id ?>"/>
+								<input id="id_action" type="hidden" value="<?php echo $editar[0]->action_id ?>"/>
+								<input class="form-control"  type='hidden' id="id" name="id" value="<?php echo $id ?>"/>
 								<button class="btn btn-white" id="volver" type="button">Volver</button>
 								<button class="btn btn-primary" id="edit" type="submit">Guardar</button>
 							</div>
@@ -59,6 +70,8 @@
         url = '<?php echo base_url() ?>menus/';
         window.location = url;
     });
+    
+    $("#action_id").val($("#id_action").val());
 
     $("#edit").click(function (e) {
 
@@ -70,13 +83,17 @@
 			swal("Disculpe,", "para continuar debe ingresar nombre");
 			$('#name').parent('div').addClass('has-error');
 			
-        } else if ($('#description').val().trim() === "") {
-
-          
-			swal("Disculpe,", "para continuar debe ingresar la descripción");
-			$('#description').parent('div').addClass('has-error');
+        } else if ($('#route').val().trim() == "" && $('#action_id').val().trim() != "0") {
 			
-        } else {
+			swal("Disculpe,", "para continuar debe ingresar la ruta");
+			$('#route').parent('div').addClass('has-error');
+			
+		} else if ($('#route').val().trim() != "" && $('#action_id').val().trim() == "0") {
+			
+			swal("Disculpe,", "para continuar debe seleccionar la acción a asociar");
+			$('#action_id').parent('div').addClass('has-error');
+			
+		} else {
 
             $.post('<?php echo base_url(); ?>CMenus/update', $('#form_menus').serialize(), function (response) {
 

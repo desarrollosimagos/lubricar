@@ -3,11 +3,15 @@
         <h2>Sub Menús</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="index.html">Inicio</a>
+                <a href="<?php echo base_url() ?>home">Inicio</a>
+            </li>
+            
+            <li>
+                <a href="<?php echo base_url() ?>submenus">Sub Menús</a>
             </li>
 
             <li class="active">
-                <strong>Sub Menús</strong>
+                <strong>Registrar Sub Menú</strong>
             </li>
         </ol>
     </div>

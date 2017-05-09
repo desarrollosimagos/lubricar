@@ -3,11 +3,15 @@
         <h2>Acciones</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="index.html">Inicio</a>
+                <a href="<?php echo base_url() ?>home">Inicio</a>
+            </li>
+            
+            <li>
+                <a href="<?php echo base_url() ?>acciones">Acciones</a>
             </li>
            
             <li class="active">
-                <strong>Acciones</strong>
+                <strong>Editar Acción</strong>
             </li>
         </ol>
     </div>

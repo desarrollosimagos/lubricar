@@ -32,13 +32,13 @@ class CSubMenus extends CI_Controller {
 		$this->load->view('footer');
 	}
 	
-	  //metodo para guardar un nuevo registro
+	  //Método para guardar un nuevo registro
     public function add() {
 
         $result = $this->MSubMenus->insert($this->input->post());
         if ($result) {
            
-           // Actualizamos la nueva acción y la asignamos 
+			// Actualizamos la acción y la asignamos 
 			$data_action = array();
 			$data_action['id'] = $this->input->post('action_id');
 			$data_action['assigned'] = 1;
@@ -47,7 +47,7 @@ class CSubMenus extends CI_Controller {
        
         }
     }
-	 //metodo para editar
+	 //Método para editar
     public function edit() {		
         $data['id'] = $this->uri->segment(3);
         $data['menus'] = $this->MMenus->obtener();
@@ -61,7 +61,7 @@ class CSubMenus extends CI_Controller {
         $this->load->view('submenus/editar', $data);
     }
 	
-	//Metodo para actualizar
+	//Método para actualizar
     public function update() {
 		
 		// Primero actualizamos la acción anteriormente asociada y la desasignamos
@@ -86,7 +86,7 @@ class CSubMenus extends CI_Controller {
         }
     }
     
-	//Metodo para eliminar
+	//Método para eliminar
 	function delete($id) {
 		
 		// Primero consultamos el identificador de la acción a sociada al submenú
