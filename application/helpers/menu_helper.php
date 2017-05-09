@@ -28,9 +28,15 @@ if (!function_exists('menu')) {
 						$rutaspermitidas[] = $permiso[0]->route;
 					}
 				}else if($clave == "franquicia"){
-					foreach($userdata as $franquicia){
+					//~ foreach($userdata as $franquicia){
 						//~ echo $franquicia[0]->name.", ";
-					}
+					//~ }
+				}else if($clave == "servicios"){
+					//~ foreach($userdata as $servicios){
+						//~ foreach($servicios as $servicio){
+							//~ echo $servicio->name;
+						//~ }
+					//~ }
 				}else{
 					//~ echo $clave." - ";
 					//~ print_r($userdata);

@@ -13,10 +13,10 @@ Class Basicauth
 		$query = $this->CI->db->get_where('users', array('username'=>$usuario, 'password'=>$password));
 		
 		if($query->num_rows() > 0){
-			echo "Pasó 1";
+			//~ echo "Pasó 1";
 			$query = $this->CI->db->get_where('users', array('username'=>$usuario, 'password'=>$password, 'status'=>1));
 			if($query->num_rows() > 0){
-				echo "Pasó 2";
+				//~ echo "Pasó 2";
 				// Consultamos los datos de perfil del usuario
 				$query_profile = $this->CI->db->get_where('profile', array('id'=>$query->row()->profile_id));
 				// Consultamos los datos de acciones del perfil
@@ -33,13 +33,14 @@ Class Basicauth
 					$query_actions2 = $this->CI->db->get_where('actions', array('id'=>$permissions->action_id));
 					$permisos[] = $query_actions2->result();
 				}
-				// Buscamos los datos de la franquicia, los menús y submenús asociados al usuario
+				// Buscamos los datos de la franquicia con sus servicios, los menús y submenús asociados al usuario
 				$franquicia = array();
+				$servicios = array();
 				$menus = array();
 				$submenus = array();
 				// Primero verificamos que el usuario no sea administrador
 				if($query->row()->admin == 0){
-					echo "Pasó 3";
+					//~ echo "Pasó 3";
 					// Buscamos si hay una franquicia asociada al usuario
 					$query_user_franquicia = $this->CI->db->get_where('users_franchises', array('user_id'=>$query->row()->id));
 					if($query_user_franquicia->num_rows() > 0){
@@ -47,6 +48,15 @@ Class Basicauth
 						//~ echo "Franquicia: ".$id_franquicia;
 						$query_franquicia = $this->CI->db->get_where('franchises', array('id'=>$query_user_franquicia->row()->franchise_id));
 						$franquicia[] = $query_franquicia->result();
+						// Buscamos los datos de los servicios asociados a la franquicia
+						$query_franquicia_services = $this->CI->db->get_where('franchises_services', array('franchise_id'=>$query_franquicia->row()->id));
+						if($query_franquicia_services->num_rows() > 0){
+							// Listamos los servicios asociados
+							foreach($query_franquicia_services->result() as $services){
+								$query_servicio = $this->CI->db->get_where('services', array('id'=>$services->service_id));
+								$servicios[] = $query_servicio->result();
+							}
+						}
 					}
 					// Carga de menús y submenús para usuarios no administradores
 					$ids_acciones = array();  // Lista de ids de acciones para buscar en submenús
@@ -99,6 +109,7 @@ Class Basicauth
 					'acciones' => $acciones,
 					'permisos' => $permisos,
 					'franquicia' => $franquicia,
+					'servicios' => $servicios,
 					'submenus' => $submenus,
 					'menus' => $menus
 				);
