@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
-	 <!-- Metadata -->
+		 <!-- Metadata -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,8 +12,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<!-- CSS Files -->
     <link href="<?php echo assets_url('css/bootstrap.min.css');?>" rel="stylesheet">
     <link href="<?php echo assets_url('font-awesome/css/font-awesome.css');?>" rel="stylesheet">
+	<link href="<?php echo assets_url('css/plugins/iCheck/custom.css');?>" rel="stylesheet">
+    <link href="<?php echo assets_url('css/plugins/steps/jquery.steps.css');?>" rel="stylesheet">
 	<link href="<?php echo assets_url('css/plugins/dataTables/datatables.min.css');?>" rel="stylesheet">
-    <link href="<?php echo assets_url('css/animate.css');?>" rel="stylesheet">
+	<link href="<?php echo assets_url('js/datatables.net-bs/css/dataTables.bootstrap.css'); ?>" rel="stylesheet" />
+    <link rel="stylesheet" href="<?php echo assets_url('css/dataTables.responsive.css'); ?>">
+    <link href="<?php echo assets_url('js/datatables.net-responsive-bs/css/responsive.bootstrap.min.css'); ?>"
+	<link href="<?php echo assets_url('css/animate.css');?>" rel="stylesheet">
     <link href="<?php echo assets_url('css/style.css');?>" rel="stylesheet">
 	
 	 <!-- Sweet Alert -->
@@ -25,15 +30,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="<?php echo assets_url('js/plugins/metisMenu/jquery.metisMenu.js');?>"></script>
 	<script src="<?php echo assets_url('js/plugins/slimscroll/jquery.slimscroll.min.js');?>"></script>
 	<script src="<?php echo assets_url('js/plugins/dataTables/datatables.min.js');?>"></script>
-
-	
+	<script src="<?php echo assets_url('js/datatables.net/js/jquery.dataTables.min.js'); ?>"></script>
+	<script src="<?php echo assets_url('js/datatables.net-bs/js/dataTables.bootstrap.min.js'); ?>"></script>
+	<script src="<?php echo assets_url('js/datatables.net-responsive/js/dataTables.responsive.min.js'); ?>"></script>
 	<script src="<?php echo assets_url('js/inspinia.js');?>"></script>
 	<script src="<?php echo assets_url('js/plugins/pace/pace.min.js');?>"></script>
-	
 	<script src="<?php echo assets_url('js/plugins/slimscroll/jquery.slimscroll.min.js');?>"></script>
-	
 	 <!-- Sweet alert -->
     <script src="<?php echo assets_url('js/plugins/sweetalert/sweetalert.min.js');?>"></script>
+	   <!-- Custom and plugin javascript -->
+    <script src="<?php echo assets_url('js/inspinia.js');?>"></script>
+    <script src="<?php echo assets_url('js/plugins/pace/pace.min.js');?>"></script>
+    <!-- Steps -->
+    <script src="<?php echo assets_url('js/plugins/steps/jquery.steps.min.js');?>"></script>
+	    <!-- Jquery Validate -->
+    <script src="<?php echo assets_url('js/plugins/validate/jquery.validate.min.js');?>"></script>
+	<script src="<?php echo assets_url('js/jquery.numeric.js');?>"></script>
 </head>
 <body class="md-skin fixed-nav no-skin-config">
 	<div id="wrapper">

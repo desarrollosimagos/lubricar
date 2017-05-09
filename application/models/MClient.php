@@ -30,6 +30,31 @@ class MClient extends CI_Model {
             echo '1';
         } else {
             $result = $this->db->insert("customers", $datos);
+            //return $result;
+            $id = $this->db->insert_id();
+            return $id;
+        }
+    }
+
+     // Metodo publico, forma de insertar los datos
+    public function insertCars($datos) {
+        $result = $this->db->where('license_plate =', $datos['license_plate']);
+        $result = $this->db->get('vehicles');
+        if ($result->num_rows() > 0) {
+            echo '1';
+        } else {
+            $result = $this->db->insert("vehicles", $datos);
+            return $result;
+        }
+    }
+     // Metodo publico, forma de insertar los datos
+    public function insertAddress($datos) {
+        $result = $this->db->where('address_1 =', $datos['address_1']);
+        $result = $this->db->get('addresses');
+        if ($result->num_rows() > 0) {
+            echo '1';
+        } else {
+            $result = $this->db->insert("addresses", $datos);
             return $result;
         }
     }
@@ -62,7 +87,10 @@ class MClient extends CI_Model {
 
     // Metodo publico, para eliminar un registro 
      public function delete($id) {
-        $result = $this->db->delete('users', array('id' => $id));
+        
+        $result = $this->db->delete('customers', array('id' => $id));
+        $result = $this->db->delete('addresses', array('customers_id' => $id));
+        $result = $this->db->delete('vehicles', array('customers_id' => $id));
         return $result;
     }
     
