@@ -50,7 +50,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-4 col-sm-offset-2">
-								<input type='hidden' id="id_class" name="id_class" value="<?php echo $editar[0]->class;?>"/>
+								<input type='hidden' id="id_class" value="<?php echo $editar[0]->class;?>"/>
 								<input class="form-control"  type='hidden' id="id" name="id" value="<?php echo $id ?>"/>
 								<button class="btn btn-white" id="volver" type="button">Volver</button>
 								<button class="btn btn-primary" id="edit" type="submit">Guardar</button>
@@ -87,7 +87,7 @@
 			swal("Disculpe,", "para continuar debe ingresar el nombre");
 			$('#name').parent('div').addClass('has-error');
 			
-        } else if ($('#class').val().trim() === "") {
+        } else if ($('#class').val().trim() === "0") {
 			
 			swal("Disculpe,", "para continuar debe ingresar la clase");
 			$('#class').parent('div').addClass('has-error');

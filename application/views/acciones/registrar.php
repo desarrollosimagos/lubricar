@@ -85,7 +85,7 @@
 			swal("Disculpe,", "para continuar debe ingresar el nombre");
 			$('#name').parent('div').addClass('has-error');
 			
-        } else if ($('#class').val().trim() === "") {
+        } else if ($('#class').val().trim() === "0") {
 			
 			swal("Disculpe,", "para continuar debe ingresar la clase");
 			$('#class').parent('div').addClass('has-error');
