@@ -231,7 +231,7 @@
 										<td style='text-align: center'><?php echo $direcc->address_2;?></td>
 										<td style='text-align: center'><?php echo $direcc->phone;?></td>
 										<td style='text-align: center'><?php echo $direcc->cell_phone;?></td>
-										<td style='text-align: center'><a style="color: #1ab394"class='quitar' id="<?php echo $direcc->id;?>"><i class='fa fa-edit fa-2x'></i></a></td>
+										<td style='text-align: center'><a style="color: #1ab394"class='editar' id="<?php echo $direcc->id;?>"><i class='fa fa-edit fa-2x'></i></a></td>
 										<td style='text-align: center'><a  style="color: #1ab394" class='quitar' id="<?php echo $direcc->id;?>"><i class='fa fa-trash fa-2x'></i></a></td>
 									</tr>
 									<?php }?>
