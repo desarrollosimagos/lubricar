@@ -70,15 +70,19 @@ Class Basicauth
 						$ids_acciones[] = $permiso[0]->id;
 					}
 					//~ print_r($ids_acciones);
-					// Buscamos los submenús correspondientes a los ids de acciones
+					// Buscamos los menús y submenús correspondientes a los ids de acciones
 					foreach($ids_acciones as $id_accion){
-						echo $id_accion;
+						//~ echo $id_accion;
 						$query_submenus = $this->CI->db->get_where('submenus', array('action_id'=>$id_accion));
 						if($query_submenus->num_rows() > 0){
 							$submenus[] = $query_submenus->result();
 						}
+						$query_menus = $this->CI->db->get_where('menus', array('action_id'=>$id_accion));
+						if($query_menus->num_rows() > 0){
+							$menus[] = $query_menus->result();
+						}
 					}
-					// Búscamos los menús correspondientes a los menu_id de la lista de submenús
+					// Buscamos los menús correspondientes a los menu_id de la lista de submenús
 					$menu_names = array();  // Variable de apoyo para validar que no se repitan los menús
 					foreach($submenus as $submenu){
 						//~ echo $submenu[0]->menu_id;
