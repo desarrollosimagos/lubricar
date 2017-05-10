@@ -122,8 +122,8 @@ class MClient extends CI_Model {
      public function delete($id) {
         
         $result = $this->db->delete('customers', array('id' => $id));
-        $result = $this->db->delete('addresses', array('customers_id' => $id));
-        $result = $this->db->delete('vehicles', array('customers_id' => $id));
+        $result = $this->db->delete('addresses', array('customer_id' => $id));
+        $result = $this->db->delete('vehicles', array('customer_id' => $id));
         return $result;
     }
     
