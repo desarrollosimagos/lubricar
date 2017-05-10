@@ -239,7 +239,7 @@
 										</table>
 									</div>
 									<!--Campo para almacenar los códigos de los registros a desasociar-->
-							<input type="text" id="codigos_des1" name="codigos_des1" placeholder="Códigos">
+							<input type="hidden" id="codigos_des1" name="codigos_des1" placeholder="Códigos">
 						</fieldset>
 						<h1><i class="fa fa-car"></i> Vehiculos</h1>
 						<fieldset>
@@ -274,7 +274,7 @@
 										</table>
 									</div>
 									 <!--Campo para almacenar los códigos de los registros a desasociar-->
-							<input type="text" id="codigos_des2" name="codigos_des2" placeholder="Códigos">
+							<input type="hidden" id="codigos_des2" name="codigos_des2" placeholder="Códigos">
 						</fieldset>
 					</form>
 				</div>
