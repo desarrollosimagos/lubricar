@@ -31,7 +31,16 @@
 						</div>
 						<div class="form-group"><label class="col-sm-2 control-label" >Clase</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" maxlength="100" name="class" id="class">
+								<select name="class" id="class" class="form-control">
+									<option value="0">Seleccione</option>
+									<?php
+									foreach ($controladores as $controlador) {
+										?>
+										<option value="<?php echo $controlador ?>"><?php echo $controlador ?></option>
+										<?php
+									}
+									?>
+								</select>
 							</div>
 						</div>
 						<div class="form-group"><label class="col-sm-2 control-label" >Ruta</label>
@@ -41,6 +50,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-4 col-sm-offset-2">
+								<input class="form-control"  type='hidden' id="id" name="id" value=""/>
 								<button class="btn btn-white" id="volver" type="button">Volver</button>
 								<button class="btn btn-primary" id="registrar" type="submit">Guardar</button>
 							</div>
