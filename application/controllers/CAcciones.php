@@ -22,12 +22,12 @@ class CAcciones extends CI_Controller {
 	
 	public function register()
 	{
-		
-		$this->load->view('acciones/registrar');
+		$data['controladores'] = $this->MAcciones->listar_controladores("application/controllers/", '');
+		$this->load->view('acciones/registrar', $data);
 		$this->load->view('footer');
 	}
 	
-	  //metodo para guardar un nuevo registro
+	  //Método para guardar un nuevo registro
     public function add() {
 
         $result = $this->MAcciones->insert($this->input->post());
@@ -37,14 +37,15 @@ class CAcciones extends CI_Controller {
        
         }
     }
-	 //metodo para editar
-    public function edit() {		
+	 //Método para editar
+    public function edit() {
         $data['id'] = $this->uri->segment(3);
+        $data['controladores'] = $this->MAcciones->listar_controladores("application/controllers/", $data['id']);
         $data['editar'] = $this->MAcciones->obtenerAccion($data['id']);
         $this->load->view('acciones/editar', $data);
     }
 	
-	//Metodo para actualizar
+	//Método para actualizar
     public function update() {
 		
         $result = $this->MAcciones->update($this->input->post());
@@ -53,7 +54,7 @@ class CAcciones extends CI_Controller {
      
         }
     }
-	//Metodo para eliminar
+	//Método para eliminar
 	function delete($id) {
 		
         $result = $this->MAcciones->delete($id);

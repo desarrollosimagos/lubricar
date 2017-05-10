@@ -5,14 +5,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MAcciones extends CI_Model {
 
-
+	private $controladores = array();  // Variable que contendrá la lista de controladores
+	
     public function __construct() {
        
         parent::__construct();
         $this->load->database();
     }
 
-    //Método público para obterner las acciones
+    // Método público para obterner las acciones
     public function obtener() {
         $query = $this->db->get('actions');
 
@@ -21,8 +22,46 @@ class MAcciones extends CI_Model {
         else
             return $query->result();
     }
+	
+	// Método público para obterner una lista de controladores
+    function listar_controladores($ruta, $id)
+    {
+        // abrir un directorio y listarlo recursivo
+        if (is_dir($ruta)) {
+            if ($dh = opendir($ruta)) {
+                while (($file = readdir($dh)) !== false) {
+					//esta línea la utilizaríamos si queremos listar todo lo que hay en el directorio
+					//mostraría tanto archivos como directorios
+                    if ($file!="." && $file!=".."){
+                        $controlador = str_replace('.php', '', $file);
+                        $controllersbase = array('Home','Welcome','CLogin');  // Controladores a ignorar
+                        if(!in_array($controlador, $controllersbase) && $controlador != 'index.html'){
+							// Verificamos si el controlador ya está asignado a alguna acción
+							$query_asigned = $this->db->get_where('actions', array('class'=>$controlador));
+							if($query_asigned->num_rows() == 0){
+								$this->controladores[] = $controlador;
+							}
+						}
+                    }
+                }
+                closedir($dh);
+                
+                // Si el id viene cargado quiere decir que se está editando una acción, por lo que debemos incluir el controlador del mismo
+                if($id != ''){
+					// Consultamos el controlador con el id de la acción editada
+					$query_action = $this->db->get_where('actions', array('id'=>$id));
+					if($query_action->num_rows() > 0){
+						$this->controladores[] = $query_action->result()[0]->class;
+					}
+				}
+            }
+        }else{
+            echo "<br>No es ruta valida";
+        }
+        return $this->controladores;
+    }
     
-    //Método público para obterner las acciones no asignadas
+    // Método público para obterner las acciones no asignadas
     public function obtenerNoAsignadas() {
 		$controllers = array('Home');  // Lista de controladores a los que se descartará de la vavlidación
 		$result = $this->db->where('assigned', 0);
@@ -35,7 +74,7 @@ class MAcciones extends CI_Model {
             return $query->result();
     }
     
-    //Método público para obterner las acciones no asignadas y la que pertenezca a un submenu específico
+    // Método público para obterner las acciones no asignadas y la que pertenezca a un submenu específico
     public function obtenerNoAsignadasId($id) {
 		$controllers = array('Home');  // Lista de controladores a los que se descartará de la vavlidación
 		$result = $this->db->where('assigned', 0);
