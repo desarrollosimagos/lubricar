@@ -25,44 +25,52 @@
                 </div>
                 <div class="ibox-content">
                     <div class="table-responsive">
-                        <table id="tab_assignment" class="table table-striped table-bordered table-hover dataTables-example" >
+                        <table id="tab_assignment" class="table table-striped table-bordered dt-responsive table-hover dataTables-example" >
                             <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Franquicia</th>
-                                     <th>Servicio</th>
+                                     <th>Servicios</th>
                                     <th>Editar</th>
                                     <th>Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $i = 1; ?>
-                                <?php foreach ($listar as $assignment) { ?>
+                                <?php foreach ($list_franq as $franq) { ?>
                                     <tr style="text-align: center">
                                         <td>
                                             <?php echo $i; ?>
                                         </td>
 
                                          <td>
-                                            <?php foreach ($list_franq as $franq) { ?>
-                                                <?php if ($franq->id == $assignment->franchise_id): ?>
-                                                    <option value="<?php echo $franq->id ?>"><?php echo $franq->name ?></option>
-                                                <?php endif; ?>
-                                            <?php } ?>
+                                            <?php 
+                                            echo $franq->name;
+                                            ?>
                                         </td>
-                                          <td>
-                                            <?php foreach ($list_serv as $serv) { ?>
-                                                <?php if ($serv->id == $assignment->service_id): ?>
-                                                    <option value="<?php echo $serv->id ?>"><?php echo $serv->name ?></option>
-                                                <?php endif; ?>
-                                            <?php } ?>
+                                        <td>
+											<br>
+                                            <?php
+                                            // Armamos un arreglo de ids de servicios correspondientes a la franquicia
+                                            $services_ids = array();
+                                            foreach($listar as $assignment){
+												if($assignment->franchise_id == $franq->id){
+													$services_ids[] = $assignment->service_id;
+												}
+											}
+											// Comparamos e imprimimos los nombre de los servicios asociados
+                                            foreach ($list_serv as $serv) {
+                                                if (in_array($serv->id, $services_ids)){
+                                                    echo $serv->name."<br>";
+                                                }
+                                            }
+                                            ?>
                                         </td>
                                         <td style='text-align: center'>
-                                            <a href="<?php echo base_url() ?>assignment/edit/<?= $assignment->id; ?>" title="Editar"><i class="fa fa-pencil"></i></a>
+                                            <a href="<?php echo base_url() ?>assignment/edit/<?= $franq->id; ?>" title="Editar"><i class="fa fa-pencil"></i></a>
                                         </td>
                                         <td style='text-align: center'>
-                                            
-                                            <a class='borrar' id='<?php echo $assignment->id; ?>'><i class="fa fa-trash-o"></i></a>
+                                            <a class='borrar' id='<?php echo $franq->id; ?>'><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
                                     <?php $i++ ?>
@@ -113,7 +121,7 @@ $(document).ready(function(){
         "aoColumns": [
             {"sClass": "registro center", "sWidth": "5%"},
             {"sClass": "registro center", "sWidth": "10%"},
-            {"sClass": "registro center", "sWidth": "10%"},
+            {"sClass": "none", "sWidth": "10%"},
             {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
             {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false}
         ]
@@ -125,12 +133,12 @@ $(document).ready(function(){
         var id = this.getAttribute('id');
 
         swal({
-            title: "Borrar registro",
-            text: "¿Está seguro de borrar el registro?",
+            title: "Borrar asignaciones",
+            text: "¿Está seguro de borrar las asignaciones?",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Eliminar",
+            confirmButtonText: "Borrar",
             cancelButtonText: "Cancelar",
             closeOnConfirm: false,
             closeOnCancel: true
@@ -144,7 +152,7 @@ $(document).ready(function(){
                        
                          swal({ 
                            title: "Disculpe,",
-                            text: "No se puede eliminar se encuentra asociado a un usuario",
+                            text: "Han quedado asignaciones sin borrar, puede que estén asociadas a una orden",
                              type: "warning" 
                            },
                            function(){
@@ -152,8 +160,8 @@ $(document).ready(function(){
                          });
                     }else{
                          swal({ 
-                           title: "Eliminar",
-                            text: "Registro eliminado con exito",
+                           title: "Borrar",
+                            text: "Proceso realizado con exito",
                              type: "success" 
                            },
                            function(){

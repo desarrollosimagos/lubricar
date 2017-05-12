@@ -39,8 +39,7 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label" >Servicio *</label>
 							<div class="col-sm-10">
-								<select class="form-control m-b" name="service_id" id="services">
-									<option value="0" selected="">Seleccione</option>
+								<select class="form-control m-b" name="service_id" id="services" multiple="multiple">
 									<?php foreach ($list_serv as $serv) { ?>
 										<option value="<?php echo $serv->id ?>"><?php echo $serv->name ?></option>
 									<?php } ?>
@@ -83,16 +82,17 @@ $(document).ready(function(){
 		  swal("Disculpe,", "para continuar debe seleccionas la franquicia");
 	       $('#profile').parent('div').addClass('has-error');
 		   
-		}  else if ($('#franchises').val() == '0') {
+		}  else if ($('#services').val() == "") {
 			
-		  swal("Disculpe,", "para continuar debe seleccionar el servicio");
+		  swal("Disculpe,", "para continuar debe seleccionar el(los) servicio(s)");
 	       $('#profile').parent('div').addClass('has-error');
 		   
         }  else {
+			alert(String($('#services').val()));
 
-            $.post('<?php echo base_url(); ?>CAssignment/add', $('#form_assignment').serialize(), function (response) {
-
-				if (response[0] == '1') {
+            $.post('<?php echo base_url(); ?>CAssignment/add', $('#form_assignment').serialize()+'&'+$.param({'services_ids':$('#services').val()}), function (response) {
+				alert(response);
+				if (response == 'existe') {
                     swal("Disculpe,", "ya se encuentra registrado");
                 }else{
 					swal({ 
