@@ -6,16 +6,14 @@ class CClient extends CI_Controller {
 	public function __construct() {
         parent::__construct();
 
-
-        $this->load->view('base');
 		// Load database
         $this->load->model('MClient');
 	
-		
     }
 	
 	public function index()
 	{
+		$this->load->view('base');
 		$data['listar'] = $this->MClient->obtener();
 		$this->load->view('client/lista', $data);
 		$this->load->view('footer');
@@ -23,7 +21,7 @@ class CClient extends CI_Controller {
 	
 	public function register()
 	{
-		
+		$this->load->view('base');
 		$this->load->view('client/registrar');
 		$this->load->view('footer');
 	}
@@ -31,7 +29,6 @@ class CClient extends CI_Controller {
 	  //metodo para guardar un nuevo registro
     public function add() {
 		
-
 		$datos = array(
 			'username' => $this->input->post('username'),
 			'password' => $this->input->post('password'),
@@ -41,68 +38,74 @@ class CClient extends CI_Controller {
 			'cell_phone' => $this->input->post('cell_phone')
 		);
 		$result_id = $this->MClient->insert($datos);
-		$direccion = $this->input->post('direcciones');
-
 		
-		foreach ($direccion as $dire) {
-
-			$dire = explode(";", $dire);
-			 
-			if ($dire[0] != 'Ningún dato disponible en esta tabla'){
-
-                $city = $dire[0];
-                $zip = $dire[1];
-                $address_1 = $dire[2];
-                $address_2 = $dire[3];
-                $phone_1 = $dire[4];
-				$cell_phone_1 = $dire[5];
+		if ($result_id != ''){
 			
-            
-				$datos2 = array(
-					'customer_id' => $result_id,
-					'zip' => $zip,
-					'address_1' => $address_1,
-					'address_2' => $address_2,
-					'phone' => $phone_1,
-					'cell_phone' => $cell_phone_1,
-					
-				);
+			$direccion = $this->input->post('direcciones');
+			foreach ($direccion as $dire) {
 	
-			$result = $this->MClient->insertAddress($datos2);
+				$dire = explode(";", $dire);
+				 
+				if ($dire[0] != 'Ningún dato disponible en esta tabla'){
+	
+					$city = $dire[0];
+					$zip = $dire[1];
+					$address_1 = $dire[2];
+					$address_2 = $dire[3];
+					$phone_1 = $dire[4];
+					$cell_phone_1 = $dire[5];
 				
-			}
-		}
-		$vehiculos = $this->input->post('vehiculos');
+				
+					$datos2 = array(
+						'customer_id' => $result_id,
+						'zip' => $zip,
+						'address_1' => $address_1,
+						'address_2' => $address_2,
+						'phone' => $phone_1,
+						'cell_phone' => $cell_phone_1,
+						
+					);
 		
-		foreach ($vehiculos as $vehi) {
-
-			 $vehi = explode(";", $vehi);
-			 
-			if ($vehi[0] != 'Ningún dato disponible en esta tabla'){
-
-                $trademark = $vehi[0];
-                $model = $vehi[1];
-                $color = $vehi[2];
-                $year = $vehi[3];
-                $license_plate = $vehi[4];
-            
-				$datos3 = array(
-					'customer_id' => $result_id,
-					'trademark' => $trademark,
-					'model' => $model,
-					'color' => $color,
-					'year' => $year,
-					'license_plate' => $license_plate,
+				$result = $this->MClient->insertAddress($datos2);
 					
-                );
-
-			$result = $this->MClient->insertCars($datos3);
-				
+				}
 			}
+			$vehiculos = $this->input->post('vehiculos');
+			
+			foreach ($vehiculos as $vehi) {
+	
+				 $vehi = explode(";", $vehi);
+				 
+				if ($vehi[0] != 'Ningún dato disponible en esta tabla'){
+	
+					$trademark = $vehi[0];
+					$model = $vehi[1];
+					$color = $vehi[2];
+					$year = $vehi[3];
+					$license_plate = $vehi[4];
+				
+					$datos3 = array(
+						'customer_id' => $result_id,
+						'trademark' => $trademark,
+						'model' => $model,
+						'color' => $color,
+						'year' => $year,
+						'license_plate' => $license_plate,
+						
+					);
+	
+				$result = $this->MClient->insertCars($datos3);
+					
+				}
+			}
+			
 		}
+
     }
 	 //metodo para editar
-    public function edit() {		
+    public function edit() {
+		
+		$this->load->view('base');
         $data['id'] = $this->uri->segment(3);
         $data['editar'] = $this->MClient->obtenerClients($data['id']);
 		$data['listar_vehi'] = $this->MClient->obtenerCars($data['id']);
@@ -114,21 +117,8 @@ class CClient extends CI_Controller {
 	//Metodo para actualizar
     public function update() {
 
-		$datos = array(
-			'id' => $this->input->post('id'),
-			'username' => $this->input->post('username'),
-			'password' => $this->input->post('password'),
-			'name' => $this->input->post('name'),
-			'lastname' => $this->input->post('lastname'),
-			'phone' => $this->input->post('phone'),
-			'cell_phone' => $this->input->post('cell_phone')
-		);
-		$result = $this->MClient->update($datos);
-
 		$regs_eliminar1 = $this->input->post('codigos_des1');
 		$regs_eliminar2 = $this->input->post('codigos_des2'); 
-		$direccion = $this->input->post('direcciones');
-
 		
 		// Verificamos si hay registros para eliminar
         if($regs_eliminar1 != ''){
@@ -153,11 +143,21 @@ class CClient extends CI_Controller {
 				$result = $this->MClient->deleteCars($reg);
 			}
 		}
-
+		
+		$datos = array(
+			'id' => $this->input->post('id'),
+			'name' => $this->input->post('name'),
+			'lastname' => $this->input->post('lastname'),
+			'phone' => $this->input->post('phone'),
+			'cell_phone' => $this->input->post('cell_phone')
+		);
+		$result = $this->MClient->update($datos);
+		
+		$direccion = $this->input->post('direcciones');
 		foreach ($direccion as $dire) {
 
 			$dire = explode(";", $dire);
-			 
+
 				if ($dire[0] == 'undefined' && $dire[1]!= 'Ningún dato disponible en esta tabla'){
 
 					$city = $dire[1];
@@ -199,6 +199,7 @@ class CClient extends CI_Controller {
 					 $datos2 = array(
 						'customer_id' => $this->input->post('id'),
 						'id' => $id,
+						'city' => $city,
 						'zip' => $zip,
 						'address_1' => $address_1,
 						'address_2' => $address_2,
@@ -219,8 +220,7 @@ class CClient extends CI_Controller {
 
 			$vehi = explode(";", $vehi);
 			
-			
-			if ($vehi[0] == 'undefined' && $vehi[1]!= 'Ningún dato disponible en esta tabla'){
+				if ($vehi[0] == 'undefined' && $vehi[1]!= 'Ningún dato disponible en esta tabla'){
 
 					$trademark = $vehi[1];
 					$model = $vehi[2];
@@ -231,7 +231,6 @@ class CClient extends CI_Controller {
             
 					 $datos3 = array(
 						
-						'id' => $id,
 						'customer_id' => $this->input->post('id'),
 						'trademark' => $trademark,
 						'model' => $model,
@@ -242,11 +241,9 @@ class CClient extends CI_Controller {
 					);
 	
 				$result = $this->MClient->insertCars($datos3);
-
-					
 				}
                 
-				if ($dire[1] != 'Ningún dato disponible en esta tabla'){
+				if ($vehi[1] != 'Ningún dato disponible en esta tabla'){
 					
 						$id = $vehi[0];
 						$trademark = $vehi[1];
@@ -270,14 +267,20 @@ class CClient extends CI_Controller {
 		
 				$result = $this->MClient->updateCars($datos3);
 
+
 					
 				}
+			
+	
 			
 		}    
 		
     }
+	
+
+
 	//Metodo para eliminar
-	function delete($id) {
+	public function delete($id) {
         $result = $this->MClient->delete($id);
         if ($result) {
           /*  $this->libreria->generateActivity('Eliminado País', $this->session->userdata['logged_in']['id']);*/

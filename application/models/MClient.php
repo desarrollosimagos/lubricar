@@ -27,7 +27,7 @@ class MClient extends CI_Model {
         $result = $this->db->where('username =', $datos['username']);
         $result = $this->db->get('customers');
         if ($result->num_rows() > 0) {
-            echo '1';
+            echo 'existe cliente';
         } else {
             $result = $this->db->insert("customers", $datos);
             //return $result;
@@ -41,7 +41,7 @@ class MClient extends CI_Model {
         $result = $this->db->where('license_plate =', $datos['license_plate']);
         $result = $this->db->get('vehicles');
         if ($result->num_rows() > 0) {
-            echo '1';
+            echo 'existe vehiculo';
         } else {
             $result = $this->db->insert("vehicles", $datos);
             return $result;
@@ -52,32 +52,29 @@ class MClient extends CI_Model {
         $result = $this->db->where('address_1 =', $datos['address_1']);
         $result = $this->db->get('addresses');
         if ($result->num_rows() > 0) {
-            echo '1';
+            echo 'existe direccion';
         } else {
             $result = $this->db->insert("addresses", $datos);
             return $result;
         }
     }
     
-    // Metodo publico, forma de insertar los datos
+    // Metodo publico, forma de actualizar los datos
     public function update($datos) {
         $result = $this->db->where('id', $datos['id']);
         $result = $this->db->update("customers", $datos);
-        return $result;
-
-        
+        return $result;        
     }
 
-     // Metodo publico, forma de insertar los datos
+     // Metodo publico, forma de actualizar los datos
     public function updateCars($datos) {
         $result = $this->db->where('id', $datos['id']);
         $result = $this->db->update("vehicles", $datos);
         return $result;
         
     }
-     // Metodo publico, forma de insertar los datos
+     // Metodo publico, forma de actualizar los datos
     public function updateAddress($datos) {
-        
         
         $result = $this->db->where('id', $datos['id']);
         $result = $this->db->where('customer_id', $datos['customer_id']);
@@ -85,7 +82,8 @@ class MClient extends CI_Model {
         return $result;
         
     }
-
+    
+    
     // Metodo publico, para obterner la unidad de medida por id
     public function obtenerClients($id) {
         $this->db->where('id', $id);
@@ -105,6 +103,8 @@ class MClient extends CI_Model {
         else
             return $query->result();
     }
+    
+
     
       // Metodo publico, para obterner la unidad de medida por id
     public function obtenerCars($id) {
@@ -141,6 +141,8 @@ class MClient extends CI_Model {
         return $result;
     }
     
+    
+
 
 }
 ?>
