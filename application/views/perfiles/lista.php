@@ -25,11 +25,12 @@
                 </div>
                 <div class="ibox-content">
                     <div class="table-responsive">
-                        <table id="tab_perfiles" class="table table-striped table-bordered table-hover dataTables-example" >
+                        <table id="tab_perfiles" class="table table-striped table-bordered dt-responsive table-hover dataTables-example" >
                             <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Nombre</th>
+                                    <th>Acciones</th>
                                     <th>Editar</th>
                                     <th>Eliminar</th>
                                 </tr>
@@ -43,6 +44,23 @@
                                         </td>
                                         <td>
                                             <?php echo $perfil->name; ?>
+                                        </td>
+                                        <td>
+                                            <?php
+                                            echo "<br>";
+                                            // Validamos qué acciones están asociadas a cada perfil
+                                            foreach($profile_acciones as $profile_accion){
+												if($perfil->id == $profile_accion->profile_id){
+													foreach ($acciones as $accion){
+														if($profile_accion->action_id == $accion->id){
+															echo $accion->name."<br>";
+														}else{
+															echo "";
+														}
+													}
+												}
+											}
+											?>
                                         </td>
                                         <td style='text-align: center'>
                                             <a href="<?php echo base_url() ?>profile_edit/<?= $perfil->id; ?>" title="Editar"><i class="fa fa-pencil"></i></a>
@@ -100,6 +118,7 @@ $(document).ready(function(){
        "aoColumns": [
            {"sClass": "registro center", "sWidth": "5%"},
            {"sClass": "registro center", "sWidth": "20%"},
+           {"sClass": "none", "sWidth": "8%"},
            {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
            {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false}
        ]

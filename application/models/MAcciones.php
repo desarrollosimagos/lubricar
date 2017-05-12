@@ -22,6 +22,17 @@ class MAcciones extends CI_Model {
         else
             return $query->result();
     }
+    
+    // Método público para obterner las acciones que no sean HOME
+    public function obtener_without_home() {
+		$result = $this->db->where('class !=', 'Home');
+        $query = $this->db->get('actions');
+
+        if ($query->num_rows() > 0)
+            return $query->result();
+        else
+            return $query->result();
+    }
 	
 	// Método público para obterner una lista de controladores
     function listar_controladores($ruta, $id)
@@ -100,9 +111,19 @@ class MAcciones extends CI_Model {
         }
     }
 
-    // Método público, para obterner los datos de un menú según el id
+    // Método público, para obterner los datos de una acción según el id
     public function obtenerAccion($id) {
         $this->db->where('id', $id);
+        $query = $this->db->get('actions');
+        if ($query->num_rows() > 0)
+            return $query->result();
+        else
+            return $query->result();
+    }
+    
+    // Método público, para obterner los datos de una acción según la clase
+    public function obtenerAccionByClass($class) {
+        $this->db->where('class', $class);
         $query = $this->db->get('actions');
         if ($query->num_rows() > 0)
             return $query->result();

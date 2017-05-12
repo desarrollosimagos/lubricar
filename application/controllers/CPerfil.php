@@ -6,54 +6,124 @@ class CPerfil extends CI_Controller {
 	public function __construct() {
         parent::__construct();
 
-
-        $this->load->view('base');
 		// Load database
         $this->load->model('MPerfil');
+        $this->load->model('MAcciones');
 		
     }
 	
 	public function index()
 	{
+		$this->load->view('base');
 		$data['listar'] = $this->MPerfil->obtener();
+		$data['profile_acciones'] = $this->MPerfil->obtener_acciones();
+		$data['acciones'] = $this->MAcciones->obtener();
 		$this->load->view('perfiles/lista', $data);
 		$this->load->view('footer');
 	}
 	
 	public function register()
 	{
-		
-		$this->load->view('perfiles/registrar');
+		$this->load->view('base');
+		$data['acciones'] = $this->MAcciones->obtener_without_home();
+		$this->load->view('perfiles/registrar', $data);
 		$this->load->view('footer');
 	}
 	
-	  //metodo para guardar un nuevo registro
+	// Método para guardar un nuevo registro
     public function add() {
-
-        $result = $this->MPerfil->insert($this->input->post());
-        if ($result) {
-           /* $this->libreria->generateActivity('Nuevo Grupo de Usuario', $this->session->userdata['logged_in']['id']);*/
-       
-        }
+        
+        $data = array('name'=>$this->input->post('name'));
+        
+        $result = $this->MPerfil->insert($data);
+        
+        echo $result;  // No comentar, esta impresión es necesaria para que se ejecute el método insert()
+        
+        if ($result != 'existe') {
+			// Proceso de registro de acciones asociadas al perfil
+			// Primero asociamos la acción por defecto (HOME)
+			$action_class = $this->MAcciones->obtenerAccionByClass('Home');
+			$data_action = array('profile_id'=>$result, 'action_id'=>$action_class[0]->id, 'parameter_permit'=>'777');
+			$this->MPerfil->insert_action($data_action);
+			// Asociamos las acciones seleccionadas del combo select
+			foreach($this->input->post('actions_ids') as $action_id){
+				$data_action = array('profile_id'=>$result, 'action_id'=>$action_id, 'parameter_permit'=>'777');
+				$this->MPerfil->insert_action($data_action);
+			}
+        }else{
+			return $result;
+		}
     }
-	 //metodo para editar
-    public function edit() {		
+    
+	// Método para editar
+    public function edit() {
+		$this->load->view('base');		
         $data['id'] = $this->uri->segment(2);
         $data['editar'] = $this->MPerfil->obtenerPerfiles($data['id']);
+        $data['acciones'] = $this->MAcciones->obtener_without_home();
+        // Lista de acciones asociadas al perfil
+        $ids_actions = "";
+        $query_actions = $this->MPerfil->obtener_acciones_id($data['id']);
+        if(count($query_actions) > 0){
+			foreach($query_actions as $action){
+				$ids_actions .= $action->action_id.",";
+			}
+		}
+		$ids_actions = substr($ids_actions,0,-1);
+        $data['ids_actions'] = $ids_actions;
         $this->load->view('perfiles/editar', $data);
 		$this->load->view('footer');
     }
 	
-	//Metodo para actualizar
+	// Método para actualizar
     public function update() {
 		
-        $result = $this->MPerfil->update($this->input->post());
-        if ($result) {
-        /*    $this->libreria->generateActivity('Actualizado Grupo de Usuario', $this->session->userdata['logged_in']['id']);*/
-     
-        }
+		$data = array('id'=>$this->input->post('id'),'name'=>$this->input->post('name'));
+		
+        $result = $this->MPerfil->update($data);
+        
+        echo $result;  // No comentar, esta impresión es necesaria para que se ejecute el método update()
+        
+        if ($result != 'existe') {
+			// Proceso de registro de acciones asociadas al perfil
+			$ids_actions = array(); // Aquí almacenaremos los ids de las acciones a asociar
+			print_r($this->input->post('actions_ids'));
+			// Asociamos las nuevas acciones seleccionadas del combo select
+			foreach($this->input->post('actions_ids') as $action_id){
+				// Primero verificamos si ya está asociado cada acción, si no lo está, lo insertamos
+				$check_associated = $this->MPerfil->obtener_accion_ids($data['id'], $action_id);
+				echo count($check_associated);
+				if(count($check_associated) == 0){
+					$data_action = array('profile_id'=>$data['id'], 'action_id'=>$action_id, 'parameter_permit'=>'777');
+					$this->MPerfil->insert_action($data_action);
+				}
+				// Vamos colectando los ids recorridos
+				$ids_actions[] = $action_id;
+			}
+			
+			// Validamos que acciones han sido quitadas del combo select para proceder a borrar las relaciones
+			// Primero buscamos todas las acciones asociadas al perfil
+			$query_associated = $this->MPerfil->obtener_acciones_id($data['id']);
+			if(count($query_associated) > 0){
+				// Verificamos cuales de las acciones no están en la nueva lista
+				foreach($query_associated as $association){
+					// Primero verificamos los datos correspondientes a la acción para omitir el proceso si es de la clase Home
+					$query_action = $this->MAcciones->obtenerAccion($association->action_id);
+					if($query_action[0]->class != 'Home'){
+						if(!in_array($association->action_id, $ids_actions)){
+							// Eliminamos la asociacion de la tabla profile_actions
+							$this->MPerfil->delete_profile_action($data['id'], $association->action_id);
+						}
+					}
+				}
+			}
+			
+        }else{
+			return $result;
+		}
     }
-	//Metodo para eliminar
+    
+	// Método para eliminar
 	function delete($id) {
         $result = $this->MPerfil->delete($id);
         if ($result) {

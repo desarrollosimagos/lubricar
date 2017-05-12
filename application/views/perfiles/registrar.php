@@ -29,6 +29,19 @@
 								<input type="text" class="form-control"  placeholder="Introduzca nombre" name="name" id="name">
 							</div>
 						</div>
+						<div class="form-group"><label class="col-sm-2 control-label" >Acciones</label>
+							<div class="col-sm-10">
+								<select id="actions_ids" class="form-control" multiple="multiple">
+									<?php
+									foreach ($acciones as $accion) {
+										?>
+										<option value="<?php echo $accion->id; ?>"><?php echo $accion->name; ?></option>
+										<?php
+									}
+									?>
+								</select>
+							</div>
+						</div>
 						<div class="form-group">
 							<div class="col-sm-4 col-sm-offset-2">
 								<button class="btn btn-white" id="volver" type="button">Volver</button>
@@ -44,6 +57,11 @@
 <script>
 $(document).ready(function(){
 
+	$('select').on({
+		change: function () {
+			$(this).parent('div').removeClass('has-error');
+		}
+	});
     $('input').on({
         keypress: function () {
             $(this).parent('div').removeClass('has-error');
@@ -60,16 +78,23 @@ $(document).ready(function(){
         e.preventDefault();  // Para evitar que se envíe por defecto
 
         if ($('#name').val().trim() === "") {
-
           
 			swal("Disculpe,", "para continuar debe ingresar nombre");
 			$('#name').parent('div').addClass('has-error');
+			
+        } else if ($('#actions_ids').val() == "") {
+          
+			swal("Disculpe,", "para continuar debe seleccionar los permisos");
+			$('#actions_ids').parent('div').addClass('has-error');
+			
         } else {
+			//~ alert(String($('#actions_ids').val()));
 
-            $.post('<?php echo base_url(); ?>CPerfil/add', $('#form_perfil').serialize(), function (response) {
-
-				if (response[0] == '1') {
-                    swal("Disculpe,", "este nombre se encuentra registrado");
+            $.post('<?php echo base_url(); ?>CPerfil/add', $('#form_perfil').serialize()+'&'+$.param({'actions_ids':$('#actions_ids').val()}), function (response) {
+				//~ alert(response);
+				if (response == 'existe') {
+                    swal("Disculpe,", "este nombre de perfil se encuentra registrado");
+                    $('#name').parent('div').addClass('has-error');
                 }else{
 					swal({ 
 						title: "Registro",
@@ -77,7 +102,7 @@ $(document).ready(function(){
 						  type: "success" 
 						},
 					function(){
-					  window.location.href = '<?php echo base_url(); ?>profile';
+						window.location.href = '<?php echo base_url(); ?>profile';
 					});
 				}
             });
