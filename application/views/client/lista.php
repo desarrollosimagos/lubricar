@@ -71,16 +71,13 @@
     </div>
 </div>
  <script>
-    $(document).ready(function() {
+$(document).ready(function() {
 
     $('#tab_client').DataTable({
-       "paging": true,
-       "lengthChange": false,
        "autoWidth": false,
        "searching": true,
-       "ordering": true,
-       "info": true,
-       dom: '<"html5buttons"B>lTfgitp',
+       "aLengthMenu": [5, 10, 15],
+       "oLanguage": {"sUrl": "<?= assets_url() ?>js/es.txt"},
        buttons: [
            { extend: 'copy'},
            {extend: 'csv'},
@@ -98,11 +95,7 @@
            }
            }
        ],
-       "iDisplayLength": 5,
-       "iDisplayStart": 0,
-       "sPaginationType": "full_numbers",
-       "aLengthMenu": [5, 10, 15],
-       "oLanguage": {"sUrl": "<?= assets_url() ?>js/es.txt"},
+      
        "aoColumns": [
            {"sClass": "registro center", "sWidth": "5%"},
            {"sClass": "registro center", "sWidth": "10%"},
@@ -113,51 +106,42 @@
        ]
    });
              
-         // Validacion para borrar
-        $("table#tab_client").on('click', 'a.borrar', function (e) {
-            e.preventDefault();
-            var id = this.getAttribute('id');
+        // Validacion para borrar
+    $("table#tab_client").on('click', 'a.borrar', function (e) {
+        e.preventDefault();
+        var id = this.getAttribute('id');
     
-            swal({
-                title: "Borrar registro",
-                text: "¿Está seguro de borrarlo?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Eliminar",
-                cancelButtonText: "Cancelar",
-                closeOnConfirm: false,
-                closeOnCancel: true
-              },
-              function(isConfirm){
+        swal({
+            title: "Borrar registro",
+            text: "¿Está seguro de borrarlo?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Eliminar",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false,
+            closeOnCancel: true
+        },
+            function(isConfirm){
                 if (isConfirm) {
-
-                  $.post('<?= base_url() ?>clients/delete/' + id + '', function () {
     
-                  swal({ 
-                    title: "Eliminar",
-                     text: "Registro eliminado con exito",
-                      type: "success" 
-                    },
-                    function(){
-                      window.location.href = '<?= base_url() ?>clients';
-                  });
-       
-                 });
-                } 
-              });
+                    $.post('<?= base_url() ?>clients/delete/' + id + '', function () {
+        
+                        swal({ 
+                            title: "Eliminar",
+                            text: "Registro eliminado con exito",
+                            type: "success" 
+                        },
+                        function(){
+                            window.location.href = '<?= base_url() ?>clients';
+                        });
+                    });
+               } 
+            });
             
-        });
-         $('input').on({
-        keypress: function () {
-            $(this).parent('div').removeClass('has-error');
-        }
     });
-
- 
 	
 });
-
-    
+ 
  </script>
 
