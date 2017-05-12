@@ -84,15 +84,14 @@ class CPerfil extends CI_Controller {
         
         echo $result;  // No comentar, esta impresión es necesaria para que se ejecute el método update()
         
-        if ($result != 'existe') {
+        if ($result) {
 			// Proceso de registro de acciones asociadas al perfil
 			$ids_actions = array(); // Aquí almacenaremos los ids de las acciones a asociar
-			print_r($this->input->post('actions_ids'));
 			// Asociamos las nuevas acciones seleccionadas del combo select
 			foreach($this->input->post('actions_ids') as $action_id){
 				// Primero verificamos si ya está asociado cada acción, si no lo está, lo insertamos
 				$check_associated = $this->MPerfil->obtener_accion_ids($data['id'], $action_id);
-				echo count($check_associated);
+				//~ echo count($check_associated);
 				if(count($check_associated) == 0){
 					$data_action = array('profile_id'=>$data['id'], 'action_id'=>$action_id, 'parameter_permit'=>'777');
 					$this->MPerfil->insert_action($data_action);

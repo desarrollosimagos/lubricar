@@ -33,7 +33,6 @@
 						<div class="form-group"><label class="col-sm-2 control-label" >Acciones</label>
 							<div class="col-sm-10">
 								<select id="actions_ids" class="form-control" multiple="multiple">
-									<option value="0">Seleccione</option>
 									<?php
 									// Primero creamos un arreglo con la lista de ids de acciones proveniente del controlador
 									$ids_actions = explode(",",$ids_actions);
@@ -104,7 +103,7 @@ $(document).ready(function(){
 			$('#actions_ids').parent('div').addClass('has-error');
 			
         } else {
-			alert(String($('#actions_ids').val()));
+			//~ alert(String($('#actions_ids').val()));
 			
             $.post('<?php echo base_url(); ?>CPerfil/update', $('#form_perfil').serialize()+'&'+$.param({'actions_ids':$('#actions_ids').val()}), function (response) {
 				//~ alert(response);
