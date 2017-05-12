@@ -29,16 +29,27 @@ class MAssignment extends CI_Model {
         $result = $this->db->where('service_id =', $datos['service_id']);
         $result = $this->db->get('franchises_services');
         if ($result->num_rows() > 0) {
-            echo '1';
+            echo 'existe';
         } else {
             $result = $this->db->insert("franchises_services", $datos);
-            return $result;
+            $id = $this->db->insert_id();
+            return $id;
         }
     }
 
     // Public method to obtain the services of the franchises by id
     public function obtenerServices($id) {
         $this->db->where('id', $id);
+        $query = $this->db->get('franchises_services');
+        if ($query->num_rows() > 0)
+            return $query->result();
+        else
+            return $query->result();
+    }
+    
+    // Public method to obtain the services of the franchises by franchise_id
+    public function obtenerServicesFranchiseId($id) {
+        $this->db->where('franchise_id', $id);
         $query = $this->db->get('franchises_services');
         if ($query->num_rows() > 0)
             return $query->result();
@@ -65,16 +76,23 @@ class MAssignment extends CI_Model {
 
 
     // Public method to delete a record
-     public function delete($id) {
-        $result = $this->db->where('service_id =', $id);
-        $result = $this->db->get('orders_services');
+    public function delete($id) {
+		
+		// Primero buscamos los servicios asociados a la franquicia en la tabla 'franchises_services'
+		$query_franchise_services = $this->obtenerServicesFranchiseId($id);
+		if(count($query_franchise_services) > 0){
+			foreach($query_franchise_services as $franchise_service){
+				// Comprobamos que el id de la asignación no esté asociado a una orden de servicio
+				$this->db->where('service_id =', $franchise_service->id);
+				$result = $this->db->get('orders_services');
 
-        if ($result->num_rows() > 0) {
-            echo 'existe';
-        } else {
-            $result = $this->db->delete('franchises_services', array('id' => $id));
-            return $result;
-        }
+				if ($result->num_rows() > 0) {
+					echo 'existe';
+				} else {
+					$result = $this->db->delete('franchises_services', array('id' => $franchise_service->id));
+				}
+			}
+		}
        
     }
     

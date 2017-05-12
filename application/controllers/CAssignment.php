@@ -34,13 +34,13 @@ class CAssignment extends CI_Controller {
 	
 	  //metodo para guardar un nuevo registro
     public function add() {
-
-        $result = $this->MAssignment->insert($this->input->post());
-        if ($result) {
-
-           /*$this->libreria->generateActivity('Nuevo Grupo de Usuario', $this->session->userdata('logged_in')['id']);*/
-       
-        }
+        
+		// Proceso de registro de acciones asociadas al perfil
+		// Asociamos las acciones seleccionadas del combo select
+		foreach($this->input->post('services_ids') as $service_id){
+			$data = array('franchise_id'=>$this->input->post('franchise_id'), 'service_id'=>$service_id);
+			$result = $this->MAssignment->insert($data);
+		}
     }
 	 //metodo para editar
     public function edit() {		
