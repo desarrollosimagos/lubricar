@@ -15,6 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link href="<?php echo assets_url('css/plugins/iCheck/custom.css');?>" rel="stylesheet">
     <link href="<?php echo assets_url('css/plugins/steps/jquery.steps.css');?>" rel="stylesheet">
 	<link href="<?php echo assets_url('css/plugins/dataTables/datatables.min.css');?>" rel="stylesheet">
+	<link href="<?php echo assets_url('css/plugins/select2/select2.min.css');?>" rel="stylesheet">
 	<link href="<?php echo assets_url('js/datatables.net-bs/css/dataTables.bootstrap.css'); ?>" rel="stylesheet" />
     <link rel="stylesheet" href="<?php echo assets_url('css/dataTables.responsive.css'); ?>">
     <link href="<?php echo assets_url('js/datatables.net-responsive-bs/css/responsive.bootstrap.min.css'); ?>"
@@ -30,6 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="<?php echo assets_url('js/plugins/metisMenu/jquery.metisMenu.js');?>"></script>
 	<script src="<?php echo assets_url('js/plugins/slimscroll/jquery.slimscroll.min.js');?>"></script>
 	<script src="<?php echo assets_url('js/plugins/dataTables/datatables.min.js');?>"></script>
+	<script src="<?php echo assets_url('js/plugins/select2/select2.full.min.js');?>"></script>
 	<script src="<?php echo assets_url('js/datatables.net/js/jquery.dataTables.min.js'); ?>"></script>
 	<script src="<?php echo assets_url('js/datatables.net-bs/js/dataTables.bootstrap.min.js'); ?>"></script>
 	<script src="<?php echo assets_url('js/datatables.net-responsive/js/dataTables.responsive.min.js'); ?>"></script>
@@ -46,6 +48,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    <!-- Jquery Validate -->
     <script src="<?php echo assets_url('js/plugins/validate/jquery.validate.min.js');?>"></script>
 	<script src="<?php echo assets_url('js/jquery.numeric.js');?>"></script>
+	
+    <script>
+		$(document).ready(function () {
+			// Aplicamos select2() a todos los combos select
+			$("select").select2();
+		});
+	</script>
 </head>
 <body class="md-skin fixed-nav no-skin-config">
 	<div id="wrapper">
