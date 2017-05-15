@@ -3,10 +3,15 @@
         <h2>Servicios </h2>
         <ol class="breadcrumb">
             <li>
-                <a href="index.html">Inicio</a>
+                <a href="<?php echo base_url() ?>home">Inicio</a>
             </li>
+            
+            <li>
+                <a href="<?php echo base_url() ?>services">Servicios</a>
+            </li>
+            
             <li class="active">
-                <strong>Servicios</strong>
+                <strong>Registrar Servicio</strong>
             </li>
         </ol>
     </div>
@@ -16,7 +21,7 @@
         <div class="col-lg-12">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<h5>Registrar Servicios <small></small></h5>
+					<h5>Registrar Servicio <small></small></h5>
 					
 				</div>
 				<div class="ibox-content">

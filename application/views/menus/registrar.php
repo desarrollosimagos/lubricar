@@ -21,7 +21,7 @@
         <div class="col-lg-12">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<h5>Registrar Menús <small></small></h5>
+					<h5>Registrar Menú <small></small></h5>
 					
 				</div>
 				<div class="ibox-content">

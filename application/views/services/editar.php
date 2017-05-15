@@ -5,9 +5,13 @@
             <li>
                 <a href="index.html">Inicio</a>
             </li>
+            
+            <li>
+                <a href="<?php echo base_url() ?>services">Servicios</a>
+            </li>
            
             <li class="active">
-                <strong>Servicios</strong>
+                <strong>Editar Servicio</strong>
             </li>
         </ol>
     </div>
@@ -17,7 +21,7 @@
         <div class="col-lg-12">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<h5>Registrar Servicios <small></small></h5>
+					<h5>Editar Servicio <small></small></h5>
 				</div>
 				<div class="ibox-content">
 					<form id="form_services" method="post" accept-charset="utf-8" class="form-horizontal">
