@@ -738,6 +738,7 @@ $(document).ready(function(){
 
     });
 	
+	
 	$(".cerrar_modal").click(function () {
 		$('#city').val('');
 		$('#zip').val('');
@@ -748,11 +749,13 @@ $(document).ready(function(){
 		$('#accion').val('');
 		$('#posicion').val('');
 		$("span#titulo").text('');
-
+		$("#trademark").val('');
+		$("#model").val('');
+		$("#color").val('');
+		$("#year").val('');
+		$("#license_plate").val('');
            
     });
-
-	 
 
 
 

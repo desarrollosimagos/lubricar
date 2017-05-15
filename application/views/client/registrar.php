@@ -98,19 +98,19 @@
 						<fieldset>
 							<div class="row">
 								<div class="form-group">
-									<label class="col-sm-2 control-label">Username *</label>
+									<label class="col-sm-2 control-label">Usuario *</label>
 									<div class="col-sm-10">
 										<input id="username" name="username" type="text" maxlength="25" class="form-control required">
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label">Password *</label>
+									<label class="col-sm-2 control-label">Contraseña *</label>
 									<div class="col-sm-10">
 										<input id="password" name="password" type="password" maxlength="50" class="form-control required">
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label">Confirm Password *</label>
+									<label class="col-sm-2 control-label">Repetir Contraseña*</label>
 									<div class="col-sm-10">
 										<input id="confirm" name="confirm" type="password" maxlength="50" class="form-control required">
 									</div>
@@ -690,7 +690,11 @@ $(document).ready(function(){
 		$('#accion').val('');
 		$('#posicion').val('');
 		$("span#titulo").text('');
-
+		$("#trademark").val('');
+		$("#model").val('');
+		$("#color").val('');
+		$("#year").val('');
+		$("#license_plate").val('');
            
     });
 
