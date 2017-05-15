@@ -117,6 +117,8 @@ $(document).ready(function() {
     $("#edit").click(function (e) {
 
         e.preventDefault();  // Para evitar que se envíe por defecto
+        // Expresion regular para validar el correo
+		var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
 
         if ($('#name').val().trim() === "") {
 
@@ -133,7 +135,12 @@ $(document).ready(function() {
 		   swal("Disculpe,", "para continuar debe ingresar el nombre de usuario");
 	       $('#username').parent('div').addClass('has-error');
 		   
-        }  /*else if ($('#password').val().trim() === "") {
+        } else if (!(regex.test($('#username').val().trim()))){
+			
+			swal("Disculpe,", "el usuario debe ser una dirección de correo electrónico válida");
+			$('#username').parent('div').addClass('has-error');
+			
+		}  /*else if ($('#password').val().trim() === "") {
           
 		   swal("Disculpe,", "para continuar debe ingresar la contraseña");
 	       $('#password').parent('div').addClass('has-error');
@@ -178,13 +185,11 @@ $(document).ready(function() {
 
     });
 
-
-
-
-
     $("#registrar").click(function (e) {
 
         e.preventDefault();  // Para evitar que se envíe por defecto
+        // Expresion regular para validar el correo
+		var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
 
         if ($('#name').val().trim() === "") {
 
@@ -201,7 +206,12 @@ $(document).ready(function() {
 		   swal("Disculpe,", "para continuar debe ingresar el nombre de usuario");
 	       $('#username').parent('div').addClass('has-error');
 		   
-        }  else if ($('#password').val().trim() === "") {
+        } else if (!(regex.test($('#username').val().trim()))){
+			
+			swal("Disculpe,", "el usuario debe ser una dirección de correo electrónico válida");
+			$('#username').parent('div').addClass('has-error');
+			
+		}  else if ($('#password').val().trim() === "") {
           
 		   swal("Disculpe,", "para continuar debe ingresar el nombre de usuario");
 	       $('#password').parent('div').addClass('has-error');
