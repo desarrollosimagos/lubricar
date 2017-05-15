@@ -205,6 +205,14 @@
 <script>
 $(document).ready(function(){
 	
+	
+	$('#year').datepicker({
+		
+		format: " yyyy",
+        viewMode: "years", 
+        minViewMode: "years"
+	});
+	
 	$("#wizard").steps();
     $("#form").steps({
 		bodyTag: "fieldset",
@@ -380,7 +388,34 @@ $(document).ready(function(){
 						function(){
 						  window.location.href = '<?php echo base_url(); ?>clients';
 						});
-					} 
+					} else if (data === 'existe cliente') {
+						swal({ 
+						title: "Disculpe,",
+						 text: "el nombre de usuario del cliente ya se encuentra registrado",
+						  type: "success" 
+						},
+						function(){
+						  // window.location.href = '<?php echo base_url(); ?>clients';
+						});
+					} else if (data === 'existe direccion') {
+						swal({ 
+						title: "Disculpe,",
+						 text: "verifique la(s) direccion(es)",
+						  type: "success" 
+						},
+						function(){
+						  // window.location.href = '<?php echo base_url(); ?>clients';
+						});
+					}else if (data === 'existe vehiculo') {
+						swal({ 
+						title: "Disculpe,",
+						 text: "verifique lo(s) o el vehiculo ",
+						  type: "success" 
+						},
+						function(){
+						  // window.location.href = '<?php echo base_url(); ?>clients';
+						});
+					}
 				});
 			 
 

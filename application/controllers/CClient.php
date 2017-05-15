@@ -31,7 +31,7 @@ class CClient extends CI_Controller {
 		
 		$datos = array(
 			'username' => $this->input->post('username'),
-			'password' => $this->input->post('password'),
+			'password' => 'pbkdf2_sha256$12000$' . hash("sha256", $this->input->post('password')),
 			'name' => $this->input->post('name'),
 			'lastname' => $this->input->post('lastname'),
 			'phone' => $this->input->post('phone'),
@@ -48,12 +48,12 @@ class CClient extends CI_Controller {
 				 
 				if ($dire[0] != 'Ningún dato disponible en esta tabla'){
 	
-					$city = $dire[0];
-					$zip = $dire[1];
-					$address_1 = $dire[2];
-					$address_2 = $dire[3];
-					$phone_1 = $dire[4];
-					$cell_phone_1 = $dire[5];
+					$city = $dire[1];
+					$zip = $dire[2];
+					$address_1 = $dire[3];
+					$address_2 = $dire[4];
+					$phone_1 = $dire[5];
+					$cell_phone_1 = $dire[6];
 				
 				
 					$datos2 = array(
@@ -79,11 +79,11 @@ class CClient extends CI_Controller {
 				 
 				if ($vehi[0] != 'Ningún dato disponible en esta tabla'){
 	
-					$trademark = $vehi[0];
-					$model = $vehi[1];
-					$color = $vehi[2];
-					$year = $vehi[3];
-					$license_plate = $vehi[4];
+					$trademark = $vehi[1];
+					$model = $vehi[2];
+					$color = $vehi[3];
+					$year = $vehi[4];
+					$license_plate = $vehi[5];
 				
 					$datos3 = array(
 						'customer_id' => $result_id,
@@ -282,6 +282,22 @@ class CClient extends CI_Controller {
 	//Metodo para eliminar
 	public function delete($id) {
         $result = $this->MClient->delete($id);
+        if ($result) {
+          /*  $this->libreria->generateActivity('Eliminado País', $this->session->userdata['logged_in']['id']);*/
+        }
+    }
+	
+	
+		//Metodo para editar password
+	public function pass() {
+		print_r('hola',$this->input->post('password'));
+		$datos = array(
+			'id' => $this->input->post('id_client'),
+            'password' => 'pbkdf2_sha256$12000$' . hash("sha256", $this->input->post('password')),
+		);
+	
+        $result = $this->MClient->pass($datos);
+
         if ($result) {
           /*  $this->libreria->generateActivity('Eliminado País', $this->session->userdata['logged_in']['id']);*/
         }
