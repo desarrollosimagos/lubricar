@@ -58,6 +58,7 @@ class CClient extends CI_Controller {
 				
 					$datos2 = array(
 						'customer_id' => $result_id,
+						'city' => $city,
 						'zip' => $zip,
 						'address_1' => $address_1,
 						'address_2' => $address_2,
@@ -277,7 +278,6 @@ class CClient extends CI_Controller {
 		
     }
 	
-
 
 	//Metodo para eliminar
 	public function delete($id) {
