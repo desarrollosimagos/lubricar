@@ -3,11 +3,9 @@
         <h2>Franquicias</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="">Inicio</a>
+                <a href="<?php echo base_url() ?>home">Inicio</a>
             </li>
-            <li>
-                <a>Franquicias</a>
-            </li>
+            
             <li class="active">
                 <strong>Lista de Franquicias</strong>
             </li>
@@ -25,31 +23,50 @@
                 </div>
                 <div class="ibox-content">
                     <div class="table-responsive">
-                        <table id="tab_franchises" class="table table-striped table-bordered table-hover dataTables-example" >
+                        <table id="tab_franchises" class="table table-striped table-bordered dt-responsive table-hover dataTables-example" >
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nombre</th>
+                                    <th>Franquicia</th>
+                                    <th>Servicios</th>
                                     <th>Editar</th>
                                     <th>Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $i = 1; ?>
-                                <?php foreach ($listar as $perfil) { ?>
+                                <?php foreach ($listar as $franchise) { ?>
                                     <tr style="text-align: center">
                                         <td>
                                             <?php echo $i; ?>
                                         </td>
                                         <td>
-                                            <?php echo $perfil->name; ?>
+                                            <?php echo $franchise->name; ?>
+                                        </td>
+                                        <td>
+											<br>
+                                            <?php
+                                            // Armamos un arreglo de ids de servicios correspondientes a la franquicia
+                                            $services_ids = array();
+                                            foreach($list_assignment as $assignment){
+												if($assignment->franchise_id == $franchise->id){
+													$services_ids[] = $assignment->service_id;
+												}
+											}
+											// Comparamos e imprimimos los nombre de los servicios asociados
+                                            foreach ($list_serv as $serv) {
+                                                if (in_array($serv->id, $services_ids)){
+                                                    echo $serv->name."<br>";
+                                                }
+                                            }
+                                            ?>
                                         </td>
                                         <td style='text-align: center'>
-                                            <a href="<?php echo base_url() ?>franchises/edit/<?= $perfil->id; ?>" title="Editar"><i class="fa fa-pencil"></i></a>
+                                            <a href="<?php echo base_url() ?>franchises/edit/<?= $franchise->id; ?>" title="Editar"><i class="fa fa-pencil"></i></a>
                                         </td>
                                         <td style='text-align: center'>
                                             
-                                            <a class='borrar' id='<?php echo $perfil->id; ?>'><i class="fa fa-trash-o"></i></a>
+                                            <a class='borrar' id='<?php echo $franchise->id; ?>'><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
                                     <?php $i++ ?>
@@ -100,6 +117,7 @@ $(document).ready(function(){
        "aoColumns": [
            {"sClass": "registro center", "sWidth": "5%"},
            {"sClass": "registro center", "sWidth": "20%"},
+           {"sClass": "none", "sWidth": "10%"},
            {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
            {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false}
        ]

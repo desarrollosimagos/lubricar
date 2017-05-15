@@ -45,6 +45,29 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-sm-2 control-label" >Servicio *</label>
+							<div class="col-sm-10">
+								<select class="form-control m-b" id="services_ids" multiple="multiple">									
+									<?php
+									// Primero creamos un arreglo con la lista de ids de servicios proveniente del controlador
+									$ids_services = explode(",",$ids_services);
+									foreach ($list_serv as $serv) {
+										// Si el id del servicio está en el arreglo, lo marcamos, si no, se imprime normalmente
+										if(in_array($serv->id, $ids_services)){
+										?>
+										<option selected="selected" value="<?php echo $serv->id; ?>"><?php echo $serv->name; ?></option>
+										<?php
+										}else{
+										?>
+										<option value="<?php echo $serv->id; ?>"><?php echo $serv->name; ?></option>
+										<?php
+										}
+									}
+									?>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
 							<div class="col-sm-4 col-sm-offset-2">
 								 <input id="id_status" type="hidden" value="<?php echo $editar[0]->status ?>"/>
 								 <input class="form-control"  type='hidden' id="id" name="id" value="<?php echo $id ?>"/>
@@ -92,9 +115,9 @@ $(document).ready(function(){
 			
         }  else {
 
-            $.post('<?php echo base_url(); ?>CFranchises/update', $('#form_franchises').serialize(), function (response) {
+            $.post('<?php echo base_url(); ?>CFranchises/update', $('#form_franchises').serialize()+'&'+$.param({'services_ids':$('#services_ids').val()}), function (response) {
 
-				if (response[0] == '1') {
+				if (response == 'existe') {
                     swal("Disculpe,", "este nombre se encuentra registrado");
                 }else{
 					swal({ 

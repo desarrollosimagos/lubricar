@@ -3,11 +3,13 @@
         <h2>Franquicias </h2>
         <ol class="breadcrumb">
             <li>
-                <a href="index.html">Inicio</a>
+                <a href="<?php echo base_url() ?>home">Inicio</a>
             </li>
+            
             <li>
-                <a href="">Franquicias</a>
+                <a href="<?php echo base_url() ?>assignment">Asignación de Servicios</a>
             </li>
+            
             <li class="active">
                 <strong>Asignar Servicio</strong>
             </li>
@@ -20,11 +22,9 @@
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
 					<h5>Asignar Servicios <small></small></h5>
-					
 				</div>
 				<div class="ibox-content">
 					<form id="form_assignment" method="post" accept-charset="utf-8" class="form-horizontal">
-						
 						<div class="form-group">
 							<label class="col-sm-2 control-label" >Franquicia *</label>
 							<div class="col-sm-10">
@@ -37,7 +37,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label" >Servicio *</label>
+							<label class="col-sm-2 control-label" >Servicios *</label>
 							<div class="col-sm-10">
 								<select class="form-control m-b" name="service_id" id="services" multiple="multiple">
 									<?php foreach ($list_serv as $serv) { ?>
@@ -88,10 +88,10 @@ $(document).ready(function(){
 	       $('#profile').parent('div').addClass('has-error');
 		   
         }  else {
-			alert(String($('#services').val()));
+			//~ alert(String($('#services').val()));
 
             $.post('<?php echo base_url(); ?>CAssignment/add', $('#form_assignment').serialize()+'&'+$.param({'services_ids':$('#services').val()}), function (response) {
-				alert(response);
+				//~ alert(response);
 				if (response == 'existe') {
                     swal("Disculpe,", "ya se encuentra registrado");
                 }else{

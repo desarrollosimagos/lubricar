@@ -36,6 +36,11 @@ class MAssignment extends CI_Model {
             return $id;
         }
     }
+    
+    // Public method to insert the actions asociated
+    public function insert_service($datos) {
+		$result = $this->db->insert("franchises_services", $datos);
+    }
 
     // Public method to obtain the services of the franchises by id
     public function obtenerServices($id) {
@@ -48,9 +53,21 @@ class MAssignment extends CI_Model {
     }
     
     // Public method to obtain the services of the franchises by franchise_id
-    public function obtenerServicesFranchiseId($id) {
-        $this->db->where('franchise_id', $id);
+    public function obtenerServicesFranchiseId($id_franchise) {
+        $this->db->where('franchise_id', $id_franchise);
         $query = $this->db->get('franchises_services');
+        if ($query->num_rows() > 0)
+            return $query->result();
+        else
+            return $query->result();
+    }
+    
+    //Public method to obtain the actions asociated by franchise_id and service_id
+    public function obtenerServiceFranchiseId($id_franchise, $id_service) {
+		$this->db->where('franchise_id =', $id_franchise);
+		$this->db->where('service_id =', $id_service);
+        $query = $this->db->get('franchises_services');
+
         if ($query->num_rows() > 0)
             return $query->result();
         else
@@ -94,6 +111,11 @@ class MAssignment extends CI_Model {
 			}
 		}
        
+    }
+    
+    // Public method to delete the services asociated 
+    public function delete_franchise_service($id_franchise, $id_service) {
+		$result = $this->db->delete('franchises_services', array('franchise_id' => $id_franchise, 'service_id' => $id_service));
     }
     
 

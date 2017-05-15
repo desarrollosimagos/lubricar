@@ -3,13 +3,15 @@
         <h2>Franquicias </h2>
         <ol class="breadcrumb">
             <li>
-                <a href="index.html">Inicio</a>
+                <a href="<?php echo base_url() ?>home">Inicio</a>
             </li>
+            
             <li>
-                <a href="">Franquicias</a>
+                <a href="<?php echo base_url() ?>assignment">Asignación de Servicios</a>
             </li>
+            
             <li class="active">
-                <strong>Editar Servicios</strong>
+                <strong>Asignar Servicio</strong>
             </li>
         </ol>
     </div>
@@ -19,7 +21,7 @@
         <div class="col-lg-12">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<h5>Registrar Servicios <small></small></h5>
+					<h5>Asignar Servicios <small></small></h5>
 				</div>
 				<div class="ibox-content">
 					<form id="form_assignment" method="post" accept-charset="utf-8" class="form-horizontal">
@@ -27,9 +29,10 @@
 							<label class="col-sm-2 control-label" >Franquicia *</label>
 							<div class="col-sm-10">
 								<select class="form-control m-b" name="franchise_id" id="franchises">
-									<option value="0" selected="">Seleccione</option>
 									<?php foreach ($list_franq as $franq) { ?>
-										<option value="<?php echo $franq->id ?>"><?php echo $franq->name ?></option>
+										<?php if ($franq->id == $id) { ?>
+										<option selected="selected" value="<?php echo $franq->id ?>"><?php echo $franq->name ?></option>
+										<?php } ?>
 									<?php } ?>
 								</select>
 							</div>
@@ -37,20 +40,28 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label" >Servicio *</label>
 							<div class="col-sm-10">
-								<select class="form-control m-b" name="service_id" id="services">
-									<option value="0" selected="">Seleccione</option>
-									<?php foreach ($list_serv as $serv) { ?>
-										<option value="<?php echo $serv->id ?>"><?php echo $serv->name ?></option>
-									<?php } ?>
+								<select class="form-control m-b" id="services_ids" multiple="multiple">									
+									<?php
+									// Primero creamos un arreglo con la lista de ids de servicios proveniente del controlador
+									$ids_services = explode(",",$ids_services);
+									foreach ($list_serv as $serv) {
+										// Si el id del servicio está en el arreglo, lo marcamos, si no, se imprime normalmente
+										if(in_array($serv->id, $ids_services)){
+										?>
+										<option selected="selected" value="<?php echo $serv->id; ?>"><?php echo $serv->name; ?></option>
+										<?php
+										}else{
+										?>
+										<option value="<?php echo $serv->id; ?>"><?php echo $serv->name; ?></option>
+										<?php
+										}
+									}
+									?>
 								</select>
 							</div>
 						</div>
-						
-						
 						<div class="form-group">
 							<div class="col-sm-4 col-sm-offset-2">
-								<input id="id_services" type="hidden" value="<?php echo $editar[0]->service_id ?>"/>
-								 <input id="id_franchise" type="hidden" value="<?php echo $editar[0]->franchise_id ?>"/>
 								 <input class="form-control"  type='hidden' id="id" name="id" value="<?php echo $id ?>"/>
 								<button class="btn btn-white" id="volver" type="button">Volver</button>
 								<button class="btn btn-primary" id="edit" type="submit">Guardar</button>
@@ -72,31 +83,27 @@ $(document).ready(function(){
     });
 
     $('#volver').click(function () {
-        url = '<?php echo base_url() ?>services/';
+        url = '<?php echo base_url() ?>assignment/';
         window.location = url;
     });
-	
-	$("#franchises").val($("#id_franchise").val());
-	$("#services").val($("#id_services").val());
-
 
     $("#edit").click(function (e) {
 
         e.preventDefault();  // Para evitar que se envíe por defecto
 
-		if ($('#franchises').val() == '0') {
+		if ($('#franchises').val() == '') {
 			
-		  swal("Disculpe,", "para continuar debe seleccionas la franquicia");
+		  swal("Disculpe,", "para continuar debe seleccionar la franquicia");
 	       $('#profile').parent('div').addClass('has-error');
 		   
-		}  else if ($('#franchises').val() == '0') {
+		}  else if ($('#services_ids').val() == '') {
 			
-		  swal("Disculpe,", "para continuar debe seleccionar el servicio");
+		  swal("Disculpe,", "para continuar debe seleccionar los servicios");
 	       $('#profile').parent('div').addClass('has-error');
 		   
         }   else {
 
-            $.post('<?php echo base_url(); ?>CAssignment/update', $('#form_assignment').serialize(), function (response) {
+            $.post('<?php echo base_url(); ?>CAssignment/update', $('#form_assignment').serialize()+'&'+$.param({'services_ids':$('#services_ids').val()}), function (response) {
 
 				if (response[0] == '1') {
                     swal("Disculpe,", "ya se encuentra registrado");
