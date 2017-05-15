@@ -42,7 +42,16 @@
 								<select class="form-control m-b" name="status" id="status">
 									<option value="1" selected="">Activo</option>
 									<option value="0">Inactivo</option>
-
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" >Servicios</label>
+							<div class="col-sm-10">
+								<select class="form-control m-b" id="services" multiple="multiple">
+									<?php foreach ($list_serv as $serv) { ?>
+										<option value="<?php echo $serv->id ?>"><?php echo $serv->name ?></option>
+									<?php } ?>
 								</select>
 							</div>
 						</div>
@@ -90,11 +99,12 @@ $(document).ready(function(){
 			$('#address').parent('div').addClass('has-error');
 			
         }  else {
+			alert(String($('#services').val()));
 
-            $.post('<?php echo base_url(); ?>CFranchises/add', $('#form_franchises').serialize(), function (response) {
-
-				if (response[0] == '1') {
-                    swal("Disculpe,", "este nombre se encuentra registrado");
+            $.post('<?php echo base_url(); ?>CFranchises/add', $('#form_franchises').serialize()+'&'+$.param({'services_ids':$('#services').val()}), function (response) {
+				//~ alert(response);
+				if (response == 'existe') {
+                    swal("Disculpe,", "esta franquicia se encuentra registrada");
                 }else{
 					swal({ 
 						title: "Registro",

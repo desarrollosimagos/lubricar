@@ -3,11 +3,9 @@
         <h2>Franquicias</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="">Inicio</a>
+                <a href="<?php echo base_url() ?>home">Inicio</a>
             </li>
-             <li>
-                <a href="">Franquicias</a>
-            </li>
+            
             <li class="active">
                 <strong>Asignación de Servicios</strong>
             </li>
@@ -17,8 +15,8 @@
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
-            <a href="<?php echo base_url() ?>assignment/register">
-            <button class="btn btn-outline btn-primary dim" type="button"><i class="fa fa-plus"></i> Agregar</button></a>
+            <!--<a href="<?php echo base_url() ?>assignment/register">
+            <button class="btn btn-outline btn-primary dim" type="button"><i class="fa fa-plus"></i> Agregar</button></a>-->
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Listado de Servicios por Franquicias </h5>
