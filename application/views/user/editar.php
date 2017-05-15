@@ -38,7 +38,7 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label" >Usuario *</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control"  placeholder="" name="username" id="username" value="<?php echo $editar[0]->username ?>">
+								<input type="text" class="form-control"  placeholder="ejemplo@xmail.com" name="username" id="username" value="<?php echo $editar[0]->username ?>">
 							</div>
 						</div>
 						<!--<div class="form-group">
