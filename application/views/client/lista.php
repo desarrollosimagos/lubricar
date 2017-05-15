@@ -1,3 +1,31 @@
+<div class="modal inmodal fade" id="modal_password" tabindex="-1" role="dialog"  aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close cerrar_modal" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h5 class="modal-title">Actualizar Contraseña</h5>
+			</div>
+			<div class="modal-body" >
+				<form id="modal_pass" method="post" accept-charset="utf-8" class="form-horizontal">
+					<div class="form-group">
+                        <label>Contraseña nueva</label>
+						<input id="password" name="password" class="form-control" type="password" maxlength="50" >
+						 <label>Confirme contraseña</label>
+						 <input id="confirm" name="confirm" class="form-control" type="password" maxlength="50" >
+                          <input id="id_client" name="id_client" class="form-control" type="text" maxlength="50" >
+
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer" >
+				<button class="btn btn-primary" type="button" id="agregar">
+					Aceptar
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2>Clientes</h2>
@@ -31,6 +59,7 @@
                                     <th>Nombre</th>
                                     <th>Apellido</th>
                                     <th>Usuario</th>
+                                    <th>Contraseña</th>
                                     <th>Editar</th>
                                     <th>Eliminar</th>
                                 </tr>
@@ -51,8 +80,11 @@
                                         <td>
                                             <?php echo $list->username; ?>
                                         </td>
-                                      
                                         <td style='text-align: center'>
+                                         <a class="pass" id='<?php echo $list->id; ?>' style='color: #1ab394'><i class="fa fa-key fa-2x"></i></a>
+                                        </td>
+                                        <td style='text-align: center'>
+                                            
                                             <a href="<?php echo base_url() ?>clients/edit/<?= $list->id; ?>" title="Editar" style='color: #1ab394'><i class="fa fa-edit fa-2x"></i></a>
                                         </td>
                                         <td style='text-align: center'>
@@ -72,6 +104,49 @@
 </div>
  <script>
 $(document).ready(function() {
+    
+    $("a.pass").click(function (e) {
+        e.preventDefault();  // Para evitar que se envíe por defecto
+        $("#modal_password").modal('show');
+         var id = this.getAttribute('id');
+         $("#id_client").val(id);
+
+    });
+    
+    $("#agregar").click(function (e) {
+        e.preventDefault();
+         $("#lunares").prop('disabled', false);
+        swal({
+            title: "Cambiar Contraseña",
+            text: "¿Está seguro de cambiar la contraseña?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Actualizar",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false,
+            closeOnCancel: true
+        },
+            function(isConfirm){
+                if (isConfirm) {
+                    
+                    $.post('<?php echo base_url(); ?>CClient/pass', $('#modal_pass').serialize(), function (response) {
+                        swal({ 
+                            title: "Contraseña",
+                            text: "actualizada con exito",
+                            type: "success" 
+                        },
+                        function(){
+                            window.location.href = '<?= base_url() ?>clients';
+                        });
+            
+                    });
+
+               } 
+            });
+            
+        
+    });
 
     $('#tab_client').DataTable({
        "autoWidth": false,
@@ -97,12 +172,13 @@ $(document).ready(function() {
        ],
       
        "aoColumns": [
-           {"sClass": "registro center", "sWidth": "5%"},
-           {"sClass": "registro center", "sWidth": "10%"},
-           {"sClass": "registro center", "sWidth": "10%"},
-           {"sClass": "registro center", "sWidth": "10%"},
-           {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
-           {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false}
+            {"sClass": "registro center", "sWidth": "5%"},
+            {"sClass": "registro center", "sWidth": "10%"},
+            {"sClass": "registro center", "sWidth": "10%"},
+            {"sClass": "registro center", "sWidth": "10%"},
+            {"sWidth": "1%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
+            {"sWidth": "1%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
+            {"sWidth": "1%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false}
        ]
    });
              

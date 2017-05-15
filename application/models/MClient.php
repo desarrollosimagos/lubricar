@@ -143,6 +143,15 @@ class MClient extends CI_Model {
     }
     
     
+    // Metodo publico, forma de actualizar los datos
+    public function pass($datos) {
+        
+        $result = $this->db->where('id', $datos['id']);
+        $result = $this->db->update('customers', $datos);
+        return $result;
+        
+    }
+    
 
 
 }

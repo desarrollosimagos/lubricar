@@ -27,15 +27,15 @@
 				<form name="nuevo_vehiculo" action="" method="post" class="form">
                     <div class="form-group">
                             <label >Marca</label>
-                            <input id="trademark" name="trademark" class="form-control" type="text" >
+                            <input id="trademark" name="trademark" class="form-control" type="text" maxlength="50">
                             <label>Modelo </label>
-                            <input id="model" name="model" class="form-control" type="text" >
+                            <input id="model" name="model" class="form-control" type="text" maxlength="50">
                             <label >Color *</label>
-                            <input id="color" name="color" class="form-control" type="text" >
+                            <input id="color" name="color" class="form-control" type="text" maxlength="50">
                             <label >Año</label>
-                            <input id="year" name="year" class="form-control" type="text" >
+							<input type="text" class="form-control"  id="year" name="year" maxlength="4">
                             <label >Placa</label>
-                            <input id="license_plate" name="license_plate" class="form-control" type="text" >
+                            <input id="license_plate" name="license_plate" class="form-control" type="text" maxlength="50">
 							<input id="accion2" class="form-control" type="hidden" >
 							<input id="posicion2" class="form-control" type="hidden" >
                     </div>
@@ -60,17 +60,17 @@
 				<form id="modal_direccion" action="" method="post" class="form">
 					<div class="form-group">
 						<label >Ciudad</label>
-						<input id="city" name="city" class="form-control" type="text">
+						<input id="city" name="city" class="form-control" type="text" maxlength="100">
 						<label>Código Postal </label>
-						<input id="zip" name="zip" class="form-control" type="text" >
+						<input id="zip" name="zip" class="form-control" type="text" maxlength="20" >
 						 <label>Dirección 1 *</label>
-						 <input id="address_1" name="address_1" class="form-control" type="text" >
+						 <input id="address_1" name="address_1" class="form-control" type="text" maxlength="150" >
 						 <label >Dirección 2</label>
-						 <input id="address_2" name="address_2" class="form-control" type="text">
+						 <input id="address_2" name="address_2" class="form-control" type="text" maxlength="150">
 						<label>Teléfono 1 *</label>
-						<input id="phone_1" name="phone_1" class="form-control" type="text" >
+						<input id="phone_1" name="phone_1" class="form-control" type="text" maxlength="20">
 						<label>Teléfono 2</label>
-						<input id="cell_phone_1" name="cell_phone" class="form-control" type="text">
+						<input id="cell_phone_1" name="cell_phone" class="form-control" type="text" maxlength="20">
 						<input id="accion"  class="form-control" type="hidden" >
 						<input id="posicion"  class="form-control" type="hidden" >
 					</div>
@@ -154,7 +154,6 @@
 										<table style="width: 100%" class="tab_direccion table dataTable table-striped table-bordered dt-responsive jambo_table bulk_action" id="tab_direccion">
 											<thead>
 											<tr>
-											
 												<th>Ciudad</th>
 												<th>Código Postal</th>
 												<th>Dirección 1</th>
@@ -203,7 +202,15 @@
 </div>
 <script>
 $(document).ready(function(){
+
 	
+	$('#year').datepicker({
+		
+		format: " yyyy",
+        viewMode: "years", 
+        minViewMode: "years"
+	});
+
 	$("#wizard").steps();
     $("#form").steps({
 		bodyTag: "fieldset",
@@ -379,7 +386,34 @@ $(document).ready(function(){
 						function(){
 						  window.location.href = '<?php echo base_url(); ?>clients';
 						});
-					} 
+					} else if (data === 'existe cliente') {
+						swal({ 
+						title: "Disculpe,",
+						 text: "el nombre de usuario del cliente ya se encuentra registrado",
+						  type: "success" 
+						},
+						function(){
+						  // window.location.href = '<?php echo base_url(); ?>clients';
+						});
+					} else if (data === 'existe direccion') {
+						swal({ 
+						title: "Disculpe,",
+						 text: "verifique la(s) direccion(es)",
+						  type: "success" 
+						},
+						function(){
+						  // window.location.href = '<?php echo base_url(); ?>clients';
+						});
+					}else if (data === 'existe vehiculo') {
+						swal({ 
+						title: "Disculpe,",
+						 text: "verifique lo(s) o el vehiculo ",
+						  type: "success" 
+						},
+						function(){
+						  // window.location.href = '<?php echo base_url(); ?>clients';
+						});
+					}
 				});
 			 
 
