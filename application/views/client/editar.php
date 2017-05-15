@@ -8,10 +8,10 @@
 				<a href="index.html">Inicio</a>
 			</li>
 			<li>
-				<a>Clientes</a>
-			</li>
+				<a href="<?php echo base_url() ?>clients">Clientes</a>
+			</li> 
 			<li class="active">
-				<strong>Registrar</strong>
+				<strong>Editar Cliente</strong>
 			</li>
 		</ol>
 	</div>
@@ -36,8 +36,8 @@
                             <input id="year" name="year" class="form-control" type="text" >
                             <label >Placa</label>
                             <input id="license_plate" name="license_plate" class="form-control" type="text" >
-							<input id="accion2" class="form-control" type="text" >
-							<input id="posicion2" class="form-control" type="text" >
+							<input id="accion2" class="form-control" type="hidden" >
+							<input id="posicion2" class="form-control" type="hidden" >
                     </div>
                 </form>
 			</div>
@@ -71,8 +71,8 @@
 						<input id="phone_1" name="phone_1" class="form-control" type="text" >
 						<label>Teléfono 2</label>
 						<input id="cell_phone_1" name="cell_phone" class="form-control" type="text">
-						<input id="accion"  class="form-control" type="text" >
-						<input id="posicion"  class="form-control" type="text" >
+						<input id="accion"  class="form-control" type="hidden" >
+						<input id="posicion"  class="form-control" type="hidden" >
 					</div>
 				</form>
 			</div>
