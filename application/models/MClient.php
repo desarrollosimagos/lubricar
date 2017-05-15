@@ -121,9 +121,10 @@ class MClient extends CI_Model {
     // Metodo publico, para eliminar un registro 
      public function delete($id) {
         
-        $result = $this->db->delete('customers', array('id' => $id));
         $result = $this->db->delete('addresses', array('customer_id' => $id));
         $result = $this->db->delete('vehicles', array('customer_id' => $id));
+        $result = $this->db->delete('customers', array('id' => $id));
+       
         return $result;
     }
     
