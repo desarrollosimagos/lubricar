@@ -218,12 +218,29 @@ class CUser extends CI_Controller {
 		}
     }
     
+    // Método para actualizar de forma directa el status de un usuario
+    public function update_status($id) {
+		$accion = $this->input->post('accion');
+		$estatus = 1;
+		
+		if ($accion == 'desactivar'){
+			$estatus = 0;
+		}
+		
+		// Armamos la data a actualizar
+        $data_usuario = array(
+			'id' => $id,
+			'status' => $estatus,
+			'd_update' => date('Y-m-d H:i:s'),
+        );
+        
+        // Actualizamos el usuario con los datos armados
+		$result = $this->MUser->update_status($data_usuario);
+	}
+    
 	// Método para eliminar
 	function delete($id) {
         $result = $this->MUser->delete($id);
-        if ($result) {
-          /*  $this->libreria->generateActivity('Eliminado País', $this->session->userdata['logged_in']['id']);*/
-        }
     }
 	
 	

@@ -39,47 +39,62 @@ $(document).ready(function() {
            {"sClass": "none", "sWidth": "8%"},
            {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
            {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false}
-       ]
-   });
-             
-         // Validacion para borrar
-        $("table#tab_users").on('click', 'a.borrar', function (e) {
-            e.preventDefault();
-            var id = this.getAttribute('id');
-    
-            swal({
-                title: "Borrar registro",
-                text: "¿Está seguro de borrarlo?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Eliminar",
-                cancelButtonText: "Cancelar",
-                closeOnConfirm: false,
-                closeOnCancel: true
-              },
-              function(isConfirm){
-                if (isConfirm) {
-
-                  $.post('CUser/delete/' + id + '', function () {
-    
-                  swal({ 
-                    title: "Eliminar",
-                     text: "Registro eliminado con exito",
-                      type: "success" 
-                    },
-                    function(){
-                      window.location.href = 'users';
-                  });
-       
-                 });
-                } 
-              });
-            
-        });
-        
-  
+       ]       
     });
+   
+                
+	// Función para activar/desactivar un usuario
+	$("table#tab_users").on('click', 'input.activar_desactivar', function (e) {
+		e.preventDefault();
+		var id = this.getAttribute('id');
+		//alert(id)
+		
+		var check = $(this);
+		
+		//~ alert(check.prop('checked'));
+		
+		var accion = '';
+		if (check.is(':checked')) {
+            accion = 'activar';
+        }else{
+			accion = 'desactivar';
+		}
+		
+		swal({
+			title: accion.charAt(0).toUpperCase()+accion.substring(1)+" registro",
+			text: "¿Desea "+accion+" el Usuario?",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: accion.charAt(0).toUpperCase()+accion.substring(1),
+			cancelButtonText: "Cancelar",
+			closeOnConfirm: false,
+			closeOnCancel: true
+		  },
+		  function(isConfirm){
+			if (isConfirm) {
+
+			  $("#motivo_anulacion").val('');
+				$("#accion").val(accion);
+				
+				var mensaje = "";
+				if (accion == 'desactivar'){
+					mensaje = "desactivado";
+				}else{
+					mensaje = "activado";
+				}
+				
+				//~ alert("código de la factura: "+$("#codfactura").val());
+				//~ alert("motivo de la anulación: "+$("#motivo_anulacion").val());
+				
+				$.post('CUser/update_status/' + id, {'accion':accion}, function(response) {
+					swal("El usuario fue "+mensaje+" exitosamente");
+					location.reload();
+				})
+			} 
+		  });
+	   
+	});
         
     $('input').on({
         keypress: function () {
@@ -91,6 +106,7 @@ $(document).ready(function() {
         url = '../users/';
         window.location = url;
     });
+    
     $('#volver').click(function () {
         url = 'users/';
         window.location = url;
@@ -286,3 +302,5 @@ $(document).ready(function() {
         }
 
     });
+    
+});
