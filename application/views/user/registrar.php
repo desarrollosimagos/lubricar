@@ -64,6 +64,38 @@
 								</select>
 							</div>
 						</div>
+						<div class="form-group" id="franquicias">
+							<label class="col-sm-2 control-label" >Franquicia *</label>
+							<div class="col-sm-10">
+								<select class="form-control m-b" id="franchises" multiple="multiple">
+									<?php
+									// Armamos un arreglo de ids de franquicias asignadas a usuarios
+									//~ $franquicias_ids = array();
+									//~ foreach ($user_franquicias as $user_franquicia) {
+										//~ $franquicias_ids[] = $user_franquicia->franchise_id;
+									//~ }
+									?>
+									<?php foreach ($franquicias as $franquicia) { ?>
+										<?php //if(!in_array($franquicia->id, $franquicias_ids)) { ?>
+										<option value="<?php echo $franquicia->id ?>"><?php echo $franquicia->name ?></option>
+										<?php //} ?>
+									<?php } ?>
+								</select>
+							</div>
+						</div>
+						<div class="form-group"><label class="col-sm-2 control-label" >Acciones</label>
+							<div class="col-sm-10">
+								<select id="actions_ids" class="form-control" multiple="multiple">
+									<?php
+									foreach ($acciones as $accion) {
+										?>
+										<option value="<?php echo $accion->id; ?>"><?php echo $accion->name; ?></option>
+										<?php
+									}
+									?>
+								</select>
+							</div>
+						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label" >Estatus *</label>
 							<div class="col-sm-10">

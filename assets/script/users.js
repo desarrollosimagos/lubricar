@@ -29,12 +29,14 @@ $(document).ready(function() {
        "iDisplayStart": 0,
        "sPaginationType": "full_numbers",
        "aLengthMenu": [5, 10, 15],
-       "oLanguage": {"sUrl": "../assets/js/es.txt"},
+       "oLanguage": {"sUrl": "assets/js/es.txt"},
        "aoColumns": [
            {"sClass": "registro center", "sWidth": "5%"},
            {"sClass": "registro center", "sWidth": "10%"},
            {"sClass": "registro center", "sWidth": "10%"},
            {"sClass": "registro center", "sWidth": "10%"},
+           {"sClass": "none", "sWidth": "8%"},
+           {"sClass": "none", "sWidth": "8%"},
            {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
            {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false}
        ]
@@ -93,8 +95,6 @@ $(document).ready(function() {
         url = 'users/';
         window.location = url;
     });
-	
-	
 
 	$("#profile").val($("#id_profile").val());
     $("#status").val($("#id_status").val());
@@ -106,13 +106,32 @@ $(document).ready(function() {
 	
 	});
 	
-	$('#profile').change(function (){
-		
-		$('#profile').parent('div').removeClass("has-error");
 	
-	});
+	// Al cargar la página validamos si debe mostrar las franquicias
+	//~ var perfil = $("#profile").find('option').filter(':selected').text();
+	//~ 
+	//~ if(perfil == "FRANQUICIA" || perfil == "franquicia"){
+		//~ $("#franquicias").css("display","block");
+	//~ }else{
+		//~ $("#franquicias").css("display","none");
+		//~ $("#franchise").val("0");
+	//~ }
 	
-
+	// Al cambiar el perfil validamos si debe mostrar las franquicias
+	//~ $('#profile').change(function (){
+		//~ 
+		//~ $('#profile').parent('div').removeClass("has-error");
+		//~ 
+		//~ var perfil = $("#profile").find('option').filter(':selected').text();
+		//~ 
+		//~ if(perfil == "FRANQUICIA" || perfil == "franquicia"){
+			//~ $("#franquicias").css("display","block");
+		//~ }else{
+			//~ $("#franquicias").css("display","none");
+			//~ $("#franchise").val("0");
+		//~ }
+	//~ 
+	//~ });
 
     $("#edit").click(function (e) {
 
@@ -156,16 +175,22 @@ $(document).ready(function() {
 	       $('#password').parent('div').addClass('has-error');
 		   $('#passw1').parent('div').addClass('has-error');
 		   
-        } */else if ($('#profile').val() == '0') {
+        } */ else if ($('#profile').val() == '0') {
 			
-		  swal("Disculpe,", "para continuar debe ingresar el perfil del usuario");
+		  swal("Disculpe,", "para continuar debe seleccionar el perfil");
 	       $('#profile').parent('div').addClass('has-error');
 		   
-		} else {
+		} /*else if (($("#profile").find('option').filter(':selected').text() == "FRANQUICIA" || $("#profile").find('option').filter(':selected').text() == "franquicia") && $('#franchise').val() == '0') {
+			
+		  swal("Disculpe,", "para continuar debe seleccionar la franquicia");
+	       $('#franchise').parent('div').addClass('has-error');
+		   
+		}*/ else {
+			//~ alert($('#franchises').val());
 
-            $.post('../CUser/update', $('#form_users').serialize(), function (response) {
+            $.post('../CUser/update', $('#form_users').serialize()+'&'+$.param({'franquicias_ids':$('#franchises').val(),'actions_ids':$('#actions_ids').val()}), function (response) {
 
-				if (response[0] == '1') {
+				if (response == 'existe') {
                     swal("Disculpe,", "este nombre de usuario se encuentra registrado");
                 }else{
 					swal({ 
@@ -232,17 +257,23 @@ $(document).ready(function() {
 		  swal("Disculpe,", "para continuar debe seleccionar el perfil");
 	       $('#profile').parent('div').addClass('has-error');
 		   
-		} else {
+		} /*else if (($("#profile").find('option').filter(':selected').text() == "FRANQUICIA" || $("#profile").find('option').filter(':selected').text() == "franquicia") && $('#franchise').val() == '0') {
+			
+		  swal("Disculpe,", "para continuar debe seleccionar la franquicia");
+	       $('#franchise').parent('div').addClass('has-error');
+		   
+		}*/ else {
+			//~ alert($('#franchises').val());
 
-            $.post('CUser/add', $('#form_users').serialize(), function (response) {
+            $.post('CUser/add', $('#form_users').serialize()+'&'+$.param({'franquicias_ids':$('#franchises').val(),'actions_ids':$('#actions_ids').val()}), function (response) {
 
-				if (response[0] == '1') {
+				if (response == 'existe') {
                     swal("Disculpe,", "este nombre de usuario se encuentra registrado");
                 }else{
 					swal({ 
 						title: "Registro",
 						 text: "Guardado con exito",
-						  type: "success" 
+						  type: "success"
 						},
 					function(){
 					  window.location.href = 'users';
