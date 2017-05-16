@@ -64,6 +64,56 @@
 								</select>
 							</div>
 						</div>
+						<div class="form-group" id="franquicias">
+							<label class="col-sm-2 control-label" >Franquicia *</label>
+							<div class="col-sm-10">
+								<select class="form-control m-b" id="franchises" multiple="multiple">
+									<?php
+									// Armamos un arreglo de ids de franquicias asignadas a otros usuarios diferentes al que se está editando
+									//~ $franquicias_ids = array();
+									//~ $franquicia_asoc_id = 0;  // Variable que almacenará el id de la franquicia que pertenece al usuario editado
+									//~ foreach ($user_franquicias as $user_franquicia) {
+										//~ if($user_franquicia->user_id != $id){
+											//~ $franquicias_ids[] = $user_franquicia->franchise_id;
+										//~ }else{
+											//~ $franquicia_asoc_id = $user_franquicia->franchise_id;
+										//~ }
+									//~ }
+									// Primero creamos un arreglo con la lista de ids de servicios proveniente del controlador
+									$ids_franchises = explode(",",$ids_franchises);
+									?>
+									<?php foreach ($franquicias as $franquicia) { ?>
+										<?php if(in_array($franquicia->id, $ids_franchises)) { ?>
+										<option selected="selected" value="<?php echo $franquicia->id ?>"><?php echo $franquicia->name ?></option>
+										<?php }else{ ?>
+										<option value="<?php echo $franquicia->id ?>"><?php echo $franquicia->name ?></option>
+										<?php } ?>
+									<?php } ?>
+								</select>
+							</div>
+						</div>
+						<div class="form-group"><label class="col-sm-2 control-label" >Acciones</label>
+							<div class="col-sm-10">
+								<select id="actions_ids" class="form-control" multiple="multiple">
+									<?php
+									// Primero creamos un arreglo con la lista de ids de acciones proveniente del controlador
+									$ids_actions = explode(",",$ids_actions);
+									foreach ($acciones as $accion) {
+										// Si el id de la acción está en el arreglo lo marcamos, si no, se imprime normalmente
+										if(in_array($accion->id, $ids_actions)){
+										?>
+										<option selected="selected" value="<?php echo $accion->id; ?>"><?php echo $accion->name; ?></option>
+										<?php
+										}else{
+										?>
+										<option value="<?php echo $accion->id; ?>"><?php echo $accion->name; ?></option>
+										<?php
+										}
+									}
+									?>
+								</select>
+							</div>
+						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label" >Estatus *</label>
 							<div class="col-sm-10">
