@@ -33,7 +33,7 @@
                                     <th>Franquicias</th>
                                     <th>Permisos</th>
                                     <th>Editar</th>
-                                    <th>Eliminar</th>
+                                    <th>Activar/Desactivar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -90,9 +90,12 @@
                                             <a href="<?php echo base_url() ?>users_edit/<?= $usuario->id; ?>" title="Editar"><i class="fa fa-pencil"></i></a>
                                         </td>
                                         <td style='text-align: center'>
-                                            
-                                            <a class='borrar' id='<?php echo $usuario->id; ?>'><i class="fa fa-trash-o"></i></a>
-                                        </td>
+											<?php if ($usuario->status == 1) {?>
+											<input class='activar_desactivar' id='<?php echo $usuario->id; ?>' type="checkbox" title='Desactivar el usuario <?php echo $usuario->id;?>' checked="checked"/>
+											<?php }else if ($usuario->status == 0){ ?>
+											<input class='activar_desactivar' id='<?php echo $usuario->id; ?>' type="checkbox" title='Activar el usuario <?php echo $usuario->id;?>'/>
+											<?php } ?>
+										</td>
                                     </tr>
                                     <?php $i++ ?>
                                 <?php } ?>
