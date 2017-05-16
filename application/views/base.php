@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link href="<?php echo assets_url('js/datatables.net-responsive-bs/css/responsive.bootstrap.min.css'); ?>"
 	<link href="<?php echo assets_url('css/animate.css');?>" rel="stylesheet">
     <link href="<?php echo assets_url('css/style.css');?>" rel="stylesheet">
-	
+	<link href="<?php echo assets_url('css/plugins/datapicker/datepicker3.css');?>" rel="stylesheet">
 	 <!-- Sweet Alert -->
     <link href="<?php echo assets_url('css/plugins/sweetalert/sweetalert.css');?>" rel="stylesheet">
 	
@@ -48,7 +48,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    <!-- Jquery Validate -->
     <script src="<?php echo assets_url('js/plugins/validate/jquery.validate.min.js');?>"></script>
 	<script src="<?php echo assets_url('js/jquery.numeric.js');?>"></script>
-	
+		<!-- Data picker -->
+   <script src="<?php echo assets_url('js/plugins/datapicker/bootstrap-datepicker.js');?>"></script>
+   <!-- Date range picker -->
+    <script src="<?php echo assets_url('js/plugins/daterangepicker/daterangepicker.js');?>"></script>
     <script>
 		$(document).ready(function () {
 			// Aplicamos select2() a todos los combos select
