@@ -52,6 +52,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
    <script src="<?php echo assets_url('js/plugins/datapicker/bootstrap-datepicker.js');?>"></script>
    <!-- Date range picker -->
     <script src="<?php echo assets_url('js/plugins/daterangepicker/daterangepicker.js');?>"></script>
+		<!-- Typehead -->
+    <script src="<?php echo assets_url('js/plugins/typehead/bootstrap3-typeahead.min.js');?>"></script>
     <script>
 		$(document).ready(function () {
 			// Aplicamos select2() a todos los combos select
