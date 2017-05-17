@@ -89,7 +89,7 @@ $(document).ready(function() {
 				//~ alert("código de la factura: "+$("#codfactura").val());
 				//~ alert("motivo de la anulación: "+$("#motivo_anulacion").val());
 				
-				$.post('CUser/update_status/' + id, {'accion':accion}, function(response) {
+				$.post(base_url+'CUser/update_status/' + id, {'accion':accion}, function(response) {
 					swal("El usuario fue "+mensaje+" exitosamente");
 					location.reload();
 				})
@@ -110,7 +110,7 @@ $(document).ready(function() {
     });
     
     $('#volver').click(function () {
-        url = 'users/';
+        url = base_url+'users/';
         window.location = url;
     });
 
