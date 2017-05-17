@@ -62,8 +62,8 @@ if (!function_exists('menu')) {
 				}
 				
 				// Verificamos si hay submenús para el menú
+				$num_submenus = 0;  // Contador de submenús
 				foreach($ci->session->userdata('logged_in')['submenus'] as $submenus){
-					$num_submenus = 0;  // Contador de submenús
 					foreach($submenus as $submenu){
 						if($submenu->menu_id == $menu->id){
 							$num_submenus += 1;
