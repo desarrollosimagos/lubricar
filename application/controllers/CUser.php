@@ -279,7 +279,7 @@ class CUser extends CI_Controller {
 		}
 		
 		if(count($list_actions_ids) > 0){
-			// Si hay acciones asociadas al perfil
+			// Si hay acciones asociadas al usuario
 			$result2 = $this->MUser->search_actions2($list_actions_ids);  // Buscamos las acciones que están asociadas al usuario
 		}else{
 			// Si no hay acciones asociadas al usuario
