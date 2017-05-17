@@ -114,7 +114,7 @@ $(document).ready(function() {
         window.location = url;
     });
 
-	$("#profile").val($("#id_profile").val());
+	$("#profile").select2('val', $("#id_profile").val());
     $("#status").val($("#id_status").val());
 
 	
@@ -141,7 +141,6 @@ $(document).ready(function() {
 			//~ alert(response);
 			var option = "";
 			$.each(response, function (i) {
-
 				option += "<option value=" + response[i]['id'] + ">" + response[i]['name'] + "</option>";
 			});
 			$('#actions_ids').append(option);
@@ -151,9 +150,12 @@ $(document).ready(function() {
 			$.post(base_url+'CUser/search_actions2', $.param({'user_id':usuario_id}), function (response) {
 				var option = "";
 				$.each(response, function (i) {
-					option += "<option selected='selected' value=" + response[i]['id'] + ">" + response[i]['name'] + "</option>";
+					// Primero removemos la opción igual a la que vamos a imprimir (evitará redundancia de datos)
+					$("#actions_ids option[value='"+response[i]['id']+"']").remove();
+					option = "<option selected='selected' value=" + response[i]['id'] + ">" + response[i]['name'] + "</option>";
+					$('#actions_ids').append(option);
+					$('#actions_ids').select2('val', response[i]['id']);
 				});
-				$('#actions_ids').append(option);
 			}, 'json');
 		}
 	}
@@ -174,11 +176,11 @@ $(document).ready(function() {
 		var perfil_id = $("#profile").val();
 		var usuario_id = $("#id").val();
 		//~ $('#actions_ids').find('option:gt(0)').remove().end().select2('val', '0');
-		$('#actions_ids').find('option:gt(0)').remove().end();
+		$('#actions_ids').find('option').remove().end();
 		
 		if(perfil_id != '0'){
 			$.post(base_url+'CUser/search_actions', $.param({'profile_id':perfil_id}), function (response) {
-				//~ alert(response);
+				// alert(response);
 				var option = "";
 				$.each(response, function (i) {
 					option += "<option value=" + response[i]['id'] + ">" + response[i]['name'] + "</option>";
@@ -190,9 +192,12 @@ $(document).ready(function() {
 				$.post(base_url+'CUser/search_actions2', $.param({'user_id':usuario_id}), function (response) {
 					var option = "";
 					$.each(response, function (i) {
-						option += "<option selected='selected' value=" + response[i]['id'] + ">" + response[i]['name'] + "</option>";
+						// Primero removemos la opción igual a la que vamos a imprimir (evitará redundancia de datos)
+						$("#actions_ids option[value='"+response[i]['id']+"']").remove();
+						option = "<option selected='selected' value=" + response[i]['id'] + ">" + response[i]['name'] + "</option>";
+						$('#actions_ids').append(option);
+						$('#actions_ids').select2('val', response[i]['id']);
 					});
-					$('#actions_ids').append(option);
 				}, 'json');
 			}
 		}

@@ -65,7 +65,7 @@
 							</div>
 						</div>
 						<div class="form-group" id="franquicias">
-							<label class="col-sm-2 control-label" >Franquicia *</label>
+							<label class="col-sm-2 control-label" >Franquicia</label>
 							<div class="col-sm-10">
 								<select class="form-control m-b" id="franchises" multiple="multiple">
 									<?php
