@@ -242,6 +242,50 @@ class CUser extends CI_Controller {
 	function delete($id) {
         $result = $this->MUser->delete($id);
     }
+    
+    // Método público para cargar un json con las acciones no asignadas al perfil seleccionado
+    public function search_actions()
+    {
+		$id_profile = $this->input->post('profile_id');  // id del perfil
+		
+        $result = $this->MUser->search_profile_actions($id_profile);  // Consultamos los ids de las acciones asociadas al perfil
+        // Armamos una lista de ids de las acciones asociadas al perfil
+        $list_actions_ids = array();
+        foreach($result as $relation){
+			$list_actions_ids[] = $relation->action_id;
+		}
+		
+		if(count($list_actions_ids) > 0){
+			// Si hay acciones asociadas al perfil
+			$result2 = $this->MUser->search_actions($list_actions_ids);  // Buscamos las acciones que no están asociadas al perfil
+		}else{
+			// Si no hay acciones asociadas al perfil
+			$result2 = $this->MAcciones->obtener_without_home();  // Buscamos todas las acciones
+		}
+		
+        echo json_encode($result2);
+    }
 	
-	
+	// Método público para cargar un json con las acciones no asignadas al perfil seleccionado
+    public function search_actions2()
+    {
+		$id_usuario = $this->input->post('user_id');  // id del usuario
+		
+        $result = $this->MUser->search_permissions($id_usuario);  // Consultamos los ids de las acciones asociadas al usuario
+        // Armamos una lista de ids de las acciones asociadas al usuario
+        $list_actions_ids = array();
+        foreach($result as $relation){
+			$list_actions_ids[] = $relation->action_id;
+		}
+		
+		if(count($list_actions_ids) > 0){
+			// Si hay acciones asociadas al perfil
+			$result2 = $this->MUser->search_actions2($list_actions_ids);  // Buscamos las acciones que están asociadas al usuario
+		}else{
+			// Si no hay acciones asociadas al usuario
+			$result2 = $list_actions_ids;
+		}
+		
+        echo json_encode($result2);
+    }
 }

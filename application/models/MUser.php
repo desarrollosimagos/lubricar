@@ -12,7 +12,7 @@ class MUser extends CI_Model {
         $this->load->database();
     }
 
-    //Public method to obtain the users
+    // Public method to obtain the users
     public function obtener() {
         $query = $this->db->get('users');
 
@@ -22,7 +22,7 @@ class MUser extends CI_Model {
             return $query->result();
     }
     
-    //Public method to obtain the permissions asociated
+    // Public method to obtain the permissions asociated
     public function obtener_permisos() {
         $query = $this->db->get('permissions');
 
@@ -32,7 +32,7 @@ class MUser extends CI_Model {
             return $query->result();
     }
     
-    //Public method to obtain the permissions asociated by user_id
+    // Public method to obtain the permissions asociated by user_id
     public function obtener_permisos_id($id_user) {
 		$this->db->where('user_id =', $id_user);
         $query = $this->db->get('permissions');
@@ -43,7 +43,7 @@ class MUser extends CI_Model {
             return $query->result();
     }
     
-    //Public method to obtain the permissions asociated by user_id and action_id
+    // Public method to obtain the permissions asociated by user_id and action_id
     public function obtener_permiso_ids($id_user, $id_action) {
 		$this->db->where('user_id =', $id_user);
 		$this->db->where('action_id =', $id_action);
@@ -74,7 +74,7 @@ class MUser extends CI_Model {
             return $query->result();
     }
     
-    //Public method to obtain the permissions asociated by user_id and franchise_id
+    // Public method to obtain the permissions asociated by user_id and franchise_id
     public function obtenerUserFranchiseId($id_user, $id_franchise) {
 		$this->db->where('user_id =', $id_user);
 		$this->db->where('franchise_id =', $id_franchise);
@@ -157,6 +157,38 @@ class MUser extends CI_Model {
     // Public method to delete the franchises asociated 
     public function delete_user_action($id_user, $id_action) {
 		$result = $this->db->delete('permissions', array('user_id' => $id_user, 'action_id' => $id_action));
+    }
+    
+    // Public method to obtain the actions asociated to profile_id
+    public function search_profile_actions($id_profile)
+    {
+        $result = $this->db->where('profile_id', $id_profile);
+        $result = $this->db->get('profile_actions');
+        return $result->result();
+    }
+    
+    // Public method to obtain the actions asociated to user_id
+    public function search_permissions($id_user)
+    {
+        $result = $this->db->where('user_id', $id_user);
+        $result = $this->db->get('permissions');
+        return $result->result();
+    }
+    
+    // Public method to obtain the actions not asociated to profile_id list
+    public function search_actions($list_actions_ids)
+    {
+        $this->db->where_not_in('id',$list_actions_ids);
+        $result = $this->db->get('actions');
+        return $result->result();
+    }
+    
+    // Public method to obtain the actions not asociated to user_id list
+    public function search_actions2($list_actions_ids)
+    {
+        $this->db->where_in('id',$list_actions_ids);
+        $result = $this->db->get('actions');
+        return $result->result();
     }
 
 }

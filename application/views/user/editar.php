@@ -95,22 +95,7 @@
 						<div class="form-group"><label class="col-sm-2 control-label" >Acciones</label>
 							<div class="col-sm-10">
 								<select id="actions_ids" class="form-control" multiple="multiple">
-									<?php
-									// Primero creamos un arreglo con la lista de ids de acciones proveniente del controlador
-									$ids_actions = explode(",",$ids_actions);
-									foreach ($acciones as $accion) {
-										// Si el id de la acción está en el arreglo lo marcamos, si no, se imprime normalmente
-										if(in_array($accion->id, $ids_actions)){
-										?>
-										<option selected="selected" value="<?php echo $accion->id; ?>"><?php echo $accion->name; ?></option>
-										<?php
-										}else{
-										?>
-										<option value="<?php echo $accion->id; ?>"><?php echo $accion->name; ?></option>
-										<?php
-										}
-									}
-									?>
+									
 								</select>
 							</div>
 						</div>
@@ -126,7 +111,8 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-4 col-sm-offset-2">
-								 <input id="id_profile" type="hidden" value="<?php echo $editar[0]->profile_id ?>"/>
+								<input id="base_url" type="hidden" value="<?php echo base_url(); ?>"/>
+								<input id="id_profile" type="hidden" value="<?php echo $editar[0]->profile_id ?>"/>
                                 <input id="id_status" type="hidden" value="<?php echo $editar[0]->status ?>"/>
 								<input class="form-control"  type='hidden' id="id" name="id" value="<?php echo $id ?>"/>
 								<button class="btn btn-white" id="volver2" type="button">Volver</button>

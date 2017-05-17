@@ -1,6 +1,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Perfiles </h2>
+        <h2>Usuarios </h2>
         <ol class="breadcrumb">
             <li>
                 <a href="index.html">Inicio</a>
@@ -14,6 +14,30 @@
         </ol>
     </div>
 </div>
+<?php
+//~ echo "probando...<br>";
+//~ // Recorrido de los datos del usuario
+//~ $ci = & get_instance();
+//~ $accionesperfil = array();  // Ids de las acciones (módulos) permitidos para el perfil logueado
+//~ $accionesusuario = array();  // Ids de las acciones (módulos) permitidos para el usuario logueado
+//~ foreach($ci->session->userdata('logged_in') as $clave => $userdata){
+	//~ if($clave == "acciones"){
+		//~ foreach($userdata as $accion){
+			//~ $accionesperfil[] = $accion[0]->id;
+		//~ }
+	//~ }else if($clave == "permisos"){
+		//~ foreach($userdata as $permiso){
+			//~ $accionesusuario[] = $permiso[0]->id;
+		//~ }
+	//~ }
+//~ }
+//~ 
+//~ echo "Acciones perfil:<br>";
+//~ print_r($accionesperfil);
+//~ echo "<br>";
+//~ echo "Acciones usuario:<br>";
+//~ print_r($accionesusuario);
+?>
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
         <div class="col-lg-12">
@@ -86,13 +110,7 @@
 						<div class="form-group"><label class="col-sm-2 control-label" >Acciones</label>
 							<div class="col-sm-10">
 								<select id="actions_ids" class="form-control" multiple="multiple">
-									<?php
-									foreach ($acciones as $accion) {
-										?>
-										<option value="<?php echo $accion->id; ?>"><?php echo $accion->name; ?></option>
-										<?php
-									}
-									?>
+									
 								</select>
 							</div>
 						</div>
@@ -108,6 +126,8 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-4 col-sm-offset-2">
+								<input id="base_url" type="hidden" value="<?php echo base_url(); ?>"/>
+								<input type='hidden' id="id" value=""/>
 								<button class="btn btn-white" id="volver" type="button">Volver</button>
 								<button class="btn btn-primary" id="registrar" type="submit">Guardar</button>
 							</div>

@@ -1,3 +1,4 @@
+<input id="base_url" type="hidden" value="<?php echo base_url(); ?>"/>
 <script src="<?php echo assets_url('script/users.js'); ?>" type="text/javascript" charset="utf-8" ></script>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
