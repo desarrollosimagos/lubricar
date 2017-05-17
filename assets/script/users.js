@@ -148,13 +148,15 @@ $(document).ready(function() {
 		// Si estamos editando un usuario buscamos las acciones asociadas a él y las añadimos a la lista
 		if(usuario_id != ''){
 			$.post(base_url+'CUser/search_actions2', $.param({'user_id':usuario_id}), function (response) {
+				var selectedValues = new Array();  // Arreglo donde almacenaremos los ids de las acciones a marcar
 				var option = "";
 				$.each(response, function (i) {
 					// Primero removemos la opción igual a la que vamos a imprimir (evitará redundancia de datos)
 					$("#actions_ids option[value='"+response[i]['id']+"']").remove();
-					option = "<option selected='selected' value=" + response[i]['id'] + ">" + response[i]['name'] + "</option>";
+					option = "<option value=" + response[i]['id'] + ">" + response[i]['name'] + "</option>";
 					$('#actions_ids').append(option);
-					$('#actions_ids').select2('val', response[i]['id']);
+					selectedValues[i] = response[i]['id'];  // Añadimos el id de la acción a marcar
+					$('#actions_ids').select2('val', selectedValues);  // Marcamos
 				});
 			}, 'json');
 		}
@@ -190,13 +192,15 @@ $(document).ready(function() {
 			// Si estamos editando un usuario buscamos las acciones asociadas a él y las añadimos a la lista
 			if(usuario_id != ''){
 				$.post(base_url+'CUser/search_actions2', $.param({'user_id':usuario_id}), function (response) {
+					var selectedValues = new Array();  // Arreglo donde almacenaremos los ids de las acciones a marcar
 					var option = "";
 					$.each(response, function (i) {
 						// Primero removemos la opción igual a la que vamos a imprimir (evitará redundancia de datos)
 						$("#actions_ids option[value='"+response[i]['id']+"']").remove();
-						option = "<option selected='selected' value=" + response[i]['id'] + ">" + response[i]['name'] + "</option>";
+						option = "<option value=" + response[i]['id'] + ">" + response[i]['name'] + "</option>";
 						$('#actions_ids').append(option);
-						$('#actions_ids').select2('val', response[i]['id']);
+						selectedValues[i] = response[i]['id'];  // Añadimos el id de la acción a marcar
+						$('#actions_ids').select2('val', selectedValues);  // Marcamos
 					});
 				}, 'json');
 			}
