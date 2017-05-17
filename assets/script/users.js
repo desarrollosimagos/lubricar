@@ -1,5 +1,8 @@
 $(document).ready(function() {
-
+	// Capturamos la base_url
+    var base_url = $("#base_url").val();
+    
+    
     $('#tab_users').DataTable({
        "paging": true,
        "lengthChange": false,
@@ -29,7 +32,7 @@ $(document).ready(function() {
        "iDisplayStart": 0,
        "sPaginationType": "full_numbers",
        "aLengthMenu": [5, 10, 15],
-       "oLanguage": {"sUrl": "assets/js/es.txt"},
+       "oLanguage": {"sUrl": base_url+"assets/js/es.txt"},
        "aoColumns": [
            {"sClass": "registro center", "sWidth": "5%"},
            {"sClass": "registro center", "sWidth": "10%"},
@@ -40,8 +43,7 @@ $(document).ready(function() {
            {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
            {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false}
        ]       
-    });
-   
+    });   
                 
 	// Función para activar/desactivar un usuario
 	$("table#tab_users").on('click', 'input.activar_desactivar', function (e) {
@@ -123,7 +125,7 @@ $(document).ready(function() {
 	});
 	
 	
-	// Al cargar la página validamos si debe mostrar las franquicias
+	// Al cargar la página validamos las acciones que se deben mostrar
 	//~ var perfil = $("#profile").find('option').filter(':selected').text();
 	//~ 
 	//~ if(perfil == "FRANQUICIA" || perfil == "franquicia"){
@@ -132,12 +134,35 @@ $(document).ready(function() {
 		//~ $("#franquicias").css("display","none");
 		//~ $("#franchise").val("0");
 	//~ }
+	var perfil_id = $("#profile").val();
+	var usuario_id = $("#id").val();
+	if(perfil_id != '0'){
+		$.post(base_url+'CUser/search_actions', $.param({'profile_id':perfil_id}), function (response) {
+			//~ alert(response);
+			var option = "";
+			$.each(response, function (i) {
+
+				option += "<option value=" + response[i]['id'] + ">" + response[i]['name'] + "</option>";
+			});
+			$('#actions_ids').append(option);
+		}, 'json');
+		// Si estamos editando un usuario buscamos las acciones asociadas a él y las añadimos a la lista
+		if(usuario_id != ''){
+			$.post(base_url+'CUser/search_actions2', $.param({'user_id':usuario_id}), function (response) {
+				var option = "";
+				$.each(response, function (i) {
+					option += "<option selected='selected' value=" + response[i]['id'] + ">" + response[i]['name'] + "</option>";
+				});
+				$('#actions_ids').append(option);
+			}, 'json');
+		}
+	}
 	
-	// Al cambiar el perfil validamos si debe mostrar las franquicias
-	//~ $('#profile').change(function (){
-		//~ 
-		//~ $('#profile').parent('div').removeClass("has-error");
-		//~ 
+	// Al cambiar el perfil validamos las acciones que se deben mostrar
+	$('#profile').change(function (){
+		
+		$('#profile').parent('div').removeClass("has-error");
+		
 		//~ var perfil = $("#profile").find('option').filter(':selected').text();
 		//~ 
 		//~ if(perfil == "FRANQUICIA" || perfil == "franquicia"){
@@ -146,8 +171,33 @@ $(document).ready(function() {
 			//~ $("#franquicias").css("display","none");
 			//~ $("#franchise").val("0");
 		//~ }
-	//~ 
-	//~ });
+		var perfil_id = $("#profile").val();
+		var usuario_id = $("#id").val();
+		//~ $('#actions_ids').find('option:gt(0)').remove().end().select2('val', '0');
+		$('#actions_ids').find('option:gt(0)').remove().end();
+		
+		if(perfil_id != '0'){
+			$.post(base_url+'CUser/search_actions', $.param({'profile_id':perfil_id}), function (response) {
+				//~ alert(response);
+				var option = "";
+				$.each(response, function (i) {
+					option += "<option value=" + response[i]['id'] + ">" + response[i]['name'] + "</option>";
+				});
+				$('#actions_ids').append(option);
+			}, 'json');
+			// Si estamos editando un usuario buscamos las acciones asociadas a él y las añadimos a la lista
+			if(usuario_id != ''){
+				$.post(base_url+'CUser/search_actions2', $.param({'user_id':usuario_id}), function (response) {
+					var option = "";
+					$.each(response, function (i) {
+						option += "<option selected='selected' value=" + response[i]['id'] + ">" + response[i]['name'] + "</option>";
+					});
+					$('#actions_ids').append(option);
+				}, 'json');
+			}
+		}
+	
+	});
 
     $("#edit").click(function (e) {
 
@@ -204,7 +254,7 @@ $(document).ready(function() {
 		}*/ else {
 			//~ alert($('#franchises').val());
 
-            $.post('../CUser/update', $('#form_users').serialize()+'&'+$.param({'franquicias_ids':$('#franchises').val(),'actions_ids':$('#actions_ids').val()}), function (response) {
+            $.post(base_url+'CUser/update', $('#form_users').serialize()+'&'+$.param({'franquicias_ids':$('#franchises').val(),'actions_ids':$('#actions_ids').val()}), function (response) {
 
 				if (response == 'existe') {
                     swal("Disculpe,", "este nombre de usuario se encuentra registrado");
@@ -217,8 +267,6 @@ $(document).ready(function() {
 					function(){
 					  window.location.href = '../users';
 					});
-				
-
 				}
 
             });
@@ -281,7 +329,7 @@ $(document).ready(function() {
 		}*/ else {
 			//~ alert($('#franchises').val());
 
-            $.post('CUser/add', $('#form_users').serialize()+'&'+$.param({'franquicias_ids':$('#franchises').val(),'actions_ids':$('#actions_ids').val()}), function (response) {
+            $.post(base_url+'CUser/add', $('#form_users').serialize()+'&'+$.param({'franquicias_ids':$('#franchises').val(),'actions_ids':$('#actions_ids').val()}), function (response) {
 
 				if (response == 'existe') {
                     swal("Disculpe,", "este nombre de usuario se encuentra registrado");
@@ -294,7 +342,6 @@ $(document).ready(function() {
 					function(){
 					  window.location.href = 'users';
 					});
-				
 
 				}
 
