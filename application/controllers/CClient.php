@@ -35,7 +35,8 @@ class CClient extends CI_Controller {
 			'name' => $this->input->post('name'),
 			'lastname' => $this->input->post('lastname'),
 			'phone' => $this->input->post('phone'),
-			'cell_phone' => $this->input->post('cell_phone')
+			'cell_phone' => $this->input->post('cell_phone'),
+			'status' => $this->input->post('status')
 		);
 		$result_id = $this->MClient->insert($datos);
 		
@@ -43,10 +44,10 @@ class CClient extends CI_Controller {
 			
 			$direccion = $this->input->post('direcciones');
 			foreach ($direccion as $dire) {
-	
+
 				$dire = explode(";", $dire);
 				 
-				if ($dire[0] != 'Ningún dato disponible en esta tabla'){
+				if ($dire[1] != 'Ningún dato disponible en esta tabla'){
 	
 					$city = $dire[1];
 					$zip = $dire[2];
@@ -77,7 +78,7 @@ class CClient extends CI_Controller {
 	
 				 $vehi = explode(";", $vehi);
 				 
-				if ($vehi[0] != 'Ningún dato disponible en esta tabla'){
+				if ($vehi[1] != 'Ningún dato disponible en esta tabla'){
 	
 					$trademark = $vehi[1];
 					$model = $vehi[2];
@@ -301,6 +302,20 @@ class CClient extends CI_Controller {
         if ($result) {
           /*  $this->libreria->generateActivity('Eliminado País', $this->session->userdata['logged_in']['id']);*/
         }
+    }
+	
+	// Método publico para traer las lineas estrategicas segun la asociacion con el plan de la nacion
+    public function ajax_client()
+    {                                          #Campo         #Tabla                #ID
+        $result = $this->MClient->obtener();
+        echo json_encode($result);
+    }
+	
+	// Método publico para traer las lineas estrategicas segun la asociacion con el plan de la nacion
+    public function ajax_car($id)
+    {                                          #Campo         #Tabla                #ID
+        $result = $this->MClient->obtenerCars($id);
+        echo json_encode($result);
     }
 	
 	
