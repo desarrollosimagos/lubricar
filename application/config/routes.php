@@ -84,6 +84,11 @@ $route['services'] = 'CServices';
 $route['services/register'] = 'CServices/register';
 $route['services/edit/(:num)'] = 'CServices/edit/$1';
 $route['services/delete/(:num)'] = 'CServices/delete/$1';
+/*   Product */
+$route['product'] = 'CProduct';
+$route['product/register'] = 'CProduct/register';
+$route['product/edit/(:num)'] = 'CProduct/edit/$1';
+$route['product/delete/(:num)'] = 'CProduct/delete/$1';
 /*   Order */
 $route['order'] = 'COrder';
 $route['order/register'] = 'COrder/register';
