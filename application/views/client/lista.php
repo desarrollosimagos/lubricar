@@ -85,7 +85,7 @@
                                         </td>
                                         <td style='text-align: center'>
                                             
-                                            <a href="<?php echo base_url() ?>clients/edit/<?= $list->id; ?>" title="Editar" style='color: #1ab394'><i class="fa fa-edit fa-2x"></i></a>
+                                            <a href="<?php echo base_url() ?>clients/edit/<?= $list->id; ?>" title="Editar" title="Editar" style='color: #1ab394'><i class="fa fa-edit fa-2x"></i></a>
                                         </td>
                                         <td style='text-align: center'>
                                             
