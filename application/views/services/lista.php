@@ -42,11 +42,11 @@
                                             <?php echo $perfil->name; ?>
                                         </td>
                                         <td style='text-align: center'>
-                                            <a href="<?php echo base_url() ?>services/edit/<?= $perfil->id; ?>" title="Editar"><i class="fa fa-pencil"></i></a>
+                                            <a href="<?php echo base_url() ?>services/edit/<?= $perfil->id; ?>" title="Editar" style='color: #1ab394'><i class="fa fa-edit fa-2x"></i></a>
                                         </td>
                                         <td style='text-align: center'>
                                             
-                                            <a class='borrar' id='<?php echo $perfil->id; ?>'><i class="fa fa-trash-o"></i></a>
+                                            <a class='borrar' id='<?php echo $perfil->id; ?>' style='color: #1ab394' title='Eliminar'><i class="fa fa-trash-o fa-2x"></i></a>
                                         </td>
                                     </tr>
                                     <?php $i++ ?>
