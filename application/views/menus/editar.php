@@ -49,9 +49,17 @@
 								<select class="form-control m-b" name="logo" id="logo">
 									<option value="0" selected="">Seleccione</option>
 									<?php foreach ($iconos as $icono) { ?>
-										<option class="<?php echo $icono->class; ?>" value="<?php echo $icono->class; ?>"><a><i class="<?php echo $icono->class; ?>"></i></a><span><?php echo $icono->name; ?></span></option>
+										<option value="<?php echo $icono->class; ?>"><a><i class="<?php echo $icono->class; ?>"></i></a><span><?php echo $icono->name; ?></span></option>
 									<?php } ?>
 								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-2">
+								
+							</div>
+							<div id="icono" class="col-sm-10">
+								
 							</div>
 						</div>
 						<div class="form-group">
@@ -83,6 +91,13 @@
         window.location = url;
     });
     
+    // Al seleccionar un icono se visualiza una imagen referencial debajo
+    $('#logo').change(function (){
+		//~ $('#icono').html('');
+		$('#icono').html('<span><i class="'+$('#logo').val()+'"></i></span>');
+	
+	});
+    
     $("#action_id").select2('val', $("#id_action").val());
     $("#logo").select2('val', $("#id_logo").val());
 
@@ -105,6 +120,11 @@
 			
 			swal("Disculpe,", "para continuar debe seleccionar la acción a asociar");
 			$('#action_id').parent('div').addClass('has-error');
+			
+		} else if ($('#logo').val().trim() == "0") {
+			
+			swal("Disculpe,", "para continuar debe seleccionar el icono a asociar");
+			$('#logo').parent('div').addClass('has-error');
 			
 		} else {
 
