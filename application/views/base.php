@@ -68,9 +68,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<ul class="nav metismenu" id="side-menu">
 					<li class="nav-header">
 						<div class="dropdown profile-element">
-							<span>
+							<!--<span>
 								<img alt="image" class="img-circle" src="<?php echo assets_url('img/profile_small.jpg'); ?>" />
-							</span>
+							</span>-->
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 								<span class="clear">
 									<span class="block m-t-xs">
@@ -82,10 +82,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</span>
 							</a>
 							<ul class="dropdown-menu animated fadeInRight m-t-xs">
-								<li><a href="">Perfil</a></li>
-								<li><a href="contacts.html">Contactos</a></li>
+								<li><a href="<?php echo base_url();?>home">Inicio</a></li>
+								<!--<li><a href="">Perfil</a></li>-->
+								<!--<li><a href="contacts.html">Contactos</a></li>-->
 								<li class="divider"></li>
-								<li><a href="logout">Cerrar Sesión</a></li>
+								<li><a href="<?php echo base_url();?>logout">Cerrar Sesión</a></li>
 							</ul>
 						</div>
 						<div class="logo-element">
@@ -107,17 +108,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<nav class="navbar navbar-fixed-top" role="navigation" style="margin-bottom: 0">
 					<div class="navbar-header">
 						<a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-						<form role="search" class="navbar-form-custom" action="search_results.html">
+						<!--<form role="search" class="navbar-form-custom" action="search_results.html">
 							<div class="form-group">
 								<input type="text" placeholder="Buscar..." class="form-control" name="top-search" id="top-search">
 							</div>
-						</form>
+						</form>-->
 					</div>
 					<ul class="nav navbar-top-links navbar-right">
 						<li>
 							<span class="m-r-sm text-muted welcome-message">Bienvenido a Lubricar Deliver - Web.</span>
 						</li>
-						<li class="dropdown">
+						<!--<li class="dropdown">
 							<a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
 								<i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
 							</a>
@@ -211,7 +212,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 								</li>
 							</ul>
-						</li>
+						</li>-->
 			
 			
 						<li>
