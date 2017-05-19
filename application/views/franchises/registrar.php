@@ -99,7 +99,7 @@ $(document).ready(function(){
 			$('#address').parent('div').addClass('has-error');
 			
         }  else {
-			alert(String($('#services').val()));
+			//~ alert(String($('#services').val()));
 
             $.post('<?php echo base_url(); ?>CFranchises/add', $('#form_franchises').serialize()+'&'+$.param({'services_ids':$('#services').val()}), function (response) {
 				//~ alert(response);
