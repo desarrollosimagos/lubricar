@@ -27,7 +27,7 @@
 				<div class="ibox-content">
 					<form id="form_acciones" method="post" accept-charset="utf-8" class="form-horizontal">
 						<div class="form-group"><label class="col-sm-2 control-label" >Nombre *</label>
-							<div class="col-sm-10"><input type="text" class="form-control"  maxlength="100" name="name" id="name"></div>
+							<div class="col-sm-10"><input type="text" class="form-control" style="text-transform:uppercase;" maxlength="100" name="name" id="name"></div>
 						</div>
 						<div class="form-group"><label class="col-sm-2 control-label" >Clase</label>
 							<div class="col-sm-10">
