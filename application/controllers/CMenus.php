@@ -16,6 +16,12 @@ class CMenus extends CI_Controller {
 	
 	public function index()
 	{
+		// Precarga de iconos
+		$search_icons = $this->MMenus->search_icons();
+		//~ echo $search_icons;
+		if($search_icons == 0){
+			$this->load_icons_csv();
+		}
 		$data['listar'] = $this->MMenus->obtener();
 		$data['acciones'] = $this->MAcciones->obtener();
 		$this->load->view('menus/lista', $data);
@@ -24,13 +30,13 @@ class CMenus extends CI_Controller {
 	
 	public function register()
 	{
-		
+		$data['iconos'] = $this->MMenus->obtenerIconos();
 		$data['acciones'] = $this->MAcciones->obtenerNoAsignadas();
 		$this->load->view('menus/registrar', $data);
 		$this->load->view('footer');
 	}
 	
-	//Método para guardar un nuevo registro
+	// Método para guardar un nuevo registro
     public function add() {
 
         $result = $this->MMenus->insert($this->input->post());
@@ -47,7 +53,8 @@ class CMenus extends CI_Controller {
        
         }
     }
-	 //Método para editar
+    
+	// Método para editar
     public function edit() {		
         $data['id'] = $this->uri->segment(3);
         
@@ -55,12 +62,13 @@ class CMenus extends CI_Controller {
         $id_menu = $data['id'];
 		$find_menu = $this->MMenus->obtenerMenu($id_menu);
 		
+		$data['iconos'] = $this->MMenus->obtenerIconos();
 		$data['acciones'] = $this->MAcciones->obtenerNoAsignadasId($find_menu[0]->action_id);
         $data['editar'] = $this->MMenus->obtenerMenu($data['id']);
         $this->load->view('menus/editar', $data);
     }
 	
-	//Método para actualizar
+	// Método para actualizar
     public function update() {
 		
 		// Primero actualizamos la acción anteriormente asociada (si tiene) y la desasignamos
@@ -87,7 +95,7 @@ class CMenus extends CI_Controller {
 			}     
         }
     }
-	//Método para eliminar
+	// Método para eliminar
 	function delete($id) {
 		
 		// Primero consultamos el identificador de la acción a sociada al submenú
@@ -106,5 +114,24 @@ class CMenus extends CI_Controller {
         }
     }
 	
+	// Método para cargar csv de iconos
+	public function load_icons_csv(){
+		$ruta = getcwd();  // Obtiene el directorio actual en donde se esta trabajando
+        $nombre_archivo = "iconos.csv";
+        $ubicacion_archivo = $ruta."/application/views/menus/".$nombre_archivo;
+        
+        // Abrimos el archivo en modo de lectura
+        $fp = fopen ($ubicacion_archivo,"r");
+        
+        while ($data = fgetcsv ($fp, 1000, ";")) {
+			$num = count ($data);
+			//~ print "";
+			//~ echo $data[0].' -> '.$data[1];
+			// Armamos un arreglo temporal para preparar la inserción de cada línea como un registro
+			$data_icono = array('class'=>$data[0],'name'=>$data[1],'category'=>$data[2]);
+			// Insertamos la línea como un nuevo icono
+			$this->MMenus->insert_icons($data_icono);
+		}
+	}
 	
 }

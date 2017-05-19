@@ -12,7 +12,7 @@ class MMenus extends CI_Model {
         $this->load->database();
     }
 
-    //Método público para obterner los menús
+    // Método público para obterner los menús
     public function obtener() {
         $query = $this->db->get('menus');
 
@@ -59,7 +59,6 @@ class MMenus extends CI_Model {
         }
     }
 
-
     // Método público, para eliminar un registro 
      public function delete($id) {
         $result = $this->db->where('menu_id =', $id);
@@ -73,6 +72,44 @@ class MMenus extends CI_Model {
         }
        
     }
+    
+    // Método público para obterner los menús
+    public function obtenerIconos() {
+        $query = $this->db->get('icons');
 
+        if ($query->num_rows() > 0)
+            return $query->result();
+        else
+            return $query->result();
+    }
+    
+    // Método de consulta de registros en la tabla de iconos (icons)
+	public function search_icons(){
+		$result = $this->db->get('icons');
+		
+        return $result->num_rows();
+	}
+	
+	// Método de consulta de registros en la tabla de iconos (icons) por el campo clase (class)
+	public function search_icons_class($class){
+		$result = $this->db->where('class =', $class);
+		$result = $this->db->get('icons');
+		
+        return $result;
+	}
+	
+	// Método de inserción de registros en la tabla de iconos (icons)
+	public function insert_icons($datos){
+		$result = $this->db->where('class =', $datos['class']);
+		$result = $this->db->get('icons');
+
+        if ($result->num_rows() > 0) {
+            return 'existe';
+        } else {
+            $result = $this->db->insert('icons', $datos);
+            $id = $this->db->insert_id();
+            return $id;
+        }
+	}
 }
 ?>
