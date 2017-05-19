@@ -1,5 +1,3 @@
-
-
 <?php
 
 Class MLogin extends CI_Model {
@@ -121,4 +119,3 @@ Class MLogin extends CI_Model {
     }
 }
 ?>
-
