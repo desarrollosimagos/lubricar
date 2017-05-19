@@ -44,8 +44,20 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-sm-2 control-label" >Icono</label>
+							<div class="col-sm-10">
+								<select class="form-control m-b" name="logo" id="logo">
+									<option value="0" selected="">Seleccione</option>
+									<?php foreach ($iconos as $icono) { ?>
+										<option class="<?php echo $icono->class; ?>" value="<?php echo $icono->class; ?>"><a><i class="<?php echo $icono->class; ?>"></i></a><span><?php echo $icono->name; ?></span></option>
+									<?php } ?>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
 							<div class="col-sm-4 col-sm-offset-2">
 								<input id="id_action" type="hidden" value="<?php echo $editar[0]->action_id ?>"/>
+								<input id="id_logo" type="hidden" value="<?php echo $editar[0]->logo ?>"/>
 								<input class="form-control"  type='hidden' id="id" name="id" value="<?php echo $id ?>"/>
 								<button class="btn btn-white" id="volver" type="button">Volver</button>
 								<button class="btn btn-primary" id="edit" type="submit">Guardar</button>
@@ -71,7 +83,8 @@
         window.location = url;
     });
     
-    $("#action_id").val($("#id_action").val());
+    $("#action_id").select2('val', $("#id_action").val());
+    $("#logo").select2('val', $("#id_logo").val());
 
     $("#edit").click(function (e) {
 
