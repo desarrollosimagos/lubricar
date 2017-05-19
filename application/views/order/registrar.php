@@ -71,7 +71,7 @@
 						<input id="phone_1" name="phone_1" class="form-control" type="text" maxlength="20">
 						<label>Teléfono 2 *</label>
 						<input id="cell_phone_1" name="cell_phone_1" class="form-control" type="text" maxlength="20">
-						<input id="customer_id" name="customer_id" class="form-control" type="text" maxlength="50">
+						<input id="customer_id" name="customer_id" class="form-control" type="hidden" maxlength="50">
 
 					</div>
 				</form>
@@ -104,7 +104,7 @@
 							<input type="text" class="form-control"  id="year" name="year" maxlength="4">
                             <label >Placa</label>
                             <input id="license_plate" name="license_plate" class="form-control" type="text" maxlength="50">
-							<input id="customer_id" name="customer_id" class="form-control" type="text" maxlength="50">
+							<input id="customer_id2" name="customer_id2" class="form-control" type="hidden" maxlength="50">
 
                     </div>
                 </form>
@@ -129,15 +129,12 @@
 				<form id="servicio" action="" method="post" class="form">
 					<div class="form-group">
 						<label >Servicio</label>
-						<input id="service_id" name="service_id" class="form-control" type="text" maxlength="20" >
+						<input id="service_id" name="service_id" class="typeahead_3 form-control" type="text" maxlength="20" >
 						<div class="col-sm-12"></div>
-						<label>Sub total </label>
-						<input id="sub_total" name="sub_total" class="form-control" type="text" maxlength="20" >
-						 <label>Impuesto</label>
-						 <input id="impuesto" name="impuesto" class="form-control" type="text" maxlength="150" >
-						 <label >Total</label>
-						 <input id="total" name="total" class="form-control" type="text" maxlength="150">
-						
+						<label >Precio unitario</label>
+						<input id="price" name="price" class="form-control" type="text" maxlength="100">
+						<label>Impuesto</label>
+						<input id="impuesto" name="impuesto" class="form-control" type="text" maxlength="150" >
 						<input id="accion"  class="form-control" type="hidden" >
 						<input id="posicion"  class="form-control" type="hidden" >
 					</div>
@@ -162,30 +159,26 @@
 				<form id="servicio" action="" method="post" class="form">
 					<div class="form-group">
 						<label >Producto</label>
-						<input id="product_id" name="product_id" class="form-control" type="text" maxlength="100">
+						<input id="product_id" name="product_id" class="typeahead_4 form-control" type="text" maxlength="100">
+						<label >Precio unitario</label>
+						<input id="price1" name="price1" class="form-control" type="text" maxlength="100">
 						<label >Cantidad</label>
-						<input id="quantity" name="quantity" class="form-control" type="text" maxlength="100">
-						<label>Sub total </label>
-						<input id="sub_total" name="sub_total" class="form-control" type="text" maxlength="20" >
-						 <label>Impuesto</label>
-						 <input id="impuesto" name="impuesto" class="form-control" type="text" maxlength="150" >
-						 <label >Total</label>
-						 <input id="total" name="total" class="form-control" type="text" maxlength="150">
-						
-						<input id="accion"  class="form-control" type="hidden" >
-						<input id="posicion"  class="form-control" type="hidden" >
+						<input id="quantity1" name="quantity1" class="form-control" type="text" maxlength="100">
+						<label>Impuesto</label>
+						<input id="impuesto1" name="impuesto1" class="form-control" type="text" maxlength="150" >
+						<input id="accion1"  class="form-control" type="hidden" >
+						<input id="posicion1"  class="form-control" type="hidden" >
 					</div>
 				</form>
 			</div>
 			<div class="modal-footer" >
-				<button class="btn btn-primary" type="button" id="agregar">
+				<button class="btn btn-primary" type="button" id="agregar2">
 					Aceptar
 				</button>
 			</div>
 		</div>
 	</div>
 </div>
-
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2>Orden de Servicio </h2>
@@ -204,16 +197,13 @@
         </ol>
     </div>
 </div>
-
-
 <div class="wrapper wrapper-content animated fadeInRight">
 	<div class="row">
         <div class="col-lg-12">
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<h5>Orden # <?php echo '00000'.$listar ?></h5>
+					<h5>Orden # <?php printf("%08d", $listar) ?></h5>
 				</div>
-
 				<div class="ibox-content">
 					<form id="form_services" method="post" accept-charset="utf-8" class="form-horizontal">
 						<div class="col-lg-12">
@@ -225,10 +215,8 @@
 									<input type="hidden"  style="width: 30%;"  readonly="true" name="codcliente" id="codcliente" class="form-control">
 									<input type="text" id="typeahead_2" placeholder="Buscar Cliente..." class="typeahead_2 form-control" />
 									<span style="cursor: pointer" class="add_cliente input-group-addon"><span class="fa fa-plus" style="color: green"></span></span>
-									
 								</div>
 							</div>
-
 						</div>
 						<div class="col-lg-1"></div>
 						<div class="col-lg-2">
@@ -239,7 +227,6 @@
 										<input type="text" data-original-title="Fecha Emision" value="<?php echo date('d-m-Y'); ?>" data-toggle="tooltip" data-placement="bottom" readonly="true" name="fecha_emision" id="fecha_emision" placeholder="Fecha Emisión" class="form-control add-tooltip">
 								</div>
 							</div>
-
 						</div>
 						<div class="col-lg-1"></div>
 						<div class="col-lg-4">
@@ -252,15 +239,11 @@
 										<option value="En Curso">Aprobado</option>
 										<option value="En Curso">En Curso</option>
 										<option value="Finalizado">Finalizado</option>
-										
                                     </select>
 								</div>
 							</div>
-
 						</div>
-						
-						<div class="col-lg-2"></div>
-						
+							<div class="col-lg-2"></div>
 						</div>
 						<div class="col-lg-12">
 						<div class="col-lg-4">
@@ -274,8 +257,6 @@
 									<span style="cursor: pointer" class="add_vehiculo input-group-addon"><span class="fa fa-plus" style="color: green"></span></span>
 								</div>
 							</div>
-
-						
 						</div>
 						<div class="col-lg-1"></div>
 						<div class="col-lg-6">
@@ -289,11 +270,8 @@
 									<span style="cursor: pointer" class="add_direccion input-group-addon"><span class="fa fa-plus" style="color: green"></span></span>
 								</div>
 							</div>
-
-						
 						</div>
 						<div class="col-lg-12"></div>
-						
 						</div>
 						<div class="col-lg-12">
 							</br>
@@ -311,9 +289,9 @@
 											<thead>
 											<tr>
 												<th>Servicio</th>
-												<th>Subtotal</th>
+												<th>Precio</th>
 												<th>Impuesto</th>
-												<th>Total</th>
+												<th>Importe</th>
 												<th>Editar</th>
 												<th>Eliminar</th>
 											</tr>
@@ -333,10 +311,10 @@
 											<thead>
 											<tr>
 												<th>Producto</th>
+												<th>Precio</th>
 												<th>Cantidad</th>
-												<th>Subtotal</th>
 												<th>Impuesto</th>
-												<th>Total</th>
+												<th>Importe</th>
 												<th>Editar</th>
 												<th>Eliminar</th>
 											</tr>
@@ -350,12 +328,38 @@
                             </div>
                         </div>
 
-
                     </div>
                 </div>
-
+						
+				<div class="col-lg-4"></div>
+				<div class="col-lg-4"></div>
+				<div class="col-lg-4">
+					<div class="ibox float-e-margins" style="margin-top: 5%">
+						<div class="ibox-title">
+							<h5>Total servicio</h5>
+						</div>
+						<div class="ibox-content">
+							<div class="row">
+								
+								<div class="col-xs-4">
+									<small class="stats-label">SubTotal</small>
+									<h4>236 321.80</h4>
+								</div>
+	
+								<div class="col-xs-4">
+									<small class="stats-label">Impuesto</small>
+									<h4>46.11%</h4>
+								</div>
+								<div class="col-xs-4">
+									<small class="stats-label">Total</small>
+									<h4>432.021</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 						<div class="form-group" >
-							<div class="col-sm-4 col-sm-offset-2" style="margin-top: 1%">
+							<div class="col-sm-4 col-sm-offset-2">
 								<button class="btn btn-white" id="volver" type="button">Volver</button>
 								<button class="btn btn-primary" id="registrar" type="submit">Guardar</button>
 							</div>
@@ -369,6 +373,15 @@
 <script>
 $(document).ready(function(){
 	
+	$('#year').datepicker({
+		
+		format: " yyyy",
+        viewMode: "years", 
+        minViewMode: "years"
+	});
+	
+	$("#phone,#cell_phone,#zip, #phone_1,#cell_phone_1").numeric(); //Valida solo permite valores numericos
+	
 	$('#tab_servicio').DataTable({
 		"bLengthChange": false,
 		  "iDisplayLength": 10,
@@ -380,10 +393,10 @@ $(document).ready(function(){
 		  "pagingType": "full_numbers",
 		  "language": {"url": "<?= assets_url() ?>js/es.txt"},
 		  "aoColumns": [
-			  {"sWidth": "20%"},
+			  {"sWidth": "10%"},
 			  {"sWidth": "8%"},
 			  {"sWidth": "8%"},
-			  {"sClass": "none", "sWidth": "8%"},
+			  {"sWidth": "8%"},
 			  {"sWidth": "4%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
 			  {"sWidth": "4%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false}
 		  ]
@@ -400,15 +413,18 @@ $(document).ready(function(){
 		  "pagingType": "full_numbers",
 		  "language": {"url": "<?= assets_url() ?>js/es.txt"},
 		  "aoColumns": [
-			  {"sWidth": "20%"},
+			  {"sWidth": "10%"},
 			  {"sWidth": "8%"},
 			  {"sWidth": "8%"},
 			  {"sWidth": "8%"},
-			  {"sClass": "none", "sWidth": "8%"},
+			  {"sWidth": "8%"},
 			  {"sWidth": "4%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
 			  {"sWidth": "4%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false}
 		  ]
 	});
+	
+	
+	
 	
 	//abrir modal
 	$(".add_cliente").click(function (e) {
@@ -521,7 +537,7 @@ $(document).ready(function(){
 		if ($("#typeahead_2").val() === ''){
 			swal("Disculpe,", "debe seleccionar un cliente para registrar un vehiculo",'warning');
 		}else{
-			$("#customer_id").val($("#codcliente").val());
+			$("#customer_id2").val($("#codcliente").val());
 			$("#modal_vehiculo").modal('show');
 			$("span#titulo").text('Registrar');
 		}
@@ -530,18 +546,257 @@ $(document).ready(function(){
 	
 	
 	$("#i_new_line").click(function (e) {
+		
 		e.preventDefault();  // Para evitar que se envíe por defecto
+		if ($("#typeahead_2").val() === ''){
+			swal("Disculpe,", "debe seleccionar un cliente para continuar",'warning');
+		}else{
 		$("#modal_servicio").modal('show');
 		$("span#titulo").text('Registrar');
 		$("#accion").val('Registrar');
+		
+		
+		$.get('<?php echo base_url(); ?>CServices/ajax_service', function(data){
+	
+			$(".typeahead_3").typeahead({
+				source:data,
+				autoSelect: true,
+				updater: function (item) {
+					return item;
+				},
+				afterSelect: function (item) {
+					$('#price').val(item.price);
+					//var cliente_id = $('#codcliente').val();
+
+				}
+			});
+	
+		},'json');
+		}
 	});
+	
+	
+	$("#agregar").click(function () {
+		
+		var table = $('#tab_servicio').DataTable();
+		var accion = $("#accion").val();
+		var posi = $("#posicion").val();
+		var service = $("#service_id").val();
+		var price = $("#price").val();
+		var impuesto = $("#impuesto").val();
+		var botonEdit = "<a style='color: #1ab394' class='editar'><i class='fa fa-edit fa-2x'></i></a>";
+		var botonQuitar = "<a style='color: #1ab394' class='quitar'><i class='fa fa-trash fa-2x'></i></a>";
+	
+		
+		if (accion === 'Registrar'){
+			
+			if (service !== '' & price !== '' & impuesto !== '' ) {
+
+				table.row.add( [ service, price, impuesto, price ,botonEdit,botonQuitar ] ).draw();
+
+			} else {
+				swal({ 
+					title: "Disculpe,",
+					text: "No se admite campos vacios",
+					type: "warning" 
+				},
+				function(){
+				  //window.location.href = '<?php echo base_url(); ?>clients';
+				});
+				
+			}
+			
+			$("#modal_servicio").modal('hide');
+			$("#service_id").val('');
+			$("#price").val('');
+			$("#impuesto").val('');
+			$('#posicion').val('');
+			$('#accion').val('');
+     
+				
+		}else if (accion === 'Editar'){
+			
+			
+			if (service !== '' & price !== '' & impuesto !== '' ) {
+				
+				
+				table.row(posi).data( [ service, price, impuesto, price,botonEdit,botonQuitar ] ).draw();
+
+			} else {
+				swal({ 
+					title: "Disculpe,",
+					text: "No se admite campos vacios",
+					type: "warning" 
+				},
+				function(){
+				  //window.location.href = '<?php echo base_url(); ?>clients';
+				});
+				
+			}
+			$("#modal_servicio").modal('hide');
+			$("#service_id").val('');
+			$("#price").val('');
+			$("#impuesto").val('');
+			$('#posicion').val('');
+			$('#accion').val('');
+
+		}
+
+   
+    });
+	
+	
+	$("table#tab_servicio").on('click', 'a.editar', function () {
+
+			posicion = $(this).closest('tr').index();
+
+			$("#modal_servicio").modal('show');
+			$('#posicion').val(posicion);
+			$('#accion').val('Editar');
+			$("span#titulo").text('Editar');
+			
+			$(this).closest('tr').each(function () {
+				var servicio0, servicio1, servicio2, servicio3;
+				servicio0 = $(this).attr('id');  // Código correlativo del registro en la tabla 
+				servicio1 = $(this).find('td').eq(0).text();
+				servicio2 = $(this).find('td').eq(1).text();
+				servicio3 = $(this).find('td').eq(2).text();
+				servicio4 = $(this).find('td').eq(3).text();
+				
+				servicios = servicio0 + ';' + servicio1 + ';' + servicio2 + ';' + servicio3 + ';'+ servicio4 + ';' ;
+
+				$("#service_id").val(servicio1);
+				$("#price").val(servicio2);
+				$("#impuesto").val(servicio3);
+				
+
+			});
+
+    });
 	
 	$("#i_new_line2").click(function (e) {
 		e.preventDefault();  // Para evitar que se envíe por defecto
+		if ($("#typeahead_2").val() === ''){
+			swal("Disculpe,", "debe seleccionar un cliente para continuar",'warning');
+		
+		}else{
 		$("#modal_producto").modal('show');
+		$("#product_id").val('');
+		$("#quantity1").val('');
+		$("#price1").val('');
+		$('#impuesto1').val('');
 		$("span#titulo").text('Registrar');
-		$("#accion").val('Registrar');
+		$("#accion1").val('Registrar');
+		
+		
+		$.get('<?php echo base_url(); ?>CProduct/ajax_product', function(data){
+	
+			$(".typeahead_4").typeahead({
+				source:data,
+				autoSelect: true,
+				updater: function (item) {
+					return item;
+				},
+				afterSelect: function (item) {
+					$('#price').val(item.price);
+					//var cliente_id = $('#codcliente').val();
+
+				}
+			});
+	
+		},'json');
+		}
 	});
+	
+	$("#agregar2").click(function () {
+		
+		var table = $('#tab_producto').DataTable();
+		var accion = $("#accion1").val();
+		var posi = $("#posicion1").val();
+		var producto = $("#product_id").val();
+		var cantidad = $("#quantity1").val();
+		var precio = $("#price1").val();
+		var impuesto = $("#impuesto1").val();
+		var botonEdit = "<a style='color: #1ab394' class='editar'><i class='fa fa-edit fa-2x'></i></a>";
+		var botonQuitar = "<a style='color: #1ab394' class='quitar'><i class='fa fa-trash fa-2x'></i></a>";
+	
+		
+		if (accion === 'Registrar'){
+			
+			if (producto !== '' &cantidad !== '' & precio !== '' & impuesto !== '' ) {
+
+				table.row.add( [ producto, precio, cantidad ,impuesto, precio ,botonEdit,botonQuitar ] ).draw();
+
+			} else {
+				swal({ 
+					title: "Disculpe,",
+					text: "No se admite campos vacios",
+					type: "warning" 
+				},
+				function(){
+				  //window.location.href = '<?php echo base_url(); ?>clients';
+				});
+				
+			}
+			
+			$("#modal_producto").modal('hide');
+			$("#product_id").val('');
+			$("#quantity1").val('');
+			$("#price1").val('');
+			$('#impuesto1').val('');
+			$('#posicion1').val('');
+			$('#accion1').val('');
+     
+				
+		}else if (accion === 'Editar'){
+			
+			
+			if (producto !== '' &cantidad !== '' & precio !== '' & impuesto !== ''  ) {
+				
+				
+				table.row(posi).data( [ producto,  precio, cantidad, impuesto, precio ,botonEdit,botonQuitar ] ).draw();
+
+			} else {
+				swal({ 
+					title: "Disculpe,",
+					text: "No se admite campos vacios",
+					type: "warning" 
+				},
+				function(){
+				  //window.location.href = '<?php echo base_url(); ?>clients';
+				});
+				
+			}
+			$("#modal_producto").modal('hide');
+			$("#product_id").val('');
+			$("#quantity1").val('');
+			$("#price1").val('');
+			$('#impuesto1').val('');
+			$('#posicion1').val('');
+			$('#accion1').val('');
+
+		}
+
+   
+    });
+	
+	
+	$("table#tab_servicio").on('click', 'a.quitar', function () {
+
+
+        var aPos = $("table#tab_servicio").dataTable().fnGetPosition(this.parentNode.parentNode);
+        $("table#tab_servicio").dataTable().fnDeleteRow(aPos);
+
+
+    });
+	
+	$("table#tab_producto").on('click', 'a.quitar', function () {
+
+        var aPos = $("table#tab_producto").dataTable().fnGetPosition(this.parentNode.parentNode);
+        $("table#tab_producto").dataTable().fnDeleteRow(aPos);
+
+
+    });
 
     $('#volver').click(function () {
         url = '<?php echo base_url() ?>order/';
@@ -595,7 +850,39 @@ $(document).ready(function(){
         
     },'json');
 	
+	
+	$("table#tab_producto").on('click', 'a.editar', function () {
 
+			posicion = $(this).closest('tr').index();
+
+			$("#modal_producto").modal('show');
+			$('#posicion1').val(posicion);
+			$('#accion1').val('Editar');
+			$("span#titulo").text('Editar');
+			
+			$(this).closest('tr').each(function () {
+				var producto0, producto1, producto2, producto3;
+				producto0 = $(this).attr('id');  // Código correlativo del registro en la tabla 
+				producto1 = $(this).find('td').eq(0).text();
+				producto2 = $(this).find('td').eq(1).text();
+				producto3 = $(this).find('td').eq(2).text();
+				producto4 = $(this).find('td').eq(3).text();
+				producto5 = $(this).find('td').eq(4).text();
+				
+				
+				productos = producto0 + ';' + producto1 + ';' + producto2 + ';' + producto3 + ';'+ producto4 + ';' + ';'+ producto5 + ';' ;
+				
+				$("#product_id").val(producto1);
+				$("#price1").val(producto2);
+				$("#quantity1").val(producto3);
+				$('#impuesto1').val(producto4);
+
+				
+
+			});
+
+    });
+	
 
 	
 	

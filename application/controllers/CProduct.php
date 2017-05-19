@@ -43,7 +43,7 @@ class CProduct extends CI_Controller {
 		
 		$this->load->view('base');
         $data['id'] = $this->uri->segment(3);
-        $data['editar'] = $this->MProduct->obtenerServices($data['id']);
+        $data['editar'] = $this->MProduct->obtenerProducts($data['id']);
         $this->load->view('product/editar', $data);
 		$this->load->view('footer');
     }
@@ -64,6 +64,13 @@ class CProduct extends CI_Controller {
         if ($result) {
           /*  $this->libreria->generateActivity('Eliminado País', $this->session->userdata['logged_in']['id']);*/
         }
+    }
+	
+	
+    public function ajax_product()
+    {                                          #Campo         #Tabla                #ID
+        $result = $this->MProduct->obtener();
+        echo json_encode($result);
     }
 	
 	

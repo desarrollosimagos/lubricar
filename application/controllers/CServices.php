@@ -7,7 +7,7 @@ class CServices extends CI_Controller {
         parent::__construct();
 
 
-        $this->load->view('base');
+       
 		// Load database
         $this->load->model('MServices');
 		
@@ -15,6 +15,7 @@ class CServices extends CI_Controller {
 	
 	public function index()
 	{
+		$this->load->view('base');
 		$data['listar'] = $this->MServices->obtener();
 		$this->load->view('services/lista', $data);
 		$this->load->view('footer');
@@ -22,7 +23,7 @@ class CServices extends CI_Controller {
 	
 	public function register()
 	{
-		
+		$this->load->view('base');
 		$this->load->view('services/registrar');
 		$this->load->view('footer');
 	}
@@ -38,7 +39,9 @@ class CServices extends CI_Controller {
         }
     }
 	 //metodo para editar
-    public function edit() {		
+    public function edit() {
+		
+		$this->load->view('base');
         $data['id'] = $this->uri->segment(3);
         $data['editar'] = $this->MServices->obtenerServices($data['id']);
         $this->load->view('services/editar', $data);
@@ -61,6 +64,12 @@ class CServices extends CI_Controller {
         if ($result) {
           /*  $this->libreria->generateActivity('Eliminado País', $this->session->userdata['logged_in']['id']);*/
         }
+    }
+	
+	public function ajax_service()
+    {                                          #Campo         #Tabla                #ID
+        $result = $this->MServices->obtener();
+        echo json_encode($result);
     }
 	
 	
