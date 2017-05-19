@@ -12,7 +12,7 @@
 						<input id="password" name="password" class="form-control" type="password" maxlength="50" >
 						 <label>Confirme contraseña</label>
 						 <input id="confirm" name="confirm" class="form-control" type="password" maxlength="50" >
-                          <input id="id_client" name="id_client" class="form-control" type="text" maxlength="50" >
+                          <input id="id_client" name="id_client" class="form-control" type="hidden" maxlength="50" >
 
 					</div>
 				</form>

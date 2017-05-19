@@ -11,6 +11,7 @@ class COrder extends CI_Controller {
 		// Load database
         $this->load->model('MOrder');
 		$this->load->model('MClient');
+		$this->load->model('MServices');
 		
     }
 	
@@ -27,6 +28,7 @@ class COrder extends CI_Controller {
 		$this->load->view('base');
 		$id_ult = $this->MOrder->obtenerId();
 		$data['listar'] = $id_ult + 1;
+		$data['$list_serv'] = $this->MServices->obtener();
 		$this->load->view('order/registrar', $data);
 		$this->load->view('footer');
 	}
