@@ -104,6 +104,61 @@ class CClient extends CI_Controller {
 		}
 
     }
+	
+	  //metodo para guardar un nuevo registro
+    public function add2() {
+		
+		$datos = array(
+			'username' => $this->input->post('username'),
+			'password' => 'pbkdf2_sha256$12000$' . hash("sha256", $this->input->post('password')),
+			'name' => $this->input->post('name'),
+			'lastname' => $this->input->post('lastname'),
+			'phone' => $this->input->post('phone'),
+			'cell_phone' => $this->input->post('cell_phone'),
+			'status' => $this->input->post('status')
+		);
+		$result_id = $this->MClient->insert($datos);
+
+    }
+	
+	 //metodo para guardar un nuevo registro
+    public function addCar() {
+		
+		$datos = array(
+				'customer_id' => $this->input->post('customer_id'),
+				'trademark' => $this->input->post('trademark'),
+				'model' => $this->input->post('model'),
+				'color' => $this->input->post('color'),
+				'year' => $this->input->post('year'),
+				'license_plate' => $this->input->post('license_plate'),
+				
+			);
+
+		$result = $this->MClient->insertCars($datos);
+
+    }
+	
+	//metodo para guardar un nuevo registro
+    public function addAddress() {
+		
+		$datos = array(
+			
+				'customer_id' => $this->input->post('customer_id'),
+				'city' => $this->input->post('city'),
+				'zip' => $this->input->post('zip'),
+				'address_1' => $this->input->post('address_1'),
+				'address_2' => $this->input->post('address_2'),
+				'phone' => $this->input->post('phone_1'),
+				'cell_phone' => $this->input->post('cell_phone_1'),
+				
+			);
+
+		$result = $this->MClient->insertAddress($datos);
+
+    }
+	
+	
+	
 	 //metodo para editar
     public function edit() {
 		
@@ -317,6 +372,14 @@ class CClient extends CI_Controller {
         $result = $this->MClient->obtenerCars($id);
         echo json_encode($result);
     }
+	
+		// Método publico para traer las lineas estrategicas segun la asociacion con el plan de la nacion
+    public function ajax_address($id)
+    {                                          #Campo         #Tabla                #ID
+        $result = $this->MClient->obtenerAddress($id);
+        echo json_encode($result);
+    }
+	
 	
 	
 }

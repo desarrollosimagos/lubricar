@@ -115,6 +115,7 @@
 										<input id="confirm" name="confirm" type="password" maxlength="50" class="form-control required">
 									</div>
 								</div>
+								<input id="status" name="status" type="hidden" maxlength="50" value="activo" class="form-control required">
 							</div>
 						</fieldset>
 						<h1><i class="fa fa-address-card"></i> Datos básicos</h1>

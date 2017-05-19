@@ -121,6 +121,7 @@
 										<label>Teléfono 2 </label>
 										<input id="cell_phone" name="cell_phone" type="text" class="form-control " value="<?php echo $editar[0]->cell_phone ?>">
 									</div>
+									<input id="status" name="status" type="hidden" class="form-control required" value="<?php echo $editar[0]->status ?>">
 								</div>
 							</div>
 							 <input class="form-control"  type='hidden' id="id" name="id" value="<?php echo $id ?>"/>
@@ -722,7 +723,7 @@ $(document).ready(function(){
 		if ($(this).attr('id') !== undefined) {
 			
 			cod_reg = $(this).attr('id');
-			alert(cod_reg);
+			//alert(cod_reg);
 			
 			if($("#codigos_des2").val() === ''){
 				$("#codigos_des2").val(cod_reg);
