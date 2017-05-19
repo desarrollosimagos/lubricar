@@ -95,6 +95,13 @@ Class Basicauth
 						}
 					}
 				}else{
+					// Consultamos los datos de todas las acciones 
+					// (en este caso, el formato de captura de datos de acciones en sesión será diferente en el hook de acceso y el helper de menú, para lo cual habrá que hacer una validación en dichos archivos)
+					$acciones = array();
+					$query_actions = $this->CI->db->get('actions');
+					foreach($query_actions->result() as $action){
+						$acciones[] = $action;
+					}
 					// Carga de menús y submenús para usuarios administradores
 					// Menús
 					$query_menus = $this->CI->db->get('menus');

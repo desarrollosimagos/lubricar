@@ -156,8 +156,14 @@ class MAcciones extends CI_Model {
     public function delete($id) {
         $result = $this->db->where('action_id =', $id);
         $result = $this->db->get('submenus');
+        
+        $result2 = $this->db->where('action_id =', $id);
+        $result2 = $this->db->get('menus');
+        
+        $result3 = $this->db->where('action_id =', $id);
+        $result3 = $this->db->get('profile_actions');
 
-        if ($result->num_rows() > 0) {
+        if ($result->num_rows() > 0 || $result2->num_rows() > 0 || $result3->num_rows() > 0) {
             echo 'existe';
         } else {
             $result = $this->db->delete('actions', array('id' => $id));

@@ -33,9 +33,17 @@ class Acceso
 			foreach($this->CI->session->userdata('logged_in') as $clave => $userdata){
 				if($clave == "acciones"){
 					foreach($userdata as $accion){
-						$controllerspermitidos[] = $accion[0]->class;
-						$accionespermitidas[] = $accion[0]->id;
-						$rutaspermitidas[] = $accion[0]->route;
+						// Si el usuario no es administrador capturamos los datos de la acción haciendo referencia con el indice 0,
+						// de lo contrario no será necesario indicar ningún indice
+						if($this->CI->session->userdata('logged_in')['admin'] == 0){
+							$controllerspermitidos[] = $accion[0]->class;
+							$accionespermitidas[] = $accion[0]->id;
+							$rutaspermitidas[] = $accion[0]->route;
+						}else{
+							$controllerspermitidos[] = $accion->class;
+							$accionespermitidas[] = $accion->id;
+							$rutaspermitidas[] = $accion->route;
+						}
 					}
 				}else if($clave == "permisos"){
 					foreach($userdata as $permiso){
