@@ -141,7 +141,7 @@
                     
                       swal({ 
                         title: "Disculpe,",
-                         text: "No se puede eliminar se encuentra asociado a un submenú",
+                         text: "No se puede eliminar, se encuentra asociado a un perfil, menú o submenú dentro del sistema",
                           type: "warning" 
                         },
                         function(){
