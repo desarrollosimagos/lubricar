@@ -35,7 +35,7 @@ class MProduct extends CI_Model {
     }
 
     // Public method to obtain the products by id
-    public function obtenerServices($id) {
+    public function obtenerProducts($id) {
         $this->db->where('id', $id);
         $query = $this->db->get('products');
         if ($query->num_rows() > 0)

@@ -125,7 +125,7 @@ class CClient extends CI_Controller {
     public function addCar() {
 		
 		$datos = array(
-				'customer_id' => $this->input->post('customer_id'),
+				'customer_id' => $this->input->post('customer_id2'),
 				'trademark' => $this->input->post('trademark'),
 				'model' => $this->input->post('model'),
 				'color' => $this->input->post('color'),
@@ -359,21 +359,21 @@ class CClient extends CI_Controller {
         }
     }
 	
-	// Método publico para traer las lineas estrategicas segun la asociacion con el plan de la nacion
+
     public function ajax_client()
     {                                          #Campo         #Tabla                #ID
         $result = $this->MClient->obtener();
         echo json_encode($result);
     }
 	
-	// Método publico para traer las lineas estrategicas segun la asociacion con el plan de la nacion
+
     public function ajax_car($id)
     {                                          #Campo         #Tabla                #ID
         $result = $this->MClient->obtenerCars($id);
         echo json_encode($result);
     }
 	
-		// Método publico para traer las lineas estrategicas segun la asociacion con el plan de la nacion
+
     public function ajax_address($id)
     {                                          #Campo         #Tabla                #ID
         $result = $this->MClient->obtenerAddress($id);
