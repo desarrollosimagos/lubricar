@@ -135,6 +135,7 @@
 						<input id="price" name="price" class="form-control" type="text" maxlength="100">
 						<label>Impuesto</label>
 						<input id="impuesto" name="impuesto" class="form-control" type="text" maxlength="150" >
+						<input id="id_service"  class="form-control" type="hidden" >
 						<input id="accion"  class="form-control" type="hidden" >
 						<input id="posicion"  class="form-control" type="hidden" >
 					</div>
@@ -168,6 +169,7 @@
 						<input id="impuesto1" name="impuesto1" class="form-control" type="text" maxlength="150" >
 						<input id="accion1"  class="form-control" type="hidden" >
 						<input id="posicion1"  class="form-control" type="hidden" >
+						<input id="id_product"  class="form-control" type="hidden" >
 					</div>
 				</form>
 			</div>
@@ -336,23 +338,23 @@
 				<div class="col-lg-4">
 					<div class="ibox float-e-margins" style="margin-top: 5%">
 						<div class="ibox-title">
-							<h5>Total servicio</h5>
+							<h5>Total Orden de Servicio</h5>
 						</div>
 						<div class="ibox-content">
 							<div class="row">
 								
 								<div class="col-xs-4">
 									<small class="stats-label">SubTotal</small>
-									<h4>236 321.80</h4>
+									<h4><span id="span_sub_total"></span></h4>
 								</div>
 	
 								<div class="col-xs-4">
 									<small class="stats-label">Impuesto</small>
-									<h4>46.11%</h4>
+									<h4><span id="span_iva"></span></h4>
 								</div>
 								<div class="col-xs-4">
 									<small class="stats-label">Total</small>
-									<h4>432.021</h4>
+									<h4><span id="span_total"></span></h4>
 								</div>
 							</div>
 						</div>
@@ -448,12 +450,13 @@ $(document).ready(function(){
 					   type: "success" 
 					 },
 				 function(){
-				   window.location.href = '<?php echo base_url(); ?>order/register';
+					$("#modal_cliente").modal('hide');
+					window.location.href = '<?php echo base_url(); ?>order/register';
 				 });
 			 }
 		 });
 	});
-	//abrir modal
+	//abrir modal direccion
 	$(".add_direccion").click(function (e) {
 		e.preventDefault();  // Para evitar que se envíe por defecto
 		
@@ -467,7 +470,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	
+	//agregar direccion nueva
 	$("#add_direccion").click(function (e) {
 		e.preventDefault();  // Para evitar que se envíe por defecto
 		$.post('<?php echo base_url(); ?>CClient/addAddress', $('#form_address').serialize(), function (response) {
@@ -478,6 +481,7 @@ $(document).ready(function(){
 					   type: "success" 
 					 },
 				 function(){
+					$("#modal_direccion").modal('hide');
 					$('#codcliente').val();
 					var cliente_id = $('#codcliente').val();
 					$('#address').find('option:gt(0)').remove().end().select2('val', '0');
@@ -497,7 +501,7 @@ $(document).ready(function(){
 	});
 	
 	
-	
+	//agregar carro nuevo
 	$("#add_car").click(function (e) {
 		e.preventDefault();  // Para evitar que se envíe por defecto
 		$.post('<?php echo base_url(); ?>CClient/addCar', $('#form_vehi').serialize(), function (response) {
@@ -512,6 +516,7 @@ $(document).ready(function(){
 					   type: "success" 
 					 },
 				 function(){
+					$("#modal_vehiculo").modal('hide');
 					$('#codcliente').val();
 					var cliente_id = $('#codcliente').val();
 					$('#vehiculo').find('option:gt(0)').remove().end().select2('val', '0');
@@ -530,7 +535,7 @@ $(document).ready(function(){
 			 }
 		 });
 	});
-	
+	//abrir modal vehiculo
 	$(".add_vehiculo").click(function (e) {
 		e.preventDefault();  // Para evitar que se envíe por defecto
 		
@@ -566,6 +571,7 @@ $(document).ready(function(){
 				},
 				afterSelect: function (item) {
 					$('#price').val(item.price);
+					$('#id_service').val(item.id);
 					//var cliente_id = $('#codcliente').val();
 
 				}
@@ -580,7 +586,9 @@ $(document).ready(function(){
 		
 		var table = $('#tab_servicio').DataTable();
 		var accion = $("#accion").val();
+
 		var posi = $("#posicion").val();
+		var id_service = $("#id_service").val();
 		var service = $("#service_id").val();
 		var price = $("#price").val();
 		var impuesto = $("#impuesto").val();
@@ -592,7 +600,16 @@ $(document).ready(function(){
 			
 			if (service !== '' & price !== '' & impuesto !== '' ) {
 
-				table.row.add( [ service, price, impuesto, price ,botonEdit,botonQuitar ] ).draw();
+				var i = table.row.add( [ service, price, impuesto, price ,botonEdit,botonQuitar ] ).draw();
+				table.rows(i).nodes().to$().attr("id", id_service);
+				
+				$("#modal_servicio").modal('hide');
+				$("#service_id").val('');
+				$("#price").val('');
+				$("#impuesto").val('');
+				$('#posicion').val('');
+				$('#accion').val('');
+     
 
 			} else {
 				swal({ 
@@ -606,13 +623,7 @@ $(document).ready(function(){
 				
 			}
 			
-			$("#modal_servicio").modal('hide');
-			$("#service_id").val('');
-			$("#price").val('');
-			$("#impuesto").val('');
-			$('#posicion').val('');
-			$('#accion').val('');
-     
+			
 				
 		}else if (accion === 'Editar'){
 			
@@ -620,7 +631,15 @@ $(document).ready(function(){
 			if (service !== '' & price !== '' & impuesto !== '' ) {
 				
 				
-				table.row(posi).data( [ service, price, impuesto, price,botonEdit,botonQuitar ] ).draw();
+				var j = table.row(posi).data( [ service, price, impuesto, price,botonEdit,botonQuitar ] ).draw();
+				table.rows(j).nodes().to$().attr("id", id_service);
+				
+				$("#modal_servicio").modal('hide');
+				$("#service_id").val('');
+				$("#price").val('');
+				$("#impuesto").val('');
+				$('#posicion').val('');
+				$('#accion').val('');
 
 			} else {
 				swal({ 
@@ -633,12 +652,7 @@ $(document).ready(function(){
 				});
 				
 			}
-			$("#modal_servicio").modal('hide');
-			$("#service_id").val('');
-			$("#price").val('');
-			$("#impuesto").val('');
-			$('#posicion').val('');
-			$('#accion').val('');
+			
 
 		}
 
@@ -680,13 +694,13 @@ $(document).ready(function(){
 			swal("Disculpe,", "debe seleccionar un cliente para continuar",'warning');
 		
 		}else{
-		$("#modal_producto").modal('show');
-		$("#product_id").val('');
-		$("#quantity1").val('');
-		$("#price1").val('');
-		$('#impuesto1').val('');
-		$("span#titulo").text('Registrar');
-		$("#accion1").val('Registrar');
+			$("#modal_producto").modal('show');
+			$("#product_id").val('');
+			$("#quantity1").val('');
+			$("#price1").val('');
+			$('#impuesto1').val('');
+			$("span#titulo").text('Registrar');
+			$("#accion1").val('Registrar');
 		
 		
 		$.get('<?php echo base_url(); ?>CProduct/ajax_product', function(data){
@@ -699,6 +713,7 @@ $(document).ready(function(){
 				},
 				afterSelect: function (item) {
 					$('#price').val(item.price);
+					$('#id_product').val(item.id);
 					//var cliente_id = $('#codcliente').val();
 
 				}
@@ -713,10 +728,12 @@ $(document).ready(function(){
 		var table = $('#tab_producto').DataTable();
 		var accion = $("#accion1").val();
 		var posi = $("#posicion1").val();
+		var id_producto = $("#id_product").val();
 		var producto = $("#product_id").val();
 		var cantidad = $("#quantity1").val();
 		var precio = $("#price1").val();
 		var impuesto = $("#impuesto1").val();
+		var importe = parseFloat(cantidad) * parseFloat(precio);
 		var botonEdit = "<a style='color: #1ab394' class='editar'><i class='fa fa-edit fa-2x'></i></a>";
 		var botonQuitar = "<a style='color: #1ab394' class='quitar'><i class='fa fa-trash fa-2x'></i></a>";
 	
@@ -725,7 +742,18 @@ $(document).ready(function(){
 			
 			if (producto !== '' &cantidad !== '' & precio !== '' & impuesto !== '' ) {
 
-				table.row.add( [ producto, precio, cantidad ,impuesto, precio ,botonEdit,botonQuitar ] ).draw();
+				var i = table.row.add( [ producto, precio, cantidad ,impuesto, importe ,botonEdit,botonQuitar ] ).draw();
+				table.rows(i).nodes().to$().attr("id", id_producto);
+				
+				$("#modal_producto").modal('hide');
+				$("#product_id").val('');
+				$("#quantity1").val('');
+				$("#price1").val('');
+				$('#impuesto1').val('');
+				$('#posicion1').val('');
+				$('#accion1').val('');
+				
+			
 
 			} else {
 				swal({ 
@@ -739,13 +767,7 @@ $(document).ready(function(){
 				
 			}
 			
-			$("#modal_producto").modal('hide');
-			$("#product_id").val('');
-			$("#quantity1").val('');
-			$("#price1").val('');
-			$('#impuesto1').val('');
-			$('#posicion1').val('');
-			$('#accion1').val('');
+			
      
 				
 		}else if (accion === 'Editar'){
@@ -754,8 +776,17 @@ $(document).ready(function(){
 			if (producto !== '' &cantidad !== '' & precio !== '' & impuesto !== ''  ) {
 				
 				
-				table.row(posi).data( [ producto,  precio, cantidad, impuesto, precio ,botonEdit,botonQuitar ] ).draw();
-
+				var j = table.row(posi).data( [ producto,  precio, cantidad, impuesto, importe ,botonEdit,botonQuitar ] ).draw();
+				table.rows(j).nodes().to$().attr("id", id_producto);
+				
+				$("#modal_producto").modal('hide');
+				$("#product_id").val('');
+				$("#quantity1").val('');
+				$("#price1").val('');
+				$('#impuesto1').val('');
+				$('#posicion1').val('');
+				$('#accion1').val('');
+				
 			} else {
 				swal({ 
 					title: "Disculpe,",
@@ -767,13 +798,7 @@ $(document).ready(function(){
 				});
 				
 			}
-			$("#modal_producto").modal('hide');
-			$("#product_id").val('');
-			$("#quantity1").val('');
-			$("#price1").val('');
-			$('#impuesto1').val('');
-			$('#posicion1').val('');
-			$('#accion1').val('');
+			
 
 		}
 
@@ -883,7 +908,6 @@ $(document).ready(function(){
 
     });
 	
-
 	
 	
     $("#registrar").click(function (e) {
