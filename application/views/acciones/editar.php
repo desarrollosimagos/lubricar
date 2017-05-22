@@ -76,7 +76,7 @@
         window.location = url;
     });
     
-    $("#class").val($("#id_class").val());
+    $("#class").select2('val', $("#id_class").val());
 
     $("#edit").click(function (e) {
 
