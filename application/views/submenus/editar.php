@@ -84,8 +84,8 @@
         window.location = url;
     });
     
-    $("#menu_id").val($("#id_menu").val());
-    $("#action_id").val($("#id_action").val());
+    $("#menu_id").select2('val', $("#id_menu").val());
+    $("#action_id").select2('val', $("#id_action").val());
 
     $("#edit").click(function (e) {
 
