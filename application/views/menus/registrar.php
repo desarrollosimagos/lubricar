@@ -54,7 +54,7 @@
 								<select class="form-control m-b" name="logo" id="logo">
 									<option value="0" selected="">Seleccione</option>
 									<?php foreach ($iconos as $icono) { ?>
-										<option data-icon="<?php echo $icono->class;?>" value="<?php echo $icono->class;?>"><?php echo $icono->name; ?></option>
+										<option value="<?php echo $icono->class;?>"><i class="'+$('#logo').val()+'"></i><?php echo $icono->name; ?></option>
 									<?php } ?>
 								</select>
 							</div>
@@ -128,7 +128,7 @@ $(document).ready(function(){
 
             $.post('<?php echo base_url(); ?>CMenus/add', $('#form_menus').serialize(), function (response) {
 
-				if (response[0] == '1') {
+				if (response == 'existe') {
                     swal("Disculpe,", "este nombre se encuentra registrado");
                 }else{
 					swal({ 
