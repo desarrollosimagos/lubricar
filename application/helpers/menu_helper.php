@@ -60,6 +60,7 @@ if (!function_exists('menu')) {
 		// Imprimiendo los menús
 		foreach($ci->session->userdata('logged_in')['menus'] as $menus){
 			foreach($menus as $menu){
+				//~ print_r($menu);
 		?>
 			<li>
 				<?php 

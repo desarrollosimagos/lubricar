@@ -38,9 +38,24 @@ class CMenus extends CI_Controller {
 	
 	// Método para guardar un nuevo registro
     public function add() {
-
+		
         $result = $this->MMenus->insert($this->input->post());
+        
         if ($result) {
+			
+			// Armamos los datos del nuevo menú
+			$data_new_menu = array(
+				'id' => $result,
+				'name'=>$this->input->post('name'),
+				'route'=>$this->input->post('route'),
+				'action_id'=>$this->input->post('action_id'),
+				'logo'=>$this->input->post('logo')
+			);
+			// Transformamos el nuevo menú en un objeto
+			$data_new_menu = (object)$data_new_menu;
+			
+			// Incluimos el nuevo menú en la sesión
+			$this->session->userdata['logged_in']['menus'][0][] = $data_new_menu;
 			
 			if($this->input->post('action_id') != '0'){
 				// Actualizamos la acción y la asignamos 
