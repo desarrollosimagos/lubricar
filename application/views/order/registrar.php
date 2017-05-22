@@ -362,9 +362,9 @@
 				</div>
 						<div class="form-group" >
 							<div class="col-sm-4 col-sm-offset-2">
-								<input type="text" id="sub_total" name="sub_total">
-								<input type="text" id="iva_total" name="iva_total">
-								<input type="text" id="total" name="total">
+								<input type="hidden" id="sub_total" name="sub_total">
+								<input type="hidden" id="iva_total" name="iva_total">
+								<input type="hidden" id="total" name="total">
 								<button class="btn btn-white" id="volver" type="button">Volver</button>
 								<button class="btn btn-primary" id="registrar" type="submit">Guardar</button>
 							</div>
