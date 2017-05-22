@@ -362,6 +362,9 @@
 				</div>
 						<div class="form-group" >
 							<div class="col-sm-4 col-sm-offset-2">
+								<input type="text" id="sub_total" name="sub_total">
+								<input type="text" id="iva_total" name="iva_total">
+								<input type="text" id="total" name="total">
 								<button class="btn btn-white" id="volver" type="button">Volver</button>
 								<button class="btn btn-primary" id="registrar" type="submit">Guardar</button>
 							</div>
@@ -603,6 +606,9 @@ $(document).ready(function(){
 				var i = table.row.add( [ service, price, impuesto, price ,botonEdit,botonQuitar ] ).draw();
 				table.rows(i).nodes().to$().attr("id", id_service);
 				
+				// Ejecución de los cálculos de la factura
+				calculos(subtotal(), iva_total());  // Cálculo del subtotal, IVA y Total
+				
 				$("#modal_servicio").modal('hide');
 				$("#service_id").val('');
 				$("#price").val('');
@@ -745,6 +751,9 @@ $(document).ready(function(){
 				var i = table.row.add( [ producto, precio, cantidad ,impuesto, importe ,botonEdit,botonQuitar ] ).draw();
 				table.rows(i).nodes().to$().attr("id", id_producto);
 				
+				// Ejecución de los cálculos de la factura
+				calculos(subtotal(), iva_total());  // Cálculo del subtotal, IVA y Total
+				
 				$("#modal_producto").modal('hide');
 				$("#product_id").val('');
 				$("#quantity1").val('');
@@ -811,6 +820,9 @@ $(document).ready(function(){
 
         var aPos = $("table#tab_servicio").dataTable().fnGetPosition(this.parentNode.parentNode);
         $("table#tab_servicio").dataTable().fnDeleteRow(aPos);
+        
+        // Ejecución de los cálculos de la factura
+		calculos(subtotal(), iva_total());  // Cálculo subtotal, IVA y Total
 
 
     });
@@ -819,6 +831,9 @@ $(document).ready(function(){
 
         var aPos = $("table#tab_producto").dataTable().fnGetPosition(this.parentNode.parentNode);
         $("table#tab_producto").dataTable().fnDeleteRow(aPos);
+        
+        // Ejecución de los cálculos de la factura
+		calculos(subtotal(), iva_total());  // Cálculo del subtotal, IVA y Total
 
 
     });
@@ -952,5 +967,135 @@ $(document).ready(function(){
         }
     });
 });
+
+	// Cálculo del subtotal
+    function subtotal(){
+		
+		var importe1 = 0;
+		var importe2 = 0;
+		var sub_iva = 0;
+		var sub_total = 0;
+		
+		$("#tab_servicio tbody tr").each(function (index){
+		
+			$(this).children("td").each(function (index2) 
+			{
+				switch (index2) 
+				{
+					// Leer el campo de importe
+					case 3:
+						importe1 = parseFloat($(this).text());
+						break;
+				}
+			})
+			
+			sub_total += importe1;
+		})
+		
+		$("#tab_producto tbody tr").each(function (index){
+		
+			$(this).children("td").each(function (index2) 
+			{
+				switch (index2) 
+				{
+					// Leer el campo de importe
+					case 3:
+						importe2 = parseFloat($(this).text());
+						break;
+				}
+			})
+			
+			sub_total += importe2;
+		})
+		
+		//~ alert(sub_total);
+		
+		return sub_total;
+	}
+	
+	// Cálculo del iva total
+    function iva_total(){
+		
+		var total_iva = 0;
+		var sub_iva1 = 0;
+		var sub_iva2 = 0;
+		var cantidad = 0;
+		
+		$("#tab_servicio tbody tr").each(function (index){
+		
+			$(this).children("td").each(function (index2) 
+			{
+				//~ base_imponible = base_imponible + parseFloat($(this).text());
+				switch (index2) 
+				{
+					// Leer el campo de iva
+					case 1:
+						precio = parseFloat($(this).text());
+						break;
+					// Leer el campo de importe
+					case 2:
+						sub_iva1 = parseFloat($(this).text());
+						break;
+				}
+			})
+			
+			sub_iva1 = precio * sub_iva1 / 100;
+			
+			total_iva = total_iva + sub_iva1;
+		})
+		
+		$("#tab_producto tbody tr").each(function (index){
+		
+			$(this).children("td").each(function (index2) 
+			{
+				//~ base_imponible = base_imponible + parseFloat($(this).text());
+				switch (index2) 
+				{
+					// Leer el campo de iva
+					case 1:
+						precio = parseFloat($(this).text());
+						break;
+					// Leer el campo de importe
+					case 2:
+						cantidad = parseFloat($(this).text());
+						break;
+					// Leer el campo de importe
+					case 3:
+						sub_iva2 = parseFloat($(this).text());
+						break;
+				}
+			})
+			
+			sub_iva2 = precio * sub_iva2 / 100;
+			
+			total_iva = total_iva + (sub_iva2*cantidad);
+		})
+		
+		//~ alert(total_iva);
+		
+		return total_iva;
+	}
+	
+	// Función para la realización de los cálculos del subtotal, IVA y Total
+    function calculos(subtotal, iva_total) {
+        var st = subtotal;
+        var iva = iva_total;
+        
+        // Cáculo del sub_total
+        if(st == ''){
+			st = 0;
+		}
+        
+        $("#sub_total").val(st);  // Cargamos la base imponible en el campo oculto para guardarlo en base de datos
+        $("#span_sub_total").text(st.toFixed(2));  // Cargamos la base imponible en la página sólo para visualización
+        
+        // Cálculo del IVA
+        $("#iva_total").val(iva);
+        $("#span_iva").text(iva.toFixed(2));
+        
+        // Cálculo del Total
+        $("#total").val((parseFloat($("#sub_total").val())+parseFloat($("#iva_total").val())).toFixed(2));  // Cargamos el total en el campo oculto para guardarlo en base de datos
+        $("#span_total").text((parseFloat($("#sub_total").val())+parseFloat($("#iva_total").val())).toFixed(2));  //Cargamos el total en la página sólo para visualización
+    }
 
 </script>
