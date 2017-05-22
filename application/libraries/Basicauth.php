@@ -41,20 +41,25 @@ Class Basicauth
 				// Primero verificamos que el usuario no sea administrador
 				if($query->row()->admin == 0){
 					//~ echo "Pasó 3";
-					// Buscamos si hay una franquicia asociada al usuario
+					// Buscamos si hay franquicias asociadas al usuario
 					$query_user_franquicia = $this->CI->db->get_where('users_franchises', array('user_id'=>$query->row()->id));
 					if($query_user_franquicia->num_rows() > 0){
-						//~ $id_franquicia = $query_user_franquicia->row()->franchise_id;
-						//~ echo "Franquicia: ".$id_franquicia;
-						$query_franquicia = $this->CI->db->get_where('franchises', array('id'=>$query_user_franquicia->row()->franchise_id));
-						$franquicia[] = $query_franquicia->result();
-						// Buscamos los datos de los servicios asociados a la franquicia
-						$query_franquicia_services = $this->CI->db->get_where('franchises_services', array('franchise_id'=>$query_franquicia->row()->id));
-						if($query_franquicia_services->num_rows() > 0){
-							// Listamos los servicios asociados
-							foreach($query_franquicia_services->result() as $services){
-								$query_servicio = $this->CI->db->get_where('services', array('id'=>$services->service_id));
-								$servicios[] = $query_servicio->result();
+						// Listamos las franquicias asociadas
+						$ids_serv = array();  // Variable para almacenar los ids de los servicios y filtrar los repetidos
+						foreach($query_user_franquicia->result() as $franchises){
+							$query_franquicia = $this->CI->db->get_where('franchises', array('id'=>$franchises->franchise_id));
+							$franquicia[] = $query_franquicia->result();
+							// Buscamos los datos de los servicios asociados a la(s) franquicia(s)
+							$query_franquicia_services = $this->CI->db->get_where('franchises_services', array('franchise_id'=>$query_franquicia->row()->id));
+							if($query_franquicia_services->num_rows() > 0){
+								// Listamos los servicios asociados
+								foreach($query_franquicia_services->result() as $services){
+									$query_servicio = $this->CI->db->get_where('services', array('id'=>$services->service_id));
+									if(!in_array($query_servicio->row()->id, $ids_serv)){
+										$servicios[] = $query_servicio->result();
+									}
+									$ids_serv[] = $query_servicio->row()->id;  // Vamos almacenando los ids de los servicios ya cargados
+								}
 							}
 						}
 					}
@@ -119,7 +124,7 @@ Class Basicauth
 					'profile_name' => $query_profile->row()->name,
 					'acciones' => $acciones,
 					'permisos' => $permisos,
-					'franquicia' => $franquicia,
+					'franquicias' => $franquicia,
 					'servicios' => $servicios,
 					'submenus' => $submenus,
 					'menus' => $menus
