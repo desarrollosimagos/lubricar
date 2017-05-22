@@ -51,10 +51,11 @@ class Acceso
 						$accionespermitidas[] = $permiso[0]->id;
 						$rutaspermitidas[] = $permiso[0]->route;
 					}
-				}else if($clave == "franquicia"){
-					foreach($userdata as $franquicia){
-						//~ echo $franquicia[0]->name.", ";
-						//~ echo "";
+				}else if($clave == "franquicias"){
+					foreach($userdata as $franquicias){
+						//~ foreach($franquicias as $franquicia){
+							//~ echo $franquicia->name;
+						//~ }
 					}
 				}else{
 					//~ print_r($userdata);
