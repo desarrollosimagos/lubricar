@@ -27,22 +27,70 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Orden N°</th>
+                                    <th data-hide="phone">Franquicia</th>
                                     <th data-hide="phone">Cliente</th>
                                     <th data-hide="phone">Fecha</th>
                                     <th data-hide="phone">Monto</th>
                                     <th data-hide="phone">Status</th>
-                                    <th class="text-right">Acción</th>
+                                    <th class="text-right">Editar</th>
+                                     <th class="text-right">Eliminar</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <!--<td class="text-right">-->
-                                <!--        <div class="btn-group">-->
-                                <!--            <button class="btn-white btn btn-xs">View</button>-->
-                                <!--            <button class="btn-white btn btn-xs">Edit</button>-->
-                                <!--            <button class="btn-white btn btn-xs">Delete</button>-->
-                                <!--        </div>-->
-                                <!--    </td>-->
+                               <?php $i = 1; ?>
+                                <?php foreach ($list_orders as $list) { ?>
+                                    <tr style="text-align: center">
+                                        <td>
+                                            <?php echo $i; ?>
+                                        </td>
+                                        <td>
+                                           <?php printf("%08d",  $list->id) ?> 
+                                        </td>
+                                        <td>
+                                            <?php foreach ($list_franq as $listar) { 
+                                                if ($listar->id == $list->franchise_id){
+                                                    echo $listar->name;
+                                                }
+
+                                             };?>
+                                        </td>
+                                        <td>
+                                            <?php foreach ($list_client as $listar) { 
+                                                if ($listar->id == $list->customer_id){
+                                                    echo $listar->name.' '. $listar->lastname;
+                                                }
+
+                                             };?>
+                                        </td>
+                                         <td>
+                                            <?php echo $list->date_order; ?>
+                                        </td>
+                                          <td>
+                                            <?php echo $list->total; ?>
+                                        </td>
+                                          <td>
+                                            
+                                              <?php foreach ($status as $listar) { ?>
+                                                    <?php if ($listar->id == $list->status): ?>
+                                                       <span class='<?php echo $listar->labels;?>'><?php echo $listar->name;?></span>
+                                                    <?php endif; ?>
+                                                <?php } ?>
+
+                      
+                                        </td>
+                                       
+                                        <td style='text-align: center'>
+                                            
+                                            <a href="<?php echo base_url() ?>clients/edit/<?= $list->id; ?>" title="Editar" title="Editar" style='color: #1ab394'><i class="fa fa-edit fa-2x"></i></a>
+                                        </td>
+                                        <td style='text-align: center'>
+                                            
+                                            <a class='borrar' id='<?php echo $list->id; ?>' style='color: #1ab394' title="Eliminar"><i class="fa fa-trash-o fa-2x"></i></a>
+                                        </td>
+                                    </tr>
+                                    <?php $i++ ?>
+                                <?php } ?>
                                 </tbody>
 
                             </table>
