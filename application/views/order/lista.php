@@ -25,15 +25,15 @@
                         <table id="tab_order" class="table table-striped table-bordered table-hover dataTables-example">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Orden N°</th>
-                                    <th data-hide="phone">Franquicia</th>
-                                    <th data-hide="phone">Cliente</th>
-                                    <th data-hide="phone">Fecha</th>
-                                    <th data-hide="phone">Monto</th>
-                                    <th data-hide="phone">Status</th>
-                                    <th class="text-right">Editar</th>
-                                     <th class="text-right">Eliminar</th>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Orden N°</th>
+                                    <th class="text-center">Franquicia</th>
+                                    <th class="text-center">Cliente</th>
+                                    <th class="text-center">Fecha</th>
+                                    <th class="text-center">Monto</th>
+                                    <th class="text-center">Estatus</th>
+                                    <th class="text-center">Editar</th>
+                                     <th class="text-center">Eliminar</th>
 
                                 </tr>
                                 </thead>
@@ -145,6 +145,8 @@ $(document).ready(function(){
             {"sClass": "registro center", "sWidth": "8%"},
             {"sClass": "registro center", "sWidth": "5%"},
             {"sClass": "registro center", "sWidth": "5%"},
+             {"sClass": "registro center", "sWidth": "5%"},
+            {"sWidth": "8%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
             {"sWidth": "8%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
 
         ]
