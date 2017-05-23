@@ -27,10 +27,11 @@ class MSubMenus extends CI_Model {
         $result = $this->db->where('name =', $datos['name']);
         $result = $this->db->get('submenus');
         if ($result->num_rows() > 0) {
-            echo '1';
+            return 'existe';
         } else {
             $result = $this->db->insert("submenus", $datos);
-            return $result;
+            $id = $this->db->insert_id();
+            return $id;
         }
     }
 

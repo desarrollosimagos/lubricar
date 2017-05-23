@@ -1,6 +1,7 @@
 <?php
 class Acceso
 {
+	private $controladores = array();  // Variable que contendrá la lista de controladores
 	private $CI;
 	
 	public function __construct()
@@ -11,7 +12,9 @@ class Acceso
 	function identificado()
 	{
 		$this->CI =&get_instance();
-		$controllersprivados = array('Home', 'CPerfil');  // Controladores restringidos sin logueo
+		$this->listar_controladores("application/controllers/");
+		$controllersprivados = $this->controladores;  // Controladores restringidos sin logueo
+		//~ print_r($controllersprivados);
 		$controllerspermitidos = array();  // Controladores permitidos para el usuario logueado
 		$accionespermitidas = array();  // Ids de las acciones (módulos) permitidos para el usuario logueado
 		$rutaspermitidas = array();  // Rutas permitidas para el usuario logueado
@@ -72,6 +75,31 @@ class Acceso
 		}
 		
 	}
+	
+	// Método público para obterner una lista de controladores
+    function listar_controladores($ruta)
+    {
+        // abrir un directorio y listarlo recursivo
+        if (is_dir($ruta)) {
+            if ($dh = opendir($ruta)) {
+                while (($file = readdir($dh)) !== false) {
+					//esta línea la utilizaríamos si queremos listar todo lo que hay en el directorio
+					//mostraría tanto archivos como directorios
+                    if ($file!="." && $file!=".."){
+                        $controlador = str_replace('.php', '', $file);
+                        $controllersbase = array('Welcome','CLogin');  // Controladores a ignorar
+                        if(!in_array($controlador, $controllersbase) && $controlador != 'index.html'){
+							$this->controladores[] = $controlador;
+						}
+                    }
+                }
+                closedir($dh);
+            }
+        }else{
+            echo "<br>No es ruta valida";
+        }
+        return $this->controladores;
+    }
 }
 /*
 /end hooks/home.php

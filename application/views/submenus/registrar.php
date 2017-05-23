@@ -109,7 +109,7 @@
 
             $.post('<?php echo base_url(); ?>CSubMenus/add', $('#form_submenus').serialize(), function (response) {
 
-				if (response[0] == '1') {
+				if (response == 'existe') {
                     swal("Disculpe,", "este nombre se encuentra registrado");
                 }else{
 					swal({ 
