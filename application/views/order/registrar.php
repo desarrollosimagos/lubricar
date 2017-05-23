@@ -224,7 +224,17 @@
 							<div class="form-group">
 								<label>Franquicia *</label>
 								<select style="width: 100%" class="span12" name="franchise_id" id="franchise_id" class="form-control">
-									
+									<?php
+									// Imprimiendo los menús
+									$franquicias = $this->session->userdata('logged_in')['franquicias'];
+									foreach($franquicias as $franquicias){
+										foreach($franquicias as $franquicia){
+										?>
+											<option value="<?php echo $franquicia->id ?>"><?php echo $franquicia->name ?></option>
+										<?php
+										}
+									}
+									?>
 								</select>
 								
 							</div>
