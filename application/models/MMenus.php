@@ -27,7 +27,7 @@ class MMenus extends CI_Model {
         $result = $this->db->where('name =', $datos['name']);
         $result = $this->db->get('menus');
         if ($result->num_rows() > 0) {
-            echo 'existe';
+            return 'existe';
         } else {
             $result = $this->db->insert("menus", $datos);
             $id = $this->db->insert_id();

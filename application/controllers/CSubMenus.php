@@ -6,8 +6,6 @@ class CSubMenus extends CI_Controller {
 	public function __construct() {
         parent::__construct();
 
-
-        $this->load->view('base');
 		// Load database
         $this->load->model('MSubMenus');
         $this->load->model('MMenus');
@@ -17,6 +15,7 @@ class CSubMenus extends CI_Controller {
 	
 	public function index()
 	{
+		$this->load->view('base');
 		$data['listar'] = $this->MSubMenus->obtener();
 		$data['menus'] = $this->MMenus->obtener();
 		$data['acciones'] = $this->MAcciones->obtener();
@@ -26,6 +25,7 @@ class CSubMenus extends CI_Controller {
 	
 	public function register()
 	{
+		$this->load->view('base');
 		$data['menus'] = $this->MMenus->obtener();
 		$data['acciones'] = $this->MAcciones->obtenerNoAsignadas();
 		$this->load->view('submenus/registrar', $data);
@@ -36,7 +36,24 @@ class CSubMenus extends CI_Controller {
     public function add() {
 
         $result = $this->MSubMenus->insert($this->input->post());
-        if ($result) {
+        
+        echo $result;  // No comentar, esta impresión es necesaria para que se ejecute el método insert()
+        
+        if ($result != 'existe') {
+			
+			// Armamos los datos del nuevo submenú
+			$data_new_submenu = array(
+				'id' => $result,
+				'name'=>$this->input->post('name'),
+				'route'=>$this->input->post('route'),
+				'menu_id'=>$this->input->post('menu_id'),
+				'action_id'=>$this->input->post('action_id')
+			);
+			// Transformamos el nuevo menú en un objeto
+			$data_new_submenu = (object)$data_new_submenu;
+			
+			// Incluimos el nuevo menú en la sesión
+			$this->session->userdata['logged_in']['submenus'][0][] = $data_new_submenu;
            
 			// Actualizamos la acción y la asignamos 
 			$data_action = array();
@@ -48,7 +65,8 @@ class CSubMenus extends CI_Controller {
         }
     }
 	 //Método para editar
-    public function edit() {		
+    public function edit() {
+		$this->load->view('base');
         $data['id'] = $this->uri->segment(3);
         $data['menus'] = $this->MMenus->obtener();
         
@@ -102,6 +120,17 @@ class CSubMenus extends CI_Controller {
         if ($result) {
 			// Actualizamos la acción para desasignarla (assigned=0)
 			$update_action = $this->MAcciones->update_simple($data_action);
+			
+			// Quitamos el submenú de la sesión
+			$indice = 30;  // Variable para capturar el indice del arreglo que contenga el id del submenú a eliminar
+			// Le colocamos un número alto como valor por si no se encuentra el id en ninguno de los arreglos
+			foreach($this->session->userdata['logged_in']['submenus'][0] as $key => $submenu){
+				if($submenu->id == $id){
+					$indice = $key;
+				}
+			}
+			// Quitamos el array correspondiente al submenú con el indice obtenido
+			unset($this->session->userdata['logged_in']['submenus'][0][$indice]);
         }
     }
 	

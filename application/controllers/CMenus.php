@@ -7,7 +7,7 @@ class CMenus extends CI_Controller {
         parent::__construct();
 
 
-        $this->load->view('base');
+        
 		// Load database
         $this->load->model('MMenus');
         $this->load->model('MAcciones');
@@ -16,6 +16,7 @@ class CMenus extends CI_Controller {
 	
 	public function index()
 	{
+		$this->load->view('base');
 		// Precarga de iconos
 		$search_icons = $this->MMenus->search_icons();
 		//~ echo $search_icons;
@@ -30,6 +31,7 @@ class CMenus extends CI_Controller {
 	
 	public function register()
 	{
+		$this->load->view('base');
 		$data['iconos'] = $this->MMenus->obtenerIconos();
 		$data['acciones'] = $this->MAcciones->obtenerNoAsignadas();
 		$this->load->view('menus/registrar', $data);
@@ -41,7 +43,9 @@ class CMenus extends CI_Controller {
 		
         $result = $this->MMenus->insert($this->input->post());
         
-        if ($result) {
+        echo $result;  // No comentar, esta impresión es necesaria para que se ejecute el método insert()
+        
+        if ($result != 'existe') {
 			
 			// Armamos los datos del nuevo menú
 			$data_new_menu = array(
@@ -70,7 +74,8 @@ class CMenus extends CI_Controller {
     }
     
 	// Método para editar
-    public function edit() {		
+    public function edit() {
+		$this->load->view('base');
         $data['id'] = $this->uri->segment(3);
         
         // Consultamos el id de la acción asociada al menú
@@ -131,7 +136,6 @@ class CMenus extends CI_Controller {
 			$indice = 20;  // Variable para capturar el indice del arreglo que contenga el id del menú a eliminar
 			// Le colocamos un número alto como valor por si no se encuentra el id en ninguno de los arreglos
 			foreach($this->session->userdata['logged_in']['menus'][0] as $key => $menu){
-				$menu->id;
 				if($menu->id == $id){
 					$indice = $key;
 				}
