@@ -24,9 +24,20 @@ class MOrder extends CI_Model {
     
       //Public method to obtain the services
     public function obtenerId() {
-        $query = $this->db->get('orders');
-        $id = $this->db->insert_id();
-        return $id;
+        $this->db->from('orders');
+        $count = $this->db->count_all_results();;
+        return $count;
+    }
+    
+    
+    // Public method, to insert the data of orders
+    public function insert($datos) {
+
+            $result = $this->db->insert("orders", $datos);
+            //return $result;
+            $id = $this->db->insert_id();
+            return $id;
+        
     }
 
 
