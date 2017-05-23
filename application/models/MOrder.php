@@ -36,13 +36,16 @@ class MOrder extends CI_Model {
     public function obtenerRows() {
         
         $this->db->select("id");
-        $query = $this->db->get('orders'); 
-        foreach ($query->result() as $row)
-        {
-            $id = $row->id;
-        }
-        return $id;
-
+        $query = $this->db->get('orders');
+        if ($query->num_rows() > 0) {
+			foreach ($query->result() as $row)
+			{
+				$id = $row->id;
+			}
+			return $id;
+		}else{
+			$id = 1;
+		}
     }
     
     
