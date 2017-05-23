@@ -207,9 +207,9 @@
 					<h5>Orden # <?php printf("%08d", $listar) ?></h5>
 				</div>
 				<div class="ibox-content">
-					<form id="form_services" method="post" accept-charset="utf-8" class="form-horizontal">
+					<form id="form_order" method="post" accept-charset="utf-8" class="form-horizontal">
 						<div class="col-lg-12">
-						<div class="col-lg-4">
+						<div class="col-lg-3">
 							<div class="form-group">
 								<label>Cliente * </label>
 								<div class="input-group mar-btm">
@@ -220,8 +220,16 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-1"></div>
-						<div class="col-lg-2">
+						<div class="col-lg-4" style="margin-left: 2%">
+							<div class="form-group">
+								<label>Franquicia *</label>
+								<select style="width: 100%" class="span12" name="franchise_id" id="franchise_id" class="form-control">
+									
+								</select>
+								
+							</div>
+						</div>
+						<div class="col-lg-3" style="margin-left: 2%">
 							<div class="form-group">
 								<label>Fecha de emisión *</label>
 								<div class="input-group mar-btm">
@@ -230,25 +238,9 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-1"></div>
-						<div class="col-lg-4">
-							<div class="form-group">
-								<label>Estatus *</label>
-								<div class="input-group mar-btm">
-									<select class="span12" name="status" id="status" value=""  class="form-control">
-                                        <option selected="" value="Abierto">Abierto</option>
-                                        <option value="Presupuesto">Presupuestado</option>
-										<option value="En Curso">Aprobado</option>
-										<option value="En Curso">En Curso</option>
-										<option value="Finalizado">Finalizado</option>
-                                    </select>
-								</div>
-							</div>
-						</div>
-							<div class="col-lg-2"></div>
 						</div>
 						<div class="col-lg-12">
-						<div class="col-lg-4">
+						<div class="col-lg-3">
 							<div class="form-group">
 								<label>Vehiculo *</label>
 								<div class="input-group mar-btm">
@@ -260,8 +252,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-1"></div>
-						<div class="col-lg-6">
+						<div class="col-lg-4" style="margin-left: 2%">
 							<div class="form-group">
 								<label>Dirección *</label>
 								<div class="input-group mar-btm">
@@ -273,11 +264,20 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-12"></div>
+						<div class="col-lg-3" style="margin-left: 2%">
+							<div class="form-group">
+								<label>Estatus *</label>
+								<select style="width: 100%" class="span12" name="status" id="status"   class="form-control">
+									<option selected="" value="1">Abierto</option>
+									<option value="2">Presupuestado</option>
+									<option value="3">Aprobado</option>
+									<option value="4">En Curso</option>
+									<option value="5">Finalizado</option>
+								</select>
+							</div>
 						</div>
-						<div class="col-lg-12">
-							</br>
-                    <div class="tabs-container">
+
+                    <div class="tabs-container" style="margin-top: 10%">
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#tab-1"> Servicios</a></li>
                             <li class=""><a data-toggle="tab" href="#tab-2">Productos</a></li>
@@ -345,16 +345,16 @@
 								
 								<div class="col-xs-4">
 									<small class="stats-label">SubTotal</small>
-									<h4><span id="span_sub_total"></span></h4>
+									<h4><span id="span_sub_total">0</span></h4>
 								</div>
 	
 								<div class="col-xs-4">
 									<small class="stats-label">Impuesto</small>
-									<h4><span id="span_iva"></span></h4>
+									<h4><span id="span_iva">0</span></h4>
 								</div>
 								<div class="col-xs-4">
 									<small class="stats-label">Total</small>
-									<h4><span id="span_total"></span></h4>
+									<h4><span id="span_total">0</span></h4>
 								</div>
 							</div>
 						</div>
@@ -362,9 +362,9 @@
 				</div>
 						<div class="form-group" >
 							<div class="col-sm-4 col-sm-offset-2">
-								<input type="hidden" id="sub_total" name="sub_total">
-								<input type="hidden" id="iva_total" name="iva_total">
-								<input type="hidden" id="total" name="total">
+								<input type="hidden" id="sub_total" name="sub_total" value="0">
+								<input type="hidden" id="iva_total" name="iva_total"  value="0">
+								<input type="hidden" id="total" name="total"  value="0">
 								<button class="btn btn-white" id="volver" type="button">Volver</button>
 								<button class="btn btn-primary" id="registrar" type="submit">Guardar</button>
 							</div>
@@ -929,27 +929,8 @@ $(document).ready(function(){
 
         e.preventDefault();  // Para evitar que se envíe por defecto
 
-        if ($('#name').val().trim() === "") {
-
-          
-			swal("Disculpe,", "para continuar debe ingresar nombre");
-			$('#name').parent('div').addClass('has-error');
-			
-        } else if ($('#description').val().trim() === "") {
-
-          
-			swal("Disculpe,", "para continuar debe ingresar la descripción");
-			$('#description').parent('div').addClass('has-error');
-			
-        }else if ($('#price').val().trim() === "") {
-
-          
-			swal("Disculpe,", "para continuar debe ingresar el precio");
-			$('#price').parent('div').addClass('has-error');
-			
-        }  else {
-
-            $.post('<?php echo base_url(); ?>CServices/add', $('#form_services').serialize(), function (response) {
+        
+            $.post('<?php echo base_url(); ?>COrder/add', $('#form_order').serialize(), function (response) {
 
 				if (response[0] == '1') {
                     swal("Disculpe,", "este nombre se encuentra registrado");
@@ -960,11 +941,11 @@ $(document).ready(function(){
 						  type: "success" 
 						},
 					function(){
-					  window.location.href = '<?php echo base_url(); ?>services';
+					  window.location.href = '<?php echo base_url(); ?>order';
 					});
 				}
             });
-        }
+        
     });
 });
 
