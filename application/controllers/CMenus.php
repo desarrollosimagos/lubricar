@@ -126,6 +126,18 @@ class CMenus extends CI_Controller {
         if ($result) {
 			// Actualizamos la acción para desasignarla (assigned=0)
 			$update_action = $this->MAcciones->update_simple($data_action);
+			
+			// Quitamos el menú de la sesión
+			$indice = 20;  // Variable para capturar el indice del arreglo que contenga el id del menú a eliminar
+			// Le colocamos un número alto como valor por si no se encuentra el id en ninguno de los arreglos
+			foreach($this->session->userdata['logged_in']['menus'][0] as $key => $menu){
+				$menu->id;
+				if($menu->id == $id){
+					$indice = $key;
+				}
+			}
+			// Quitamos el array correspondiente al menú con el indice obtenido
+			unset($this->session->userdata['logged_in']['menus'][0][$indice]);
         }
     }
 	
