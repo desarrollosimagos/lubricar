@@ -34,7 +34,7 @@ Class Basicauth
 					$permisos[] = $query_actions2->result();
 				}
 				// Buscamos los datos de la franquicia con sus servicios, los menús y submenús asociados al usuario
-				$franquicia = array();
+				$franquicias = array();
 				$servicios = array();
 				$menus = array();
 				$submenus = array();
@@ -48,7 +48,7 @@ Class Basicauth
 						$ids_serv = array();  // Variable para almacenar los ids de los servicios y filtrar los repetidos
 						foreach($query_user_franquicia->result() as $franchises){
 							$query_franquicia = $this->CI->db->get_where('franchises', array('id'=>$franchises->franchise_id));
-							$franquicia[] = $query_franquicia->result();
+							$franquicias[] = $query_franquicia->result();
 							// Buscamos los datos de los servicios asociados a la(s) franquicia(s)
 							$query_franquicia_services = $this->CI->db->get_where('franchises_services', array('franchise_id'=>$query_franquicia->row()->id));
 							if($query_franquicia_services->num_rows() > 0){
@@ -124,7 +124,7 @@ Class Basicauth
 					'profile_name' => $query_profile->row()->name,
 					'acciones' => $acciones,
 					'permisos' => $permisos,
-					'franquicias' => $franquicia,
+					'franquicias' => $franquicias,
 					'servicios' => $servicios,
 					'submenus' => $submenus,
 					'menus' => $menus
