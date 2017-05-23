@@ -22,7 +22,7 @@
                 </div>
                 <div class="ibox-content">
                     <div class="table-responsive">
-                        <table id="tab_order" class="table table-striped table-bordered table-hover dataTables-example">
+                        <table id="tab_order" class="table table-striped table-bordered dt-responsive table-hover dataTables-example">
                                 <thead>
                                 <tr>
                                     <th class="text-center">#</th>
@@ -31,6 +31,8 @@
                                     <th class="text-center">Cliente</th>
                                     <th class="text-center">Fecha</th>
                                     <th class="text-center">Monto</th>
+                                    <th class="text-center">Servicios</th>
+                                    <th class="text-center">Productos</th>
                                     <th class="text-center">Estatus</th>
                                     <th class="text-center">Editar</th>
                                      <th class="text-center">Eliminar</th>
@@ -63,21 +65,44 @@
 
                                              };?>
                                         </td>
-                                         <td>
+                                        <td>
                                             <?php echo $list->date_order; ?>
                                         </td>
                                           <td>
                                             <?php echo $list->total; ?>
                                         </td>
-                                          <td>
-                                            
-                                              <?php foreach ($status as $listar) { ?>
-                                                    <?php if ($listar->id == $list->status): ?>
-                                                       <span class='<?php echo $listar->labels;?>'><?php echo $listar->name;?></span>
-                                                    <?php endif; ?>
-                                                <?php } ?>
-
-                      
+                                        <td>
+                                            <?php 
+                                            foreach ($list_orders_services as $order_service) {
+												if($order_service->order_id == $list->id){
+													foreach ($list_serv as $servicio){
+														if ($servicio->id == $order_service->service_id){
+														   echo $servicio->name.", ";
+														}
+													}
+												}
+											}
+											?>
+                                        </td>
+                                        <td>
+                                            <?php 
+                                            foreach ($list_orders_products as $order_product) {
+												if($order_product->order_id == $list->id){
+													foreach ($list_prod as $producto){
+														if ($producto->id == $order_product->product_id){
+														   echo $producto->name.", ";
+														}
+													}
+												}
+											}
+											?>
+                                        </td>
+                                        <td>
+											<?php foreach ($status as $listar) { ?>
+												<?php if ($listar->id == $list->status): ?>
+												   <span class='<?php echo $listar->labels;?>'><?php echo $listar->name;?></span>
+												<?php endif; ?>
+											<?php } ?>
                                         </td>
                                        
                                         <td style='text-align: center'>
@@ -145,7 +170,9 @@ $(document).ready(function(){
             {"sClass": "registro center", "sWidth": "8%"},
             {"sClass": "registro center", "sWidth": "5%"},
             {"sClass": "registro center", "sWidth": "5%"},
-             {"sClass": "registro center", "sWidth": "5%"},
+            {"sClass": "none", "sWidth": "8%"},
+            {"sClass": "none", "sWidth": "8%"},
+            {"sClass": "registro center", "sWidth": "5%"},
             {"sWidth": "8%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
             {"sWidth": "8%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
 

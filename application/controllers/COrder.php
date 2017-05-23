@@ -12,6 +12,7 @@ class COrder extends CI_Controller {
         $this->load->model('MOrder');
 		$this->load->model('MClient');
 		$this->load->model('MServices');
+		$this->load->model('MProduct');
 		$this->load->model('MFranchises');
 		$this->load->model('MClient');
 		
@@ -22,6 +23,10 @@ class COrder extends CI_Controller {
 		$this->load->view('base');
 		$data['listar'] = $this->MClient->obtener();
 		$data['list_orders'] = $this->MOrder->obtener();
+		$data['list_orders_services'] = $this->MOrder->getServices();
+		$data['list_orders_products'] = $this->MOrder->getProducts();
+		$data['list_serv'] = $this->MServices->obtener();
+		$data['list_prod'] = $this->MProduct->obtener();
 		$data['list_franq'] = $this->MFranchises->obtener();
 		$data['list_client'] = $this->MClient->obtener();
 		$data['status'] = $this->MOrder->obtenerStatus();
@@ -90,7 +95,7 @@ class COrder extends CI_Controller {
 						
 					);
 					
-				//$result = $this->MOrder->insertService($datos2);
+				$result = $this->MOrder->insertService($datos2);
 					
 				}
 			}

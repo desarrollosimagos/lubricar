@@ -58,9 +58,28 @@ class MOrder extends CI_Model {
             return $id;
         
     }
-
     
-    // Metodo publico, forma de insertar los datos
+    //Public method to obtain the orders services
+    public function getServices() {
+        $query = $this->db->get('orders_services');
+
+        if ($query->num_rows() > 0)
+            return $query->result();
+        else
+            return $query->result();
+    }
+    
+    //Public method to obtain the orders products
+    public function getProducts() {
+        $query = $this->db->get('orders_products');
+
+        if ($query->num_rows() > 0)
+            return $query->result();
+        else
+            return $query->result();
+    }
+    
+    // Método público, forma de insertar los datos
     public function insertService($datos) {
         $result = $this->db->where('service_id =', $datos['service_id']);
         $result = $this->db->where('order_id =', $datos['order_id']);
@@ -73,7 +92,7 @@ class MOrder extends CI_Model {
         }
     }
     
-      // Metodo publico, forma de insertar los datos
+      // Método público, forma de insertar los datos
     public function insertProduct($datos) {
         $result = $this->db->where('product_id =', $datos['product_id']);
         $result = $this->db->where('order_id =', $datos['order_id']);
