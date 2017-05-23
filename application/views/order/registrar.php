@@ -190,7 +190,7 @@
             </li>
             
             <li>
-                <a href="<?php echo base_url() ?>orders">Orden de Servicio</a>
+                <a href="<?php echo base_url() ?>order">Orden de Servicio</a>
             </li>
             
             <li class="active">
@@ -984,101 +984,107 @@ $(document).ready(function(){
 	
 
         e.preventDefault();  // Para evitar que se envíe por defecto
+		var servicio0;
 
-		var cantidad = $('#tab_servicio tr').length;
-		var row = cantidad-1;
-
-		if ($('#typeahead_2').val() === '') {
-			
-		  swal("Disculpe,", "para continuar debe introducir un cliente");
-	       $('#typeahead_2').parent('div').addClass('has-error');
-		   
-		}  else if ($('#franchise_id').val() == '0') {
-			
-		  swal("Disculpe,", "para continuar debe seleccionar la franquicia");
-	       $('#franchise_id').parent('div').addClass('has-error');
-		   
-		} else if ($('#vehiculo').val() == '0') {
-			
-		  swal("Disculpe,", "para continuar debe seleccionar el vehiculo");
-	       $('#vehiculo').parent('div').addClass('has-error');
-		   
-		}else if ($('#address').val() == '0') {
-			
-		  swal("Disculpe,", "para continuar debe seleccionar la dirección");
-	       $('#address').parent('div').addClass('has-error');
-		   
-		}else if(row <= 1){
-			
-			swal("Disculpe,", "debe añadir al menos un servicio");
-			
-		}else {
-			var accion = 'add';
-			var data_send;
-			var servicio = "";
-			var producto = "";
-			data_send = new FormData($("#form_order")[0]);
-			var cantidad = $('#tab_servicio tr').length;
-			var cantidad_2 = $('#tab_producto tr').length;
-			var row = cantidad-1;
-			var row_2= cantidad_2-1;
-			
-			if (row > 0 && row_2 >0) {
-
-				$("#tab_servicio tbody tr").each(function () {
-					var servicio0, servicio1, servicio2, servicio3, servicio4;
-					servicio0 = $(this).attr('id');  // Código correlativo del registro en la tabla 
-					servicio1 = $(this).find('td').eq(0).text();
-					servicio2 = $(this).find('td').eq(1).text();
-					servicio3 = $(this).find('td').eq(2).text();
-					servicio4 = $(this).find('td').eq(3).text();
-					
-					
-					servicio = servicio0 + ';' + servicio1 + ';' + servicio2 + ';' + servicio3 + ';' + servicio4 + ';' ;
-					servicio = servicio.substring(0, servicio.length - 1);
-					data_send.append("servicio[]", servicio);
-				
-				});
-				
-				$("#tab_producto tbody tr").each(function () {
-					var producto0,producto1, producto2, producto3, producto4, producto5;
-					producto0 = $(this).attr('id');  // Código correlativo del registro en la tabla 
-					producto1 = $(this).find('td').eq(0).text();
-					producto2 = $(this).find('td').eq(1).text();
-					producto3 = $(this).find('td').eq(2).text();
-					producto4 = $(this).find('td').eq(3).text();
-					producto5 = $(this).find('td').eq(4).text();
-					
-					producto = producto0 + ';' + producto1 + ';' + producto2 + ';' + producto3 + ';' + producto4 + ';' + producto5 + ';' ;
-					producto = producto.substring(0, producto.length - 1);
-					data_send.append("producto[]", producto);
-
-				});
-				
-				var $url = '<?= base_url() ?>COrder/' + accion;
-				$.ajax({
-					url: $url,
-					type: 'POST',
-					cache: false,
-					data: data_send,
-					processData: false,
-					contentType: false,
-					dataType: "html"
-				}).done(function (data) {
-					if (data === '') {
-						swal({ 
-						title: "Registro",
-						 text: "Guardado con exito",
-						  type: "success" 
-						},
-						function(){
-						//  window.location.href = '<?php echo base_url(); ?>order';
-						});
-					} 
-				});
+		// recorriendo la tabla servicio para verificar que tenga datos
+		$("#tab_servicio tbody tr").each(function () {
 			 
+			servicio0 = $(this).find('td').eq(0).text();
 
+		});
+
+		if(servicio0 != 'Ningún dato disponible en esta tabla'){
+			
+			if ($('#typeahead_2').val() === '') {
+				
+			  swal("Disculpe,", "para continuar debe introducir un cliente");
+			   $('#typeahead_2').parent('div').addClass('has-error');
+			   
+			}  else if ($('#franchise_id').val() == '0') {
+				
+			  swal("Disculpe,", "para continuar debe seleccionar la franquicia");
+			   $('#franchise_id').parent('div').addClass('has-error');
+			   
+			} else if ($('#vehiculo').val() == '0') {
+				
+			  swal("Disculpe,", "para continuar debe seleccionar el vehiculo");
+			   $('#vehiculo').parent('div').addClass('has-error');
+			   
+			}else if ($('#address').val() == '0') {
+				
+			  swal("Disculpe,", "para continuar debe seleccionar la dirección");
+			   $('#address').parent('div').addClass('has-error');
+			   
+			}else {
+				var accion = 'add';
+				var data_send;
+				var servicio = "";
+				var producto = "";
+				data_send = new FormData($("#form_order")[0]);
+				var cantidad = $('#tab_servicio tr').length;
+				var cantidad_2 = $('#tab_producto tr').length;
+				var row = cantidad-1;
+				var row_2= cantidad_2-1;
+				
+				if (row > 0 && row_2 >0) {
+	
+					$("#tab_servicio tbody tr").each(function () {
+						var servicio0, servicio1, servicio2, servicio3, servicio4;
+						servicio0 = $(this).attr('id');  // Código correlativo del registro en la tabla 
+						servicio1 = $(this).find('td').eq(0).text();
+						servicio2 = $(this).find('td').eq(1).text();
+						servicio3 = $(this).find('td').eq(2).text();
+						servicio4 = $(this).find('td').eq(3).text();
+						
+						
+						servicio = servicio0 + ';' + servicio1 + ';' + servicio2 + ';' + servicio3 + ';' + servicio4 + ';' ;
+						servicio = servicio.substring(0, servicio.length - 1);
+						data_send.append("servicio[]", servicio);
+					
+					});
+					
+					$("#tab_producto tbody tr").each(function () {
+						var producto0,producto1, producto2, producto3, producto4, producto5;
+						producto0 = $(this).attr('id');  // Código correlativo del registro en la tabla 
+						producto1 = $(this).find('td').eq(0).text();
+						producto2 = $(this).find('td').eq(1).text();
+						producto3 = $(this).find('td').eq(2).text();
+						producto4 = $(this).find('td').eq(3).text();
+						producto5 = $(this).find('td').eq(4).text();
+						
+						producto = producto0 + ';' + producto1 + ';' + producto2 + ';' + producto3 + ';' + producto4 + ';' + producto5 + ';' ;
+						producto = producto.substring(0, producto.length - 1);
+						data_send.append("producto[]", producto);
+	
+					});
+					
+					var $url = '<?= base_url() ?>COrder/' + accion;
+					$.ajax({
+						url: $url,
+						type: 'POST',
+						cache: false,
+						data: data_send,
+						processData: false,
+						contentType: false,
+						dataType: "html"
+					}).done(function (data) {
+						if (data === '') {
+							swal({ 
+							title: "Registro",
+							 text: "Guardado con exito",
+							  type: "success" 
+							},
+							function(){
+							  window.location.href = '<?php echo base_url(); ?>order';
+							});
+						} 
+					});
+				 
+	
+				}
 			}
+		}else{
+				swal("Disculpe,", "debe añadir al menos un servicio");
 		}
         
     });
