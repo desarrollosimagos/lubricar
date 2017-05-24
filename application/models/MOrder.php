@@ -48,6 +48,27 @@ class MOrder extends CI_Model {
 		}
     }
     
+     // Metodo publico, para obtener las direcciones por id
+    public function obtenerServ($id) {
+        $this->db->where('order_id', $id);
+        $query = $this->db->get('orders_services');
+        if ($query->num_rows() > 0)
+            return $query->result();
+        else
+            return $query->result();
+    }
+    
+     // Metodo publico, para obtener las direcciones por id
+    public function obtenerProd($id) {
+        $this->db->where('order_id', $id);
+        $query = $this->db->get('orders_products');
+        if ($query->num_rows() > 0)
+            return $query->result();
+        else
+            return $query->result();
+    }
+    
+    
     
     // Public method, to insert the data of orders
     public function insert($datos) {
@@ -80,7 +101,7 @@ class MOrder extends CI_Model {
     }
     
     // Método público, forma de insertar los datos
-    public function insertService($datos) {
+    public function insertServ($datos) {
         $result = $this->db->where('service_id =', $datos['service_id']);
         $result = $this->db->where('order_id =', $datos['order_id']);
         $result = $this->db->get('orders_services');
@@ -93,7 +114,7 @@ class MOrder extends CI_Model {
     }
     
       // Método público, forma de insertar los datos
-    public function insertProduct($datos) {
+    public function insertProd($datos) {
         $result = $this->db->where('product_id =', $datos['product_id']);
         $result = $this->db->where('order_id =', $datos['order_id']);
         $result = $this->db->get('orders_products');
@@ -104,6 +125,60 @@ class MOrder extends CI_Model {
             return $result;
         }
     }
+    
+        // Metodo publico, forma de actualizar los datos
+    public function update($datos) {
+        $result = $this->db->where('id', $datos['id']);
+        $result = $this->db->update("orders", $datos);
+        return $result;        
+    }
+    
+      // Metodo publico, forma de actualizar los datos
+    public function updateServ($datos) {
+        
+        $result = $this->db->where('id', $datos['id']);
+        $result = $this->db->where('order_id', $datos['order_id']);
+        $result = $this->db->update('orders_services', $datos);
+        return $result;
+        
+    }
+    
+      // Metodo publico, forma de actualizar los datos
+    public function updateProdu($datos) {
+        
+        $result = $this->db->where('id', $datos['id']);
+        $result = $this->db->where('order_id', $datos['order_id']);
+        $result = $this->db->update('orders_products', $datos);
+        return $result;
+        
+    }
+
+    
+    // Metodo publico, para eliminar un registro 
+     public function deleteServ($id) {
+        
+        $result = $this->db->delete('orders_services', array('id' => $id));
+        return $result;
+    }
+    
+     // Metodo publico, para eliminar un registro 
+     public function deleteProd($id) {
+        
+        $result = $this->db->delete('orders_products', array('id' => $id));
+        return $result;
+    }
+    
+    
+    // Metodo publico, para eliminar un registro 
+     public function delete($id) {
+        
+        $result = $this->db->delete('orders_services', array('order_id' => $id));
+        $result = $this->db->delete('orders_products', array('order_id' => $id));
+        $result = $this->db->delete('orders', array('id' => $id));
+       
+        return $result;
+    }
+
 
 }
 ?>

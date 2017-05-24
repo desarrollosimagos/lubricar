@@ -85,9 +85,9 @@
                         <input id="price" name="price" class="form-control" type="text" maxlength="100">
                         <label>Impuesto</label>
                         <input id="impuesto" name="impuesto" class="form-control" type="text" maxlength="150" >
-                        <input id="id_service"  class="form-control" type="hidden" >
-                        <input id="accion"  class="form-control" type="hidden" >
-                        <input id="posicion"  class="form-control" type="hidden" >
+                        <input id="id_service"  class="form-control" type="text" >
+                        <input id="accion"  class="form-control" type="text" >
+                        <input id="posicion"  class="form-control" type="text" >
                     </div>
                 </form>
             </div>
@@ -117,9 +117,9 @@
                         <input id="quantity1" name="quantity1" class="form-control" type="text" maxlength="100">
                         <label>Impuesto</label>
                         <input id="impuesto1" name="impuesto1" class="form-control" type="text" maxlength="150" >
-                        <input id="accion1"  class="form-control" type="hidden" >
-                        <input id="posicion1"  class="form-control" type="hidden" >
-                        <input id="id_product"  class="form-control" type="hidden" >
+                        <input id="accion1"  class="form-control" type="text" >
+                        <input id="posicion1"  class="form-control" type="text" >
+                        <input id="id_product"  class="form-control" type="text" >
                     </div>
                 </form>
             </div>
@@ -264,11 +264,22 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-
+                                                        <?php foreach ($listar_serv as $serv) { ?>
+                                                            <tr id="<?php echo $serv->id; ?>">
+                                                                <td style='text-align: center' id="<?php echo $serv->service_id; ?>"><?php foreach ($service as $service) { if ($service->id == $serv->service_id){echo $service->name;}};?></td>
+                                                                <td style='text-align: center'><?php echo $serv->sub_total; ?></td>
+                                                                <td style='text-align: center'><?php echo $serv->impuesto * 100 / $serv->sub_total; ?></td>
+                                                                <td style='text-align: center'><?php echo $serv->sub_total; ?></td>
+                                                                <td style='text-align: center'><a style="color: #1ab394"class='editar' id="<?php echo $serv->id; ?>"><i class='fa fa-edit fa-2x'></i></a></td>
+                                                                <td style='text-align: center'><a  style="color: #1ab394" class='quitar' id="<?php echo $serv->id; ?>"><i class='fa fa-trash fa-2x'></i></a></td>
+                                                            </tr>
+                                                        <?php } ?>
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
+                                        <!--Campo para almacenar los códigos de los registros a desasociar-->
+                                        <input type="hidden" id="codigos_des1" name="codigos_des1" placeholder="Códigos">
                                     </div>
                                     <div id="tab-2" class="tab-pane">
                                         <div class="panel-body">
@@ -287,12 +298,25 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-
+                                                        <?php foreach ($listar_prod as $prod) { ?>
+                                                            <tr id="<?php echo $prod->id; ?>">
+                                                                <td style='text-align: center' id="<?php echo $prod->product_id; ?>"><?php foreach ($product as $product) { if ($product->id == $prod->product_id){ echo $product->name;}};?></td>
+                                                                <td style='text-align: center'><?php echo $prod->sub_total; ?></td>
+                                                                <td style='text-align: center'><?php echo $prod->quantity; ?></td>
+                                                                <td style='text-align: center'><?php echo $prod->impuesto * 100 / $prod->sub_total; ?></td>
+                                                                <td style='text-align: center'><?php echo $prod->sub_total * $prod->quantity ; ?></td>
+                                                                <td style='text-align: center'><a style="color: #1ab394"class='editar' id="<?php echo $prod->id; ?>"><i class='fa fa-edit fa-2x'></i></a></td>
+                                                                <td style='text-align: center'><a  style="color: #1ab394" class='quitar' id="<?php echo $prod->id; ?>"><i class='fa fa-trash fa-2x'></i></a></td>
+                                                            </tr>
+                                                        <?php } ?>
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
+                                        <!--Campo para almacenar los códigos de los registros a desasociar-->
+                                    <input type="hidden" id="codigos_des2" name="codigos_des2" placeholder="Códigos">
                                     </div>
+                                    
                                 </div>
 
                             </div>
@@ -327,12 +351,16 @@
                         </div>
                         <div class="form-group" >
                             <div class="col-sm-4 col-sm-offset-2">
+                                 <input class="form-control"  type='hidden' id="id" name="id" value="<?php echo $id ?>"/>
                                 <input id="id_cliente" type="hidden" value="<?php echo $editar[0]->customer_id ?>"/>
                                 <input id="id_franchise" type="hidden" value="<?php echo $editar[0]->franchise_id ?>"/>
                                 <input id="id_franchise" type="hidden" value="<?php echo $editar[0]->franchise_id ?>"/>
                                 <input id="id_vehiculo" type="hidden" value="<?php echo $editar[0]->vehicle_id ?>"/>
                                 <input id="id_address" type="hidden" value="<?php echo $editar[0]->address_service_id ?>"/>
                                 <input id="id_status" type="hidden" value="<?php echo $editar[0]->status ?>"/>
+                                <input id="edit_sub_total" type="hidden" value="<?php echo $editar[0]->sub_total ?>"/>
+                                <input id="edit_total" type="hidden" value="<?php echo $editar[0]->total ?>"/>
+                                <input id="edit_iva" type="hidden" value="<?php echo $editar[0]->impuesto ?>"/>
                                 <input type="hidden" id="sub_total" name="sub_total" value="0">
                                 <input type="hidden" id="iva_total" name="iva_total"  value="0">
                                 <input type="hidden" id="total" name="total"  value="0">
@@ -354,13 +382,17 @@
                 $(this).parent('div').removeClass('has-error');
             }
         });
-
+        
+        
+         
         $("#codcliente").val($("#id_cliente").val());
         $("#franchise_id").select2('val', $("#id_franchise").val());
         $("#vehiculo").select2('val', $("#id_vehiculo").val());
         $("#address").select2('val', $("#id_address").val());
         $("#status").select2('val',$("#id_status").val());
-
+        $("#span_sub_total").text($("#edit_sub_total").val());
+        $("#span_total").text($("#edit_total").val());
+        $("#span_iva").text($("#edit_iva").val());
 
         $('#year').datepicker({
 
@@ -591,22 +623,23 @@
 
             });
 
-            if (id_service === servicio0) {
-                swal("Disculpe,", "el servicio se encuentra añadido", 'warning');
-                $("#modal_servicio").modal('hide');
-                $("#service_id").val('');
-                $("#price").val('');
-                $("#impuesto").val('');
-                $('#posicion').val('');
-                $('#accion').val('');
-            } else {
-                if (accion === 'Registrar') {
+            if (accion === 'Registrar') {
+
+                 if (id_service === servicio0) {
+                    swal("Disculpe,", "el servicio se encuentra añadido", 'warning');
+                    $("#modal_servicio").modal('hide');
+                    $("#service_id").val('');
+                    $("#price").val('');
+                    $("#impuesto").val('');
+                    $('#posicion').val('');
+                    $('#accion').val('');
+                } else {
 
                     if (service !== '' & price !== '' & impuesto !== '') {
 
                         var i = table.row.add([service, price, impuesto, price, botonEdit, botonQuitar]).draw();
                         table.rows(i).nodes().to$().attr("id", id_service);
-
+                           
                         // Ejecución de los cálculos de la factura
                         calculos(subtotal(), iva_total());  // Cálculo del subtotal, IVA y Total
 
@@ -628,35 +661,37 @@
                                     //window.location.href = '<?php echo base_url(); ?>clients';
                                 });
                     }
+                }
 
-                } else if (accion === 'Editar') {
-
-
-                    if (service !== '' & price !== '' & impuesto !== '') {
+            } else if (accion === 'Editar') {
 
 
-                        var j = table.row(posi).data([service, price, impuesto, price, botonEdit, botonQuitar]).draw();
-                        table.rows(j).nodes().to$().attr("id", id_service);
+                if (service !== '' & price !== '' & impuesto !== '') {
 
-                        $("#modal_servicio").modal('hide');
-                        $("#service_id").val('');
-                        $("#price").val('');
-                        $("#impuesto").val('');
-                        $('#posicion').val('');
-                        $('#accion').val('');
 
-                    } else {
-                        swal({
-                            title: "Disculpe,",
-                            text: "No se admite campos vacios",
-                            type: "warning"
-                        },
-                                function () {
-                                    //window.location.href = '<?php echo base_url(); ?>clients';
-                                });
-                    }
+                    var j = table.row(posi).data([service, price, impuesto, price, botonEdit, botonQuitar]).draw();
+                    
+                    // Ejecución de los cálculos de la factura
+                    calculos(subtotal(), iva_total());  // Cálculo del subtotal, IVA y Total
+                    $("#modal_servicio").modal('hide');
+                    $("#service_id").val('');
+                    $("#price").val('');
+                    $("#impuesto").val('');
+                    $('#posicion').val('');
+                    $('#accion').val('');
+
+                } else {
+                    swal({
+                        title: "Disculpe,",
+                        text: "No se admite campos vacios",
+                        type: "warning"
+                    },
+                            function () {
+                                //window.location.href = '<?php echo base_url(); ?>clients';
+                            });
                 }
             }
+            
         });
 
 
@@ -744,19 +779,21 @@
 
 
             });
-            if (id_producto === producto0) {
+            
 
-                swal("Disculpe,", "el producto se encuentra añadido", 'warning');
-                $("#modal_producto").modal('hide');
-                $("#product_id").val('');
-                $("#quantity1").val('');
-                $("#price1").val('');
-                $('#impuesto1').val('');
-                $('#posicion1').val('');
-                $('#accion1').val('');
-            } else {
+            if (accion === 'Registrar') {
 
-                if (accion === 'Registrar') {
+                if (id_producto === producto0) {
+
+                    swal("Disculpe,", "el producto se encuentra añadido", 'warning');
+                    $("#modal_producto").modal('hide');
+                    $("#product_id").val('');
+                    $("#quantity1").val('');
+                    $("#price1").val('');
+                    $('#impuesto1').val('');
+                    $('#posicion1').val('');
+                    $('#accion1').val('');
+                } else {
 
                     if (producto !== '' & cantidad !== '' & precio !== '' & impuesto !== '') {
 
@@ -788,47 +825,62 @@
 
                     }
 
+                }
 
 
-
-                } else if (accion === 'Editar') {
-
-
-                    if (producto !== '' & cantidad !== '' & precio !== '' & impuesto !== '') {
+            } else if (accion === 'Editar') {
 
 
-                        var j = table.row(posi).data([producto, precio, cantidad, impuesto, importe, botonEdit, botonQuitar]).draw();
-                        table.rows(j).nodes().to$().attr("id", id_producto);
+                if (producto !== '' & cantidad !== '' & precio !== '' & impuesto !== '') {
 
-                        $("#modal_producto").modal('hide');
-                        $("#product_id").val('');
-                        $("#quantity1").val('');
-                        $("#price1").val('');
-                        $('#impuesto1').val('');
-                        $('#posicion1').val('');
-                        $('#accion1').val('');
 
-                    } else {
-                        swal({
-                            title: "Disculpe,",
-                            text: "No se admite campos vacios",
-                            type: "warning"
-                        },
-                                function () {
-                                    //window.location.href = '<?php echo base_url(); ?>clients';
-                                });
+                    var j = table.row(posi).data([producto, precio, cantidad, impuesto, importe, botonEdit, botonQuitar]).draw();
+                   
+                    // Ejecución de los cálculos de la factura
+                    calculos(subtotal(), iva_total());  // Cálculo del subtotal, IVA y Total
+                    $("#modal_producto").modal('hide');
+                    $("#product_id").val('');
+                    $("#quantity1").val('');
+                    $("#price1").val('');
+                    $('#impuesto1').val('');
+                    $('#posicion1').val('');
+                    $('#accion1').val('');
 
-                    }
-
+                } else {
+                    swal({
+                        title: "Disculpe,",
+                        text: "No se admite campos vacios",
+                        type: "warning"
+                    },
+                            function () {
+                                //window.location.href = '<?php echo base_url(); ?>clients';
+                            });
 
                 }
+
+
             }
+
 
         });
 
         //metodo para eliminar un registro de la tabla
         $("table#tab_servicio").on('click', 'a.quitar', function () {
+            
+            var cod_reg = '';
 
+            if ($(this).attr('id') !== undefined) {
+
+                cod_reg = $(this).attr('id');
+
+
+                if ($("#codigos_des1").val() === '') {
+                    $("#codigos_des1").val(cod_reg);
+                } else {
+                    $("#codigos_des1").val($("#codigos_des1").val() + ',' + cod_reg);
+                }
+
+            }
 
             var aPos = $("table#tab_servicio").dataTable().fnGetPosition(this.parentNode.parentNode);
             $("table#tab_servicio").dataTable().fnDeleteRow(aPos);
@@ -841,6 +893,21 @@
 
         //metodo para eliminar un registro de la tabla
         $("table#tab_producto").on('click', 'a.quitar', function () {
+            
+            var cod_reg = '';
+            
+            if ($(this).attr('id') !== undefined) {
+
+                cod_reg = $(this).attr('id');
+                //alert(cod_reg);
+
+                if ($("#codigos_des2").val() === '') {
+                    $("#codigos_des2").val(cod_reg);
+                } else {
+                    $("#codigos_des2").val($("#codigos_des2").val() + ',' + cod_reg);
+                }
+
+            }
 
             var aPos = $("table#tab_producto").dataTable().fnGetPosition(this.parentNode.parentNode);
             $("table#tab_producto").dataTable().fnDeleteRow(aPos);
@@ -855,8 +922,6 @@
             url = '<?php echo base_url() ?>order/';
             window.location = url;
         });
-
-
 
 
 
@@ -913,101 +978,105 @@
 
             e.preventDefault();  // Para evitar que se envíe por defecto
 
-            var cantidad = $('#tab_servicio tr').length;
-            var row = cantidad - 1;
+             // recorriendo la tabla servicio para verificar que tenga datos
+            $("#tab_servicio tbody tr").each(function () {
 
-            if ($('#typeahead_2').val() === '') {
+                datos = $(this).find('td').eq(0).text();
 
-                swal("Disculpe,", "para continuar debe introducir un cliente");
-                $('#typeahead_2').parent('div').addClass('has-error');
+            });
 
-            } else if ($('#franchise_id').val() == '0') {
-
-                swal("Disculpe,", "para continuar debe seleccionar la franquicia");
-                $('#franchise_id').parent('div').addClass('has-error');
-
-            } else if ($('#vehiculo').val() == '0') {
-
-                swal("Disculpe,", "para continuar debe seleccionar el vehiculo");
-                $('#vehiculo').parent('div').addClass('has-error');
-
-            } else if ($('#address').val() == '0') {
-
-                swal("Disculpe,", "para continuar debe seleccionar la dirección");
-                $('#address').parent('div').addClass('has-error');
-
-            } else if (row <= 1) {
-
+            if (datos == 'Ningún dato disponible en esta tabla') {
                 swal("Disculpe,", "debe añadir al menos un servicio");
 
+
             } else {
-                var accion = 'add';
-                var data_send;
-                var servicio = "";
-                var producto = "";
-                data_send = new FormData($("#form_order")[0]);
-                var cantidad = $('#tab_servicio tr').length;
-                var cantidad_2 = $('#tab_producto tr').length;
-                var row = cantidad - 1;
-                var row_2 = cantidad_2 - 1;
 
-                if (row > 0 && row_2 > 0) {
+                if ($('#franchise_id').val() == '0') {
 
-                    $("#tab_servicio tbody tr").each(function () {
-                        var servicio0, servicio1, servicio2, servicio3, servicio4;
-                        servicio0 = $(this).attr('id');  // Código correlativo del registro en la tabla 
-                        servicio1 = $(this).find('td').eq(0).text();
-                        servicio2 = $(this).find('td').eq(1).text();
-                        servicio3 = $(this).find('td').eq(2).text();
-                        servicio4 = $(this).find('td').eq(3).text();
+                    swal("Disculpe,", "para continuar debe seleccionar la franquicia");
+                    $('#franchise_id').parent('div').addClass('has-error');
 
+                } else if ($('#vehiculo').val() == '0') {
 
-                        servicio = servicio0 + ';' + servicio1 + ';' + servicio2 + ';' + servicio3 + ';' + servicio4 + ';';
-                        servicio = servicio.substring(0, servicio.length - 1);
-                        data_send.append("servicio[]", servicio);
+                    swal("Disculpe,", "para continuar debe seleccionar el vehiculo");
+                    $('#vehiculo').parent('div').addClass('has-error');
 
-                    });
+                } else if ($('#address').val() == '0') {
 
-                    $("#tab_producto tbody tr").each(function () {
-                        var producto0, producto1, producto2, producto3, producto4, producto5;
-                        producto0 = $(this).attr('id');  // Código correlativo del registro en la tabla 
-                        producto1 = $(this).find('td').eq(0).text();
-                        producto2 = $(this).find('td').eq(1).text();
-                        producto3 = $(this).find('td').eq(2).text();
-                        producto4 = $(this).find('td').eq(3).text();
-                        producto5 = $(this).find('td').eq(4).text();
+                    swal("Disculpe,", "para continuar debe seleccionar la dirección");
+                    $('#address').parent('div').addClass('has-error');
 
-                        producto = producto0 + ';' + producto1 + ';' + producto2 + ';' + producto3 + ';' + producto4 + ';' + producto5 + ';';
-                        producto = producto.substring(0, producto.length - 1);
-                        data_send.append("producto[]", producto);
+                } else {
+                    var accion = 'update';
+                    var data_send;
+                    var servicio = "";
+                    var producto = "";
+                    data_send = new FormData($("#form_order")[0]);
+                    var cantidad = $('#tab_servicio tr').length;
+                    var cantidad_2 = $('#tab_producto tr').length;
+                    var row = cantidad - 1;
+                    var row_2 = cantidad_2 - 1;
 
-                    });
+                    if (row > 0 && row_2 > 0) {
 
-                    var $url = '<?= base_url() ?>COrder/' + accion;
-                    $.ajax({
-                        url: $url,
-                        type: 'POST',
-                        cache: false,
-                        data: data_send,
-                        processData: false,
-                        contentType: false,
-                        dataType: "html"
-                    }).done(function (data) {
-                        if (data === '') {
-                            swal({
-                                title: "Registro",
-                                text: "Guardado con exito",
-                                type: "success"
-                            },
-                                    function () {
-                                        //  window.location.href = '<?php echo base_url(); ?>order';
-                                    });
-                        }
-                    });
+                        $("#tab_servicio tbody tr").each(function () {
+                            var servicio0,servicio01, servicio1, servicio2, servicio3, servicio4;
+                            servicio0 = $(this).attr('id');  // id order services 
+                            servicio01 = $(this).find('td').eq(0).attr('id'); // id services
+                            servicio1 = $(this).find('td').eq(0).text();
+                            servicio2 = $(this).find('td').eq(1).text();
+                            servicio3 = $(this).find('td').eq(2).text();
+                            servicio4 = $(this).find('td').eq(3).text();
 
 
+                            servicio = servicio0 + ';' + servicio01 + ';' + servicio1 + ';' + servicio2 + ';' + servicio3 + ';' + servicio4 + ';';
+                            servicio = servicio.substring(0, servicio.length - 1);
+                            data_send.append("servicio[]", servicio);
+
+                        });
+
+                        $("#tab_producto tbody tr").each(function () {
+                            var producto0,producto01, producto1, producto2, producto3, producto4, producto5;
+                            producto0 = $(this).attr('id');  // id order_product
+                            producto01 = $(this).find('td').eq(0).attr('id'); //id product
+                            producto1 = $(this).find('td').eq(0).text();
+                            producto2 = $(this).find('td').eq(1).text();
+                            producto3 = $(this).find('td').eq(2).text();
+                            producto4 = $(this).find('td').eq(3).text();
+                            producto5 = $(this).find('td').eq(4).text();
+
+                            producto = producto0 + ';' + producto01+ ';'  + producto1 + ';' + producto2 + ';' + producto3 + ';' + producto4 + ';' + producto5 + ';';
+                            producto = producto.substring(0, producto.length - 1);
+                            data_send.append("producto[]", producto);
+
+                        });
+
+                        var $url = '<?= base_url() ?>COrder/' + accion;
+                        $.ajax({
+                            url: $url,
+                            type: 'POST',
+                            cache: false,
+                            data: data_send,
+                            processData: false,
+                            contentType: false,
+                            dataType: "html"
+                        }).done(function (data) {
+                            if (data === '') {
+                                swal({
+                                    title: "Registro",
+                                    text: "Actualizado con exito",
+                                    type: "success"
+                                },
+                                        function () {
+                                            //  window.location.href = '<?php echo base_url(); ?>order';
+                                        });
+                            }
+                        });
+
+
+                    }
                 }
-            }
+            } //else
 
         });
     });
