@@ -332,27 +332,33 @@
                         </div>
 
                         <div class="col-lg-4"></div>
-                        <div class="col-lg-4"></div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-6">
                             <div class="ibox float-e-margins" style="margin-top: 5%">
                                 <div class="ibox-title">
                                     <h5>Total Orden de Servicio</h5>
                                 </div>
                                 <div class="ibox-content">
                                     <div class="row">
-
-                                        <div class="col-xs-4">
-                                            <small class="stats-label">SubTotal</small>
-                                            <h4><span id="span_sub_total">0</span></h4>
-                                        </div>
-
-                                        <div class="col-xs-4">
-                                            <small class="stats-label">Impuesto</small>
-                                            <h4><span id="span_iva">0</span></h4>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <small class="stats-label">Total</small>
-                                            <h4><span id="span_total">0</span></h4>
+                                        <div class="col-xs-12">
+                                            <li class="list-group-item ">
+                                                <span class="pull-right">
+                                                    <h4><span id="span_sub_total">0</span></h4>
+                                                </span>
+                                                SubTotal
+                                            </li>
+                                            <li class="list-group-item ">
+                                                <span class="pull-right">
+                                                    <h4><span id="span_iva">0</span></h4>
+                                                </span>
+                                                Impuesto
+                                            </li>
+                                            <li class="list-group-item ">
+                                                <span class="pull-right">
+                                                    <h4><span id="span_total">0</span></h4>
+                                                </span>
+                                                Total
+                                            </li>
                                         </div>
                                     </div>
                                 </div>
