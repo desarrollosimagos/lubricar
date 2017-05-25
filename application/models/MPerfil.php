@@ -72,6 +72,14 @@ class MPerfil extends CI_Model {
     public function insert_action($datos) {
 		$result = $this->db->insert("profile_actions", $datos);
     }
+    
+    // Public method to insert the actions asociated
+    public function update_action($datos) {
+		$this->db->where('profile_id', $datos['profile_id']);
+		$this->db->where('action_id', $datos['action_id']);
+		$result = $this->db->update('profile_actions', $datos);
+		return $result;
+    }
 
     // Public method to obtain the profile by id
     public function obtenerPerfiles($id) {
