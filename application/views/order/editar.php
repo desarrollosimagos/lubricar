@@ -85,9 +85,9 @@
                         <input id="price" name="price" class="form-control" type="text" maxlength="100">
                         <label>Impuesto</label>
                         <input id="impuesto" name="impuesto" class="form-control" type="text" maxlength="150" >
-                        <input id="id_service"  class="form-control" type="text" >
-                        <input id="accion"  class="form-control" type="text" >
-                        <input id="posicion"  class="form-control" type="text" >
+                        <input id="id_service"  class="form-control" type="hidden" >
+                        <input id="accion"  class="form-control" type="hidden" >
+                        <input id="posicion"  class="form-control" type="hidden" >
                     </div>
                 </form>
             </div>
@@ -117,9 +117,9 @@
                         <input id="quantity1" name="quantity1" class="form-control" type="text" maxlength="100">
                         <label>Impuesto</label>
                         <input id="impuesto1" name="impuesto1" class="form-control" type="text" maxlength="150" >
-                        <input id="accion1"  class="form-control" type="text" >
-                        <input id="posicion1"  class="form-control" type="text" >
-                        <input id="id_product"  class="form-control" type="text" >
+                        <input id="accion1"  class="form-control" type="hidden" >
+                        <input id="posicion1"  class="form-control" type="hidden" >
+                        <input id="id_product"  class="form-control" type="hidden" >
                     </div>
                 </form>
             </div>
