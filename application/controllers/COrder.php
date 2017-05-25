@@ -92,7 +92,7 @@ class COrder extends CI_Controller {
                         'total' => $total,
                     );
 
-                    $result = $this->MOrder->insertService($datos2);
+                    $result = $this->MOrder->insertServ($datos2);
                 }
             }
 
@@ -125,7 +125,7 @@ class COrder extends CI_Controller {
                     );
 
 
-                    $result = $this->MOrder->insertProduct($datos);
+                    $result = $this->MOrder->insertProd($datos);
                 }
             }
         }

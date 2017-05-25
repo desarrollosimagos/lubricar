@@ -48,7 +48,7 @@ class MOrder extends CI_Model {
 		}
     }
     
-     // Metodo publico, para obtener las direcciones por id
+     // Metodo publico, para obtener las order_service por id
     public function obtenerServ($id) {
         $this->db->where('order_id', $id);
         $query = $this->db->get('orders_services');
@@ -58,7 +58,7 @@ class MOrder extends CI_Model {
             return $query->result();
     }
     
-     // Metodo publico, para obtener las direcciones por id
+     // Metodo publico, para obtener las order_product por id
     public function obtenerProd($id) {
         $this->db->where('order_id', $id);
         $query = $this->db->get('orders_products');
@@ -152,6 +152,18 @@ class MOrder extends CI_Model {
         return $result;
         
     }
+
+	// Metodo publico, para obtener los order por id
+    public function obtenerOrder($id) {
+        
+        $query = $this->db->from('orders or');
+        //$query = $this->db->join('orders_services os', 'de.delito_id=dl.id', 'left');
+        //$query = $this->db->join('orders_products op', 'de.estado_id=e.cod_estado', 'left');
+        $query = $this->db->where('or.id=', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
 
     
     // Metodo publico, para eliminar un registro 
