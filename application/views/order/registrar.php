@@ -1100,7 +1100,7 @@
                 switch (index2)
                 {
                     // Leer el campo de importe
-                    case 3:
+                    case 4:
                         importe2 = parseFloat($(this).text());
                         break;
                 }
@@ -1188,12 +1188,12 @@
             st = 0;
         }
 
-        $("#sub_total").val(st);  // Cargamos la base imponible en el campo oculto para guardarlo en base de datos
-        $("#span_sub_total").text(st.toFixed(2));  // Cargamos la base imponible en la página sólo para visualización
+        $("#sub_total").val(parseFloat(st));  // Cargamos la base imponible en el campo oculto para guardarlo en base de datos
+        $("#span_sub_total").text(parseFloat(st).toFixed(2));  // Cargamos la base imponible en la página sólo para visualización
 
         // Cálculo del IVA
-        $("#iva_total").val(iva);
-        $("#span_iva").text(iva.toFixed(2));
+        $("#iva_total").val(parseFloat(iva));
+        $("#span_iva").text(parseFloat(iva).toFixed(2));
 
         // Cálculo del Total
         $("#total").val((parseFloat($("#sub_total").val()) + parseFloat($("#iva_total").val())).toFixed(2));  // Cargamos el total en el campo oculto para guardarlo en base de datos

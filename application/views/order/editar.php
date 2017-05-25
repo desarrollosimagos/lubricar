@@ -312,10 +312,10 @@
                                                                         echo $prod2->name."<br>";
                                                                     }
                                                                 }?></td>
-                                                                <td style='text-align: center'><?php echo $prod->sub_total; ?></td>
+                                                                <td style='text-align: center'><?php echo $prod->unit_price; ?></td>
                                                                 <td style='text-align: center'><?php echo $prod->quantity; ?></td>
                                                                 <td style='text-align: center'><?php echo $prod->impuesto * 100 / $prod->sub_total; ?></td>
-                                                                <td style='text-align: center'><?php echo $prod->sub_total * $prod->quantity ; ?></td>
+                                                                <td style='text-align: center'><?php echo $prod->unit_price * $prod->quantity ; ?></td>
                                                                 <td style='text-align: center'><a style="color: #1ab394"class='editar' id="<?php echo $prod->id; ?>"><i class='fa fa-edit fa-2x'></i></a></td>
                                                                 <td style='text-align: center'><a  style="color: #1ab394" class='quitar' id="<?php echo $prod->id; ?>"><i class='fa fa-trash fa-2x'></i></a></td>
                                                             </tr>
@@ -1130,7 +1130,7 @@
                 switch (index2)
                 {
                     // Leer el campo de importe
-                    case 3:
+                    case 4:
                         importe2 = parseFloat($(this).text());
                         break;
                 }
@@ -1218,12 +1218,12 @@
             st = 0;
         }
 
-        $("#sub_total").val(st);  // Cargamos la base imponible en el campo oculto para guardarlo en base de datos
-        $("#span_sub_total").text(st.toFixed(2));  // Cargamos la base imponible en la página sólo para visualización
+        $("#sub_total").val(parseFloat(st));  // Cargamos la base imponible en el campo oculto para guardarlo en base de datos
+        $("#span_sub_total").text(parseFloat(st).toFixed(2));  // Cargamos la base imponible en la página sólo para visualización
 
         // Cálculo del IVA
-        $("#iva_total").val(iva);
-        $("#span_iva").text(iva.toFixed(2));
+        $("#iva_total").val(parseFloat(iva));
+        $("#span_iva").text(parseFloat(iva).toFixed(2));
 
         // Cálculo del Total
         $("#total").val((parseFloat($("#sub_total").val()) + parseFloat($("#iva_total").val())).toFixed(2));  // Cargamos el total en el campo oculto para guardarlo en base de datos
