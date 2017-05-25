@@ -144,7 +144,7 @@ class MOrder extends CI_Model {
     }
     
       // Metodo publico, forma de actualizar los datos
-    public function updateProdu($datos) {
+    public function updateProd($datos) {
         
         $result = $this->db->where('id', $datos['id']);
         $result = $this->db->where('order_id', $datos['order_id']);

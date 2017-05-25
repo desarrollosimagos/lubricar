@@ -265,8 +265,13 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php foreach ($listar_serv as $serv) { ?>
-                                                            <tr id="<?php echo $serv->id; ?>">
-                                                                <td style='text-align: center' id="<?php echo $serv->service_id; ?>"><?php foreach ($service as $service) { if ($service->id == $serv->service_id){echo $service->name;}};?></td>
+                                                            <tr id="<?php echo $serv->service_id; ?>">
+                                                                <td style='text-align: center' id="<?php echo $serv->id; ?>">
+                                                                <?php foreach ($listar_serv2 as $serv2) {
+                                                                    if ($serv->service_id == $serv2->id){
+                                                                        echo $serv2->name."<br>";
+                                                                    }
+                                                                }?></td>
                                                                 <td style='text-align: center'><?php echo $serv->sub_total; ?></td>
                                                                 <td style='text-align: center'><?php echo $serv->impuesto * 100 / $serv->sub_total; ?></td>
                                                                 <td style='text-align: center'><?php echo $serv->sub_total; ?></td>
@@ -299,8 +304,14 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php foreach ($listar_prod as $prod) { ?>
-                                                            <tr id="<?php echo $prod->id; ?>">
-                                                                <td style='text-align: center' id="<?php echo $prod->product_id; ?>"><?php foreach ($product as $product) { if ($product->id == $prod->product_id){ echo $product->name;}};?></td>
+                                                        
+                                                            <tr id="<?php echo $prod->product_id; ?>">
+                                                                <td style='text-align: center' id="<?php echo $prod->id; ?>">
+                                                                <?php foreach ($listar_prod2 as $prod2) {
+                                                                    if ($prod->product_id == $prod2->id){
+                                                                        echo $prod2->name."<br>";
+                                                                    }
+                                                                }?></td>
                                                                 <td style='text-align: center'><?php echo $prod->sub_total; ?></td>
                                                                 <td style='text-align: center'><?php echo $prod->quantity; ?></td>
                                                                 <td style='text-align: center'><?php echo $prod->impuesto * 100 / $prod->sub_total; ?></td>
@@ -323,8 +334,8 @@
                         </div>
 
                         <div class="col-lg-4"></div>
-                        <div class="col-lg-4"></div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-6">
                             <div class="ibox float-e-margins" style="margin-top: 5%">
                                 <div class="ibox-title">
                                     <h5>Total Orden de Servicio</h5>
@@ -332,18 +343,25 @@
                                 <div class="ibox-content">
                                     <div class="row">
 
-                                        <div class="col-xs-4">
-                                            <small class="stats-label">SubTotal</small>
-                                            <h4><span id="span_sub_total">0</span></h4>
-                                        </div>
-
-                                        <div class="col-xs-4">
-                                            <small class="stats-label">Impuesto</small>
-                                            <h4><span id="span_iva">0</span></h4>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <small class="stats-label">Total</small>
-                                            <h4><span id="span_total">0</span></h4>
+                                        <div class="col-xs-12">
+                                            <li class="list-group-item ">
+                                                <span class="pull-right">
+                                                    <h4><span id="span_sub_total">0</span></h4>
+                                                </span>
+                                                SubTotal
+                                            </li>
+                                            <li class="list-group-item ">
+                                                <span class="pull-right">
+                                                    <h4><span id="span_iva">0</span></h4>
+                                                </span>
+                                                Impuesto
+                                            </li>
+                                            <li class="list-group-item ">
+                                                <span class="pull-right">
+                                                    <h4><span id="span_total">0</span></h4>
+                                                </span>
+                                                Total
+                                            </li>
                                         </div>
                                     </div>
                                 </div>
@@ -619,7 +637,7 @@
 
             $("#tab_servicio tbody tr").each(function () {
 
-                servicio0 = $(this).attr('id');  // Código correlativo del registro en la tabla 
+                servicio0 = $(this).attr('id');  // capturamos el id del servicio
 
             });
 
@@ -1068,7 +1086,7 @@
                                     type: "success"
                                 },
                                         function () {
-                                            //  window.location.href = '<?php echo base_url(); ?>order';
+                                            window.location.href = '<?php echo base_url(); ?>order';
                                         });
                             }
                         });

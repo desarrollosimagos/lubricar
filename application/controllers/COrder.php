@@ -142,8 +142,8 @@ class COrder extends CI_Controller {
         $data['listar_address'] = $this->MClient->obtenerAddress($data['editar'][0]->customer_id);
         $data['listar_serv'] = $this->MOrder->obtenerServ($data['id']);
         $data['listar_prod'] = $this->MOrder->obtenerProd($data['id']);
-        $data['service'] = $this->MServices->obtener();
-        $data['product'] = $this->MProduct->obtener();
+        $data['listar_serv2'] = $this->MServices->obtener();    
+        $data['listar_prod2'] = $this->MProduct->obtener();
         $this->load->view('order/editar', $data);
         $this->load->view('footer');
     }
@@ -198,7 +198,7 @@ class COrder extends CI_Controller {
         $result = $this->MOrder->update($datos);
 
         $servicio = $this->input->post('servicio');
-       
+
             foreach ($servicio as $serv) {
 
             $serv = explode(";", $serv);
@@ -206,7 +206,7 @@ class COrder extends CI_Controller {
             if ($serv[1] == 'undefined') {
                 
              
-                $service_id = $serv[1];
+                $service_id = $serv[0];
                 $impuesto = $serv[4];
                 $subtotal = $serv[5];
                 $iva = $subtotal * $impuesto / 100;//calculo del iva por servicio
@@ -228,8 +228,8 @@ class COrder extends CI_Controller {
 
 
                   
-                $id = $serv[0];
-                $service_id = $serv[1];
+                $id = $serv[1];
+                $service_id = $serv[0];
                 $impuesto = $serv[4];
                 $subtotal = $serv[5];
                 $iva = $subtotal * $impuesto / 100;//calculo del iva por servicio
@@ -247,20 +247,20 @@ class COrder extends CI_Controller {
                 $result = $this->MOrder->updateServ($datos2);
             }
         }
-        exit;
+       
         $producto = $this->input->post('producto');
 
             foreach ($producto as $prod) {
 
             $prod = explode(";", $prod);
 
-            if ($prod[0] == 'undefined' && $prod[1] != 'Ningún dato disponible en esta tabla') {
+            if ($prod[1] == 'undefined' && $prod[2] != 'Ningún dato disponible en esta tabla') {
 
                 $product_id = $prod[0];
-                $unit_price = $prod[2];
-                $quantity = $prod[3];
-                $impuesto = $prod[4];
-                $sub_total = $prod[5];
+                $unit_price = $prod[3];
+                $quantity = $prod[4];
+                $impuesto = $prod[5];
+                $sub_total = $prod[6];
                 $iva = $sub_total * $impuesto / 100;//calculo del iva por producto
                 $total = $sub_total + $iva;//calculo del total por producto
 
@@ -275,21 +275,21 @@ class COrder extends CI_Controller {
                     'total' => $total,
                 );
 
-                $result = $this->MClient->insertProd($datos3);
-            }
-
-            if ($prod[1] != 'Ningún dato disponible en esta tabla') {
+                $result = $this->MOrder->insertProd($datos3);
+            }else if ($prod[2] != 'Ningún dato disponible en esta tabla') {
 
                 $product_id = $prod[0];
-                $unit_price = $prod[2];
-                $quantity = $prod[3];
-                $impuesto = $prod[4];
-                $sub_total = $prod[5];
+                $id = $prod[1];
+                $unit_price = $prod[3];
+                $quantity = $prod[4];
+                $impuesto = $prod[5];
+                $sub_total = $prod[6];
                 $iva = $sub_total * $impuesto / 100;//calculo del iva por producto
                 $total = $sub_total + $iva;//calculo del total por producto
 
                 // Insert in orders_product
                 $datos3 = array(
+                    'id' => $id,
                     'order_id' => $this->input->post('id'),
                     'product_id' => $product_id,
                     'quantity' => $quantity,
@@ -299,7 +299,7 @@ class COrder extends CI_Controller {
                     'total' => $total,
                 );
 
-                $result = $this->MClient->updateProd($datos3);
+                $result = $this->MOrder->updateProd($datos3);
             }
         }
     }
