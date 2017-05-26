@@ -68,7 +68,7 @@ if (!function_exists('menu')) {
 			<li>
 				<?php 
 				if($menu->route != ""){
-					echo "<a href='".base_url().$menu->route."'><i class='".$menu->logo."'></i> <span class='nav-label'>".$menu->name."</span><span class='fa arrow'></span></a>";
+					echo "<a href='".base_url().$menu->route."'><i class='".$menu->logo."'></i> <span class='nav-label'>".$menu->name."</span></a>";
 				}else{
 					echo "<a ><i class='".$menu->logo."'></i> <span class='nav-label'>".$menu->name."</span><span class='fa arrow'></span></a>";
 				}
