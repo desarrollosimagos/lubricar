@@ -121,6 +121,7 @@ Class Basicauth
 					'id' => $query->row()->id,
 					'username' => $usuario,
 					'admin' => $query->row()->admin,
+					'profile_id' => $query_profile->row()->id,
 					'profile_name' => $query_profile->row()->name,
 					'acciones' => $acciones,
 					'permisos' => $permisos,

@@ -11,7 +11,7 @@ if (!function_exists('menu')) {
 		$accionespermitidas = array();  // Ids de las acciones (módulos) permitidos para el usuario logueado
 		$rutaspermitidas = array();  // Rutas permitidas para el usuario logueado
 		
-		// Si estamos logueados validamos los controladores y métodos permitidos según el perfil del usuario
+		// Si estamos logueados validamos los controladores y métodos permitidos según el perfil y usuario
 		if(isset($ci->session->userdata['logged_in'])){
 			// Recorrido de los datos del usuario
 			foreach($ci->session->userdata('logged_in') as $clave => $userdata){
@@ -105,4 +105,133 @@ if (!function_exists('menu')) {
         <?php
     }
 
+}
+
+if (!function_exists('validar_acciones')) {
+	// Método para validar la visualización de iconos y botones de registro, edición y borrado
+    function validar_acciones(){
+		$ci = & get_instance();
+		
+		// Si estamos logueados validamos los controladores y métodos permitidos según el perfil y usuario
+		if(isset($ci->session->userdata['logged_in'])){
+			$id_profile = $ci->session->userdata('logged_in')['profile_id'];
+			// Recorrido de los datos del usuario
+			foreach($ci->session->userdata('logged_in') as $clave => $userdata){
+				if($clave == "acciones"){
+					foreach($userdata as $accion){
+						// Si el usuario no es administrador capturamos los datos de la acción haciendo referencia con el indice 0,
+						// de lo contrario no será necesario indicar ningún indice
+						if($ci->session->userdata('logged_in')['admin'] == 0){
+							if($ci->router->class == $accion[0]->class){
+								// Si estamos en el método index hacemos los respectivos bloqueos
+								if($ci->router->method == 'index'){
+									// Consultamos los parámetros en base de datos
+									$query_permissions = $ci->db->get_where('profile_actions', array('profile_id'=>$id_profile, 'action_id'=>$accion[0]->id));
+									$permisos = $query_permissions->row()->parameter_permit;
+									$crear = $permisos[0];
+									$editar = $permisos[1];
+									$borrar = $permisos[2];
+									
+									// Bloquemos los elementos que correspondan
+									if($crear == '0'){
+										echo "<script>
+										 $(document).ready(function () {
+											$('.btn-primary').hide();
+										 });
+										</script>";
+									}
+									if($editar == '0'){
+										echo "<script>
+										 $(document).ready(function () {
+											$('.fa-edit').hide();
+										 });
+										</script>";
+									}
+									if($borrar == '0'){
+										echo "<script>
+										 $(document).ready(function () {
+											$('.fa-trash-o').hide();
+										 });
+										</script>";
+									}
+								}
+							}
+						}else{
+							if($ci->router->class == $accion->class){
+								// Si estamos en el método index hacemos los respectivos bloqueos
+								if($ci->router->method == 'index'){
+									// Consultamos los parámetros en base de datos
+									$query_permissions = $ci->db->get_where('profile_actions', array('profile_id'=>$id_profile, 'action_id'=>$accion->id));
+									$permisos = $query_permissions->row()->parameter_permit;
+									$crear = $permisos[0];
+									$editar = $permisos[1];
+									$borrar = $permisos[2];
+									
+									// Bloquemos los elementos que correspondan
+									if($crear == '0'){
+										echo "<script>
+										 $(document).ready(function () {
+											$('.btn-primary').hide();
+										 });
+										</script>";
+									}
+									if($editar == '0'){
+										echo "<script>
+										 $(document).ready(function () {
+											$('.fa-edit').hide();
+										 });
+										</script>";
+									}
+									if($borrar == '0'){
+										echo "<script>
+										 $(document).ready(function () {
+											$('.fa-trash-o').hide();
+										 });
+										</script>";
+									}
+								}
+							}
+						}
+					}
+				}else if($clave == "permisos"){
+					foreach($userdata as $permiso){
+						if($ci->router->class == $permiso[0]->class){
+							// Si estamos en el método index hacemos los respectivos bloqueos
+							if($ci->router->method == 'index'){
+								// Consultamos los parámetros en base de datos
+								$query_permissions = $ci->db->get_where('permissions', array('profile_id'=>$id_profile, 'action_id'=>$permiso[0]->id));
+								$permisos = $query_permissions->row()->parameter_permit;
+								$crear = $permisos[0];
+								$editar = $permisos[1];
+								$borrar = $permisos[2];
+								
+								// Bloquemos los elementos que correspondan
+								if($crear == '0'){
+									echo "<script>
+									 $(document).ready(function () {
+										$('.btn-primary').hide();
+									 });
+									</script>";
+								}
+								if($editar == '0'){
+									echo "<script>
+									 $(document).ready(function () {
+										$('.fa-edit').hide();
+									 });
+									</script>";
+								}
+								if($borrar == '0'){
+									echo "<script>
+									 $(document).ready(function () {
+										$('.fa-trash-o').hide();
+									 });
+									</script>";
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
