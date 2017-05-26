@@ -110,6 +110,72 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-sm-2 control-label" ></label>
+							<div class="col-sm-10">
+								<!--Tab de acciones-->
+								<div class="tabs-container">
+									<ul class="nav nav-tabs">
+										<li class="active"><a data-toggle="tab" href="#tab-1">Asignar permisos</a></li>
+										<!--<li class=""><a data-toggle="tab" href="#tab-2">Productos</a></li>-->
+									</ul>
+									<div class="tab-content">
+										<div id="tab-1" class="tab-pane active">
+											<div class="panel-body">
+											  <!--<button  class="btn btn-w-m btn-primary" id="i_new_line"><i class="fa fa-plus"></i>&nbsp;Agregar Acción</button>-->
+												 <div class="table-responsive">
+													<table style="width: 100%" class="table dataTable table-striped table-bordered dt-responsive jambo_table bulk_action" id="tab_acciones">
+														<thead>
+														<tr>
+															<th>Item</th>
+															<th>Acción</th>
+															<th>Crear</th>
+															<th>Editar</th>
+															<th>Eliminar</th>
+														</tr>
+														</thead>
+														<tbody>
+															<?php 
+															foreach ($permissions as $permission) {
+																foreach ($acciones as $accion) { 
+																	// Imprimimos sólo las acciones asociadas
+																	if($accion->id == $permission->action_id){ 
+																		$parameter1 = $permission->parameter_permit[0];
+																		$parameter2 = $permission->parameter_permit[1];
+																		$parameter3 = $permission->parameter_permit[2];
+																		?>
+																		<tr id="<?php echo $id;?>">
+																			<td><?php echo $accion->id; ?></td>
+																			<td><?php echo $accion->name; ?></td>
+																			<?php if($parameter1 == '0'){?>
+																				<td><input type="checkbox" id=""></td>
+																			<?php }else{ ?>
+																				<td><input type="checkbox" id="" checked="checked"></td>
+																			<?php } ?>
+																			<?php if($parameter2 == '0'){?>
+																				<td><input type="checkbox" id=""></td>
+																			<?php }else{ ?>
+																				<td><input type="checkbox" id="" checked="checked"></td>
+																			<?php } ?>
+																			<?php if($parameter3 == '0'){?>
+																				<td><input type="checkbox" id=""></td>
+																			<?php }else{ ?>
+																				<td><input type="checkbox" id="" checked="checked"></td>
+																			<?php } ?>
+																		</tr>
+																<?php }
+																}
+															} ?>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--Tab de acciones-->
+							</div>
+						</div>
+						<div class="form-group">
 							<div class="col-sm-4 col-sm-offset-2">
 								<input id="base_url" type="hidden" value="<?php echo base_url(); ?>"/>
 								<input id="id_profile" type="hidden" value="<?php echo $editar[0]->profile_id ?>"/>

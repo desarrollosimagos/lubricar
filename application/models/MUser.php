@@ -110,6 +110,14 @@ class MUser extends CI_Model {
 		$result = $this->db->insert("permissions", $datos);
 		return $result;
     }
+    
+    // Public method to insert the actions asociated
+    public function update_action($datos) {
+		$this->db->where('user_id', $datos['user_id']);
+		$this->db->where('action_id', $datos['action_id']);
+		$result = $this->db->update('permissions', $datos);
+		return $result;
+    }
 
     // Public method to obtain the users by id
     public function obtenerUsers($id) {

@@ -94,6 +94,7 @@ class CUser extends CI_Controller {
 		}
 		$ids_franchises = substr($ids_franchises,0,-1);  // Quitamos la última coma de la cadena
 		$data['ids_franchises'] = $ids_franchises;
+		$data['permissions'] = $this->MUser->obtener_permisos_id($data['id']);
 		$data['acciones'] = $this->MAcciones->obtener_without_home();
 		// Lista de ids de acciones asociadas al usuario
         $ids_actions = "";
@@ -201,6 +202,24 @@ class CUser extends CI_Controller {
 							}
 						}
 					}
+				}
+				
+				// Actualizamos la permisología
+				$data_permisos = $this->input->post('data');
+				
+				foreach ($data_permisos as $campo){
+					// Concatenamos los permisos como una cadena
+					$parameter = $campo['crear'].$campo['editar'].$campo['eliminar'];
+					
+					// Nuevos datos de la acción asociada
+					$data_ps = array(
+						'user_id' => $data['id'],
+						'action_id' => $campo['id'],
+						'parameter_permit' => $parameter,
+					);
+					
+					// Actualizamos los permisos para la acción asociada
+					$result = $this->MUser->update_action($data_ps);
 				}
 			}else{
 				// Eliminamos las asociaciones de la tabla permissions correspondientes al usuario seleccionado

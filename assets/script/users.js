@@ -115,7 +115,7 @@ $(document).ready(function() {
     });
 
 	$("#profile").select2('val', $("#id_profile").val());
-    $("#status").val($("#id_status").val());
+    $("#status").select2('val', $("#id_status").val());
 
 	
 	$('#status').change(function (){
@@ -123,7 +123,6 @@ $(document).ready(function() {
 		$('#status').parent('div').removeClass("has-error");
 	
 	});
-	
 	
 	// Al cargar la página validamos las acciones que se deben mostrar
 	//~ var perfil = $("#profile").find('option').filter(':selected').text();
@@ -262,8 +261,36 @@ $(document).ready(function() {
 		   
 		}*/ else {
 			//~ alert($('#franchises').val());
+			
+			// Construimos la data de permisología leyendo las filas de la tabla
+			var campos= "";
+			var data = [];
+			$("#tab_acciones tbody tr").each(function () {
+				var campo0, campo1, campo2, campo3, campo4, campo5;
+				//~ campo0 = $(this).attr('id');  // Id del usuario
+				campo1 = $(this).find('td').eq(0).text();
+				campo2 = $(this).find('td').eq(1).text();
+				if($(this).find('input').eq(0).is(':checked')){
+					campo3 = '7';
+				}else{
+					campo3 = '0';
+				}
+				if($(this).find('input').eq(1).is(':checked')){
+					campo4 = '7';
+				}else{
+					campo4 = '0';
+				}
+				if($(this).find('input').eq(2).is(':checked')){
+					campo5 = '7';
+				}else{
+					campo5 = '0';
+				}
+				
+				campos = { "id" : campo1, "accion" : campo2, "crear" : campo3, "editar" : campo4, "eliminar" : campo5 },
+				data.push(campos);
+			});
 
-            $.post(base_url+'CUser/update', $('#form_users').serialize()+'&'+$.param({'franquicias_ids':$('#franchises').val(),'actions_ids':$('#actions_ids').val()}), function (response) {
+            $.post(base_url+'CUser/update', $('#form_users').serialize()+'&'+$.param({'franquicias_ids':$('#franchises').val(),'actions_ids':$('#actions_ids').val(), 'data':data}), function (response) {
 
 				if (response == 'existe') {
                     swal("Disculpe,", "este nombre de usuario se encuentra registrado");
@@ -358,5 +385,58 @@ $(document).ready(function() {
         }
 
     });
+    
+    $("#actions_ids").ready(function() {
+		// Función para la interacción del combo select2 y la lista datatable
+		$("#actions_ids").on('change', function () {
+			
+			var ids_actions = $(this).val();
+			var data_actions = $(this).select2('data');
+			
+			// Comparamos las acciones del select con las de la lista y agregamos las que falten
+			$.each(data_actions, function (index, value){
+				// alert(index + ": " + value.id);
+				var contador = 0;  // Para verificar si la acción ya está en la tabla
+				$("#tab_acciones tbody tr").each(function (index){
+					var id_action = $(this).find('td').eq(0).text();
+				
+					if(value.id == id_action){
+						contador += 1;
+					}
+				})
+				//~ alert(contador+"-"+value.text);
+				// Si la acción no está en la tabla, la añadimos
+				if(contador == 0){
+					var table = $('#tab_acciones').DataTable();
+					var id_new_action = value.id;
+					var name_new_action = value.text;
+					var permission_new_action = '<input type="checkbox" id="">';
+					var i = table.row.add( [ id_new_action, name_new_action, permission_new_action, permission_new_action, permission_new_action ] ).draw();
+					table.rows(i).nodes().to$().attr("id", $("#id").val());
+				}
+			});
+			
+			// Comparamos las acciones de la lista con las del combo select y eliminamos las que sobren
+			$("#tab_acciones tbody tr").each(function (index){
+				var id_action = $(this).find('td').eq(0).text();
+				var contador2 = 0  // Para verificar si la acción está en la tabla
+				
+				// Recorremos la lista de ids capturados del combo select2
+				$.each(ids_actions, function (index, value){
+					if(id_action == value) {
+						contador2 += 1;
+					}
+				})
+				// Si el contador es igual a cero, significa que la acción ha sido borrada del combo select, por tanto la quitamos también de la lista
+				if(contador2 == 0) {
+					// Borramos la línea correspondiente (línea actual)
+					var table = $('#tab_acciones').DataTable();
+					table.row($(this)).remove().draw();
+				}
+				
+			});
+
+		});
+	});
     
 });
