@@ -57,9 +57,10 @@ class CPerfil extends CI_Controller {
     
 	// Método para editar
     public function edit() {
-		$this->load->view('base');		
+		$this->load->view('base');
         $data['id'] = $this->uri->segment(2);
         $data['editar'] = $this->MPerfil->obtenerPerfiles($data['id']);
+        $data['profile_acciones'] = $this->MPerfil->obtener_acciones_id($data['id']);
         $data['acciones'] = $this->MAcciones->obtener_without_home();
         // Lista de acciones asociadas al perfil
         $ids_actions = "";
@@ -115,6 +116,24 @@ class CPerfil extends CI_Controller {
 						}
 					}
 				}
+			}
+			
+			// Actualizamos la permisología
+			$data_permisos = $this->input->post('data');
+			
+			foreach ($data_permisos as $campo){
+				// Concatenamos los permisos como una cadena
+				$parameter = $campo['crear'].$campo['editar'].$campo['eliminar'];
+				
+				// Nuevos datos de la acción asociada
+				$data_ps = array(
+					'profile_id' => $data['id'],
+					'action_id' => $campo['id'],
+					'parameter_permit' => $parameter,
+				);
+				
+				// Actualizamos los permisos para la acción asociada
+				$result = $this->MPerfil->update_action($data_ps);
 			}
 			
         }else{

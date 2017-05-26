@@ -77,17 +77,35 @@
 														</tr>
 														</thead>
 														<tbody>
-															<?php foreach ($acciones as $accion) { 
-																// Si el id de la acción está en el arreglo lo marcamos, si no, se imprime normalmente
-																if(in_array($accion->id, $ids_actions)){ ?>
-																<tr id="<?php echo $id;?>">
-																	<td><?php echo $accion->id; ?></td>
-																	<td><?php echo $accion->name; ?></td>
-																	<td><input type="checkbox" id=""></td>
-																	<td><input type="checkbox" id=""></td>
-																	<td><input type="checkbox" id=""></td>
-																</tr>
-															<?php }
+															<?php 
+															foreach ($profile_acciones as $profile_accion) {
+																foreach ($acciones as $accion) { 
+																	// Imprimimos sólo las acciones asociadas
+																	if($accion->id == $profile_accion->action_id){ 
+																		$parameter1 = $profile_accion->parameter_permit[0];
+																		$parameter2 = $profile_accion->parameter_permit[1];
+																		$parameter3 = $profile_accion->parameter_permit[2];
+																		?>
+																		<tr id="<?php echo $id;?>">
+																			<td><?php echo $accion->id; ?></td>
+																			<td><?php echo $accion->name; ?></td>
+																			<?php if($parameter1 == '0'){?>
+																				<td><input type="checkbox" id=""></td>
+																			<?php }else{ ?>
+																				<td><input type="checkbox" id="" checked="checked"></td>
+																			<?php } ?>
+																			<?php if($parameter2 == '0'){?>
+																				<td><input type="checkbox" id=""></td>
+																			<?php }else{ ?>
+																				<td><input type="checkbox" id="" checked="checked"></td>
+																			<?php } ?><?php if($parameter3 == '0'){?>
+																				<td><input type="checkbox" id=""></td>
+																			<?php }else{ ?>
+																				<td><input type="checkbox" id="" checked="checked"></td>
+																			<?php } ?>
+																		</tr>
+																<?php }
+																}
 															} ?>
 														</tbody>
 													</table>
@@ -218,7 +236,35 @@ $(document).ready(function(){
         } else {
 			//~ alert(String($('#actions_ids').val()));
 			
-            $.post('<?php echo base_url(); ?>CPerfil/update', $('#form_perfil').serialize()+'&'+$.param({'actions_ids':$('#actions_ids').val()}), function (response) {
+			// Construimos la data de permisología leyendo las filas de la tabla
+			var campos= "";
+			var data = [];
+			$("#tab_acciones tbody tr").each(function () {
+				var campo0, campo1, campo2, campo3, campo4, campo5;
+				//~ campo0 = $(this).attr('id');  // Id del perfil
+				campo1 = $(this).find('td').eq(0).text();
+				campo2 = $(this).find('td').eq(1).text();
+				if($(this).find('input').eq(0).is(':checked')){
+					campo3 = '7';
+				}else{
+					campo3 = '0';
+				}
+				if($(this).find('input').eq(1).is(':checked')){
+					campo4 = '7';
+				}else{
+					campo4 = '0';
+				}
+				if($(this).find('input').eq(2).is(':checked')){
+					campo5 = '7';
+				}else{
+					campo5 = '0';
+				}
+				
+				campos = { "id" : campo1, "accion" : campo2, "crear" : campo3, "editar" : campo4, "eliminar" : campo5 },
+				data.push(campos);
+			});
+			
+            $.post('<?php echo base_url(); ?>CPerfil/update', $('#form_perfil').serialize()+'&'+$.param({'actions_ids':$('#actions_ids').val(), 'data':data}), function (response) {
 				//~ alert(response);
 				if (response[0] == 'e') {
                     swal("Disculpe,", "este nombre de perfil se encuentra registrado");
