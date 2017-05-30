@@ -39,7 +39,7 @@ Class Basicauth
 				$menus = array();
 				$submenus = array();
 				// Primero verificamos que el usuario no sea administrador
-				if($query->row()->admin == 0){
+				//if($query->row()->admin == 0){
 					//~ echo "Pasó 3";
 					// Buscamos si hay franquicias asociadas al usuario
 					$query_user_franquicia = $this->CI->db->get_where('users_franchises', array('user_id'=>$query->row()->id));
@@ -99,7 +99,7 @@ Class Basicauth
 							}
 						}
 					}
-				}else{
+				/*}else{
 					// Consultamos los datos de todas las acciones 
 					// (en este caso, el formato de captura de datos de acciones en sesión será diferente en el hook de acceso y el helper de menú, para lo cual habrá que hacer una validación en dichos archivos)
 					$acciones = array();
@@ -114,7 +114,7 @@ Class Basicauth
 					// Submenús
 					$query_submenus = $this->CI->db->get('submenus');
 					$submenus[] = $query_submenus->result();
-				}
+				}*/
 				//~ exit();
 				// Creamos la sesión y le cargamos los datos de usuario
 				$session_data = array(

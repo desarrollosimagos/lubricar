@@ -125,7 +125,12 @@ $(document).ready(function() {
 	});
 	
 	// Al cargar la página validamos las acciones que se deben mostrar
-	//~ var perfil = $("#profile").find('option').filter(':selected').text();
+	var perfil = $("#profile").find('option').filter(':selected').text();
+	if(perfil == 'ADMINISTRADOR'){
+		$('#admin').val(1);
+	}else{
+		$('#admin').val(0);
+	}
 	//~ 
 	//~ if(perfil == "FRANQUICIA" || perfil == "franquicia"){
 		//~ $("#franquicias").css("display","block");
@@ -138,14 +143,19 @@ $(document).ready(function() {
 	if(perfil_id != '0'){
 		$.post(base_url+'CUser/search_actions', $.param({'profile_id':perfil_id}), function (response) {
 			//~ alert(response);
+			var selectedValues = new Array();  // Arreglo donde almacenaremos los ids de las acciones a marcar
 			var option = "";
 			$.each(response, function (i) {
 				option += "<option value=" + response[i]['id'] + ">" + response[i]['name'] + "</option>";
+				if(perfil == 'ADMINISTRADOR'){
+					selectedValues[i] = response[i]['id'];  // Añadimos el id de la acción a marcar
+				}
 			});
 			$('#actions_ids').append(option);
+			$('#actions_ids').select2('val', selectedValues);  // Marcamos
 		}, 'json');
 		// Si estamos editando un usuario buscamos las acciones asociadas a él y las añadimos a la lista
-		if(usuario_id != ''){
+		if(usuario_id != '' && perfil != 'ADMINISTRADOR'){
 			$.post(base_url+'CUser/search_actions2', $.param({'user_id':usuario_id}), function (response) {
 				var selectedValues = new Array();  // Arreglo donde almacenaremos los ids de las acciones a marcar
 				var option = "";
@@ -166,7 +176,12 @@ $(document).ready(function() {
 		
 		$('#profile').parent('div').removeClass("has-error");
 		
-		//~ var perfil = $("#profile").find('option').filter(':selected').text();
+		var perfil = $("#profile").find('option').filter(':selected').text();
+		if(perfil == 'ADMINISTRADOR'){
+			$('#admin').val(1);
+		}else{
+			$('#admin').val(0);
+		}
 		//~ 
 		//~ if(perfil == "FRANQUICIA" || perfil == "franquicia"){
 			//~ $("#franquicias").css("display","block");
@@ -182,14 +197,19 @@ $(document).ready(function() {
 		if(perfil_id != '0'){
 			$.post(base_url+'CUser/search_actions', $.param({'profile_id':perfil_id}), function (response) {
 				// alert(response);
+				var selectedValues = new Array();  // Arreglo donde almacenaremos los ids de las acciones a marcar
 				var option = "";
 				$.each(response, function (i) {
 					option += "<option value=" + response[i]['id'] + ">" + response[i]['name'] + "</option>";
+					if(perfil == 'ADMINISTRADOR'){
+						selectedValues[i] = response[i]['id'];  // Añadimos el id de la acción a marcar
+					}
 				});
 				$('#actions_ids').append(option);
+				$('#actions_ids').select2('val', selectedValues);  // Marcamos
 			}, 'json');
 			// Si estamos editando un usuario buscamos las acciones asociadas a él y las añadimos a la lista
-			if(usuario_id != ''){
+			if(usuario_id != '' && perfil != 'ADMINISTRADOR'){
 				$.post(base_url+'CUser/search_actions2', $.param({'user_id':usuario_id}), function (response) {
 					var selectedValues = new Array();  // Arreglo donde almacenaremos los ids de las acciones a marcar
 					var option = "";

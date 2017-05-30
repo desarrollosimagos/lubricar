@@ -285,7 +285,7 @@ class CUser extends CI_Controller {
         echo json_encode($result2);
     }
 	
-	// Método público para cargar un json con las acciones no asignadas al perfil seleccionado
+	// Método público para cargar un json con las acciones no asignadas al usuario seleccionado
     public function search_actions2()
     {
 		$id_usuario = $this->input->post('user_id');  // id del usuario

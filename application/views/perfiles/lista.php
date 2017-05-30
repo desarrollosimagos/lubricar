@@ -37,7 +37,8 @@
                             </thead>
                             <tbody>
                                 <?php $i = 1; ?>
-                                <?php foreach ($listar as $perfil) { ?>
+                                <?php foreach ($listar as $perfil) { 
+									if($perfil->name != 'ADMINISTRADOR'){?>
                                     <tr style="text-align: center">
                                         <td>
                                             <?php echo $i; ?>
@@ -71,7 +72,8 @@
                                         </td>
                                     </tr>
                                     <?php $i++ ?>
-                                <?php } ?>
+                                <?php } 
+                                }?>
                             </tbody>
                         </table>
                     </div>

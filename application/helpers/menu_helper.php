@@ -19,15 +19,15 @@ if (!function_exists('menu')) {
 					foreach($userdata as $accion){
 						// Si el usuario no es administrador capturamos los datos de la acción haciendo referencia con el indice 0,
 						// de lo contrario no será necesario indicar ningún indice
-						if($ci->session->userdata('logged_in')['admin'] == 0){
+						//if($ci->session->userdata('logged_in')['admin'] == 0){
 							$controllerspermitidos[] = $accion[0]->class;
 							$accionespermitidas[] = $accion[0]->id;
 							$rutaspermitidas[] = $accion[0]->route;
-						}else{
+						/*}else{
 							$controllerspermitidos[] = $accion->class;
 							$accionespermitidas[] = $accion->id;
 							$rutaspermitidas[] = $accion->route;
-						}
+						}*/
 					}
 				}else if($clave == "permisos"){
 					foreach($userdata as $permiso){
@@ -114,6 +114,7 @@ if (!function_exists('validar_acciones')) {
 		
 		// Si estamos logueados validamos los controladores y métodos permitidos según el perfil y usuario
 		if(isset($ci->session->userdata['logged_in'])){
+			$id_user = $ci->session->userdata('logged_in')['id'];
 			$id_profile = $ci->session->userdata('logged_in')['profile_id'];
 			// Recorrido de los datos del usuario
 			foreach($ci->session->userdata('logged_in') as $clave => $userdata){
@@ -121,7 +122,7 @@ if (!function_exists('validar_acciones')) {
 					foreach($userdata as $accion){
 						// Si el usuario no es administrador capturamos los datos de la acción haciendo referencia con el indice 0,
 						// de lo contrario no será necesario indicar ningún indice
-						if($ci->session->userdata('logged_in')['admin'] == 0){
+						//if($ci->session->userdata('logged_in')['admin'] == 0){
 							if($ci->router->class == $accion[0]->class){
 								// Si estamos en el método index hacemos los respectivos bloqueos
 								if($ci->router->method == 'index'){
@@ -132,7 +133,7 @@ if (!function_exists('validar_acciones')) {
 									$editar = $permisos[1];
 									$borrar = $permisos[2];
 									
-									// Bloquemos los elementos que correspondan
+									// Bloqueamos los elementos que correspondan
 									if($crear == '0'){
 										echo "<script>
 										 $(document).ready(function () {
@@ -156,7 +157,7 @@ if (!function_exists('validar_acciones')) {
 									}
 								}
 							}
-						}else{
+						/*}else{
 							if($ci->router->class == $accion->class){
 								// Si estamos en el método index hacemos los respectivos bloqueos
 								if($ci->router->method == 'index'){
@@ -167,7 +168,7 @@ if (!function_exists('validar_acciones')) {
 									$editar = $permisos[1];
 									$borrar = $permisos[2];
 									
-									// Bloquemos los elementos que correspondan
+									// Bloqueamos los elementos que correspondan
 									if($crear == '0'){
 										echo "<script>
 										 $(document).ready(function () {
@@ -191,7 +192,7 @@ if (!function_exists('validar_acciones')) {
 									}
 								}
 							}
-						}
+						}*/
 					}
 				}else if($clave == "permisos"){
 					foreach($userdata as $permiso){
@@ -199,13 +200,13 @@ if (!function_exists('validar_acciones')) {
 							// Si estamos en el método index hacemos los respectivos bloqueos
 							if($ci->router->method == 'index'){
 								// Consultamos los parámetros en base de datos
-								$query_permissions = $ci->db->get_where('permissions', array('profile_id'=>$id_profile, 'action_id'=>$permiso[0]->id));
+								$query_permissions = $ci->db->get_where('permissions', array('user_id'=>$id_user, 'action_id'=>$permiso[0]->id));
 								$permisos = $query_permissions->row()->parameter_permit;
 								$crear = $permisos[0];
 								$editar = $permisos[1];
 								$borrar = $permisos[2];
 								
-								// Bloquemos los elementos que correspondan
+								// Bloqueamos los elementos que correspondan
 								if($crear == '0'){
 									echo "<script>
 									 $(document).ready(function () {
