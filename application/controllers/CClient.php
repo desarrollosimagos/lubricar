@@ -350,7 +350,7 @@ class CClient extends CI_Controller {
     }
 
     public function ajax_client() {
-        $result = $this->MClient->obtener();
+        $result = $this->MClient->clients();
         echo json_encode($result);
     }
 

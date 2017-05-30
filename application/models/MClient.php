@@ -19,6 +19,17 @@ class MClient extends CI_Model {
         else
             return $query->result();
     }
+    //Metodo publico para obterner los perfiles
+    public function clients() {
+        $query = $this->db->select('id');
+        $this->db->select("CONCAT(name, ' ', lastname) AS name");
+        $query = $this->db->get('customers');
+        $result = $this->db->where('status =', '1');
+        if ($query->num_rows() > 0)
+            return $query->result();
+        else
+            return $query->result();
+    }
 
     // Metodo publico, forma de insertar los datos
     public function insert($datos) {
@@ -81,6 +92,8 @@ class MClient extends CI_Model {
     // Metodo publico, para obterner la unidad de medida por id
     public function obtenerClients($id) {
         $this->db->where('id', $id);
+        $query = $this->db->select('id');
+        $this->db->select("CONCAT(name, ' ', lastname) AS name");
         $query = $this->db->get('customers');
         if ($query->num_rows() > 0)
             return $query->result();
