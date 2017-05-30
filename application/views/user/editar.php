@@ -181,6 +181,7 @@
 								<input id="id_profile" type="hidden" value="<?php echo $editar[0]->profile_id ?>"/>
                                 <input id="id_status" type="hidden" value="<?php echo $editar[0]->status ?>"/>
 								<input class="form-control"  type='hidden' id="id" name="id" value="<?php echo $id ?>"/>
+								<input type="hidden" name="admin" id="admin" value="<?php echo $editar[0]->admin ?>">
 								<button class="btn btn-white" id="volver2" type="button">Volver</button>
 								<button class="btn btn-primary" id="edit" type="submit">Actualizar</button>
 							</div>

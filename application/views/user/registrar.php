@@ -128,6 +128,7 @@
 							<div class="col-sm-4 col-sm-offset-2">
 								<input id="base_url" type="hidden" value="<?php echo base_url(); ?>"/>
 								<input type='hidden' id="id" value=""/>
+								<input type="hidden" name="admin" id="admin">
 								<button class="btn btn-white" id="volver" type="button">Volver</button>
 								<button class="btn btn-primary" id="registrar" type="submit">Guardar</button>
 							</div>
