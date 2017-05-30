@@ -37,10 +37,11 @@ class CClient extends CI_Controller {
             'status' => $this->input->post('status')
         );
         $result_id = $this->MClient->insert($datos);
-
-        if ($result_id != '') {
-
+       
+        if ($result_id !== 'existe cliente'){
+            
             $direccion = $this->input->post('direcciones');
+
             foreach ($direccion as $dire) {
 
                 $dire = explode(";", $dire);
@@ -49,13 +50,14 @@ class CClient extends CI_Controller {
 
                     $city = $dire[1];
                     $zip = $dire[2];
-                    $address_1 = $dire[3];
-                    $address_2 = $dire[4];
-                    $phone_1 = $dire[5];
-                    $cell_phone_1 = $dire[6];
-
+                    $description = $dire[3];
+                    $address_1 = $dire[4];
+                    $address_2 = $dire[5];
+                    $phone_1 = $dire[6];
+                    $cell_phone_1 = $dire[7];
 
                     $datos2 = array(
+                        'description' => $description,
                         'customer_id' => $result_id,
                         'city' => $city,
                         'zip' => $zip,
@@ -94,7 +96,11 @@ class CClient extends CI_Controller {
                     $result = $this->MClient->insertCars($datos3);
                 }
             }
+            
+            
         }
+
+
     }
 
     //metodo para guardar un nuevo registro
@@ -195,21 +201,23 @@ class CClient extends CI_Controller {
         $result = $this->MClient->update($datos);
 
         $direccion = $this->input->post('direcciones');
+ 
         foreach ($direccion as $dire) {
 
             $dire = explode(";", $dire);
 
             if ($dire[0] == 'undefined' && $dire[1] != 'Ningún dato disponible en esta tabla') {
-
+                
                 $city = $dire[1];
                 $zip = $dire[2];
-                $address_1 = $dire[3];
-                $address_2 = $dire[4];
-                $phone_1 = $dire[5];
-                $cell_phone_1 = $dire[6];
-
+                $description = $dire[3];
+                $address_1 = $dire[4];
+                $address_2 = $dire[5];
+                $phone_1 = $dire[6];
+                $cell_phone_1 = $dire[7];
 
                 $datos2 = array(
+                    'description' => $description,
                     'customer_id' => $this->input->post('id'),
                     'city' => $city,
                     'zip' => $zip,
@@ -223,17 +231,19 @@ class CClient extends CI_Controller {
             }
 
             if ($dire[1] != 'Ningún dato disponible en esta tabla') {
-
+                
                 $id = $dire[0];
                 $city = $dire[1];
                 $zip = $dire[2];
-                $address_1 = $dire[3];
-                $address_2 = $dire[4];
-                $phone_1 = $dire[5];
-                $cell_phone_1 = $dire[6];
+                $description = $dire[3];
+                $address_1 = $dire[4];
+                $address_2 = $dire[5];
+                $phone_1 = $dire[6];
+                $cell_phone_1 = $dire[7];
 
 
                 $datos2 = array(
+                    'description' => $description,
                     'customer_id' => $this->input->post('id'),
                     'id' => $id,
                     'city' => $city,
@@ -243,6 +253,9 @@ class CClient extends CI_Controller {
                     'phone' => $phone_1,
                     'cell_phone' => $cell_phone_1,
                 );
+                
+                
+                
 
                 $result = $this->MClient->updateAddress($datos2);
             }
@@ -300,13 +313,26 @@ class CClient extends CI_Controller {
         }
     }
 
-    //Metodo para eliminar
-    public function delete($id) {
-        $result = $this->MClient->delete($id);
-        if ($result) {
-            /*  $this->libreria->generateActivity('Eliminado País', $this->session->userdata['logged_in']['id']); */
+   // Método para actualizar de forma directa el status de un usuario
+    public function update_status($id) {
+        $accion = $this->input->post('accion');
+        $estatus = 1;
+
+        if ($accion == 'desactivar') {
+            $estatus = 0;
         }
+
+        // Armamos la data a actualizar
+        $data_usuario = array(
+            'id' => $id,
+            'status' => $estatus,
+            'd_update' => date('Y-m-d H:i:s'),
+        );
+
+        // Actualizamos el usuario con los datos armados
+        $result = $this->MClient->update_status($data_usuario);
     }
+
 
     //Metodo para editar password
     public function pass() {

@@ -2,12 +2,10 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
 class MClient extends CI_Model {
 
-
     public function __construct() {
-       
+
         parent::__construct();
         $this->load->database();
     }
@@ -27,7 +25,8 @@ class MClient extends CI_Model {
         $result = $this->db->where('username =', $datos['username']);
         $result = $this->db->get('customers');
         if ($result->num_rows() > 0) {
-            echo 'existe cliente';
+            $result = 'existe cliente';
+            return $result;
         } else {
             $result = $this->db->insert("customers", $datos);
             //return $result;
@@ -36,54 +35,49 @@ class MClient extends CI_Model {
         }
     }
 
-     // Metodo publico, forma de insertar los datos
+    // Metodo publico, forma de insertar los datos
     public function insertCars($datos) {
         $result = $this->db->where('license_plate =', $datos['license_plate']);
         $result = $this->db->get('vehicles');
         if ($result->num_rows() > 0) {
-            echo 'existe vehiculo';
+            $result = 'existe vehiculo';
+            return $result;
         } else {
             $result = $this->db->insert("vehicles", $datos);
             return $result;
         }
     }
-     // Metodo publico, forma de insertar los datos
+
+    // Metodo publico, forma de insertar los datos
     public function insertAddress($datos) {
-        $result = $this->db->where('address_1 =', $datos['address_1']);
-        $result = $this->db->get('addresses');
-        if ($result->num_rows() > 0) {
-            echo 'existe direccion';
-        } else {
-            $result = $this->db->insert("addresses", $datos);
-            return $result;
-        }
+
+        $result = $this->db->insert("addresses", $datos);
+        return $result;
     }
-    
+
     // Metodo publico, forma de actualizar los datos
     public function update($datos) {
         $result = $this->db->where('id', $datos['id']);
         $result = $this->db->update("customers", $datos);
-        return $result;        
+        return $result;
     }
 
-     // Metodo publico, forma de actualizar los datos
+    // Metodo publico, forma de actualizar los datos
     public function updateCars($datos) {
         $result = $this->db->where('id', $datos['id']);
         $result = $this->db->update("vehicles", $datos);
         return $result;
-        
     }
-     // Metodo publico, forma de actualizar los datos
+
+    // Metodo publico, forma de actualizar los datos
     public function updateAddress($datos) {
-        
+
         $result = $this->db->where('id', $datos['id']);
         $result = $this->db->where('customer_id', $datos['customer_id']);
         $result = $this->db->update('addresses', $datos);
         return $result;
-        
     }
-    
-    
+
     // Metodo publico, para obterner la unidad de medida por id
     public function obtenerClients($id) {
         $this->db->where('id', $id);
@@ -93,8 +87,8 @@ class MClient extends CI_Model {
         else
             return $query->result();
     }
-    
-     // Metodo publico, para obterner la unidad de medida por id
+
+    // Metodo publico, para obterner la unidad de medida por id
     public function obtenerAddress($id) {
         $this->db->where('customer_id', $id);
         $query = $this->db->get('addresses');
@@ -103,10 +97,8 @@ class MClient extends CI_Model {
         else
             return $query->result();
     }
-    
 
-    
-      // Metodo publico, para obterner la unidad de medida por id
+    // Metodo publico, para obterner la unidad de medida por id
     public function obtenerCars($id) {
         $this->db->where('customer_id', $id);
         $query = $this->db->get('vehicles');
@@ -116,43 +108,45 @@ class MClient extends CI_Model {
             return $query->result();
     }
 
-
-
-    // Metodo publico, para eliminar un registro 
-     public function delete($id) {
-        
-        $result = $this->db->delete('addresses', array('customer_id' => $id));
-        $result = $this->db->delete('vehicles', array('customer_id' => $id));
-        $result = $this->db->delete('customers', array('id' => $id));
-       
-        return $result;
-    }
-    
-     // Metodo publico, para eliminar un registro 
-     public function deleteAddress($id) {
-        
-        $result = $this->db->delete('addresses', array('id' => $id));
-        return $result;
-    }
-    
-     // Metodo publico, para eliminar un registro 
-     public function deleteCars($id) {
-        
-        $result = $this->db->delete('vehicles', array('id' => $id));
-        return $result;
-    }
-    
-    
-    // Metodo publico, forma de actualizar los datos
-    public function pass($datos) {
-        
+    // Public method to update a record 
+    public function update_status($datos) {
         $result = $this->db->where('id', $datos['id']);
         $result = $this->db->update('customers', $datos);
         return $result;
-        
     }
-    
 
+    // Metodo publico, para eliminar un registro 
+    public function deleteAddress($id) {
+        
+        
+        $result = $this->db->where('address_service_id =', $id);
+        $result = $this->db->get('orders');
+        if ($result->num_rows() > 0) {
+            echo('existe address');
+  
+        } else {
+            $result = $this->db->delete('addresses', array('id' => $id));
+            return $result;
+        }
+
+     
+    }
+
+    // Metodo publico, para eliminar un registro 
+    public function deleteCars($id) {
+
+        $result = $this->db->delete('vehicles', array('id' => $id));
+        return $result;
+    }
+
+    // Metodo publico, forma de actualizar los datos
+    public function pass($datos) {
+
+        $result = $this->db->where('id', $datos['id']);
+        $result = $this->db->update('customers', $datos);
+        return $result;
+    }
 
 }
+
 ?>
