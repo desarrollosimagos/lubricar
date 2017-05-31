@@ -475,7 +475,7 @@
         $(".add_direccion").click(function (e) {
             e.preventDefault();  // Para evitar que se envíe por defecto
 
-            if ($("#typeahead_2").val() === '') {
+            if ($("#codcliente").val() === '') {
                 swal("Disculpe,", "debe seleccionar un cliente para registrar una dirección", 'warning');
                 $('#typeahead_2').parent('div').addClass('has-error');
             } else {
@@ -555,7 +555,7 @@
         $(".add_vehiculo").click(function (e) {
             e.preventDefault();  // Para evitar que se envíe por defecto
 
-            if ($("#typeahead_2").val() === '') {
+            if ($("#codcliente").val() === '') {
                 swal("Disculpe,", "debe seleccionar un cliente para registrar un vehiculo", 'warning');
                 $('#typeahead_2').parent('div').addClass('has-error');
             } else {
@@ -565,41 +565,56 @@
             }
 
         });
-
-
+        
+        
         $("#i_new_line").click(function (e) {
 
             e.preventDefault();  // Para evitar que se envíe por defecto
-            if ($("#typeahead_2").val() === '') {
+            if ($("#codcliente").val() === '') {
                 swal("Disculpe,", "debe seleccionar un cliente para continuar", 'warning');
                 $('#typeahead_2').parent('div').addClass('has-error');
             } else {
                 $("#modal_servicio").modal('show');
                 $("span#titulo").text('Agregar');
                 $("#accion").val('Registrar');
-
+               
+                
 
                 $.get('<?php echo base_url(); ?>CServices/ajax_service', function (data) {
-
-                    $(".typeahead_3").typeahead({
-                        source: data,
+                    var $input = $(".typeahead_3");
+                    
+                    $input.typeahead({
+                        source:data,
                         autoSelect: true,
-                        updater: function (item) {
-                            return item;
-                        },
-                        afterSelect: function (item) {
-                            $('#price').val(item.price);
-                            $('#id_service').val(item.id);
-                            //var cliente_id = $('#codcliente').val();
 
+                      });
+                    
+                    $input.change(function() {
+                        var current = $input.typeahead("getActive");
+                        if (current) {                            
+                          // Some item from your model is active!
+                          if (current.name == $input.val()) {
+  
+                                $('#price').val(current.price);
+                                $('#id_service').val(current.id)
+                            // This means the exact match is found. Use toLowerCase() if you want case insensitive match.
+                          } else {
+                               $('#price').val('');
+                               $('#id_service').val('');
+                            // This means it is only a partial match, you can either add a new item
+                            // or take the active if you don't want new items
+                          }
+                        } else {
+                            $('#price').val('');
+                            $('#id_service').val('');
+                          // Nothing is active so it is a new value (or maybe empty value)
                         }
-                    });
+                      });
 
                 }, 'json');
             }
         });
-
-
+      
         $("#agregar").click(function () {
 
             var table = $('#tab_servicio').DataTable();
@@ -607,6 +622,7 @@
             var servicio0;
             var posi = $("#posicion").val();
             var id_service = $("#id_service").val();
+   
             var service = $("#service_id").val();
             var price = $("#price").val();
             var impuesto = $("#impuesto").val();
@@ -623,7 +639,11 @@
             if (accion === 'Registrar') {
                 
                 //validar que no existan otro servicio igual en la tabla
-                if (id_service === servicio0) {
+                if (id_service === '') {
+                    swal("Disculpe,", "debe añadir un servicio válido", 'warning');
+                    
+                    
+                } else  if (id_service === servicio0) {
                     swal("Disculpe,", "el servicio se encuentra añadido", 'warning');
                     $("#modal_servicio").modal('hide');
                     $("#service_id").val('');
@@ -634,7 +654,7 @@
                     
                 } else {
 
-                    if (service !== '' & price !== '' & impuesto !== '') {
+                    if (id_service !== '' & price !== '' & impuesto !== '') {
 
                         var i = table.row.add([service, price, impuesto, price, botonEdit, botonQuitar]).draw();
                         table.rows(i).nodes().to$().attr("id", id_service);
@@ -663,7 +683,7 @@
             } else if (accion === 'Editar') {
 
 
-                if (service !== '' & price !== '' & impuesto !== '') {
+                if (id_service !== '' & price !== '' & impuesto !== '') {
 
 
                     var j = table.row(posi).data([service, price, impuesto, price, botonEdit, botonQuitar]).draw();
@@ -724,7 +744,7 @@
 
         $("#i_new_line2").click(function (e) {
             e.preventDefault();  // Para evitar que se envíe por defecto
-            if ($("#typeahead_2").val() === '') {
+            if ($("#codcliente").val() === '') {
                 swal("Disculpe,", "debe seleccionar un cliente para continuar", 'warning');
                 $('#typeahead_2').parent('div').addClass('has-error');
             } else {
@@ -736,27 +756,52 @@
                 $("span#titulo").text('Agregar');
                 $("#accion1").val('Registrar');
 
+                $(".typeahead_4").change(function () {
+                    $('#id_product').val('');
+                    $('#price').val('');
+                })
 
                 $.get('<?php echo base_url(); ?>CProduct/ajax_product', function (data) {
-
-                    $(".typeahead_4").typeahead({
-                        source: data,
+                    
+                    var $input2 = $(".typeahead_4");
+                    
+                    $input2.typeahead({
+                        source:data,
                         autoSelect: true,
-                        updater: function (item) {
-                            return item;
-                        },
-                        afterSelect: function (item) {
-                            $('#price').val(item.price);
-                            $('#id_product').val(item.id);
-                            //var cliente_id = $('#codcliente').val();
 
+                      });
+                    
+                    $input2.change(function() {
+                        var current = $input2.typeahead("getActive");
+                        if (current) {                            
+                          // Some item from your model is active!
+                          if (current.name == $input2.val()) {
+                              
+                                $('#price').val(current.price);
+                                $('#id_product').val(current.id);
+             
+                            // This means the exact match is found. Use toLowerCase() if you want case insensitive match.
+                          } else {
+                               $('#price').val('');
+                               $('#id_product').val('');
+                            // This means it is only a partial match, you can either add a new item
+                            // or take the active if you don't want new items
+                          }
+                        } else {
+                            $('#price').val('');
+                            $('#id_product').val('');
+                          // Nothing is active so it is a new value (or maybe empty value)
                         }
-                    });
+                      });
+
+                    
+
 
                 }, 'json');
             }
         });
-
+        
+         
         $("#agregar2").click(function () {
 
             var producto0;
@@ -781,8 +826,12 @@
             
 
             if (accion === 'Registrar') {
-
-                if (id_producto === producto0) {
+                
+                 if (id_producto === '') {
+                    swal("Disculpe,", "debe añadir un producto válido", 'warning');
+                    
+                    
+                } else if (id_producto === producto0) {
 
                     swal("Disculpe,", "el producto se encuentra añadido", 'warning');
                     $("#modal_producto").modal('hide');
@@ -795,7 +844,7 @@
 
                 } else {
 
-                    if (producto !== '' & cantidad !== '' & precio !== '' & impuesto !== '') {
+                    if (id_producto !== '' & cantidad !== '' & precio !== '' & impuesto !== '') {
 
                         var i = table.row.add([producto, precio, cantidad, impuesto, importe, botonEdit, botonQuitar]).draw();
                         table.rows(i).nodes().to$().attr("id", id_producto);
@@ -827,7 +876,7 @@
 
             } else if (accion === 'Editar') {
 
-                if (producto !== '' & cantidad !== '' & precio !== '' & impuesto !== '') {
+                if (id_producto !== '' & cantidad !== '' & precio !== '' & impuesto !== '') {
 
                     var j = table.row(posi).data([producto, precio, cantidad, impuesto, importe, botonEdit, botonQuitar]).draw();
                     table.rows(j).nodes().to$().attr("id", id_producto);
@@ -890,48 +939,65 @@
 
 
         $.get('<?php echo base_url(); ?>clients/ajax_client', function (data) {
-
-            $(".typeahead_2").typeahead({
-                source: data,
+            
+            var $input1 = $(".typeahead_2");
+                    
+            $input1.typeahead({
+                source:data,
                 autoSelect: true,
-                updater: function (item) {
-                    return item;
-                },
-                afterSelect: function (item) {
-                    $('#codcliente').val(item.id);
-                    var cliente_id = $('#codcliente').val();
-                    $('#vehiculo').find('option:gt(0)').remove().end().select2('val', '0');
-                    $.get('<?php echo base_url(); ?>CClient/ajax_car/' + cliente_id + '', function (data) {
-                        var option = "";
-                        $.each(data, function (i) {
-                            option += "<option value=" + data[i]['id'] + ">" + data[i]['license_plate'] + ' - ' + data[i]['trademark'] + "</option>";
 
-                        });
+              });
 
-                        $('#vehiculo').append(option);
+            $input1.change(function() {
+                var current = $input1.typeahead("getActive");
+                if (current) {                            
+                  // Some item from your model is active!
+                  if (current.name == $input1.val()) {
 
+                        $('#codcliente').val(current.id);
+                        var cliente_id = $('#codcliente').val();
+                        $('#vehiculo').find('option:gt(0)').remove().end().select2('val', '0');
+                        $.get('<?php echo base_url(); ?>CClient/ajax_car/' + cliente_id + '', function (data) {
+                            var option = "";
+                            $.each(data, function (i) {
+                                option += "<option value=" + data[i]['id'] + ">" + data[i]['license_plate'] + ' - ' + data[i]['trademark'] + "</option>";
 
+                            });
 
-                    }, 'json');
-
-                    $('#address').find('option:gt(0)').remove().end().select2('val', '0');
-                    $.get('<?php echo base_url(); ?>CClient/ajax_address/' + cliente_id + '', function (data) {
-                        var option = "";
-                        $.each(data, function (i) {
-                            option += "<option value=" + data[i]['id'] + ">" + data[i]['city'] + ' - ' + data[i]['address_1'] + "</option>";
-
-                        });
-
-                        $('#address').append(option);
+                            $('#vehiculo').append(option);
 
 
 
-                    }, 'json');
+                        }, 'json');
+
+                        $('#address').find('option:gt(0)').remove().end().select2('val', '0');
+                        $.get('<?php echo base_url(); ?>CClient/ajax_address/' + cliente_id + '', function (data) {
+                            var option = "";
+                            $.each(data, function (i) {
+                                option += "<option value=" + data[i]['id'] + ">" + data[i]['city'] + ' - ' + data[i]['address_1'] + "</option>";
+
+                            });
+
+                            $('#address').append(option);
+
+
+
+                        }, 'json');
+
+                    // This means the exact match is found. Use toLowerCase() if you want case insensitive match.
+                  } else {
+                     $('#codcliente').val('');
+                    // This means it is only a partial match, you can either add a new item
+                    // or take the active if you don't want new items
+                  }
+                } else {
+                    $('#codcliente').val('');
+
+                  // Nothing is active so it is a new value (or maybe empty value)
                 }
-            });
+              });
 
-
-
+      
         }, 'json');
 
 

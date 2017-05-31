@@ -497,7 +497,7 @@
         $(".add_direccion").click(function (e) {
             e.preventDefault();  // Para evitar que se envíe por defecto
 
-            if ($("#typeahead_2").val() === '') {
+            if ($("#codcliente").val() === '') {
                 swal("Disculpe,", "debe seleccionar un cliente para registrar una dirección", 'warning');
                 $('#typeahead_2').parent('div').addClass('has-error');
             } else {
@@ -577,7 +577,7 @@
         $(".add_vehiculo").click(function (e) {
             e.preventDefault();  // Para evitar que se envíe por defecto
 
-            if ($("#typeahead_2").val() === '') {
+            if ($("#codcliente").val() === '') {
                 swal("Disculpe,", "debe seleccionar un cliente para registrar un vehiculo", 'warning');
                 $('#typeahead_2').parent('div').addClass('has-error');
             } else {
@@ -592,7 +592,7 @@
         $("#i_new_line").click(function (e) {
 
             e.preventDefault();  // Para evitar que se envíe por defecto
-            if ($("#typeahead_2").val() === '') {
+            if ($("#codcliente").val() === '') {
                 swal("Disculpe,", "debe seleccionar un cliente para continuar", 'warning');
                 $('#typeahead_2').parent('div').addClass('has-error');
             } else {
@@ -603,19 +603,35 @@
 
                 $.get('<?php echo base_url(); ?>CServices/ajax_service', function (data) {
 
-                    $(".typeahead_3").typeahead({
-                        source: data,
+                    var $input = $(".typeahead_3");
+                    
+                    $input.typeahead({
+                        source:data,
                         autoSelect: true,
-                        updater: function (item) {
-                            return item;
-                        },
-                        afterSelect: function (item) {
-                            $('#price').val(item.price);
-                            $('#id_service').val(item.id);
-                            //var cliente_id = $('#codcliente').val();
 
+                      });
+                    
+                    $input.change(function() {
+                        var current = $input.typeahead("getActive");
+                        if (current) {                            
+                          // Some item from your model is active!
+                          if (current.name == $input.val()) {
+  
+                                $('#price').val(current.price);
+                                $('#id_service').val(current.id)
+                            // This means the exact match is found. Use toLowerCase() if you want case insensitive match.
+                          } else {
+                               $('#price').val('');
+                               $('#id_service').val('');
+                            // This means it is only a partial match, you can either add a new item
+                            // or take the active if you don't want new items
+                          }
+                        } else {
+                            $('#price').val('');
+                            $('#id_service').val('');
+                          // Nothing is active so it is a new value (or maybe empty value)
                         }
-                    });
+                      });
 
                 }, 'json');
             }
@@ -643,7 +659,11 @@
 
             if (accion === 'Registrar') {
 
-                 if (id_service === servicio0) {
+                if (id_service === '') {
+                    swal("Disculpe,", "debe añadir un servicio válido", 'warning');
+                    
+                    
+                } else if (id_service === servicio0) {
                     swal("Disculpe,", "el servicio se encuentra añadido", 'warning');
                     $("#modal_servicio").modal('hide');
                     $("#service_id").val('');
@@ -743,7 +763,7 @@
 
         $("#i_new_line2").click(function (e) {
             e.preventDefault();  // Para evitar que se envíe por defecto
-            if ($("#typeahead_2").val() === '') {
+            if ($("#codcliente").val() === '') {
                 swal("Disculpe,", "debe seleccionar un cliente para continuar", 'warning');
                 $('#typeahead_2').parent('div').addClass('has-error');
             } else {
@@ -758,19 +778,38 @@
 
                 $.get('<?php echo base_url(); ?>CProduct/ajax_product', function (data) {
 
-                    $(".typeahead_4").typeahead({
-                        source: data,
+                     var $input2 = $(".typeahead_4");
+                    
+                    $input2.typeahead({
+                        source:data,
                         autoSelect: true,
-                        updater: function (item) {
-                            return item;
-                        },
-                        afterSelect: function (item) {
-                            $('#price').val(item.price);
-                            $('#id_product').val(item.id);
-                            //var cliente_id = $('#codcliente').val();
 
+                      });
+                    
+                    $input2.change(function() {
+                        var current = $input2.typeahead("getActive");
+                        if (current) {                            
+                          // Some item from your model is active!
+                          if (current.name == $input2.val()) {
+                              
+                                $('#price').val(current.price);
+                                $('#id_product').val(current.id);
+             
+                            // This means the exact match is found. Use toLowerCase() if you want case insensitive match.
+                          } else {
+                               $('#price').val('');
+                               $('#id_product').val('');
+                            // This means it is only a partial match, you can either add a new item
+                            // or take the active if you don't want new items
+                          }
+                        } else {
+                            $('#price').val('');
+                            $('#id_product').val('');
+                          // Nothing is active so it is a new value (or maybe empty value)
                         }
-                    });
+                      });
+
+                    
 
                 }, 'json');
             }
@@ -801,7 +840,11 @@
 
             if (accion === 'Registrar') {
 
-                if (id_producto === producto0) {
+                 if (id_producto === '') {
+                    swal("Disculpe,", "debe añadir un producto válido", 'warning');
+                    
+                    
+                } else if (id_producto === producto0) {
 
                     swal("Disculpe,", "el producto se encuentra añadido", 'warning');
                     $("#modal_producto").modal('hide');
@@ -813,7 +856,7 @@
                     $('#accion1').val('');
                 } else {
 
-                    if (producto !== '' & cantidad !== '' & precio !== '' & impuesto !== '') {
+                    if (id_producto !== '' & cantidad !== '' & precio !== '' & impuesto !== '') {
 
                         var i = table.row.add([producto, precio, cantidad, impuesto, importe, botonEdit, botonQuitar]).draw();
                         table.rows(i).nodes().to$().attr("id", id_producto);
@@ -849,7 +892,7 @@
             } else if (accion === 'Editar') {
 
 
-                if (producto !== '' & cantidad !== '' & precio !== '' & impuesto !== '') {
+                if (id_producto !== '' & cantidad !== '' & precio !== '' & impuesto !== '') {
 
 
                     var j = table.row(posi).data([producto, precio, cantidad, impuesto, importe, botonEdit, botonQuitar]).draw();
