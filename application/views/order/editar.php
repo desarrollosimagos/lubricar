@@ -949,7 +949,7 @@
 
             $.each(data, function (i) {
 
-                $("#typeahead_2").val(data[i]['name']);
+                $("#typeahead_2").val(data[i]['name']+' '+data[i]['lastname']);
             });
 
 
