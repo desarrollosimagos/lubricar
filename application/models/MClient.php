@@ -10,7 +10,7 @@ class MClient extends CI_Model {
         $this->load->database();
     }
 
-    //Metodo publico para obterner los perfiles
+    //Metodo publico para obterner los clientes
     public function obtener() {
         $query = $this->db->get('customers');
 
@@ -19,7 +19,7 @@ class MClient extends CI_Model {
         else
             return $query->result();
     }
-    //Metodo publico para obterner los perfiles
+    //Metodo publico para obterner los clientes
     public function clients() {
         $query = $this->db->select('id');
         $this->db->select("CONCAT(name, ' ', lastname) AS name");
@@ -89,11 +89,10 @@ class MClient extends CI_Model {
         return $result;
     }
 
-    // Metodo publico, para obterner la unidad de medida por id
+    // Metodo publico, para obterner los clientes por id
     public function obtenerClients($id) {
         $this->db->where('id', $id);
-        $query = $this->db->select('id');
-        $this->db->select("CONCAT(name, ' ', lastname) AS name");
+        $query = $this->db->select('id,username, name, lastname, profile_id, admin, status, phone, cell_phone');
         $query = $this->db->get('customers');
         if ($query->num_rows() > 0)
             return $query->result();
@@ -101,7 +100,7 @@ class MClient extends CI_Model {
             return $query->result();
     }
 
-    // Metodo publico, para obterner la unidad de medida por id
+    // Metodo publico, para obterner las direcciones por cliente id
     public function obtenerAddress($id) {
         $this->db->where('customer_id', $id);
         $query = $this->db->get('addresses');
@@ -111,7 +110,7 @@ class MClient extends CI_Model {
             return $query->result();
     }
 
-    // Metodo publico, para obterner la unidad de medida por id
+    // Metodo publico, para obterner los vehiculos por cliente id
     public function obtenerCars($id) {
         $this->db->where('customer_id', $id);
         $query = $this->db->get('vehicles');
