@@ -45,6 +45,7 @@ class CUser extends CI_Controller {
 			'name' => $this->input->post('name'),
 			'lastname' => $this->input->post('lastname'),
 			'profile_id' => $this->input->post('profile_id'),
+			'admin' => $this->input->post('admin'),
 			'password' => 'pbkdf2_sha256$12000$' . hash("sha256", $this->input->post('password')),
 			'status' => $this->input->post('status'),
 			'd_create' => date('Y-m-d H:i:s'),
@@ -119,6 +120,7 @@ class CUser extends CI_Controller {
 			'name' => $this->input->post('name'),
 			'lastname' => $this->input->post('lastname'),
 			'profile_id' => $this->input->post('profile_id'),
+			'admin' => $this->input->post('admin'),
 			'status' => $this->input->post('status'),
 			'd_update' => date('Y-m-d H:i:s'),
 
