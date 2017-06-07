@@ -1,662 +1,376 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<html>
+	<head>
 
-    <title>Lubricar Web</title>
+		<!-- Basic -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">	
 
-    <!-- Bootstrap core CSS -->
-    <link href="<?php base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
+		<title>Lubricar</title>	
 
-    <!-- Animation CSS -->
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="<?php base_url() ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<meta name="keywords" content="HTML5 Template" />
+		<meta name="description" content="Porto - Responsive HTML5 Template">
+		<meta name="author" content="okler.net">
 
-    <!-- Custom styles for this template -->
-    <link href="<?php base_url() ?>assets/css/style.css" rel="stylesheet">
-</head>
-<body id="page-top" class="landing-page no-skin-config">
-<div class="navbar-wrapper">
-        <nav class="navbar navbar-default navbar-fixed-top navbar-scroll" role="navigation">
-            <div class="container">
-                <div class="navbar-header page-scroll">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="admin">BACK-OFFICE</a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a  href="public">Inicio</a></li>
-                        <li><a  href="somos">Quienes Somos</a></li>
-                        <li><a  href="servicios">Servicios</a></li>
-                        <li><a  href="solicitud">Solicitud de Servicio</a></li>
-                        <li><a  href="noticias">Noticias</a></li>
-                        <li><a  href="cuenta">Mi cuenta</a>
-                        
-                        <!--<ul>
-                           <li>Mis Datos</li>
-                           <li>Mis Ordenes</li>
-                           <li>Mis Vehiculos</li>
-                           <li>Mis Direcciones</li>
-                        </ul>-->
-                        </li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </nav>
-</div>
-<!--<div id="inSlider" class="carousel carousel-fade" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#inSlider" data-slide-to="0" class="active"></li>
-        <li data-target="#inSlider" data-slide-to="1"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>We craft<br/>
-                        brands, web apps,<br/>
-                        and user interfaces<br/>
-                        we are IN+ studio</h1>
-                    <p>Lorem Ipsum is simply dummy text of the printing.</p>
-                    <p>
-                        <a class="btn btn-lg btn-primary" href="#" role="button">READ MORE</a>
-                        <a class="caption-link" href="#" role="button">Inspinia Theme</a>
-                    </p>
-                </div>
-                <div class="carousel-image wow zoomIn">
-                    <img src="img/landing/laptop.png" alt="laptop"/>
-                </div>
-            </div>
-            <!-- Set background for slide in css -->
-           <!-- <div class="header-back one"></div>
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="<?php echo assets_url(); ?>public/img/favicon.ico" type="image/x-icon" />
+		<link rel="apple-touch-icon" href="<?php echo assets_url(); ?>public/img/apple-touch-icon.png">
 
-        </div>
-        <div class="item">
-            <div class="container">
-                <div class="carousel-caption blank">
-                    <h1>We create meaningful <br/> interfaces that inspire.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-                </div>
-            </div>
-            <!-- Set background for slide in css -->
-          <!--  <div class="header-back two"></div>
-        </div>
-    </div>
-    <a class="left carousel-control" href="#inSlider" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#inSlider" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
--->
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<section id="features" class="container services">
-    <div class="row" style="margin-top:8%">
-        <div class="col-sm-3">
-            <h2>Full responsive</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-            <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>
-        </div>
-        <div class="col-sm-3">
-            <h2>LESS/SASS Files</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-            <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>
-        </div>
-        <div class="col-sm-3">
-            <h2>6 Charts Library</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-            <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>
-        </div>
-        <div class="col-sm-3">
-            <h2>Advanced Forms</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-            <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>
-        </div>
-    </div>
-</section>
+		<!-- Web Fonts  -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
 
-<section  class="container features">
-    <div class="row">
-        <div class="col-lg-12 text-center">
-            <div class="navy-line"></div>
-            <h1>Over 40+ unique view<br/> <span class="navy"> with many custom components</span> </h1>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3 text-center wow fadeInLeft">
-            <div>
-                <i class="fa fa-mobile features-icon"></i>
-                <h2>Full responsive</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-            </div>
-            <div class="m-t-lg">
-                <i class="fa fa-bar-chart features-icon"></i>
-                <h2>6 Charts Library</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-            </div>
-        </div>
-        <div class="col-md-6 text-center  wow zoomIn">
-            <img src="img/landing/perspective.png" alt="dashboard" class="img-responsive">
-        </div>
-        <div class="col-md-3 text-center wow fadeInRight">
-            <div>
-                <i class="fa fa-envelope features-icon"></i>
-                <h2>Mail pages</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-            </div>
-            <div class="m-t-lg">
-                <i class="fa fa-google features-icon"></i>
-                <h2>AngularJS version</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12 text-center">
-            <div class="navy-line"></div>
-            <h1>Discover great feautres</h1>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>
-        </div>
-    </div>
-    <div class="row features-block">
-        <div class="col-lg-6 features-text wow fadeInLeft">
-            <small>INSPINIA</small>
-            <h2>Perfectly designed </h2>
-            <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with latest jQuery plugins.</p>
-            <a href="" class="btn btn-primary">Learn more</a>
-        </div>
-        <div class="col-lg-6 text-right wow fadeInRight">
-            <img src="img/landing/dashboard.png" alt="dashboard" class="img-responsive pull-right">
-        </div>
-    </div>
-</section>
+		<!-- Vendor CSS -->
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/vendor/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/vendor/animate/animate.min.css">
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/vendor/simple-line-icons/css/simple-line-icons.min.css">
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/vendor/owl.carousel/assets/owl.carousel.min.css">
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/vendor/owl.carousel/assets/owl.theme.default.min.css">
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/vendor/magnific-popup/magnific-popup.min.css">
 
-<!--<section id="team" class="gray-section team">
-    <div class="container">
-        <div class="row m-b-lg">
-            <div class="col-lg-12 text-center">
-                <div class="navy-line"></div>
-                <h1>Our Team</h1>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4 wow fadeInLeft">
-                <div class="team-member">
-                    <img src="img/landing/avatar3.jpg" class="img-responsive img-circle img-small" alt="">
-                    <h4><span class="navy">Amelia</span> Smith</h4>
-                    <p>Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus. </p>
-                    <ul class="list-inline social-icon">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="team-member wow zoomIn">
-                    <img src="img/landing/avatar1.jpg" class="img-responsive img-circle" alt="">
-                    <h4><span class="navy">John</span> Novak</h4>
-                    <p>Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.</p>
-                    <ul class="list-inline social-icon">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-4 wow fadeInRight">
-                <div class="team-member">
-                    <img src="img/landing/avatar2.jpg" class="img-responsive img-circle img-small" alt="">
-                    <h4><span class="navy">Peter</span> Johnson</h4>
-                    <p>Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.</p>
-                    <ul class="list-inline social-icon">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg m-b-lg">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
-            </div>
-        </div>
-    </div>
-</section>-->
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/theme.css">
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/theme-elements.css">
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/theme-blog.css">
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/theme-shop.css">
 
-<!--<section class="features">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="navy-line"></div>
-                <h1>Even more great feautres</h1>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>
-            </div>
-        </div>
-        <div class="row features-block">
-            <div class="col-lg-3 features-text wow fadeInLeft">
-                <small>INSPINIA</small>
-                <h2>Perfectly designed </h2>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with latest jQuery plugins.</p>
-                <a href="" class="btn btn-primary">Learn more</a>
-            </div>
-            <div class="col-lg-6 text-right m-t-n-lg wow zoomIn">
-                <img src="img/landing/iphone.jpg" class="img-responsive" alt="dashboard">
-            </div>
-            <div class="col-lg-3 features-text text-right wow fadeInRight">
-                <small>INSPINIA</small>
-                <h2>Perfectly designed </h2>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with latest jQuery plugins.</p>
-                <a href="" class="btn btn-primary">Learn more</a>
-            </div>
-        </div>
-    </div>
+		<!-- Current Page CSS -->
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/vendor/rs-plugin/css/settings.css">
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/vendor/rs-plugin/css/layers.css">
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/vendor/rs-plugin/css/navigation.css">
 
-</section>-->
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/skins/skin-medical.css"> 
 
-<!--<section class="timeline gray-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="navy-line"></div>
-                <h1>Our workflow</h1>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>
-            </div>
-        </div>
-        <div class="row features-block">
+		<!-- Demo CSS -->
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/demos/demo-medical.css">
 
-            <div class="col-lg-12">
-                <div id="vertical-timeline" class="vertical-container light-timeline center-orientation">
-                    <div class="vertical-timeline-block">
-                        <div class="vertical-timeline-icon navy-bg">
-                            <i class="fa fa-briefcase"></i>
-                        </div>
+		<!-- Theme Custom CSS -->
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/custom.css">
 
-                        <div class="vertical-timeline-content">
-                            <h2>Meeting</h2>
-                            <p>Conference on the sales results for the previous year. Monica please examine sales trends in marketing and products. Below please find the current status of the sale.
-                            </p>
-                            <a href="#" class="btn btn-xs btn-primary"> More info</a>
-                            <span class="vertical-date"> Today <br/> <small>Dec 24</small> </span>
-                        </div>
-                    </div>
+		<!-- Head Libs -->
+		<script src="<?php echo assets_url(); ?>public/vendor/modernizr/modernizr.min.js"></script>
 
-                    <div class="vertical-timeline-block">
-                        <div class="vertical-timeline-icon navy-bg">
-                            <i class="fa fa-file-text"></i>
-                        </div>
+	</head>
+	<body>
 
-                        <div class="vertical-timeline-content">
-                            <h2>Decision</h2>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</p>
-                            <a href="#" class="btn btn-xs btn-primary"> More info</a>
-                            <span class="vertical-date"> Tomorrow <br/> <small>Dec 26</small> </span>
-                        </div>
-                    </div>
+		<div class="body">
+			<header id="header" class="header-narrow" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 35, 'stickySetTop': '-35px', 'stickyChangeLogo': false}">
+				<div class="header-body">
+					<div class="header-top header-top header-top-style-3 header-top-custom">
+						<div class="container">
+							<nav class="header-nav-top pull-right">
+								<ul class="nav nav-pills">
+									<li class="hidden-xs">
+										<span class="ws-nowrap"><i class="icon-login icons"></i> <a href="my-account.html">Iniciar Sesión</a></span>
+									</li>
+									<li class="hidden-xs">
+										<span class="ws-nowrap"><i class="icon-envelope-open icons"></i> <a class="text-decoration-none" href="mailto:contacto@lubricardelivery.com">contacto@lubricardelivery.com</a></span>
+									</li>
+									<li>
+										<span class="ws-nowrap"><i class="icon-call-out icons"></i></i> (800) 123-4567</span>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+					<div class="header-container container">
+						<div class="header-row">
+							<div class="header-column">
+								<div class="header-logo">
+									<a href="index.html">
+										<img alt="Porto" width="143" height="40" src="<?php echo assets_url(); ?>public/img/demos/medical/logo-medical.png">
+									</a>
+								</div>
+							</div>
+							<div class="header-column">
+								<div class="header-row">
+									<div class="header-nav pt-xs">
+										<button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main">
+											<i class="fa fa-bars"></i>
+										</button>
+										<div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse">
+											<nav>
+												<ul class="nav nav-pills" id="mainNav">
+													<li class="dropdown-full-color dropdown-secondary">
+														<a href="public">
+															Inicio
+														</a>
+													</li>
+													<li class="dropdown-full-color dropdown-secondary">
+														<a href="somos">
+															Quienes Somos
+														</a>
+													</li>
+													<li class="dropdown activedropdown-full-color dropdown-secondary">
+														<a class="dropdown-toggle" href="servicios">
+															Servicios
+														</a>
+														<!--<ul class="dropdown-menu">
+															<li><a href="services-detail.html">Cardiology</a></li>
+															<li><a href="services-detail.html">Gastroenterology</a></li>
+															<li><a href="services-detail.html">Pulmonology</a></li>
+															<li><a href="services-detail.html">Dental</a></li>
+															<li><a href="services-detail.html">Gynecology</a></li>
+															<li><a href="services-detail.html">Hepatology</a></li>
+														</ul>-->
+													</li>
+													<li class="dropdown-full-color dropdown-secondary">
+														<a href="solicitud">
+															Solicitud de Servicios
+														</a>
+													</li>
+													<li class="dropdown-full-color dropdown-secondary">
+														<a href="noticias">
+															Noticias
+														</a>
+													</li>
+													<li class="dropdown-full-color dropdown-secondary">
+														<a href="contacto">
+															Contactos
+														</a>
+													</li>
+												</ul>
+											</nav>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
 
-                    <div class="vertical-timeline-block">
-                        <div class="vertical-timeline-icon navy-bg">
-                            <i class="fa fa-cogs"></i>
-                        </div>
+			<div role="main" class="main">
+				
+			<section class="page-header page-header-color page-header-primary page-header-float-breadcrumb">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="mt-xs">Servicios <span>Lorem ipsum dolor sit amet</span></h1>
+							<ul class="breadcrumb breadcrumb-valign-mid">
+								<li><a href="#">Inicio</a></li>
+								<li class="active">Servicios</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
 
-                        <div class="vertical-timeline-content">
-                            <h2>Implementation</h2>
-                            <p>Go to shop and find some products. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. </p>
-                            <a href="#" class="btn btn-xs btn-primary"> More info</a>
-                            <span class="vertical-date"> Monday <br/> <small>Jan 02</small> </span>
-                        </div>
-                    </div>
+			<div class="container">
 
-                </div>
-            </div>
+				<div class="row mt-lg mb-lg">
+					<div class="col-md-12">
 
-        </div>
-    </div>
+						
+						<p class="lead font-weight-normal mb-xlg pb-xlg">Lubricar Delivery, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.</p>
 
-</section>-->
+						<div class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="100">
+							<div class="feature-box feature-box-style-2 mb-lg">
+								<div class="feature-box-icon">
+									<img src="<?php echo assets_url(); ?>public/img/demos/medical/45510958_l-02.png" alt class="img-responsive" />
+								</div>
+								<div class="feature-box-info ml-md">
+									<h4 class="font-weight-semibold mb-xs">Cambio de Aceite</h4>
+									<p class="mb-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dolor quam, sagittis eget pulvinar id, vulputate sit amet nisi. Etiam dui massa, semper eget pulvinar eget, imperdiet et neque. Donec rutrum purus a lectus consequat cursus. Curabitur sed lacinia felis. Phasellus non purus sit amet purus molestie molestie. Phasellus ornare volutpat nibh ut vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+									<p><a href="services-detail.html" class="btn btn-borders btn-quaternary custom-button text-uppercase mt-sm mb-md font-weight-bold btn-sm">ver mas...</a></p>
+								</div>	
+							</div>
 
-<!--<section id="testimonials" class="navy-section testimonials" style="margin-top: 0">
+							<hr class="solid mb-xlg">
+						</div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center wow zoomIn">
-                <i class="fa fa-comment big-icon"></i>
-                <h1>
-                    What our users say
-                </h1>
-                <div class="testimonials-text">
-                    <i>"Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."</i>
-                </div>
-                <small>
-                    <strong>12.02.2014 - Andy Smith</strong>
-                </small>
-            </div>
-        </div>
-    </div>
+						<div class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="100">
+							<div class="feature-box feature-box-style-2 mb-lg">
+								<div class="feature-box-icon">
+									<img src="<?php echo assets_url(); ?>public/img/demos/medical/45510958_l-07.png" alt class="img-responsive" />
+								</div>
+								<div class="feature-box-info ml-md">
+									<h4 class="font-weight-semibold mb-xs">Lavado Ecológico</h4>
+									<p class="mb-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dolor quam, sagittis eget pulvinar id, vulputate sit amet nisi. Etiam dui massa, semper eget pulvinar eget, imperdiet et neque. Donec rutrum purus a lectus consequat cursus. Curabitur sed lacinia felis. Phasellus non purus sit amet purus molestie molestie. Phasellus ornare volutpat nibh ut vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+									<p><a href="services-detail.html" class="btn btn-borders btn-quaternary custom-button text-uppercase mt-sm mb-md font-weight-bold btn-sm">ver mas...</a></p>
+								</div>
+							</div>
 
-</section>-->
+							<hr class="solid mb-xlg">
+						</div>
 
-<!--<section class="comments gray-section" style="margin-top: 0">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="navy-line"></div>
-                <h1>What our partners say</h1>
-                <p>Donec sed odio dui. Etiam porta sem malesuada. </p>
-            </div>
-        </div>
-        <div class="row features-block">
-            <div class="col-lg-4">
-                <div class="bubble">
-                    "Uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
-                </div>
-                <div class="comments-avatar">
-                    <a href="" class="pull-left">
-                        <img alt="image" src="img/landing/avatar3.jpg">
-                    </a>
-                    <div class="media-body">
-                        <div class="commens-name">
-                            Andrew Williams
-                        </div>
-                        <small class="text-muted">Company X from California</small>
-                    </div>
-                </div>
-            </div>
+						<div class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="100">
+							<div class="feature-box feature-box-style-2 mb-lg">
+								<div class="feature-box-icon">
+									<img src="<?php echo assets_url(); ?>public/img/demos/medical/45510958_l-01.png" alt class="img-responsive" />
+								</div>
+								<div class="feature-box-info ml-md">
+									<h4 class="font-weight-semibold mb-xs">Cambio de Filtro de Combustible</h4>
+									<p class="mb-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dolor quam, sagittis eget pulvinar id, vulputate sit amet nisi. Etiam dui massa, semper eget pulvinar eget, imperdiet et neque. Donec rutrum purus a lectus consequat cursus. Curabitur sed lacinia felis. Phasellus non purus sit amet purus molestie molestie. Phasellus ornare volutpat nibh ut vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+									<p><a href="services-detail.html" class="btn btn-borders btn-quaternary custom-button text-uppercase mt-sm mb-md font-weight-bold btn-sm">ver mas...</a></p>
+								</div>
+							</div>
 
-            <div class="col-lg-4">
-                <div class="bubble">
-                    "Uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
-                </div>
-                <div class="comments-avatar">
-                    <a href="" class="pull-left">
-                        <img alt="image" src="img/landing/avatar1.jpg">
-                    </a>
-                    <div class="media-body">
-                        <div class="commens-name">
-                            Andrew Williams
-                        </div>
-                        <small class="text-muted">Company X from California</small>
-                    </div>
-                </div>
-            </div>
+							<hr class="solid mb-xlg">
+						</div>
 
-            <div class="col-lg-4">
-                <div class="bubble">
-                    "Uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
-                </div>
-                <div class="comments-avatar">
-                    <a href="" class="pull-left">
-                        <img alt="image" src="img/landing/avatar2.jpg">
-                    </a>
-                    <div class="media-body">
-                        <div class="commens-name">
-                            Andrew Williams
-                        </div>
-                        <small class="text-muted">Company X from California</small>
-                    </div>
-                </div>
-            </div>
+						<div class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="100">
+							<div class="feature-box feature-box-style-2 mb-lg">
+								<div class="feature-box-icon">
+									<img src="<?php echo assets_url(); ?>public/img/demos/medical/45510958_l-08.png" alt class="img-responsive" />
+								</div>
+								<div class="feature-box-info ml-md">
+									<h4 class="font-weight-semibold mb-xs">Limpieza de Tapicería</h4>
+									<p class="mb-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dolor quam, sagittis eget pulvinar id, vulputate sit amet nisi. Etiam dui massa, semper eget pulvinar eget, imperdiet et neque. Donec rutrum purus a lectus consequat cursus. Curabitur sed lacinia felis. Phasellus non purus sit amet purus molestie molestie. Phasellus ornare volutpat nibh ut vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+									<p><a href="services-detail.html" class="btn btn-borders btn-quaternary custom-button text-uppercase mt-sm mb-md font-weight-bold btn-sm">ver mas...</a></p>
+								</div>
+							</div>
+
+							<hr class="solid mb-xlg">
+						</div>
+
+						<div class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="100">
+							<div class="feature-box feature-box-style-2 mb-lg">
+								<div class="feature-box-icon">
+									<img src="<?php echo assets_url(); ?>public/img/demos/medical/45510958_l-03.png" alt class="img-responsive" />
+								</div>
+								<div class="feature-box-info ml-md">
+									<h4 class="font-weight-semibold mb-xs">Cambio de Filtro de Aire Encerado</h4>
+									<p class="mb-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dolor quam, sagittis eget pulvinar id, vulputate sit amet nisi. Etiam dui massa, semper eget pulvinar eget, imperdiet et neque. Donec rutrum purus a lectus consequat cursus. Curabitur sed lacinia felis. Phasellus non purus sit amet purus molestie molestie. Phasellus ornare volutpat nibh ut vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+									<p><a href="services-detail.html" class="btn btn-borders btn-quaternary custom-button text-uppercase mt-sm mb-md font-weight-bold btn-sm">ver mas...</a></p>
+								</div>
+							</div>
+
+							<hr class="solid mb-xlg">
+						</div>
+
+						<div class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="100">
+							<div class="feature-box feature-box-style-2 mb-lg">
+								<div class="feature-box-icon">
+									<img src="<?php echo assets_url(); ?>public/img/demos/medical/45510958_l-06.png" alt class="img-responsive" />
+								</div>
+								<div class="feature-box-info ml-md">
+									<h4 class="font-weight-semibold mb-xs">Pulido de Carroceria</h4>
+									<p class="mb-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dolor quam, sagittis eget pulvinar id, vulputate sit amet nisi. Etiam dui massa, semper eget pulvinar eget, imperdiet et neque. Donec rutrum purus a lectus consequat cursus. Curabitur sed lacinia felis. Phasellus non purus sit amet purus molestie molestie. Phasellus ornare volutpat nibh ut vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+									<p><a href="services-detail.html" class="btn btn-borders btn-quaternary custom-button text-uppercase mt-sm mb-md font-weight-bold btn-sm">ver mas...</a></p>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+			<footer id="footer" class="m-none">
+				<div class="container">
+					<div class="row">
+						
+						<div class="col-md-3">
+							<h4 class="mb-xlg">Horario de Atención</h4>
+							<div class="info custom-info">
+								<span>Lun-Vie</span>
+								<span>8:30 am to 5:00 pm</span>
+							</div>
+							<div class="info custom-info">
+								<span>Sabados</span>
+								<span>9:30 am to 1:00 pm</span>
+							</div>
+							
+						</div>
+						<div class="col-md-3 col-md-offset-1">
+							<div class="contact-details">
+								<h4 class="mb-xlg">Contáctenos</h4>
+								<a class="text-decoration-none" href="tel:1234567890">
+									<strong class="font-weight-light">(800)123-4567</strong>
+								</a>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<h4 class="mb-xlg">Redes Sociales</h4>
+							<ul class="social-icons">
+								<li class="social-icons-facebook">
+									<a href="http://www.facebook.com/" target="_blank" title="Facebook">
+										<i class="fa fa-facebook"></i>
+									</a>
+								</li>
+								<li class="social-icons-twitter">
+									<a href="http://www.twitter.com/" target="_blank" title="Twitter">
+										<i class="fa fa-twitter"></i>
+									</a>
+								</li>
+								<li class="social-icons-linkedin">
+									<a href="http://www.linkedin.com/" target="_blank" title="Linkedin">
+										<i class="fa fa-linkedin"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="footer-copyright pt-md pb-md">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 center m-none">
+								<p>© Copyright 2017. All Rights Reserved.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<!-- Vendor -->
+		<script src="<?php echo assets_url(); ?>public/vendor/jquery/jquery.min.js"></script>
+		<script src="<?php echo assets_url(); ?>public/vendor/jquery.appear/jquery.appear.min.js"></script>
+		<script src="<?php echo assets_url(); ?>public/vendor/jquery.easing/jquery.easing.min.js"></script>
+		<script src="<?php echo assets_url(); ?>public/vendor/jquery-cookie/jquery-cookie.min.js"></script>
+		<script src="<?php echo assets_url(); ?>public/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="<?php echo assets_url(); ?>public/vendor/common/common.min.js"></script>
+		<script src="<?php echo assets_url(); ?>public/vendor/jquery.validation/jquery.validation.min.js"></script>
+		<script src="<?php echo assets_url(); ?>public/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+		<script src="<?php echo assets_url(); ?>public/vendor/jquery.gmap/jquery.gmap.min.js"></script>
+		<script src="<?php echo assets_url(); ?>public/vendor/jquery.lazyload/jquery.lazyload.min.js"></script>
+		<script src="<?php echo assets_url(); ?>public/vendor/isotope/jquery.isotope.min.js"></script>
+		<script src="<?php echo assets_url(); ?>public/vendor/owl.carousel/owl.carousel.min.js"></script>
+		<script src="<?php echo assets_url(); ?>public/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+		<script src="<?php echo assets_url(); ?>public/vendor/vide/vide.min.js"></script>
+		
+		<!-- Theme Base, Components and Settings -->
+		<script src="<?php echo assets_url(); ?>public/js/theme.js"></script>
+		
+		<!-- Current Page Vendor and Views -->
+		<script src="<?php echo assets_url(); ?>public/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+		<script src="<?php echo assets_url(); ?>public/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+
+		<!-- Current Page Vendor and Views -->
+		<script src="<?php echo assets_url(); ?>public/js/views/view.contact.js"></script>
+
+		<!-- Demo -->
+		<script src="<?php echo assets_url(); ?>public/js/demos/demo-medical.js"></script>
+		
+		<!-- Theme Custom -->
+		<script src="<?php echo assets_url(); ?>public/js/custom.js"></script>
+		
+		<!-- Theme Initialization Files -->
+		<script src="<?php echo assets_url(); ?>public/js/theme.init.js"></script>
 
 
 
-        </div>
-    </div>
 
-</section>-->
-
-<!--<section class="features">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="navy-line"></div>
-                <h1>More and more extra great feautres</h1>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-5 col-lg-offset-1 features-text">
-                <small>INSPINIA</small>
-                <h2>Perfectly designed </h2>
-                <i class="fa fa-bar-chart big-icon pull-right"></i>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p>
-            </div>
-            <div class="col-lg-5 features-text">
-                <small>INSPINIA</small>
-                <h2>Perfectly designed </h2>
-                <i class="fa fa-bolt big-icon pull-right"></i>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-5 col-lg-offset-1 features-text">
-                <small>INSPINIA</small>
-                <h2>Perfectly designed </h2>
-                <i class="fa fa-clock-o big-icon pull-right"></i>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p>
-            </div>
-            <div class="col-lg-5 features-text">
-                <small>INSPINIA</small>
-                <h2>Perfectly designed </h2>
-                <i class="fa fa-users big-icon pull-right"></i>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p>
-            </div>
-        </div>
-    </div>
-
-</section>-->
-<!--<section id="pricing" class="pricing">
-    <div class="container">
-        <div class="row m-b-lg">
-            <div class="col-lg-12 text-center">
-                <div class="navy-line"></div>
-                <h1>App Pricing</h1>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 wow zoomIn">
-                <ul class="pricing-plan list-unstyled">
-                    <li class="pricing-title">
-                        Basic
-                    </li>
-                    <li class="pricing-desc">
-                        Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.
-                    </li>
-                    <li class="pricing-price">
-                        <span>$16</span> / month
-                    </li>
-                    <li>
-                        Dashboards
-                    </li>
-                    <li>
-                        Projects view
-                    </li>
-                    <li>
-                        Contacts
-                    </li>
-                    <li>
-                        Calendar
-                    </li>
-                    <li>
-                        AngularJs
-                    </li>
-                    <li>
-                        <a class="btn btn-primary btn-xs" href="#">Signup</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col-lg-4 wow zoomIn">
-                <ul class="pricing-plan list-unstyled selected">
-                    <li class="pricing-title">
-                        Standard
-                    </li>
-                    <li class="pricing-desc">
-                        Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.
-                    </li>
-                    <li class="pricing-price">
-                        <span>$22</span> / month
-                    </li>
-                    <li>
-                        Dashboards
-                    </li>
-                    <li>
-                        Projects view
-                    </li>
-                    <li>
-                        Contacts
-                    </li>
-                    <li>
-                        Calendar
-                    </li>
-                    <li>
-                        AngularJs
-                    </li>
-                    <li>
-                        <strong>Support platform</strong>
-                    </li>
-                    <li class="plan-action">
-                        <a class="btn btn-primary btn-xs" href="#">Signup</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col-lg-4 wow zoomIn">
-                <ul class="pricing-plan list-unstyled">
-                    <li class="pricing-title">
-                        Premium
-                    </li>
-                    <li class="pricing-desc">
-                        Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.
-                    </li>
-                    <li class="pricing-price">
-                        <span>$160</span> / month
-                    </li>
-                    <li>
-                        Dashboards
-                    </li>
-                    <li>
-                        Projects view
-                    </li>
-                    <li>
-                        Contacts
-                    </li>
-                    <li>
-                        Calendar
-                    </li>
-                    <li>
-                        AngularJs
-                    </li>
-                    <li>
-                        <a class="btn btn-primary btn-xs" href="#">Signup</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="row m-t-lg">
-            <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg">
-                <p>*Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. <span class="navy">Various versions</span>  have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-            </div>
-        </div>
-    </div>
-
-</section>-->
-
-<section id="contact" class="gray-section contact">
-    <div class="container">
-        <div class="row m-b-lg">
-            <div class="col-lg-12 text-center">
-                <div class="navy-line"></div>
-                <h1>Contact Us</h1>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
-            </div>
-        </div>
-        <div class="row m-b-lg">
-            <div class="col-lg-3 col-lg-offset-3">
-                <address>
-                    <strong><span class="navy">Company name, Inc.</span></strong><br/>
-                    795 Folsom Ave, Suite 600<br/>
-                    San Francisco, CA 94107<br/>
-                    <abbr title="Phone">P:</abbr> (123) 456-7890
-                </address>
-            </div>
-            <div class="col-lg-4">
-                <p class="text-color">
-                    Consectetur adipisicing elit. Aut eaque, totam corporis laboriosam veritatis quis ad perspiciatis, totam corporis laboriosam veritatis, consectetur adipisicing elit quos non quis ad perspiciatis, totam corporis ea,
-                </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <a href="mailto:test@email.com" class="btn btn-primary">Send us mail</a>
-                <p class="m-t-sm">
-                    Or follow us on social platform
-                </p>
-                <ul class="list-inline social-icon">
-                    <li><a href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg m-b-lg">
-                <p><strong>&copy; 2015 Company Name</strong><br/> consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Mainly scripts -->
-<script src="<?php base_url() ?>assets/js/jquery-3.1.1.min.js"></script>
-<script src="<?php base_url() ?>assets/js/bootstrap.min.js"></script>
-<script src="<?php base_url() ?>assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="<?php base_url() ?>assets/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-<!-- Custom and plugin javascript -->
-<script src="<?php base_url() ?>assets/js/inspinia.js"></script>
-<script src="<?php base_url() ?>assets/js/plugins/pace/pace.min.js"></script>
-<script src="<?php base_url() ?>assets/js/plugins/wow/wow.min.js"></script>
+		<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+			ga('create', 'UA-12345678-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		 -->
 
 
-<script>
-
-   
-    // Activate WOW.js plugin for animation on scrol
-    new WOW().init();
-
-</script>
-
-</body>
+	</body>
 </html>

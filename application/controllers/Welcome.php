@@ -48,9 +48,9 @@ class Welcome extends CI_Controller {
 		$this->load->view('noticias');
 	}
 	
-	public function cuenta()
+	public function contacto()
 	{
-		$this->load->view('cuenta');
+		$this->load->view('contacto');
 	}
 	
 }

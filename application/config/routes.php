@@ -63,7 +63,8 @@ $route['somos'] = 'welcome/somos';
 $route['servicios'] = 'welcome/servicios';
 $route['solicitud'] = 'welcome/solicitud';
 $route['noticias'] = 'welcome/noticias';
-$route['cuenta'] = 'welcome/cuenta';
+//~ $route['cuenta'] = 'welcome/cuenta';
+$route['contacto'] = 'welcome/contacto';
 
 /* perfiles */
 $route['profile'] = 'CPerfil';
