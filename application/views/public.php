@@ -125,11 +125,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 															Solicitud de Servicios
 														</a>
 													</li>
-													<li class="dropdown-full-color dropdown-secondary">
+													<!--<li class="dropdown-full-color dropdown-secondary">
 														<a href="noticias">
 															Noticias
 														</a>
-													</li>
+													</li>-->
 													<li class="dropdown-full-color dropdown-secondary">
 														<a href="contacto">
 															Contactos
@@ -371,32 +371,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					
 				</div>
 			</section>
-<section class="section" style="
-    margin-top: -30px;
-    margin-bottom: -30px;
-	background-color: #3A3A3A
-">
-					<div class="container">
+			
+			<section class="section" style="margin-top: -30px;margin-bottom: -30px;background-color: #3A3A3A">
+				<div class="container">
 
-						<div class="row">
-							<div class="col-md-8">
-								<p style="font-size:18px;">
-									Se parte de nuestro equipo, conviértete en una <em>franquicia</em>. 
-									<span>Echa un vistazo a nuestro modelo de negocios.</span>
-								</p>
-							</div>
-							<div class="col-md-4">
-								<div class="get-started">
-									<a href="#" class="btn btn-lg btn-primary">Contactanos</a>
-									<div class="learn-more">O<a href="index.html"> Lea más...</a></div>
-								</div>
+					<div class="row">
+						<div class="col-md-8">
+							<p style="font-size:18px;">
+								Se parte de nuestro equipo, conviértete en una <em>franquicia</em>. 
+								<span>Echa un vistazo a nuestro modelo de negocios.</span>
+							</p>
+						</div>
+						<div class="col-md-4">
+							<div class="get-started">
+								<a href="#" class="btn btn-lg btn-primary">Contactanos</a>
+								<div class="learn-more">O<a href="index.html"> Lea más...</a></div>
 							</div>
 						</div>
-
 					</div>
-				</section>
+				</div>
+			</section>
 
-			<section class="section">
+			<!--<section class="section">
 				<div class="container">
 					<div class="row mt-md">
 						<div class="col-md-12">
@@ -457,8 +453,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 					</div>
 				</div>
-			</section>
+			</section>-->
+			
 			<section>
+				<br><br><br>
 				<div class="container">
 					<div class="row mt-md">
 						<div class="col-md-12">

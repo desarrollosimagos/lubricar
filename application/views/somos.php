@@ -125,11 +125,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 															Solicitud de Servicios
 														</a>
 													</li>
-													<li class="dropdown-full-color dropdown-secondary">
+													<!--<li class="dropdown-full-color dropdown-secondary">
 														<a href="noticias">
 															Noticias
 														</a>
-													</li>
+													</li>-->
 													<li class="dropdown-full-color dropdown-secondary">
 														<a href="contacto">
 															Contactos
