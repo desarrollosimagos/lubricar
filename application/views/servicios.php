@@ -166,97 +166,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 				<div class="row mt-lg mb-lg">
 					<div class="col-md-12">
-
 						
 						<p class="lead font-weight-normal mb-xlg pb-xlg">Lubricar Delivery, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.</p>
-
+						<?php
+						foreach($servicios as $servicio){
+						?>
 						<div class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="100">
 							<div class="feature-box feature-box-style-2 mb-lg">
 								<div class="feature-box-icon">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/45510958_l-02.png" alt class="img-responsive" />
+									<img src="<?php echo assets_url(); ?>public/img/demos/medical/<?php echo $servicio->icon; ?>" alt class="img-responsive" />
 								</div>
 								<div class="feature-box-info ml-md">
-									<h4 class="font-weight-semibold mb-xs">Cambio de Aceite</h4>
-									<p class="mb-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dolor quam, sagittis eget pulvinar id, vulputate sit amet nisi. Etiam dui massa, semper eget pulvinar eget, imperdiet et neque. Donec rutrum purus a lectus consequat cursus. Curabitur sed lacinia felis. Phasellus non purus sit amet purus molestie molestie. Phasellus ornare volutpat nibh ut vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-									<p><a href="services-detail.html" class="btn btn-borders btn-quaternary custom-button text-uppercase mt-sm mb-md font-weight-bold btn-sm">ver mas...</a></p>
+									<h4 class="font-weight-semibold mb-xs"><?php echo $servicio->name; ?></h4>
+									<p class="mb-none"><?php echo $servicio->description; ?></p>
+									<!--<p><a href="services-detail.html" class="btn btn-borders btn-quaternary custom-button text-uppercase mt-sm mb-md font-weight-bold btn-sm">ver mas...</a></p>-->
 								</div>	
 							</div>
 
 							<hr class="solid mb-xlg">
 						</div>
-
-						<div class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="100">
-							<div class="feature-box feature-box-style-2 mb-lg">
-								<div class="feature-box-icon">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/45510958_l-07.png" alt class="img-responsive" />
-								</div>
-								<div class="feature-box-info ml-md">
-									<h4 class="font-weight-semibold mb-xs">Lavado Ecológico</h4>
-									<p class="mb-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dolor quam, sagittis eget pulvinar id, vulputate sit amet nisi. Etiam dui massa, semper eget pulvinar eget, imperdiet et neque. Donec rutrum purus a lectus consequat cursus. Curabitur sed lacinia felis. Phasellus non purus sit amet purus molestie molestie. Phasellus ornare volutpat nibh ut vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-									<p><a href="services-detail.html" class="btn btn-borders btn-quaternary custom-button text-uppercase mt-sm mb-md font-weight-bold btn-sm">ver mas...</a></p>
-								</div>
-							</div>
-
-							<hr class="solid mb-xlg">
-						</div>
-
-						<div class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="100">
-							<div class="feature-box feature-box-style-2 mb-lg">
-								<div class="feature-box-icon">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/45510958_l-01.png" alt class="img-responsive" />
-								</div>
-								<div class="feature-box-info ml-md">
-									<h4 class="font-weight-semibold mb-xs">Cambio de Filtro de Combustible</h4>
-									<p class="mb-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dolor quam, sagittis eget pulvinar id, vulputate sit amet nisi. Etiam dui massa, semper eget pulvinar eget, imperdiet et neque. Donec rutrum purus a lectus consequat cursus. Curabitur sed lacinia felis. Phasellus non purus sit amet purus molestie molestie. Phasellus ornare volutpat nibh ut vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-									<p><a href="services-detail.html" class="btn btn-borders btn-quaternary custom-button text-uppercase mt-sm mb-md font-weight-bold btn-sm">ver mas...</a></p>
-								</div>
-							</div>
-
-							<hr class="solid mb-xlg">
-						</div>
-
-						<div class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="100">
-							<div class="feature-box feature-box-style-2 mb-lg">
-								<div class="feature-box-icon">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/45510958_l-08.png" alt class="img-responsive" />
-								</div>
-								<div class="feature-box-info ml-md">
-									<h4 class="font-weight-semibold mb-xs">Limpieza de Tapicería</h4>
-									<p class="mb-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dolor quam, sagittis eget pulvinar id, vulputate sit amet nisi. Etiam dui massa, semper eget pulvinar eget, imperdiet et neque. Donec rutrum purus a lectus consequat cursus. Curabitur sed lacinia felis. Phasellus non purus sit amet purus molestie molestie. Phasellus ornare volutpat nibh ut vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-									<p><a href="services-detail.html" class="btn btn-borders btn-quaternary custom-button text-uppercase mt-sm mb-md font-weight-bold btn-sm">ver mas...</a></p>
-								</div>
-							</div>
-
-							<hr class="solid mb-xlg">
-						</div>
-
-						<div class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="100">
-							<div class="feature-box feature-box-style-2 mb-lg">
-								<div class="feature-box-icon">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/45510958_l-03.png" alt class="img-responsive" />
-								</div>
-								<div class="feature-box-info ml-md">
-									<h4 class="font-weight-semibold mb-xs">Cambio de Filtro de Aire Encerado</h4>
-									<p class="mb-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dolor quam, sagittis eget pulvinar id, vulputate sit amet nisi. Etiam dui massa, semper eget pulvinar eget, imperdiet et neque. Donec rutrum purus a lectus consequat cursus. Curabitur sed lacinia felis. Phasellus non purus sit amet purus molestie molestie. Phasellus ornare volutpat nibh ut vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-									<p><a href="services-detail.html" class="btn btn-borders btn-quaternary custom-button text-uppercase mt-sm mb-md font-weight-bold btn-sm">ver mas...</a></p>
-								</div>
-							</div>
-
-							<hr class="solid mb-xlg">
-						</div>
-
-						<div class="appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="100">
-							<div class="feature-box feature-box-style-2 mb-lg">
-								<div class="feature-box-icon">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/45510958_l-06.png" alt class="img-responsive" />
-								</div>
-								<div class="feature-box-info ml-md">
-									<h4 class="font-weight-semibold mb-xs">Pulido de Carroceria</h4>
-									<p class="mb-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dolor quam, sagittis eget pulvinar id, vulputate sit amet nisi. Etiam dui massa, semper eget pulvinar eget, imperdiet et neque. Donec rutrum purus a lectus consequat cursus. Curabitur sed lacinia felis. Phasellus non purus sit amet purus molestie molestie. Phasellus ornare volutpat nibh ut vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-									<p><a href="services-detail.html" class="btn btn-borders btn-quaternary custom-button text-uppercase mt-sm mb-md font-weight-bold btn-sm">ver mas...</a></p>
-								</div>
-							</div>
-						</div>
+						<?php
+						}
+						?>
 
 					</div>
 				</div>
