@@ -27,6 +27,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nombre</th>
+                                    <th>Imagen</th>
                                     <th>Editar</th>
                                     <th>Eliminar</th>
                                 </tr>
@@ -40,6 +41,9 @@
                                         </td>
                                         <td>
                                             <?php echo $perfil->name; ?>
+                                        </td>
+                                        <td>
+                                            <img src="<?php echo base_url().'assets/public/img/demos/medical/'.$perfil->icon ?>" style="width:50px;height:50px;"/> 
                                         </td>
                                         <td style='text-align: center'>
                                             <a href="<?php echo base_url() ?>services/edit/<?= $perfil->id; ?>" title="Editar" style='color: #1ab394'><i class="fa fa-edit fa-2x"></i></a>
@@ -97,6 +101,7 @@ $(document).ready(function(){
         "aoColumns": [
             {"sClass": "registro center", "sWidth": "5%"},
             {"sClass": "registro center", "sWidth": "20%"},
+            {"sClass": "registro center", "sWidth": "10%"},
             {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
             {"sWidth": "3%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false}
         ]

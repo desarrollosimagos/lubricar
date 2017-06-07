@@ -28,17 +28,31 @@ class CServices extends CI_Controller {
 		$this->load->view('footer');
 	}
 	
-	  //metodo para guardar un nuevo registro
+	// Método para guardar un nuevo registro
     public function add() {
-
-        $result = $this->MServices->insert($this->input->post());
+		$datos = array(
+            'name' => $_POST['name'],
+            'description' => $_POST['description'],
+            'icon' => $_FILES['icon']['name'],
+            'price' => $_POST['price'],
+            'status' => $_POST['status'],
+        );
+        $result = $this->MServices->insert($datos);
         if ($result) {
 
-           /*$this->libreria->generateActivity('Nuevo Grupo de Usuario', $this->session->userdata('logged_in')['id']);*/
+			// Sección para el registro del archivo en la ruta establecida para tal fin (assets/public/img/demos/medical)
+			$ruta = getcwd();  // Obtiene el directorio actual en donde se esta trabajando
+
+			if (move_uploaded_file($_FILES['icon']['tmp_name'], $ruta."/assets/public/img/demos/medical/".$_FILES['icon']['name'])) {
+				echo "El fichero es válido y se subió con éxito.\n";
+			} else {
+				echo "¡Posible ataque de subida de ficheros!\n";
+			}
        
         }
     }
-	 //metodo para editar
+	
+	// Método para editar
     public function edit() {
 		
 		$this->load->view('base');
@@ -48,16 +62,41 @@ class CServices extends CI_Controller {
 		$this->load->view('footer');
     }
 	
-	//Metodo para actualizar
+	// Método para actualizar
     public function update() {
-		
-        $result = $this->MServices->update($this->input->post());
+		if($_FILES['icon']['name'] != ''){
+			$datos = array(
+				'id' => $_POST['id'],
+				'name' => $_POST['name'],
+				'description' => $_POST['description'],
+				'icon' => $_FILES['icon']['name'],
+				'price' => $_POST['price'],
+				'status' => $_POST['status'],
+			);
+		}else{
+			$datos = array(
+				'id' => $_POST['id'],
+				'name' => $_POST['name'],
+				'description' => $_POST['description'],
+				'price' => $_POST['price'],
+				'status' => $_POST['status'],
+			);
+		}
+        $result = $this->MServices->update($datos);
         if ($result) {
-        /*    $this->libreria->generateActivity('Actualizado Grupo de Usuario', $this->session->userdata['logged_in']['id']);*/
-     
+			// Sección para el registro del archivo en la ruta establecida para tal fin (assets/public/img/demos/medical)
+			$ruta = getcwd();  // Obtiene el directorio actual en donde se esta trabajando
+			if($_FILES['icon']['name'] != ''){
+				if (move_uploaded_file($_FILES['icon']['tmp_name'], $ruta."/assets/public/img/demos/medical/".$_FILES['icon']['name'])) {
+					echo "El fichero es válido y se subió con éxito.\n";
+				} else {
+					echo "¡Posible ataque de subida de ficheros!\n";
+				}
+			}     
         }
     }
-	//Metodo para eliminar
+    
+	// Método para eliminar
 	function delete($id) {
 		
         $result = $this->MServices->delete($id);
