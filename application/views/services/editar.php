@@ -37,6 +37,14 @@
 								<input type="text" class="form-control"  name="description" maxlength="200" id="description" value="<?php echo $editar[0]->description ?>">
 							</div>
 						</div>
+						<div class="form-group"><label class="col-sm-2 control-label" >Imagen *</label>
+							<label class="col-sm-2 control-label" >
+								<img src="<?php echo base_url().'assets/public/img/demos/medical/'.$editar[0]->icon ?>" style="width:100px;height:100px;"/> 
+							</label>
+							<div class="col-sm-8">
+								<input type="file" class="form-control"  name="icon" maxlength="200" id="icon">
+							</div>
+						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label" >Precio *</label>
 							<div class="col-sm-10">
@@ -88,40 +96,66 @@ $(document).ready(function(){
         e.preventDefault();  // Para evitar que se envíe por defecto
 
         if ($('#name').val().trim() === "") {
-
-          
 			swal("Disculpe,", "para continuar debe ingresar nombre");
 			$('#name').parent('div').addClass('has-error');
 			
         } else if ($('#description').val().trim() === "") {
-
-          
 			swal("Disculpe,", "para continuar debe ingresar la descripción");
 			$('#description').parent('div').addClass('has-error');
 			
-        }else if ($('#price').val().trim() === "") {
-
-          
+        } else if ($('#price').val().trim() === "") {
 			swal("Disculpe,", "para continuar debe ingresar el precio");
 			$('#price').parent('div').addClass('has-error');
 			
         }   else {
 
-            $.post('<?php echo base_url(); ?>CServices/update', $('#form_services').serialize(), function (response) {
-
-				if (response[0] == '1') {
-                    swal("Disculpe,", "este nombre se encuentra registrado");
-                }else{
-					swal({ 
-						title: "Actualizar",
-						 text: "Guardado con exito",
-						  type: "success" 
-						},
-					function(){
-					  window.location.href = '<?php echo base_url(); ?>services';
-					});
-				}
-            });
+            //~ $.post('<?php echo base_url(); ?>CServices/update', $('#form_services').serialize(), function (response) {
+				//~ if (response[0] == '1') {
+                    //~ swal("Disculpe,", "este nombre se encuentra registrado");
+                //~ }else{
+					//~ swal({ 
+						//~ title: "Actualizar",
+						 //~ text: "Guardado con exito",
+						  //~ type: "success" 
+						//~ },
+					//~ function(){
+					  //~ window.location.href = '<?php echo base_url(); ?>services';
+					//~ });
+				//~ }
+            //~ });
+            
+            var formData = new FormData(document.getElementById("form_services"));  // Forma de capturar todos los datos del formulario
+			
+			$.ajax({
+				//~ method: "POST",
+				type: "post",
+				dataType: "html",
+				url: '<?php echo base_url(); ?>CServices/update',
+				data: formData,
+				cache: false,
+				contentType: false,
+				processData: false
+			})
+			.done(function(data) {
+				if(data.error){
+					console.log(data.error);
+				} else {
+					if (data[0] == '1') {
+						swal("Disculpe,", "este servicio se encuentra registrado");
+					}else{
+						swal({ 
+							title: "Registro",
+							 text: "Guardado con exito",
+							  type: "success" 
+							},
+						function(){
+						  window.location.href = '<?php echo base_url(); ?>services';
+						});
+					}
+				}				
+			}).fail(function() {
+				console.log("error ajax");
+			});
         }
     });
 });
