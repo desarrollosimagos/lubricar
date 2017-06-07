@@ -219,6 +219,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</ul>
 				</div>
 			</div>
+			
 			<section class="section-custom-medical">
 				<div class="container">
 					<div class="row medical-schedules">
@@ -276,83 +277,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<p class="lead font-weight-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 						</div>
 					</div>
-					<div class="row mt-lg">
+					<br>
+					<?php
+					foreach($servicios as $servicio){
+					?>
 						<div class="col-md-4">
 							<div class="feature-box feature-box-style-2 mb-xl appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
 								<div class="feature-box-icon">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/45510958_l-02.png" alt class="img-responsive" />
+									<img src="<?php echo assets_url(); ?>public/img/demos/medical/<?php echo $servicio->icon; ?>" alt class="img-responsive" />
 								</div>
 								<div class="feature-box-info ml-md">
-									<h4 class="font-weight-semibold"><a href="services-detail.html" class="text-decoration-none">Cambio de Aceite </a></h4>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit, leo vitae interdum...</p>
+									<h4 class="font-weight-semibold"><a href="services-detail.html" class="text-decoration-none"><?php echo $servicio->name; ?></a></h4>
+									<p><?php echo $servicio->description; ?></p>
 								</div>	
 							</div>
 						</div>
-						<div class="col-md-4">
-							<div class="feature-box feature-box-style-2 mb-xl appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
-								<div class="feature-box-icon">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/45510958_l-07.png" alt class="img-responsive" />
-								</div>
-								<div class="feature-box-info ml-md">
-									<h4 class="font-weight-semibold"><a href="services-detail.html" class="text-decoration-none">Lavado Ecológico</a></h4>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit, leo vitae interdum...</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="feature-box feature-box-style-2 mb-xl appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
-								<div class="feature-box-icon">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/45510958_l-01.png" alt class="img-responsive" />
-								</div>
-								<div class="feature-box-info ml-md">
-									<h4 class="font-weight-semibold"><a href="services-detail.html" class="text-decoration-none">Cambio de Filtro de Combustible</a></h4>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit, leo vitae interdum...</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row mt-lg">
-						<div class="col-md-4">
-							<div class="feature-box feature-box-style-2 mb-xl appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
-								<div class="feature-box-icon">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/45510958_l-08.png" alt class="img-responsive" />
-								</div>
-								<div class="feature-box-info ml-md">
-									<h4 class="font-weight-semibold"><a href="services-detail.html" class="text-decoration-none">Limpieza de Tapicería</a></h4>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit, leo vitae interdum...</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="feature-box feature-box-style-2 mb-xl appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
-								<div class="feature-box-icon">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/45510958_l-03.png" alt class="img-responsive" />
-								</div>
-								<div class="feature-box-info ml-md">
-									<h4 class="font-weight-semibold"><a href="services-detail.html" class="text-decoration-none">Cambio de Filtro de Aire Encerado</a></h4>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit, leo vitae interdum...</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="feature-box feature-box-style-2 mb-xl appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
-								<div class="feature-box-icon">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/45510958_l-06.png" alt class="img-responsive" />
-								</div>
-								<div class="feature-box-info ml-md">
-									<h4 class="font-weight-semibold"><a href="services-detail.html" class="text-decoration-none">Pulido de Carroceria</a></h4>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit, leo vitae interdum...</p>
-								</div>
-							</div>
-						</div>
-					</div>
+					<?php
+					}
+					?>
 					<div class="row mt-lg pb-xlg">
 						<div class="col-md-12 center">
-							<a class="btn btn-borders btn-quaternary custom-button text-uppercase mt-lg font-weight-bold" href="services.html">ver mas</a>
+							<a class="btn btn-borders btn-quaternary custom-button text-uppercase mt-lg font-weight-bold" href="servicios">ver mas</a>
 						</div>
 					</div>
 				</div>
 			</section>
+			
 			<section class="section section-no-border">
 				<div class="container">
 					<div class="row mt-xlg pt-xlg mb-xlg pb-xs">
@@ -490,6 +440,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 				</div>
 			</section>
+			
 			<section class="section-secondary">
 				<div class="container">
 					<div class="row mt-xlg pt-md mb-xlg pb-md">

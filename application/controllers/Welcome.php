@@ -18,9 +18,17 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	public function __construct() {
+        parent::__construct();
+        
+		// Load database
+        $this->load->model('MServices');
+    }
+	 
 	public function index()
 	{
-		$this->load->view('public');
+		$data['servicios'] = $this->MServices->obtener();
+		$this->load->view('public', $data);
 	}
 	
 	public function admin()
@@ -35,7 +43,8 @@ class Welcome extends CI_Controller {
 	
 	public function servicios()
 	{
-		$this->load->view('servicios');
+		$data['servicios'] = $this->MServices->obtener();
+		$this->load->view('servicios', $data);
 	}
 	
 	public function solicitud()
