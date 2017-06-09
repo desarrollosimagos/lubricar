@@ -52,7 +52,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<!-- Theme Custom CSS -->
 		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/custom.css">
-
+		
+		<!-- Sweet Alert -->
+		<link href="<?php echo assets_url('css/plugins/sweetalert/sweetalert.css');?>" rel="stylesheet">
 
 		<!-- Admin Extension Specific Page Vendor CSS -->
 		<link rel="stylesheet" href="http://preview.oklerthemes.com/porto-admin/edge/assets/vendor/pnotify/pnotify.custom.css" />
@@ -66,6 +68,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<!-- Head Libs -->
 		<script src="<?php echo assets_url(); ?>public/vendor/modernizr/modernizr.min.js"></script>
+		
+		<!-- google reCAPTCHA -->
+		<script src='https://www.google.com/recaptcha/api.js'></script>
 
 	</head>
 	<body>
@@ -77,8 +82,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="container">
 							<nav class="header-nav-top pull-right">
 								<ul class="nav nav-pills">
-									<li class="hidden-xs">
-										<span class="ws-nowrap"><i class="icon-login icons"></i> <a href="my-account.html">Iniciar Sesión</a></span>
+									<li class="hidden-xs" id="li_cerrar">
+										<span class="ws-nowrap"><i class="icon-logout icons"></i><a href="#" id="cerrar">Salir</a></span>
+									</li>
+									<li class="hidden-xs" id="li_perfil">
+										<span class="ws-nowrap">
+										<i class="icon-user icons"></i> 
+										<a href="public_perfil" id="perfil"><span id="span_perfil"></span></a>
+										</span>
+									</li>
+									<li class="hidden-xs" id="li_inicio">
+										<span class="ws-nowrap"><i class="icon-login icons"></i> <a href="#" id="inicio">Iniciar Sesión</a></span>
 									</li>
 									<li class="hidden-xs">
 										<span class="ws-nowrap"><i class="icon-envelope-open icons"></i> <a class="text-decoration-none" href="mailto:contacto@lubricardelivery.com">contacto@lubricardelivery.com</a></span>
@@ -378,6 +392,52 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</footer>
 		</div>
+		
+		<!--Modal de registro/inicio de sesión-->
+		<div class="modal inmodal fade" id="modal_cliente" tabindex="-1" role="dialog"  aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close cerrar_modal" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h5 class="modal-title text-center"><span id="titulo"></span></h5>
+					</div>
+					<div class="modal-body" >
+						<form id="form_client" action="" method="post" class="form">
+							<div class="form-group">
+								<label class="username">Usuario *</label>
+								<input id="username" name="username" class="form-control" type="text" maxlength="100">
+								<label class="password">Contraseña *</label>
+								<input id="password" name="password" class="form-control" type="password" maxlength="20" >
+								<label class="confirm">Repetir Contraseña *</label>
+								<input id="confirm" name="confirm" class="form-control" type="password" maxlength="20" >
+								<label class="name">Nombre *</label>
+								<input id="name" name="name" class="form-control" type="text" maxlength="150">
+								<label class="lastname">Apellido *</label>
+								<input id="lastname" name="lastname" class="form-control" type="text" maxlength="20">
+								<label class="phone">Telefono 1 *</label>
+								<input id="phone" name="phone" class="form-control" type="text" maxlength="20">
+								<label class="cell_phone">Teléfono 2</label>
+								<input id="cell_phone" name="cell_phone" class="form-control" type="text" maxlength="20">
+								<input id="status" name="status" class="form-control" type="hidden" value="0" maxlength="20">
+								<input id="base_url" type="hidden" value="<?php echo base_url(); ?>"/>
+								<br>
+								<div id="recapcha">
+									<div class="g-recaptcha" data-sitekey="6LewpiQUAAAAABg-KyhrB7y71mygvZGYfc5Zp8l2"></div>
+								</div>						
+							</div>
+						</form>
+						<button id="iniciar" type="button" class="btn btn-primary full-width m-b text-center">Iniciar</button>
+						<button class="btn btn-primary full-width m-b text-center" type="button" id="add_client">Registrar</button>
+					</div>
+					<div class="modal-footer text-center" >
+					</div>
+					<p class="text-muted text-center" id="question_account"><small>¿No tiene una cuenta?</small></p>
+					<a class="btn btn-sm btn-white btn-block" id="reg_client" href="#">Crea una cuenta</a>
+					<a class="btn btn-sm btn-white btn-block" id="hidden_reg_client" href="#">Ya poseo una cuenta</a>
+				</div>
+			</div>
+		</div>
+		<!--Modal de registro/inicio de sesión-->
 
 		<!-- Vendor -->
 		<script src="<?php echo assets_url(); ?>public/vendor/jquery/jquery.min.js"></script>
@@ -413,7 +473,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		<!-- Theme Initialization Files -->
 		<script src="<?php echo assets_url(); ?>public/js/theme.init.js"></script>
+		
+		<!-- Sweet alert -->
+		<script src="<?php echo assets_url('js/plugins/sweetalert/sweetalert.min.js');?>"></script>
+		
+		<!-- Validate only numeric data -->
+		<script src="<?php echo assets_url('js/jquery.numeric.js');?>"></script>
 
+		<!-- Registro/Inicio de Sesión -->
+		<script src="<?php echo assets_url(); ?>script/sesion.js"></script>
 
 		<!-- Admin Extension Specific Page Vendor -->
 		<script src="http://preview.oklerthemes.com/porto-admin/edge/assets/vendor/jquery-validation/jquery.validate.js"></script>
@@ -441,3 +509,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	</body>
 </html>
+<?php
+echo validar_acceso_publico();
+?>

@@ -54,7 +54,9 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['login'] = 'CLogin/login/';
+$route['login_public'] = 'CLogin/login_public/';
 $route['logout'] = 'CLogin/logout/';
+$route['logout_public'] = 'CLogin/logout_public/';
 $route['home'] = 'Home/home/';
 $route['admin'] = 'Welcome/admin/';
 /* page public*/

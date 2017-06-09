@@ -43,5 +43,35 @@ Class CLogin extends CI_Controller {
         $this->basicauth->logout();
         redirect('login');
     }
+    
+	// Show login page
+    public function login_public() {
+		$data = array();
+		$this->form_validation->set_rules('username', 'Username', 'required|trim');
+        $this->form_validation->set_rules('password', 'Password', 'required|trim');
+        
+        if($this->form_validation->run()!=FALSE){
+			$usuario = $this->input->post('username');
+			$password = 'pbkdf2_sha256$12000$'.hash( "sha256", $this->input->post('password') );
+			
+			$respuesta = $this->basicauthpublic->login($usuario, $password);
+			
+			if(!isset($respuesta['error'])){
+				redirect('public_perfil');
+			}else{
+				$data['error'] = $respuesta['error'];
+				//~ $this->load->view('login_form', $data);
+			}
+		}else{
+			//~ echo "No pasó";
+		}
+    }
+
+	// Logout from profile page
+    public function logout_public() {
+		// Removing session data
+        $this->basicauthpublic->logout();
+        redirect('public');
+    }
 
 }
