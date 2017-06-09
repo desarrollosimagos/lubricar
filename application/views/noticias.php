@@ -66,8 +66,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="container">
 							<nav class="header-nav-top pull-right">
 								<ul class="nav nav-pills">
-									<li class="hidden-xs">
-										<span class="ws-nowrap"><i class="icon-login icons"></i> <a href="my-account.html">Iniciar Sesión</a></span>
+									<li class="hidden-xs" id="li_cerrar">
+										<span class="ws-nowrap"><i class="icon-logout icons"></i><a href="#" id="cerrar">Salir</a></span>
+									</li>
+									<li class="hidden-xs" id="li_perfil">
+										<span class="ws-nowrap">
+										<i class="icon-user icons"></i> 
+										<a href="public_perfil" id="perfil"><span id="span_perfil"></span></a>
+										</span>
+									</li>
+									<li class="hidden-xs" id="li_inicio">
+										<span class="ws-nowrap"><i class="icon-login icons"></i> <a href="#" id="inicio">Iniciar Sesión</a></span>
 									</li>
 									<li class="hidden-xs">
 										<span class="ws-nowrap"><i class="icon-envelope-open icons"></i> <a class="text-decoration-none" href="mailto:contacto@lubricardelivery.com">contacto@lubricardelivery.com</a></span>
@@ -279,6 +288,45 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</footer>
 		</div>
+		
+		<!--Modal de registro/inicio de sesión-->
+		<div class="modal inmodal fade" id="modal_cliente" tabindex="-1" role="dialog"  aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close cerrar_modal" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h5 class="modal-title"><span id="titulo"></span> Cliente</h5>
+					</div>
+					<div class="modal-body" >
+						<form id="form_client" action="" method="post" class="form">
+							<div class="form-group">
+								<label >Usuario *</label>
+								<input id="username" name="username" class="form-control" type="text" maxlength="100">
+								<label>Contraseña *</label>
+								<input id="password" name="password" class="form-control" type="password" maxlength="20" >
+								<label>Repetir Contraseña *</label>
+								<input id="confirm" name="confirm" class="form-control" type="password" maxlength="20" >
+								<label >Nombre *</label>
+								<input id="name" name="name" class="form-control" type="text" maxlength="150">
+								<label>Apellido *</label>
+								<input id="lastname" name="lastname" class="form-control" type="text" maxlength="20">
+								<label>Telefono 1 *</label>
+								<input id="phone" name="phone" class="form-control" type="text" maxlength="20">
+								<label>Teléfono 2</label>
+								<input id="cell_phone" name="cell_phone" class="form-control" type="text" maxlength="20">
+								<input id="status" name="status" class="form-control" type="hidden" value="activo" maxlength="20">
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer" >
+						<button class="btn btn-primary" type="button" id="add_client">
+							Registrar
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Modal de registro/inicio de sesión-->
 
 		<!-- Vendor -->
 		<script src="<?php echo assets_url(); ?>public/vendor/jquery/jquery.min.js"></script>
@@ -315,8 +363,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<!-- Theme Initialization Files -->
 		<script src="<?php echo assets_url(); ?>public/js/theme.init.js"></script>
 
-
-
+		<!-- Registro/Inicio de Sesión -->
+		<script src="<?php echo assets_url(); ?>script/sesion.js"></script>
 
 		<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
 		<script>
@@ -333,3 +381,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	</body>
 </html>
+<?php
+echo validar_acceso_publico();
+?>

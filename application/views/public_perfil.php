@@ -286,35 +286,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</a>
 						</div>
 					</div>
-					<div class="row pt-xl">
-						<div class="col-md-12">
-							<h2 class="font-weight-semibold mb-xs">Servicios</h2>
-							<p class="lead font-weight-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						</div>
-					</div>
-					<br>
-					<?php
-					foreach($servicios as $servicio){
-					?>
-						<div class="col-md-4">
-							<div class="feature-box feature-box-style-2 mb-xl appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
-								<div class="feature-box-icon">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/<?php echo $servicio->icon; ?>" alt class="img-responsive" />
-								</div>
-								<div class="feature-box-info ml-md">
-									<h4 class="font-weight-semibold"><a href="services-detail.html" class="text-decoration-none"><?php echo $servicio->name; ?></a></h4>
-									<p><?php echo $servicio->description; ?></p>
-								</div>	
-							</div>
-						</div>
-					<?php
-					}
-					?>
-					<div class="row mt-lg pb-xlg">
-						<div class="col-md-12 center">
-							<a class="btn btn-borders btn-quaternary custom-button text-uppercase mt-lg font-weight-bold" href="servicios">ver mas</a>
-						</div>
-					</div>
+					
 				</div>
 			</section>
 			
@@ -561,7 +533,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<h5 class="modal-title text-center"><span id="titulo"></span></h5>
 					</div>
 					<div class="modal-body" >
-						<form id="form_client" action="login_public" method="post" class="form">
+						<form id="form_client" action="" method="post" class="form">
 							<div class="form-group">
 								<label class="username">Usuario *</label>
 								<input id="username" name="username" class="form-control" type="text" maxlength="100">

@@ -19,6 +19,8 @@ class Acceso
 		$accionespermitidas = array();  // Ids de las acciones (módulos) permitidos para el usuario logueado
 		$rutaspermitidas = array();  // Rutas permitidas para el usuario logueado
 		
+		//~ $this->CI->session->sess_destroy();  // Para borrar sesión en ocasiones que en las que no querramos borrar todos los datos del navegador
+		
 		// Si estamos logueados e intenamos volver al login o admin nos redirige al home
 		if(isset($this->CI->session->userdata['logged_in']) && ($this->CI->router->method == 'login' || $this->CI->router->method == 'admin')){
 			redirect('home');
