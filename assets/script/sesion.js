@@ -168,7 +168,7 @@ $(document).ready(function() {
 				} else {
 					swal({
 						title: "Registro",
-						text: "Guardado con exito",
+						text: "Guardado con exito. Le será enviado un correo de confirmación, por favor revise su bandeja de entrada.",
 						type: "success"
 					},
 					function () {
