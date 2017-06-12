@@ -9,6 +9,7 @@ class CClient extends CI_Controller {
 
         // Load database
         $this->load->model('MClient');
+        $this->load->model('MMails');
     }
 
     public function index() {
@@ -24,7 +25,7 @@ class CClient extends CI_Controller {
         $this->load->view('footer');
     }
 
-    //metodo para guardar un nuevo registro
+    // Método para guardar un nuevo registro
     public function add() {
 
         $datos = array(
@@ -103,7 +104,7 @@ class CClient extends CI_Controller {
 
     }
 
-    //metodo para guardar un nuevo registro
+    // Método para guardar un nuevo registro
     public function add2() {
 
         $datos = array(
@@ -117,8 +118,29 @@ class CClient extends CI_Controller {
         );
         $result_id = $this->MClient->insert($datos);
     }
+    
+    // Método para guardar un nuevo registro desde la interfaz pública
+    public function add3() {
 
-    //metodo para guardar un nuevo registro
+        $datos = array(
+            'username' => $this->input->post('username'),
+            'password' => 'pbkdf2_sha256$12000$' . hash("sha256", $this->input->post('password')),
+            'name' => $this->input->post('name'),
+            'lastname' => $this->input->post('lastname'),
+            'phone' => $this->input->post('phone'),
+            'cell_phone' => $this->input->post('cell_phone'),
+            'status' => $this->input->post('status')
+        );
+        if($this->input->post('g-recaptcha-response') != ''){
+			$result_id = $this->MClient->insert($datos);
+			if($result_id != 'existe cliente'){
+				// Enviamos un correo de validación a la dirección correspondiente al usuario
+				$this->MMails->enviarMail($result_id, $this->input->post('username'));
+			}
+		}
+    }
+
+    // Método para guardar un nuevo registro
     public function addCar() {
 
         $datos = array(
@@ -133,7 +155,7 @@ class CClient extends CI_Controller {
         $result = $this->MClient->insertCars($datos);
     }
 
-    //metodo para guardar un nuevo registro
+    // Método para guardar un nuevo registro
     public function addAddress() {
 
         $datos = array(
@@ -149,7 +171,7 @@ class CClient extends CI_Controller {
         $result = $this->MClient->insertAddress($datos);
     }
 
-    //metodo para editar
+    // Método para editar
     public function edit() {
 
         $this->load->view('base');
@@ -161,7 +183,7 @@ class CClient extends CI_Controller {
         $this->load->view('footer');
     }
 
-    //Metodo para actualizar
+    // Método para actualizar
     public function update() {
 
         $regs_eliminar1 = $this->input->post('codigos_des1');
@@ -334,7 +356,7 @@ class CClient extends CI_Controller {
     }
 
 
-    //Metodo para editar password
+    // Método para editar password
     public function pass() {
         print_r('hola', $this->input->post('password'));
         $datos = array(
@@ -367,6 +389,28 @@ class CClient extends CI_Controller {
     public function ajax_address($id) {
         $result = $this->MClient->obtenerAddress($id);
         echo json_encode($result);
+    }
+    
+    // Método para validar el correo de un cliente y proceder a activarlo
+    public function validar_mail() {
+		$id_client = $this->input->get('id');
+		$datos_update = array('id'=>$id_client, 'status'=>1);
+		// Activamos el cliente
+        $result = $this->MClient->update_status($datos_update);
+        
+        if($result){
+			// Obtenemos y armamos los datos del cliente
+			$mail = $this->MClient->obtenerClients($id);
+			$datos_reg = array(
+				'name'=>$mail[0]->name,
+				'lastname'=>$mail[0]->lastname,
+				'phone'=>$mail[0]->phone,
+				'cell_phone'=>$mail[0]->cell_phone,
+				'username'=>$mail[0]->username
+			);
+			// Enviamos los datos registrados al correo del cliente
+			$this->MMails->enviarMailConfirm($datos_reg);
+		}
     }
 
 }
