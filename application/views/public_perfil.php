@@ -32,6 +32,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link rel="stylesheet" href="<?php echo assets_url('public/vendor/owl.carousel/assets/owl.carousel.min.css'); ?>">
 		<link rel="stylesheet" href="<?php echo assets_url('public/vendor/owl.carousel/assets/owl.theme.default.min.css'); ?>">
 		<link rel="stylesheet" href="<?php echo assets_url('public/vendor/magnific-popup/magnific-popup.min.css'); ?>">
+		<link href="<?php echo assets_url('css/plugins/dataTables/datatables.min.css');?>" rel="stylesheet">
+		<link href="<?php echo assets_url('js/datatables.net-bs/css/dataTables.bootstrap.css'); ?>" rel="stylesheet" />
+		<link rel="stylesheet" href="<?php echo assets_url('css/dataTables.responsive.css'); ?>">
+		<link href="<?php echo assets_url('js/datatables.net-responsive-bs/css/responsive.bootstrap.min.css'); ?>"
 
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/theme.css">
@@ -163,309 +167,264 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			<div role="main" class="main">
 				
-			<div class="slider-container rev_slider_wrapper" style="height: 650px;">
-				<div id="revolutionSlider" class="slider rev_slider" data-plugin-revolution-slider data-plugin-options="{'delay': 9000, 'gridwidth': 1170, 'gridheight': 650, 'disableProgressBar': 'on', 'navigation': {'bullets': {'enable': true, 'direction': 'vertical', 'h_align': 'right', 'v_align': 'center', 'space': 5}, 'arrows': {'enable': false}}}">
-					<ul>
-						<li data-transition="fade">
-							<img src="<?php echo assets_url(); ?>public/img/demos/medical/slides/slider-1.jpg"  
-								alt=""
-								data-bgposition="center center" 
-								data-bgfit="cover" 
-								data-bgrepeat="no-repeat"
-								class="rev-slidebg">
+			<section class="page-header page-header-color page-header-primary page-header-float-breadcrumb">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="mt-xs">Mi Perfil (<?php echo $this->session->userdata['logged_in_public']['name']; ?> <?php echo $this->session->userdata['logged_in_public']['lastname']; ?>)<span>Navegue por los datos de su cuenta</span></h1>
+							<ul class="breadcrumb breadcrumb-valign-mid">
+								<li><a href="#">Inicio</a></li>
+								<li class="active">Perfil público</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="tabs tabs-bottom tabs-center tabs-simple">
+							<ul class="nav nav-tabs">
+								<li class="active">
+									<a href="#tabsNavigationSimpleIcons1" data-toggle="tab">
+										<span class="featured-boxes featured-boxes-style-6 p-none m-none">
+											<span class="featured-box featured-box-primary featured-box-effect-6 p-none m-none">
+												<span class="box-content p-none m-none">
+													<i class="icon-featured fa fa-user"></i>
+												</span>
+											</span>
+										</span>									
+										<p class="mb-none pb-none">Datos Personales</p>
+									</a>
+								</li>
+								<li>
+									<a href="#tabsNavigationSimpleIcons2" data-toggle="tab">
+										<span class="featured-boxes featured-boxes-style-6 p-none m-none">
+											<span class="featured-box featured-box-primary featured-box-effect-6 p-none m-none">
+												<span class="box-content p-none m-none">
+													<i class="icon-featured fa fa-file"></i>
+												</span>
+											</span>
+										</span>									
+										<p class="mb-none pb-none">Historial de Pedidos</p>
+									</a>
+								</li>
+								<li>
+									<a href="#tabsNavigationSimpleIcons3" data-toggle="tab">
+										<span class="featured-boxes featured-boxes-style-6 p-none m-none">
+											<span class="featured-box featured-box-primary featured-box-effect-6 p-none m-none">
+												<span class="box-content p-none m-none">
+													<i class="icon-featured fa fa-address-card"></i>
+												</span>
+											</span>
+										</span>									
+										<p class="mb-none pb-none">Mis Direcciones</p>
+									</a>
+								</li>
+								<li>
+									<a href="#tabsNavigationSimpleIcons4" data-toggle="tab">
+										<span class="featured-boxes featured-boxes-style-6 p-none m-none">
+											<span class="featured-box featured-box-primary featured-box-effect-6 p-none m-none">
+												<span class="box-content p-none m-none">
+													<i class="icon-featured fa fa-car"></i>
+												</span>
+											</span>
+										</span>									
+										<p class="mb-none pb-none">Mis Vehículos</p>
+									</a>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div class="tab-pane active" id="tabsNavigationSimpleIcons1">
+									<div class="justify">
+										<div class="col-md-2">
+										</div>
+										<div class="col-md-8">
+											<h4>Datos Personales</h4>
+											<ul class="list list-icons list-icons-style-3 mt-xlg">
+												<li><i class="fa fa-id-card"></i> <strong>Nombre:</strong> <?php echo $this->session->userdata['logged_in_public']['name']; ?> <?php echo $this->session->userdata['logged_in_public']['lastname']; ?></li>
+												<li><i class="fa fa-phone"></i> <strong>Télefono:</strong> <?php echo $this->session->userdata['logged_in_public']['phone']; ?></li>
+												<li><i class="fa fa-mobile"></i> <strong>Móvil:</strong> <?php echo $this->session->userdata['logged_in_public']['cell_phone']; ?></li>
+												<li><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:mail@example.com"><?php echo $this->session->userdata['logged_in_public']['username']; ?></a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane" id="tabsNavigationSimpleIcons2">
+									<div class="justify">
+										<div class="col-md-2">
+										</div>
+										<div class="col-md-8">
+											<h4>Historial de Pedidos</h4>
+											<div class="table-responsive">
+												<table id="tab_order" class="table table-striped table-bordered dt-responsive table-hover dataTables-example">
+													<thead>
+														<tr>
+															<th class="text-center">#</th>
+															<th class="text-center">Orden N°</th>
+															<th class="text-center">Franquicia</th>
+															<th class="text-center">Cliente</th>
+															<th class="text-center">Fecha</th>
+															<th class="text-center">Monto</th>
+															<th class="text-center">Servicios</th>
+															<th class="text-center">Productos</th>
+															<th class="text-center">Estatus</th>
 
-							<div class="tp-caption main-label"
-								data-x="left" data-hoffset="25"
-								data-y="center" data-voffset="-5"
-								data-start="1500"
-								data-whitespace="nowrap"						 
-								data-transform_in="y:[100%];s:500;"
-								data-transform_out="opacity:0;s:500;"
-								style="z-index: 5; font-size: 1.5em; text-transform: uppercase;"
-								data-mask_in="x:0px;y:0px;">El cambio de aceite que va hacia usted</div>
+														</tr>
+													</thead>
+													<tbody>
+														<?php $i = 1; ?>
+														<?php foreach ($this->session->userdata['logged_in_public']['ordenes'] as $list) { ?>
+															<tr style="text-align: center">
+																<td>
+																	<?php echo $i; ?>
+																</td>
+																<td>
+																	<?php printf("%08d", $list->id) ?> 
+																</td>
+																<td>
+																	<?php
+																	foreach ($list_franq as $listar) {
+																		if ($listar->id == $list->franchise_id) {
+																			echo $listar->name;
+																		}
+																	};
+																	?>
+																</td>
+																<td>
+																	<?php
+																	foreach ($list_client as $listar) {
+																		if ($listar->id == $list->customer_id) {
+																			echo $listar->name . ' ' . $listar->lastname;
+																		}
+																	};
+																	?>
+																</td>
+																<td>
+																	<?php echo $list->date_order; ?>
+																</td>
+																<td>
+																	<?php echo $list->total; ?>
+																</td>
+																<td>
+																	<?php
+																	foreach ($list_orders_services as $order_service) {
+																		if ($order_service->order_id == $list->id) {
+																			foreach ($list_serv as $servicio) {
+																				if ($servicio->id == $order_service->service_id) {
+																					echo $servicio->name . ", ";
+																				}
+																			}
+																		}
+																	}
+																	?>
+																</td>
+																<td>
+																	<?php
+																	foreach ($list_orders_products as $order_product) {
+																		if ($order_product->order_id == $list->id) {
+																			foreach ($list_prod as $producto) {
+																				if ($producto->id == $order_product->product_id) {
+																					echo $producto->name . ", ";
+																				}
+																			}
+																		}
+																	}
+																	?>
+																</td>
+																<td>
+																	<?php foreach ($status as $listar) { ?>
+																		<?php if ($listar->id == $list->status){ ?>
+																			<span class='<?php echo $listar->labels; ?>'><?php echo $listar->name; ?></span>
+																		<?php } ?>
+																	<?php } ?>
+																</td>
+															</tr>
+															<?php $i++ ?>
+														<?php } ?>
+													</tbody>
 
-							<div class="tp-caption main-label"
-								data-x="left" data-hoffset="25"
-								data-y="center" data-voffset="-55"
-								data-start="500"
-								style="z-index: 5; text-transform: uppercase; font-size: 52px;"
-								data-transform_in="y:[-300%];opacity:0;s:500;">LUBRICAR DELIVERY</div>
-							
-							<div class="tp-caption bottom-label"
-								data-x="left" data-hoffset="25"
-								data-y="center" data-voffset="40"
-								data-start="2000"
-								style="z-index: 5; border-bottom: 1px solid #fff; padding-bottom: 3px;"
-								data-transform_in="y:[100%];opacity:0;s:500;" style="font-size: 1.2em;">Atendemos en toda Panamá</div>
-						</li>
-						<li data-transition="fade">
-							<img src="<?php echo assets_url(); ?>public/img/demos/medical/slides/slider-2.jpg"  
-								alt=""
-								data-bgposition="center center" 
-								data-bgfit="cover" 
-								data-bgrepeat="no-repeat"
-								class="rev-slidebg">
-
-							<div class="tp-caption main-label"
-								data-x="left" data-hoffset="25"
-								data-y="center" data-voffset="-5"
-								data-start="1500"
-								data-whitespace="nowrap"						 
-								data-transform_in="y:[100%];s:500;"
-								data-transform_out="opacity:0;s:500;"
-								style="z-index: 5; font-size: 1.5em; text-transform: uppercase;"
-								data-mask_in="x:0px;y:0px;">Contáctenos ahora para programar una cita de servicio en su localidad.  
-</div>
-
-							<div class="tp-caption main-label"
-								data-x="left" data-hoffset="25"
-								data-y="center" data-voffset="-55"
-								data-start="500"
-								style="z-index: 5; text-transform: uppercase; font-size: 52px;"
-								data-transform_in="y:[-300%];opacity:0;s:500;">CITAS DE SERVICIO</div>
-							
-							<div class="tp-caption bottom-label"
-								data-x="left" data-hoffset="25"
-								data-y="center" data-voffset="40"
-								data-start="2000"
-								style="z-index: 5; border-bottom: 1px solid #fff; padding-bottom: 3px;"
-								data-transform_in="y:[100%];opacity:0;s:500;" style="font-size: 1.2em;">En línea o vía telefónica</div>
-						</li>
-					</ul>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane" id="tabsNavigationSimpleIcons3">
+									<div class="justify">
+										<div class="col-md-2">
+										</div>
+										<div class="col-md-8">
+											<h4>Mis Direcciones</h4>
+											<div class="table-responsive">
+												<table style="width: 100%" class="table table-striped table-bordered dt-responsive table-hover dataTables-example" id="tab_direccion">
+													<thead>
+														<tr>
+															<th>Ciudad</th>
+															<th>Código Postal</th>
+															<th>Descripción</th>
+															<th>Dirección 1</th>
+															<th>Dirección 2</th>
+															<th>Teléfono</th>
+															<th>Teléfono 2</th>
+														</tr>
+													</thead>
+													<tbody>
+														<?php foreach ($this->session->userdata['logged_in_public']['direcciones'] as $direcc) { ?>
+															<tr id="<?php echo $direcc->id; ?>">
+																<td style='text-align: center' id="<?php echo $direcc->id; ?>"><?php echo $direcc->city; ?></td>
+																<td style='text-align: center'><?php echo $direcc->zip; ?></td>
+																<td style='text-align: center'><?php echo $direcc->description; ?></td>
+																<td style='text-align: center'><?php echo $direcc->address_1; ?></td>
+																<td style='text-align: center'><?php echo $direcc->address_2; ?></td>
+																<td style='text-align: center'><?php echo $direcc->phone; ?></td>
+																<td style='text-align: center'><?php echo $direcc->cell_phone; ?></td>
+															</tr>
+														<?php } ?>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane" id="tabsNavigationSimpleIcons4">
+									<div class="justify">
+										<div class="col-md-2">
+										</div>
+										<div class="col-md-8">
+											<h4>Mis Vehículos</h4>
+											<div class="table-responsive">
+												<table style="width: 100%" class="table table-striped table-bordered dt-responsive table-hover dataTables-example" id="tab_vehiculo">
+													<thead>
+														<tr>
+															<th>Marca</th>
+															<th>Modelo</th>
+															<th>Color</th>
+															<th>Año</th>
+															<th>Placa</th>
+														</tr>
+													</thead>
+													<tbody>
+														<?php foreach ($this->session->userdata['logged_in_public']['vehiculos'] as $vehi) { ?>
+															<tr id="<?php echo $vehi->id ?>">
+																<td style='text-align: center' id="<?php echo $vehi->id; ?>"><?php echo $vehi->trademark; ?></td>
+																<td style='text-align: center'><?php echo $vehi->model; ?></td>
+																<td style='text-align: center'><?php echo $vehi->color; ?></td>
+																<td style='text-align: center'><?php echo $vehi->year; ?></td>
+																<td style='text-align: center'><?php echo $vehi->license_plate; ?></td>
+															</tr>
+														<?php } ?>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			
-			<section class="section-custom-medical">
-				<div class="container">
-					<div class="row medical-schedules">
-						<div class="col-lg-3 box-one background-color-primary appear-animation" data-appear-animation="fadeInLeft" data-appear-animation-delay="0">
-							<div class="feature-box feature-box-style-2 p-lg">
-								<div class="feature-box-icon">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/icons/medical-icon-heart.png" alt class="img-responsive pt-xs" />
-								</div>
-								<div class="feature-box-info ml-md">
-									<h4 class="m-none">Lubricar Delivery</h4>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 box-two background-color-tertiary appear-animation" data-appear-animation="fadeInLeft" data-appear-animation-delay="600">
-							<h5 class="m-none">
-								<a href="request.html" title="">
-									Agendar un servicio 
-									<i class="icon-arrow-right-circle icons"></i>
-								</a>
-							</h5>
-						</div>
-						<div class="col-lg-3 box-three background-color-primary appear-animation" data-appear-animation="fadeInLeft" data-appear-animation-delay="1200">
-							<div class="expanded-info p-xlg background-color-primary">
-								<div class="info custom-info">
-									<span>Lun-Vie</span>
-									<span>8:30 am a 5:00 pm</span>
-								</div>
-								<div class="info custom-info">
-									<span>Sabados</span>
-									<span>9:30 am to 1:00 pm</span>
-								</div>
-							</div>
-							<h5 class="m-none">
-								Horario de Atención
-								<i class="icon-arrow-right-circle icons"></i>
-							</h5>
-						</div>
-						<div class="col-lg-3 box-four background-color-secondary p-none appear-animation" data-appear-animation="fadeInLeft" data-appear-animation-delay="1800">
-							<a href="tel:+008001234567" class="text-decoration-none">
-								<div class="feature-box feature-box-style-2 m-none">
-									<div class="feature-box-icon">
-										<i class="icon-call-out icons"></i>
-									</div>
-									<div class="feature-box-info ml-md">
-										<label class="font-weight-light">Contáctenos</label>
-										<strong class="font-weight-normal">(800)123-4567</strong>
-									</div>
-								</div>
-							</a>
-						</div>
-					</div>
-					
-				</div>
-			</section>
-			
-			<section class="section section-no-border">
-				<div class="container">
-					<div class="row mt-xlg pt-xlg mb-xlg pb-xs">
-						<div class="col-sm-8 col-md-8">
-							<h2 class="font-weight-semibold mb-xs">Quienes Somos</h2>
-							<p class="lead font-weight-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit, leo vitae interdum pretium, tortor risus dapibus tortor, eu suscipit orci leo sed nisl. Integer et ipsum eu nulla auctor mattis sit amet in diam. Vestibulum non ornare arcu. Class aptent taciti sociosqu ad...</p>
-
-							<a class="btn btn-borders btn-quaternary custom-button text-uppercase mt-lg mb-lg font-weight-bold">Saber mas</a>
-						</div>
-						<div class="col-sm-4 col-md-4">
-							<img src="<?php echo assets_url(); ?>public/img/demos/medical/mecanica_automotriz_-1024x682.jpg" alt class="img-responsive box-shadow-custom" /> 
-						</div>
-					</div>
-					
-				</div>
-			</section>
-			
-			<section class="section" style="margin-top: -30px;margin-bottom: -30px;background-color: #3A3A3A">
-				<div class="container">
-
-					<div class="row">
-						<div class="col-md-8">
-							<p style="font-size:18px;">
-								Se parte de nuestro equipo, conviértete en una <em>franquicia</em>. 
-								<span>Echa un vistazo a nuestro modelo de negocios.</span>
-							</p>
-						</div>
-						<div class="col-md-4">
-							<div class="get-started">
-								<a href="#" class="btn btn-lg btn-primary">Contactanos</a>
-								<div class="learn-more">O<a href="index.html"> Lea más...</a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<!--<section class="section">
-				<div class="container">
-					<div class="row mt-md">
-						<div class="col-md-12">
-							<h2 class="font-weight-semibold m-none">Noticias</h2>
-							<p class="lead font-weight-normal">Lorem ipsum dolor sit amet</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-4 col-md-4">
-							<a href="#" class="text-decoration-none">
-								<span class="thumb-info thumb-info-side-image thumb-info-side-image-custom thumb-info-no-zoom thumb-info-no-zoom thumb-info-side-image-custom-highlight">
-									<span class="thumb-info-side-image-wrapper">
-										<img alt="" class="img-responsive" src="<?php echo assets_url(); ?>public/img/demos/medical/noticias/PRUEBA-Volvo-V40-T5-Imagen-Interior-Asientos-Tapiceria-Cuero-Negro.jpg">
-									</span>
-									<span class="thumb-info-caption">
-										<span class="thumb-info-caption-text p-xl">
-											<h4 class="font-weight-semibold mb-xs">Ahora prestamos el servicio de lavado de carrocería de cuero.</h4>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hend...</p>
-										</span>
-									</span>
-								</span>
-							</a>
-						</div>
-						<div class="col-sm-4 col-md-4">
-							<a href="#" class="text-decoration-none">
-								<span class="thumb-info thumb-info-side-image thumb-info-side-image-custom thumb-info-no-zoom thumb-info-no-zoom thumb-info-side-image-custom-highlight">
-									<span class="thumb-info-side-image-wrapper">
-										<img alt="" class="img-responsive" src="<?php echo assets_url(); ?>public/img/demos/medical/noticias/colon-1741453790-L.jpg">
-									</span>
-									<span class="thumb-info-caption">
-										<span class="thumb-info-caption-text p-xl">
-											<h4 class="font-weight-semibold mb-xs">Abierta nueva sede en Colon</h4>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hend...</p>
-										</span>
-									</span>
-								</span>
-							</a>
-						</div>
-						<div class="col-sm-4 col-md-4">
-							<a href="#" class="text-decoration-none">
-								<span class="thumb-info thumb-info-side-image thumb-info-side-image-custom thumb-info-no-zoom thumb-info-no-zoom thumb-info-side-image-custom-highlight">
-									<span class="thumb-info-side-image-wrapper">
-										<img alt="" class="img-responsive" src="<?php echo assets_url(); ?>public/img/demos/medical/noticias/18306205.jpg">
-									</span>
-									<span class="thumb-info-caption">
-										<span class="thumb-info-caption-text p-xl">
-											<h4 class="font-weight-semibold mb-xs">Abierta nueva sede en Veraguas</h4>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hend...</p>
-										</span>
-									</span>
-								</span>
-							</a>
-						</div>
-					</div>
-					<div class="row pb-xlg">
-						<div class="col-md-12 center">
-							<a class="btn btn-borders btn-quaternary custom-button text-uppercase font-weight-bold">ver mas</a>
-						</div>
-					</div>
-				</div>
-			</section>-->
-			
-			<section>
-				<br><br><br>
-				<div class="container">
-					<div class="row mt-md">
-						<div class="col-md-12">
-							<h2 class="font-weight-semibold m-none">Productos</h2>
-							<p class="lead font-weight-normal">Disponemos de una variada gama de productos de excelente calidad.</p>
-						</div>
-					</div>
-					<div class="row mb-xlg pb-xlg">
-						<div class="content-grid pl-md pr-md">
-							<div class="content-grid-row">
-								<div class="content-grid-item col-sm-4 col-md-2 center">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/Total.png" alt class="img-responsive" />
-								</div>
-								<div class="content-grid-item col-sm-4 col-md-2 center">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/mobil.jpg" alt class="img-responsive" />
-								</div>
-								<div class="content-grid-item col-sm-4 col-md-2 center">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/pennzoil.png" alt class="img-responsive" />
-								</div>
-								<div class="content-grid-item col-sm-4 col-md-2 center">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/quaker_state.png" alt class="img-responsive" />
-								</div>
-								<div class="content-grid-item col-sm-4 col-md-2 center">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/castrol-logo.jpg" alt class="img-responsive" />
-								</div>
-								<div class="content-grid-item col-sm-4 col-md-2 center">
-									<img src="<?php echo assets_url(); ?>public/img/demos/medical/valvoline-logo.png" alt class="img-responsive" />
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			
-			<section class="section-secondary">
-				<div class="container">
-					<div class="row mt-xlg pt-md mb-xlg pb-md">
-						<div class="owl-carousel owl-theme nav-bottom rounded-nav" data-plugin-options="{'items': 1, 'loop': false, 'dots': false}">
-							<div>
-								<div class="col-md-8 col-md-offset-2 pt-xlg">
-									<div class="testimonial testimonial-style-2 testimonial-with-quotes mb-none">
-										<div class="testimonial-quote">“</div>
-										<blockquote>
-											<p class="font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit, leo vitae interdum pretium, tortor risus dapibus tortor, eu suscipit orci leo sed nisl. Integer et ipsum eu nulla auctor mattis sit amet in diam. Vestibulum non.</p>
-										</blockquote>
-										<div class="testimonial-author mt-xlg">
-											<p class="text-uppercase">
-												<strong>John Smith</strong>
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div>
-								<div class="col-md-8 col-md-offset-2 pt-xlg">
-									<div class="testimonial testimonial-style-2 testimonial-with-quotes mb-none">
-										<div class="testimonial-quote">“</div>
-										<blockquote>
-											<p class="font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit, leo vitae interdum pretium, tortor risus dapibus tortor, eu suscipit orci leo sed nisl. Integer et ipsum eu nulla auctor mattis sit amet in diam. Vestibulum non.</p>
-										</blockquote>
-										<div class="testimonial-author mt-xlg">
-											<p class="text-uppercase">
-												<strong>John Smith</strong>
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
 
 			<footer id="footer" class="m-none">
 				<div class="container">
@@ -585,6 +544,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<script src="<?php echo assets_url(); ?>public/vendor/owl.carousel/owl.carousel.min.js"></script>
 		<script src="<?php echo assets_url(); ?>public/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 		<script src="<?php echo assets_url(); ?>public/vendor/vide/vide.min.js"></script>
+		<script src="<?php echo assets_url('js/plugins/dataTables/datatables.min.js');?>"></script>
+		<script src="<?php echo assets_url('js/datatables.net/js/jquery.dataTables.min.js'); ?>"></script>
+		<script src="<?php echo assets_url('js/datatables.net-bs/js/dataTables.bootstrap.min.js'); ?>"></script>
+		<script src="<?php echo assets_url('js/datatables.net-responsive/js/dataTables.responsive.min.js'); ?>"></script>
 		
 		<!-- Theme Base, Components and Settings -->
 		<script src="<?php echo assets_url(); ?>public/js/theme.js"></script>
@@ -625,7 +588,101 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			ga('send', 'pageview');
 		</script>
 		 -->
+		
+		<script>
+        $(document).ready(function () {
+			
+			//Propiedades para la lista de direcciones
+			$('#tab_direccion').DataTable({
+				"paging": true,
+				"lengthChange": false,
+				"autoWidth": false,
+				"searching": true,
+				"info": true,
+				"order": [[0, "asc"]],
+				"iDisplayLength": 5,
+				"iDisplayStart": 0,
+				"sPaginationType": "full_numbers",
+				"aLengthMenu": [5, 10, 15],
+				"oLanguage": {"sUrl": "<?= assets_url() ?>js/es.txt"},
+				"aoColumns": [
+					{"sWidth": "15%"},
+					{"sWidth": "15%"},
+					{"sWidth": "20%"},
+					{"sClass": "none", "sWidth": "8%"},
+					{"sClass": "none", "sWidth": "8%"},
+					{"sClass": "none", "sWidth": "8%"},
+					{"sClass": "none", "sWidth": "8%"}
+				]
+			});
+			
+			//Propiedades para la lista de vehículos
+			$('#tab_vehiculo').DataTable({
+				"paging": true,
+				"lengthChange": false,
+				"autoWidth": false,
+				"searching": true,
+				"info": true,
+				"order": [[0, "asc"]],
+				"iDisplayLength": 5,
+				"iDisplayStart": 0,
+				"sPaginationType": "full_numbers",
+				"aLengthMenu": [5, 10, 15],
+				"oLanguage": {"sUrl": "<?= assets_url() ?>js/es.txt"},
+				"aoColumns": [
+					{"sWidth": "15%"},
+					{"sWidth": "15%"},
+					{"sWidth": "15%"},
+					{"sWidth": "15%"},
+					{"sWidth": "15%"}
+				]
+			});
+			
+			//Propiedades para la lista de pedidos (ordenes)
+			$('#tab_order').DataTable({
+				"paging": true,
+				"lengthChange": false,
+				"autoWidth": false,
+				"searching": true,
+				"info": true,
+				dom: '<"html5buttons"B>lTfgitp',
 
+				buttons: [
+					{extend: 'copy'},
+					{extend: 'csv'},
+					{extend: 'excel', title: 'ExampleFile'},
+					{extend: 'pdf', title: 'ExampleFile'},
+
+					{extend: 'print',
+						customize: function (win) {
+							$(win.document.body).addClass('white-bg');
+							$(win.document.body).css('font-size', '10px');
+
+							$(win.document.body).find('table')
+									.addClass('compact')
+									.css('font-size', 'inherit');
+						}
+					}
+				],
+				"iDisplayLength": 5,
+				"iDisplayStart": 0,
+				"sPaginationType": "full_numbers",
+				"aLengthMenu": [5, 10, 15],
+				"oLanguage": {"sUrl": "<?= assets_url() ?>js/es.txt"},
+				"aoColumns": [
+					{"sClass": "registro center", "sWidth": "5%"},
+					{"sClass": "registro center", "sWidth": "10%"},
+					{"sClass": "registro center", "sWidth": "10%"},
+					{"sClass": "registro center", "sWidth": "8%"},
+					{"sClass": "registro center", "sWidth": "5%"},
+					{"sClass": "registro center", "sWidth": "5%"},
+					{"sClass": "none", "sWidth": "8%"},
+					{"sClass": "none", "sWidth": "8%"},
+					{"sClass": "registro center", "sWidth": "5%"},
+				]
+			});
+		})
+		</script>
 
 	</body>
 </html>
