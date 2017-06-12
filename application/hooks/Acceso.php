@@ -31,6 +31,11 @@ class Acceso
 			redirect('login');
 		}
 		
+		// Si no estamos logueados como cliente e intentamos acceder al área de perfil
+		if(!isset($this->CI->session->userdata['logged_in_public']) && $this->CI->router->method == 'public_perfil'){
+			redirect('public');
+		}
+		
 		// Si estamos logueados validamos los controladores y métodos permitidos según el perfil del usuario
 		if(isset($this->CI->session->userdata['logged_in']) && ($this->CI->router->method != 'login' || $this->CI->router->method != 'admin')){
 			//~ print_r($this->CI->session->userdata('logged_in'));echo "<br>";

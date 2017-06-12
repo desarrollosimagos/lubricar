@@ -21,6 +21,7 @@ Class BasicauthPublic
 				$pedidos = array();
 				$direcciones = array();
 				$vehiculos = array();
+				$ordenes = array();
 				//Armamos la lista de direcciones asociadas
 				$query_addresses = $this->CI->db->get_where('addresses', array('customer_id'=>$query->row()->id));
 				if($query_addresses->num_rows() > 0){
@@ -35,6 +36,13 @@ Class BasicauthPublic
 						$vehiculos[] = $vehicle;
 					}
 				}
+				//Armamos la lista de ordenes asociados
+				$query_orders = $this->CI->db->get_where('orders', array('customer_id'=>$query->row()->id));
+				if($query_orders->num_rows() > 0){
+					foreach($query_orders->result() as $order){
+						$ordenes[] = $order;
+					}
+				}
 				// Creamos la sesión y le cargamos los datos de usuario
 				$session_data = array(
 					'id' => $query->row()->id,
@@ -45,7 +53,8 @@ Class BasicauthPublic
 					'cell_phone' => $query->row()->cell_phone,
 					'pedidos' => $pedidos,
 					'direcciones' => $direcciones,
-					'vehiculos' => $vehiculos
+					'vehiculos' => $vehiculos,
+					'ordenes' => $ordenes
 				);
 				$this->CI->session->set_userdata('logged_in_public',$session_data);
 				

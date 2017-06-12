@@ -23,6 +23,11 @@ class Welcome extends CI_Controller {
         
 		// Load database
         $this->load->model('MServices');
+        $this->load->model('MOrder');
+        $this->load->model('MClient');
+        $this->load->model('MServices');
+        $this->load->model('MProduct');
+        $this->load->model('MFranchises');
     }
 	 
 	public function index()
@@ -60,6 +65,18 @@ class Welcome extends CI_Controller {
 	public function contacto()
 	{
 		$this->load->view('contacto');
+	}
+	
+	public function public_perfil()
+	{
+        $data['list_orders_services'] = $this->MOrder->getServices();
+        $data['list_orders_products'] = $this->MOrder->getProducts();
+        $data['list_serv'] = $this->MServices->obtener();
+        $data['list_prod'] = $this->MProduct->obtener();
+        $data['list_franq'] = $this->MFranchises->obtener();
+        $data['list_client'] = $this->MClient->obtener();
+        $data['status'] = $this->MOrder->obtenerStatus();
+		$this->load->view('public_perfil', $data);
 	}
 	
 }
