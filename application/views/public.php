@@ -72,6 +72,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="container">
 							<nav class="header-nav-top pull-right">
 								<ul class="nav nav-pills">
+									<li id="li_error">
+										<span class="ws-nowrap">
+											<div class="error">
+											<?php 
+											if(isset($_GET['error'])){
+												if($_GET['error'] == '1'){
+													echo 'Usuario o contraseña incorrectos';
+												}else if($_GET['error'] == '2'){
+													echo 'Disculpe, el usuario no tiene acceso, consulte con el administrador del sistema';
+												}else{
+													echo "";
+												}
+											}
+											?>
+											</div>
+										</span>
+									</li>
 									<li class="hidden-xs" id="li_cerrar">
 										<span class="ws-nowrap"><i class="icon-logout icons"></i><a href="#" id="cerrar">Salir</a></span>
 									</li>
