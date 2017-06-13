@@ -60,10 +60,16 @@ Class CLogin extends CI_Controller {
 				redirect('public_perfil');
 			}else{
 				$data['error'] = $respuesta['error'];
-				//~ $this->load->view('login_form', $data);
+				$this->load->view('public', $data);
+				if($data['error'] == 'Usuario o contraseña incorrectos'){
+					redirect('public?error=1');
+				}else{
+					redirect('public?error=2');
+				}
+				
 			}
 		}else{
-			//~ echo "No pasó";
+			echo "No pasó";
 		}
     }
 
