@@ -162,6 +162,7 @@ class CClient extends CI_Controller {
 
         $datos = array(
             'customer_id' => $this->input->post('customer_id'),
+            'description' => $this->input->post('description'),
             'city' => $this->input->post('city'),
             'zip' => $this->input->post('zip'),
             'address_1' => $this->input->post('address_1'),

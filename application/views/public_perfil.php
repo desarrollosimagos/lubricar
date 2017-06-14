@@ -35,7 +35,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link href="<?php echo assets_url('css/plugins/dataTables/datatables.min.css');?>" rel="stylesheet">
 		<link href="<?php echo assets_url('js/datatables.net-bs/css/dataTables.bootstrap.css'); ?>" rel="stylesheet" />
 		<link rel="stylesheet" href="<?php echo assets_url('css/dataTables.responsive.css'); ?>">
-		<link href="<?php echo assets_url('js/datatables.net-responsive-bs/css/responsive.bootstrap.min.css'); ?>"
+		<link href="<?php echo assets_url('js/datatables.net-responsive-bs/css/responsive.bootstrap.min.css'); ?>">
+		<link href="<?php echo assets_url('css/plugins/datapicker/datepicker3.css');?>" rel="stylesheet">
 
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/theme.css">
@@ -101,8 +102,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="header-container container">
 						<div class="header-row">
 							<div class="header-column">
-								<div classindex.html
-									<a href="index.html">
+								<div class="header-row">
+									<a href="public">
 										<img alt="Porto" width="143" height="40" src="<?php echo assets_url(); ?>public/img/demos/medical/logo-medical.png">
 									</a>
 								</div>
@@ -248,6 +249,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<li><i class="fa fa-mobile"></i> <strong>Móvil:</strong> <?php echo $this->session->userdata['logged_in_public']['cell_phone']; ?></li>
 												<li><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:mail@example.com"><?php echo $this->session->userdata['logged_in_public']['username']; ?></a></li>
 											</ul>
+											<input type="hidden" id="customer_id" value="<?php echo $this->session->userdata['logged_in_public']['id']; ?>">
 										</div>
 									</div>
 								</div>
@@ -356,6 +358,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</div>
 										<div class="col-md-8">
 											<h4>Mis Direcciones</h4>
+											<button  class="btn btn-w-m btn-primary" id="i_new_line">
+												<i class="fa fa-plus"></i>&nbsp;Agregar Dirección
+											</button>
 											<div class="table-responsive">
 												<table style="width: 100%" class="table table-striped table-bordered dt-responsive table-hover dataTables-example" id="tab_direccion">
 													<thead>
@@ -367,10 +372,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 															<th>Dirección 2</th>
 															<th>Teléfono</th>
 															<th>Teléfono 2</th>
+															<th>Editar</th>
+															<th>Eliminar</th>
 														</tr>
 													</thead>
 													<tbody>
-														<?php foreach ($this->session->userdata['logged_in_public']['direcciones'] as $direcc) { ?>
+														<?php foreach ($direcciones as $direcc) { ?>
 															<tr id="<?php echo $direcc->id; ?>">
 																<td style='text-align: center' id="<?php echo $direcc->id; ?>"><?php echo $direcc->city; ?></td>
 																<td style='text-align: center'><?php echo $direcc->zip; ?></td>
@@ -379,6 +386,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																<td style='text-align: center'><?php echo $direcc->address_2; ?></td>
 																<td style='text-align: center'><?php echo $direcc->phone; ?></td>
 																<td style='text-align: center'><?php echo $direcc->cell_phone; ?></td>
+																<td style='text-align: center'><a class='editar' id="<?php echo $direcc->id; ?>"><i class='fa fa-edit fa-2x'></i></a></td>
+																<td style='text-align: center'><a class='quitar' id="<?php echo $direcc->id; ?>"><i class='fa fa-trash fa-2x'></i></a></td>
 															</tr>
 														<?php } ?>
 													</tbody>
@@ -393,6 +402,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</div>
 										<div class="col-md-8">
 											<h4>Mis Vehículos</h4>
+											<button  class="btn btn-w-m btn-primary" id="i_new_line2">
+												<i class="fa fa-plus"></i>&nbsp;Agregar Vehículo
+											</button>
 											<div class="table-responsive">
 												<table style="width: 100%" class="table table-striped table-bordered dt-responsive table-hover dataTables-example" id="tab_vehiculo">
 													<thead>
@@ -402,16 +414,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 															<th>Color</th>
 															<th>Año</th>
 															<th>Placa</th>
+															<th>Editar</th>
+															<th>Eliminar</th>
 														</tr>
 													</thead>
 													<tbody>
-														<?php foreach ($this->session->userdata['logged_in_public']['vehiculos'] as $vehi) { ?>
-															<tr id="<?php echo $vehi->id ?>">
+														<?php foreach ($vehiculos as $vehi) { ?>
+															<tr id="<?php echo $vehi->id; ?>">
 																<td style='text-align: center' id="<?php echo $vehi->id; ?>"><?php echo $vehi->trademark; ?></td>
 																<td style='text-align: center'><?php echo $vehi->model; ?></td>
 																<td style='text-align: center'><?php echo $vehi->color; ?></td>
 																<td style='text-align: center'><?php echo $vehi->year; ?></td>
 																<td style='text-align: center'><?php echo $vehi->license_plate; ?></td>
+																<td style='text-align: center'><a class='editar' id="<?php echo $vehi->id; ?>"><i class='fa fa-edit fa-2x'></i></a></td>
+																<td style='text-align: center'><a class='quitar' id="<?php echo $vehi->id; ?>"><i class='fa fa-trash fa-2x'></i></a></td>
 															</tr>
 														<?php } ?>
 													</tbody>
@@ -528,6 +544,82 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 		<!--Modal de registro/inicio de sesión-->
+		
+		<!--Modal de registro de direcciones-->
+		<div class="modal inmodal fade" id="modal_direccion" tabindex="-1" role="dialog"  aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close cerrar_modal" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h5 class="modal-title"><span id="titulo"></span> Dirección</h5>
+					</div>
+					<div class="modal-body" >
+						<form id="form_direccion" action="" method="post" class="form">
+							<div class="form-group">
+								<label >Ciudad *</label>
+								<input id="city" name="city" class="form-control" type="text" maxlength="100">
+								<label>Código Postal *</label>
+								<input id="zip" name="zip" class="form-control" type="text" maxlength="20" >
+								<label>Descripción</label>
+								<input id="description" name="description" class="form-control" type="text" maxlength="50" >
+								<label>Dirección 1 *</label>
+								<input id="address_1" name="address_1" class="form-control" type="text" maxlength="150" >
+								<label >Dirección 2</label>
+								<input id="address_2" name="address_2" class="form-control" type="text" maxlength="150">
+								<label>Teléfono 1 *</label>
+								<input id="phone_1" name="phone_1" class="form-control" type="text" maxlength="20">
+								<label>Teléfono 2</label>
+								<input id="cell_phone_1" name="cell_phone" class="form-control" type="text" maxlength="20">
+								<input id="accion"  class="form-control" type="hidden" >
+								<input id="posicion"  class="form-control" type="hidden" >
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer" >
+						<button class="btn btn-primary" type="button" id="add_address">
+							Aceptar
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Modal de registro de direcciones-->
+		
+		<!--Modal de registro de vehículos-->
+		<div class="modal inmodal fade" id="modal_vehiculo" tabindex="-1" role="dialog"  aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close cerrar_modal" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title"><span id="titulo"></span> Vehiculo</h4>
+					</div>
+					<div class="modal-body">
+						<form id="form_vehiculo" action="" method="post" class="form">
+							<div class="form-group">
+								<label >Marca</label>
+								<input id="trademark" name="trademark" class="form-control" type="text" maxlength="50">
+								<label>Modelo </label>
+								<input id="model" name="model" class="form-control" type="text" maxlength="50">
+								<label >Color *</label>
+								<input id="color" name="color" class="form-control" type="text" maxlength="50">
+								<label >Año</label>
+								<input type="text" class="form-control"  id="year" name="year" maxlength="4">
+								<label >Placa</label>
+								<input id="license_plate" name="license_plate" class="form-control" type="text" maxlength="50">
+								<input id="accion2" class="form-control" type="hidden" >
+								<input id="posicion2" class="form-control" type="hidden" >
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer" >
+						<button class="btn btn-primary" type="button" id="add_vehicle">
+							Aceptar
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Modal de registro de vehículos-->
 
 		<!-- Vendor -->
 		<script src="<?php echo assets_url(); ?>public/vendor/jquery/jquery.min.js"></script>
@@ -568,6 +660,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<!-- Theme Initialization Files -->
 		<script src="<?php echo assets_url(); ?>public/js/theme.init.js"></script>
 		
+		<!-- Data picker -->
+		<script src="<?php echo assets_url('js/plugins/datapicker/bootstrap-datepicker.js');?>"></script>
+		
 		<!-- Sweet alert -->
 		<script src="<?php echo assets_url('js/plugins/sweetalert/sweetalert.min.js');?>"></script>
 		
@@ -592,6 +687,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<script>
         $(document).ready(function () {
 			
+			$('#year').datepicker({
+
+                format: " yyyy",
+                viewMode: "years",
+                minViewMode: "years",
+                endDate: 'today'
+                
+            });
+			
 			//Propiedades para la lista de direcciones
 			$('#tab_direccion').DataTable({
 				"paging": true,
@@ -612,7 +716,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					{"sClass": "none", "sWidth": "8%"},
 					{"sClass": "none", "sWidth": "8%"},
 					{"sClass": "none", "sWidth": "8%"},
-					{"sClass": "none", "sWidth": "8%"}
+					{"sClass": "none", "sWidth": "8%"},
+					{"sWidth": "4%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
+					{"sWidth": "4%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false}
 				]
 			});
 			
@@ -634,7 +740,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					{"sWidth": "15%"},
 					{"sWidth": "15%"},
 					{"sWidth": "15%"},
-					{"sWidth": "15%"}
+					{"sWidth": "15%"},
+					{"sWidth": "4%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
+					{"sWidth": "4%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false}
 				]
 			});
 			
@@ -681,6 +789,181 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					{"sClass": "registro center", "sWidth": "5%"},
 				]
 			});
+			
+			// Acciones sobre direcciones y vehpiculos
+			
+			$("#phone, #cell_phone, #zip, #phone_1, #cell_phone_1").numeric(); // Sólo permite valores numéricos
+			
+			$("#i_new_line").click(function (e) {
+				e.preventDefault();  // Para evitar que se envíe por defecto
+				$("#modal_direccion").modal('show');
+				$("span#titulo").text('Registrar');
+				$("#accion").val('Registrar');
+			});
+			
+			$("#i_new_line2").click(function (e) {
+				e.preventDefault();  // Para evitar que se envíe por defecto
+				$("#modal_vehiculo").modal('show');
+				$("span#titulo").text('Registrar');
+				$("#accion2").val('Registrar');
+			});
+			
+			//Registar dirección nueva
+			$("#add_address").click(function (e) {
+				e.preventDefault();  // Para evitar que se envíe por defecto
+
+				if ($('#city').val().trim() == "") {
+				  
+				   swal("Disculpe,", "para continuar debe ingresar el nombre de la ciudad");
+				   $('#zip').removeClass('error');
+				   $('#address_1').removeClass('error');
+				   $('#phone_1').removeClass('error');
+				   $('#city').addClass('error');
+				   $('#city').focus();
+				   
+				} else if ($('#zip').val().trim() === "") {
+				  
+				   swal("Disculpe,", "para continuar debe ingresar el código postal");
+				   $('#city').removeClass('error');
+				   $('#address_1').removeClass('error');
+				   $('#phone_1').removeClass('error');
+				   $('#zip').addClass('error');
+				   $('#zip').focus();
+				   
+				} else if ($('#address_1').val().trim() === "") {
+				  
+				   swal("Disculpe,", "para continuar debe ingresar la dirección");
+				   $('#zip').removeClass('error');
+				   $('#city').removeClass('error');
+				   $('#phone_1').removeClass('error');
+				   $('#address_1').addClass('error');
+				   $('#address_1').focus();
+				   
+				} else if ($('#phone_1').val().trim() === "") {
+				  
+				   swal("Disculpe,", "para continuar debe ingresar el teléfono");
+				   $('#zip').removeClass('error');
+				   $('#address_1').removeClass('error');
+				   $('#city').removeClass('error');
+				   $('#phone_1').removeClass('error');
+				   $('#phone_1').addClass('error');
+				   
+				   
+				} else {
+					$.post('<?php echo base_url(); ?>CClient/addAddress', $('#form_direccion').serialize()+'&'+$.param({'customer_id':$('#customer_id').val()}), function (response) {
+						//~ alert(response);
+						//~ if (response[0] == '1') {
+							//~ swal("Disculpe,", "este nombre se encuentra registrado");
+						//~ } else {
+							//~ swal({
+								//~ title: "Registro",
+								//~ text: "Guardado con exito. Le será enviado un correo de confirmación, por favor revise su bandeja de entrada.",
+								//~ type: "success"
+							//~ },
+							//~ function () {
+								//~ $("#modal_cliente").modal('hide');
+								//~ window.location.href = base_url+'public_perfil';
+							//~ });
+						//~ }
+						// Respuesta temporal
+						swal({
+							title: "Registro",
+							text: "Guardado con exito.",
+							type: "success"
+						},
+						function () {
+							$("#modal_direccion").modal('hide');
+							window.location.href = '<?php echo base_url(); ?>public_perfil';
+						});
+						
+					});
+				}
+			});
+			
+			//Registar vehículo nuevo
+			$("#add_vehicle").click(function (e) {
+				e.preventDefault();  // Para evitar que se envíe por defecto
+
+				if ($('#trademark').val().trim() == "") {
+				  
+				   swal("Disculpe,", "para continuar debe ingresar la marca");
+				   $('#model').removeClass('error');
+				   $('#color').removeClass('error');
+				   $('#year').removeClass('error');
+				   $('#license_plate').removeClass('error');
+				   $('#trademark').addClass('error');
+				   $('#trademark').focus();
+				   
+				} else if ($('#model').val().trim() === "") {
+				  
+				   swal("Disculpe,", "para continuar debe ingresar el modelo");
+				   $('#trademark').removeClass('error');
+				   $('#color').removeClass('error');
+				   $('#year').removeClass('error');
+				   $('#license_plate').removeClass('error');
+				   $('#model').addClass('error');
+				   $('#model').focus();
+				   
+				} else if ($('#color').val().trim() === "") {
+				  
+				   swal("Disculpe,", "para continuar debe ingresar el color");
+				   $('#trademark').removeClass('error');
+				   $('#model').removeClass('error');
+				   $('#year').removeClass('error');
+				   $('#license_plate').removeClass('error');
+				   $('#color').addClass('error');
+				   $('#color').focus();
+				   
+				} else if ($('#year').val().trim() === "") {
+				  
+				   swal("Disculpe,", "para continuar debe ingresar el año");
+				   $('#trademark').removeClass('error');
+				   $('#color').removeClass('error');
+				   $('#model').removeClass('error');
+				   $('#license_plate').removeClass('error');
+				   $('#year').addClass('error');
+				   $('#year').focus();
+				   
+				} else if ($('#license_plate').val().trim() === "") {
+				  
+				   swal("Disculpe,", "para continuar debe ingresar la placa");
+				   $('#trademark').removeClass('error');
+				   $('#color').removeClass('error');
+				   $('#year').removeClass('error');
+				   $('#model').removeClass('error');
+				   $('#license_plate').addClass('error');
+				   $('#license_plate').focus();
+				   
+				} else {
+					$.post('<?php echo base_url(); ?>CClient/addCar', $('#form_vehiculo').serialize()+'&'+$.param({'customer_id2':$('#customer_id').val()}), function (response) {
+						//~ alert(response);
+						//~ if (response[0] == '1') {
+							//~ swal("Disculpe,", "este nombre se encuentra registrado");
+						//~ } else {
+							//~ swal({
+								//~ title: "Registro",
+								//~ text: "Guardado con exito. Le será enviado un correo de confirmación, por favor revise su bandeja de entrada.",
+								//~ type: "success"
+							//~ },
+							//~ function () {
+								//~ $("#modal_cliente").modal('hide');
+								//~ window.location.href = base_url+'public_perfil';
+							//~ });
+						//~ }
+						// Respuesta temporal
+						swal({
+							title: "Registro",
+							text: "Guardado con exito.",
+							type: "success"
+						},
+						function () {
+							$("#modal_vehiculo").modal('hide');
+							window.location.href = '<?php echo base_url(); ?>public_perfil';
+						});
+					});
+				}
+			});
+			
 		})
 		</script>
 

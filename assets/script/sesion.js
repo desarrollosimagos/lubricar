@@ -148,7 +148,7 @@ $(document).ready(function() {
     
     $("#phone,#cell_phone").numeric(); // Sólo permite valores numéricos
 	
-	//registar usuario cliente nuevo
+	//Registar usuario cliente nuevo
 	$("#add_client").click(function (e) {
 		//~ alert($('#g-recaptcha-response').val()); // El campo g-recaptcha-response es añadido automáticamente por el plugin de google
 		e.preventDefault();  // Para evitar que se envíe por defecto
@@ -221,7 +221,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	//registar usuario cliente nuevo
+	//Inicio de sesión de cliente registrado
 	$("#iniciar").click(function (e) {
 		//~ alert($('#g-recaptcha-response').val()); // El campo g-recaptcha-response es añadido automáticamente por el plugin de google
 		e.preventDefault();  // Para evitar que se envíe por defecto

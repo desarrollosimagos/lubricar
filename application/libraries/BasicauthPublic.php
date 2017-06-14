@@ -19,23 +19,8 @@ Class BasicauthPublic
 				echo "Pasó 2";
 				// Buscamos los datos de los pedidos, las direcciones y vehículos asociados al usuario
 				$pedidos = array();
-				$direcciones = array();
-				$vehiculos = array();
 				$ordenes = array();
-				//Armamos la lista de direcciones asociadas
-				$query_addresses = $this->CI->db->get_where('addresses', array('customer_id'=>$query->row()->id));
-				if($query_addresses->num_rows() > 0){
-					foreach($query_addresses->result() as $address){
-						$direcciones[] = $address;
-					}
-				}
-				//Armamos la lista de vehículos asociados
-				$query_vehicles = $this->CI->db->get_where('vehicles', array('customer_id'=>$query->row()->id));
-				if($query_vehicles->num_rows() > 0){
-					foreach($query_vehicles->result() as $vehicle){
-						$vehiculos[] = $vehicle;
-					}
-				}
+				
 				//Armamos la lista de ordenes asociados
 				$query_orders = $this->CI->db->get_where('orders', array('customer_id'=>$query->row()->id));
 				if($query_orders->num_rows() > 0){
@@ -52,8 +37,6 @@ Class BasicauthPublic
 					'phone' => $query->row()->phone,
 					'cell_phone' => $query->row()->cell_phone,
 					'pedidos' => $pedidos,
-					'direcciones' => $direcciones,
-					'vehiculos' => $vehiculos,
 					'ordenes' => $ordenes
 				);
 				$this->CI->session->set_userdata('logged_in_public',$session_data);

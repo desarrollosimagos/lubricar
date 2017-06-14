@@ -76,6 +76,22 @@ class Welcome extends CI_Controller {
         $data['list_franq'] = $this->MFranchises->obtener();
         $data['list_client'] = $this->MClient->obtener();
         $data['status'] = $this->MOrder->obtenerStatus();
+        $data['direcciones'] = array();
+        $data['vehiculos'] = array();
+		//Armamos la lista de direcciones asociadas
+		$query_addresses = $this->db->get_where('addresses', array('customer_id'=>$this->session->userdata['logged_in_public']['id']));
+		if($query_addresses->num_rows() > 0){
+			foreach($query_addresses->result() as $address){
+				$data['direcciones'][] = $address;
+			}
+		}
+		//Armamos la lista de vehículos asociados
+		$query_vehicles = $this->db->get_where('vehicles', array('customer_id'=>$this->session->userdata['logged_in_public']['id']));
+		if($query_vehicles->num_rows() > 0){
+			foreach($query_vehicles->result() as $vehicle){
+				$data['vehiculos'][] = $vehicle;
+			}
+		}
 		$this->load->view('public_perfil', $data);
 	}
 	
