@@ -56,8 +56,8 @@ class MMails extends CI_Model {
     // Public method to send a email
     public function enviarMail($id_client, $username) {
         // Varios destinatarios
-		$para = 'jasolorzano18@hotmail.com' . ', '; // atención a la coma
-		$para .= $username;
+		//~ $para = 'jasolorzano18@hotmail.com' . ', '; // atención a la coma
+		$para = $username;
 
 		// título
 		$título = 'Lubricar Delibery: Por favor confirme su correo';
@@ -89,7 +89,7 @@ class MMails extends CI_Model {
 		';
 		
 		//cargamos la configuración para enviar con mailtrap (config), gamil (configGmail) o yahoo (configYahoo)
-		$this->email->initialize($this->configGmail);
+		$this->email->initialize($this->config);
 
 		$this->email->from('contacto@lubricardelivery.com');
 		$this->email->to($para);
@@ -97,14 +97,14 @@ class MMails extends CI_Model {
 		$this->email->message($mensaje);
 		$this->email->send();
 		// con esto podemos ver el resultado
-		var_dump($this->email->print_debugger());
+		//~ var_dump($this->email->print_debugger());
 	}
 	
 	// Public method to send a email of confirmation
     public function enviarMailConfirm($datos_reg) {
         // Varios destinatarios
-		$para = 'aidan@example.com' . ', '; // atención a la coma
-		$para .= 'solorzano202009@gmail.com';
+		//~ $para = 'aidan@example.com' . ', '; // atención a la coma
+		$para = $datos_reg['username'];
 
 		// título
 		$título = 'Lubricar Delibery: Correo confirmado';
@@ -131,7 +131,7 @@ class MMails extends CI_Model {
 		';
 
 		//cargamos la configuración para enviar con mailtrap (config), gamil (configGmail) o yahoo (configYahoo)
-		$this->email->initialize($this->configGmail);
+		$this->email->initialize($this->config);
 
 		$this->email->from('contacto@lubricardelivery.com');
 		$this->email->to($para);
@@ -139,7 +139,7 @@ class MMails extends CI_Model {
 		$this->email->message($mensaje);
 		$this->email->send();
 		// con esto podemos ver el resultado
-		var_dump($this->email->print_debugger());
+		//~ var_dump($this->email->print_debugger());
 	}
 
 }
