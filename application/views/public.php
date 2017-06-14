@@ -72,9 +72,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="container">
 							<nav class="header-nav-top pull-right">
 								<ul class="nav nav-pills">
+									<li id="li_confirm">
+										<span class="ws-nowrap">
+											<div class="li_confirm" style="display:none;">
+											<?php 
+											if(isset($_GET['confirm'])){
+												if($_GET['confirm'] == '1'){
+													echo '1';
+												}else{
+													echo "";
+												}
+											}
+											?>
+											</div>
+										</span>
+									</li>
 									<li id="li_error">
 										<span class="ws-nowrap">
-											<div class="error">
+											<div class="error" style="color:red;">
 											<?php 
 											if(isset($_GET['error'])){
 												if($_GET['error'] == '1'){
