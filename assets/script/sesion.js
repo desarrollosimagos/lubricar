@@ -2,6 +2,47 @@ $(document).ready(function() {
 	// Capturamos la base_url
     var base_url = $("#base_url").val();
     
+    // Verificamos si se ha recibido alguna confirmación en la capa para tal fin (li_confirm)
+    //~ alert($("li#li_confirm span div.li_confirm").text().trim());
+    var confirm = $("li#li_confirm span div.li_confirm").text().trim();
+    if(confirm == '1'){
+		swal({
+			title: "¡Confirmación exitosa!",
+			text: "Puede iniciar sesión",
+			type: "success"
+		},
+		function () {
+			$("#modal_cliente").modal('show');
+			// Definimos el título y la acción
+			$("span#titulo").text('Iniciar sesión');
+			$("#accion").val('Iniciar');
+			// Mostramos y ocultamos los campos y textos necesarios
+			$("label.username").css('display','block');
+			$("#username").css('display','block');
+			$("label.password").css('display','block');
+			$("#password").css('display','block');
+			$("label.confirm").css('display','none');
+			$("#confirm").css('display','none');
+			$("label.name").css('display','none');
+			$("#name").css('display','none');
+			$("label.lastname").css('display','none');
+			$("#lastname").css('display','none');
+			$("label.phone").css('display','none');
+			$("#phone").css('display','none');
+			$("label.cell_phone").css('display','none');
+			$("#cell_phone").css('display','none');
+			$("#question_account").css('display','block');
+			$("#reg_client").css('display','block');
+			$("#hidden_reg_client").css('display','none');
+			// Mostramos y ocultamos los botones necesarios
+			$("#add_client").css('display','none');
+			$("#iniciar").css('display','block');
+			// Ocultamos el div del recapcha
+			$("#recapcha").css('display','none');
+			$("#form_client").attr("action", "login_public");
+		});
+	}
+    
 	//abrir modal de registro/inicio
 	$("#inicio").click(function (e) {
 		e.preventDefault();  // Para evitar que se envíe por defecto

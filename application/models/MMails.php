@@ -5,18 +5,59 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MMails extends CI_Model {
 
-
+	//configuración para gmail
+	private $configGmail = array(
+		'protocol' => 'smtp',
+		'smtp_host' => 'ssl://smtp.gmail.com',
+		'smtp_port' => 465,
+		'smtp_user' => 'solorzano202009@gmail.com',
+		'smtp_pass' => '76839981js',
+		'mailtype' => 'html',
+		'crlf' => "\r\n",
+		'charset' => 'utf-8',
+		'newline' => "\r\n"
+	);
+	
+	//configuracion para yahoo
+	private $configYahoo = array(
+		'protocol' => 'smtp',
+		'smtp_host' => 'smtp.mail.yahoo.com',
+		'smtp_port' => 587,
+		'smtp_crypto' => 'tls',
+		'smtp_user' => 'emaildeyahoo',
+		'smtp_pass' => 'password',
+		'mailtype' => 'html',
+		'charset' => 'utf-8',
+		'newline' => "\r\n"
+	);
+	
+	//configuracion para mailtrap
+	private $config = Array(
+	  'protocol' => 'smtp',
+	  'smtp_host' => 'smtp.mailtrap.io',
+	  'smtp_port' => 2525,
+	  'smtp_user' => '7070f0ddfd21e6',
+	  'smtp_pass' => '0d07237bfd1f66',
+	  'mailtype' => 'html',
+	  'crlf' => "\r\n",
+	  'newline' => "\r\n"
+	);
+		
     public function __construct() {
        
         parent::__construct();
         $this->load->database();
+        
+        //cargamos la librería email de ci
+		$this->load->library("email");
+		
     }
 
     // Public method to send a email
     public function enviarMail($id_client, $username) {
         // Varios destinatarios
-		//~ $para  = 'aidan@example.com' . ', '; // atención a la coma
-		$para = $username;
+		$para = 'jasolorzano18@hotmail.com' . ', '; // atención a la coma
+		$para .= $username;
 
 		// título
 		$título = 'Lubricar Delibery: Por favor confirme su correo';
@@ -46,25 +87,23 @@ class MMails extends CI_Model {
 		</body>
 		</html>
 		';
+		
+		//cargamos la configuración para enviar con mailtrap (config), gamil (configGmail) o yahoo (configYahoo)
+		$this->email->initialize($this->configGmail);
 
-		// Para enviar un correo HTML, debe establecerse la cabecera Content-type
-		$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
-		$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-
-		// Cabeceras adicionales
-		//~ $cabeceras .= 'To: Mary <mary@example.com>, Kelly <kelly@example.com>' . "\r\n";
-		$cabeceras .= 'From: Validación <contacto@lubricardelivery.com>' . "\r\n";
-		//~ $cabeceras .= 'Cc: birthdayarchive@example.com' . "\r\n";
-		//~ $cabeceras .= 'Bcc: birthdaycheck@example.com' . "\r\n";
-
-		// Enviarlo
-		mail($para, $título, $mensaje, $cabeceras);
+		$this->email->from('contacto@lubricardelivery.com');
+		$this->email->to($para);
+		$this->email->subject($título);
+		$this->email->message($mensaje);
+		$this->email->send();
+		// con esto podemos ver el resultado
+		var_dump($this->email->print_debugger());
 	}
 	
 	// Public method to send a email of confirmation
     public function enviarMailConfirm($datos_reg) {
         // Varios destinatarios
-		//~ $para  = 'aidan@example.com' . ', '; // atención a la coma
+		$para = 'aidan@example.com' . ', '; // atención a la coma
 		$para .= 'solorzano202009@gmail.com';
 
 		// título
@@ -91,18 +130,16 @@ class MMails extends CI_Model {
 		</html>
 		';
 
-		// Para enviar un correo HTML, debe establecerse la cabecera Content-type
-		$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
-		$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		//cargamos la configuración para enviar con mailtrap (config), gamil (configGmail) o yahoo (configYahoo)
+		$this->email->initialize($this->configGmail);
 
-		// Cabeceras adicionales
-		//~ $cabeceras .= 'To: Mary <mary@example.com>, Kelly <kelly@example.com>' . "\r\n";
-		$cabeceras .= 'From: Validación <contacto@lubricardelivery.com>' . "\r\n";
-		//~ $cabeceras .= 'Cc: birthdayarchive@example.com' . "\r\n";
-		//~ $cabeceras .= 'Bcc: birthdaycheck@example.com' . "\r\n";
-
-		// Enviarlo
-		mail($para, $título, $mensaje, $cabeceras);
+		$this->email->from('contacto@lubricardelivery.com');
+		$this->email->to($para);
+		$this->email->subject($título);
+		$this->email->message($mensaje);
+		$this->email->send();
+		// con esto podemos ver el resultado
+		var_dump($this->email->print_debugger());
 	}
 
 }

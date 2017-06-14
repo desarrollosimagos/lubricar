@@ -132,8 +132,10 @@ class CClient extends CI_Controller {
             'status' => $this->input->post('status')
         );
         if($this->input->post('g-recaptcha-response') != ''){
+			echo "Pasó";
 			$result_id = $this->MClient->insert($datos);
 			if($result_id != 'existe cliente'){
+				echo "Pasó";
 				// Enviamos un correo de validación a la dirección correspondiente al usuario
 				$this->MMails->enviarMail($result_id, $this->input->post('username'));
 			}
@@ -400,7 +402,7 @@ class CClient extends CI_Controller {
         
         if($result){
 			// Obtenemos y armamos los datos del cliente
-			$mail = $this->MClient->obtenerClients($id);
+			$mail = $this->MClient->obtenerClients($id_client);
 			$datos_reg = array(
 				'name'=>$mail[0]->name,
 				'lastname'=>$mail[0]->lastname,
@@ -408,8 +410,9 @@ class CClient extends CI_Controller {
 				'cell_phone'=>$mail[0]->cell_phone,
 				'username'=>$mail[0]->username
 			);
-			// Enviamos los datos registrados al correo del cliente
+			// Enviamos los datos registrados al correo del cliente y lo redireccionamos al inicio de sesión
 			$this->MMails->enviarMailConfirm($datos_reg);
+			redirect('public?confirm=1');
 		}
     }
 
