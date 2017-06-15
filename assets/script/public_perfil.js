@@ -334,4 +334,87 @@ $(document).ready(function () {
 		}
 	});
 	
+	$("table#tab_direccion").on('click', 'a.quitar_direccion', function (e) {
+		e.preventDefault();
+				
+		var id = this.getAttribute('id');  // Capturamos el id del link cliqueado
+
+		swal({
+			title: "Borrar registro",
+			text: "¿Está seguro de borrar la dirección?",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Eliminar",
+			cancelButtonText: "Cancelar",
+			closeOnConfirm: false,
+			closeOnCancel: true
+		},
+		function(isConfirm){
+			if (isConfirm) {
+
+				$.post(base_url+'CClient/deleteAddressPublic/' + id + '', function (response) {
+					if (response == 'existe address') {
+						swal("Disculpe,", "esta dirección está asociada a algúna orden");
+					} else {
+						swal({ 
+						title: "Eliminar",
+						 text: "Dirección eliminada con exito",
+						  type: "success" 
+						},
+						function(){
+							window.location.href = base_url+'public_perfil';
+							//~ // Capturamos el tr padre (subimos dos nivel por encima hasta llegar al tr)
+							//~ var parent = $(this).parent().parent().index();
+							//~ // Eliminamos la línea con datatable sin recargar la página
+							//~ var table = $('#tab_direccion').DataTable();
+							//~ table.row(parent).remove().draw();
+						});
+					}
+				});
+			} 
+		});
+	});
+	
+	$("table#tab_vehiculo").on('click', 'a.quitar_vehiculo', function (e) {
+		e.preventDefault();
+		var id = this.getAttribute('id');
+
+		swal({
+			title: "Borrar registro",
+			text: "¿Está seguro de borrar el vehículo?",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Eliminar",
+			cancelButtonText: "Cancelar",
+			closeOnConfirm: false,
+			closeOnCancel: true
+		},
+		function(isConfirm){
+			if (isConfirm) {
+
+				$.post(base_url+'CClient/deleteCarPublic/' + id + '', function (response) {
+					if (response == 'existe vehicle') {
+						swal("Disculpe,", "este vehículo está asociado a algúna orden");
+					} else {
+						swal({ 
+						title: "Eliminar",
+						 text: "Vehículo eliminado con exito",
+						  type: "success" 
+						},
+						function(){
+							window.location.href = base_url+'public_perfil';
+							//~ // Capturamos el tr padre (subimos dos nivel por encima hasta llegar al tr)
+							//~ var parent = $(this).parent().parent().index();
+							//~ // Eliminamos la línea con datatable sin recargar la página
+							//~ var table = $('#tab_vehiculo').DataTable();
+							//~ table.row(parent).remove().draw();
+						});
+					}
+				});
+			} 
+		});
+	});
+	
 })

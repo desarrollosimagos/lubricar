@@ -232,6 +232,22 @@ class CClient extends CI_Controller {
         
         echo $result;
     }
+    
+    // Método para eliminar una dirección de un usuario cliente
+	function deleteAddressPublic($id) {
+		
+        $result = $this->MClient->deleteAddress($id);
+        
+        echo $result;
+    }
+    
+    // Método para eliminar un vehículo de un usuario cliente
+	function deleteCarPublic($id) {
+		
+        $result = $this->MClient->deleteCars($id);
+        
+        echo $result;
+    }
 
     // Método para editar
     public function edit() {
