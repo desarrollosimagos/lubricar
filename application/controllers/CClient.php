@@ -155,6 +155,26 @@ class CClient extends CI_Controller {
         );
 
         $result = $this->MClient->insertCars($datos);
+        
+        echo $result;
+    }
+
+    // Método para actualizar un vehículo de un cliente
+    public function updateCarPublic() {
+
+        $datos = array(
+			'id' => $this->input->post('id_vehiculo'),
+            'customer_id' => $this->input->post('customer_id2'),
+            'trademark' => $this->input->post('trademark'),
+            'model' => $this->input->post('model'),
+            'color' => $this->input->post('color'),
+            'year' => $this->input->post('year'),
+            'license_plate' => $this->input->post('license_plate'),
+        );
+
+        $result = $this->MClient->updateCars($datos);
+        
+        echo $result;
     }
 
     // Método para guardar un nuevo registro
@@ -168,10 +188,49 @@ class CClient extends CI_Controller {
             'address_1' => $this->input->post('address_1'),
             'address_2' => $this->input->post('address_2'),
             'phone' => $this->input->post('phone_1'),
-            'cell_phone' => $this->input->post('cell_phone_1'),
+            'cell_phone' => $this->input->post('cell_phone'),
         );
 
         $result = $this->MClient->insertAddress($datos);
+    }
+    
+    // Método para guardar un nuevo registro
+    public function addAddressPublic() {
+
+        $datos = array(
+            'customer_id' => $this->input->post('customer_id'),
+            'description' => $this->input->post('description'),
+            'city' => $this->input->post('city'),
+            'zip' => $this->input->post('zip'),
+            'address_1' => $this->input->post('address_1'),
+            'address_2' => $this->input->post('address_2'),
+            'phone' => $this->input->post('phone_1'),
+            'cell_phone' => $this->input->post('cell_phone'),
+        );
+
+        $result = $this->MClient->insertAddressPublic($datos);
+        
+        echo $result;
+    }
+    
+    // Método para actualizar una dirección de un cliente
+    public function updateAddressPublic() {
+
+        $datos = array(
+            'id' => $this->input->post('id_direccion'),
+            'customer_id' => $this->input->post('customer_id'),
+            'description' => $this->input->post('description'),
+            'city' => $this->input->post('city'),
+            'zip' => $this->input->post('zip'),
+            'address_1' => $this->input->post('address_1'),
+            'address_2' => $this->input->post('address_2'),
+            'phone' => $this->input->post('phone_1'),
+            'cell_phone' => $this->input->post('cell_phone'),
+        );
+
+        $result = $this->MClient->updateAddress($datos);
+        
+        echo $result;
     }
 
     // Método para editar
