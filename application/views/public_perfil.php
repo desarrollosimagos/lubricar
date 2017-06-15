@@ -441,7 +441,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																	<input id="editar_vehiculo_<?php echo $vehi->id;?>" type="hidden" value="<?php echo $vehi->id.";".$vehi->trademark.";".$vehi->model.";".$vehi->color.";".$vehi->year.";".$vehi->license_plate; ?>">
 																	</a>
 																</td>
-																<td style='text-align: center'><a class='quitar_vehiculo' id="<?php echo $vehi->id; ?>"><i class='fa fa-trash fa-2x'></i></a></td>
+																<td style='text-align: center'>
+																	<a class='quitar_vehiculo' id="<?php echo $vehi->id; ?>">
+																	<i class='fa fa-trash fa-2x'></i>
+																	</a>
+																</td>
 															</tr>
 														<?php } ?>
 													</tbody>

@@ -150,12 +150,11 @@ class MClient extends CI_Model {
     // Método público, para eliminar un registro 
     public function deleteAddress($id) {
         
-        
         $result = $this->db->where('address_service_id =', $id);
         $result = $this->db->get('orders');
         if ($result->num_rows() > 0) {
-            echo('existe address');
-  
+            $result = 'existe address';
+            return $result;
         } else {
             $result = $this->db->delete('addresses', array('id' => $id));
             return $result;
@@ -166,9 +165,16 @@ class MClient extends CI_Model {
 
     // Método público, para eliminar un registro 
     public function deleteCars($id) {
-
-        $result = $this->db->delete('vehicles', array('id' => $id));
-        return $result;
+		
+		$result = $this->db->where('vehicle_id =', $id);
+        $result = $this->db->get('orders');
+        if ($result->num_rows() > 0) {
+            $result = 'existe vehicle';
+            return $result;
+        } else {
+			$result = $this->db->delete('vehicles', array('id' => $id));
+			return $result;
+        }
     }
 
     // Método público, forma de actualizar los datos
