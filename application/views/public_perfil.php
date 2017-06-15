@@ -386,8 +386,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																<td style='text-align: center'><?php echo $direcc->address_2; ?></td>
 																<td style='text-align: center'><?php echo $direcc->phone; ?></td>
 																<td style='text-align: center'><?php echo $direcc->cell_phone; ?></td>
-																<td style='text-align: center'><a class='editar' id="<?php echo $direcc->id; ?>"><i class='fa fa-edit fa-2x'></i></a></td>
-																<td style='text-align: center'><a class='quitar' id="<?php echo $direcc->id; ?>"><i class='fa fa-trash fa-2x'></i></a></td>
+																<td style='text-align: center'>
+																	<a class='editar_direccion' id="<?php echo $direcc->id; ?>">
+																	<i class='fa fa-edit fa-2x'></i>
+																	<input id="editar_direccion_<?php echo $direcc->id;?>" type="hidden" value="<?php echo $direcc->id.";".$direcc->city.";".$direcc->zip.";".$direcc->description.";".$direcc->address_1.";".$direcc->address_2.";".$direcc->phone.";".$direcc->cell_phone; ?>">
+																	</a>
+																</td>
+																<td style='text-align: center'>
+																	<a class='quitar_direccion' id="<?php echo $direcc->id; ?>">
+																	<i class='fa fa-trash fa-2x'></i>
+																	</a>
+																</td>
 															</tr>
 														<?php } ?>
 													</tbody>
@@ -426,8 +435,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																<td style='text-align: center'><?php echo $vehi->color; ?></td>
 																<td style='text-align: center'><?php echo $vehi->year; ?></td>
 																<td style='text-align: center'><?php echo $vehi->license_plate; ?></td>
-																<td style='text-align: center'><a class='editar' id="<?php echo $vehi->id; ?>"><i class='fa fa-edit fa-2x'></i></a></td>
-																<td style='text-align: center'><a class='quitar' id="<?php echo $vehi->id; ?>"><i class='fa fa-trash fa-2x'></i></a></td>
+																<td style='text-align: center'>
+																	<a class='editar_vehiculo' id="<?php echo $vehi->id; ?>">
+																	<i class='fa fa-edit fa-2x'></i>
+																	<input id="editar_vehiculo_<?php echo $vehi->id;?>" type="hidden" value="<?php echo $vehi->id.";".$vehi->trademark.";".$vehi->model.";".$vehi->color.";".$vehi->year.";".$vehi->license_plate; ?>">
+																	</a>
+																</td>
+																<td style='text-align: center'><a class='quitar_vehiculo' id="<?php echo $vehi->id; ?>"><i class='fa fa-trash fa-2x'></i></a></td>
 															</tr>
 														<?php } ?>
 													</tbody>
@@ -570,6 +584,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<input id="phone_1" name="phone_1" class="form-control" type="text" maxlength="20">
 								<label>Teléfono 2</label>
 								<input id="cell_phone_1" name="cell_phone" class="form-control" type="text" maxlength="20">
+								<input id="id_direccion" name="id_direccion" class="form-control" type="hidden" >
 								<input id="accion"  class="form-control" type="hidden" >
 								<input id="posicion"  class="form-control" type="hidden" >
 							</div>
@@ -606,6 +621,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<input type="text" class="form-control"  id="year" name="year" maxlength="4">
 								<label >Placa</label>
 								<input id="license_plate" name="license_plate" class="form-control" type="text" maxlength="50">
+								<input id="id_vehiculo" name="id_vehiculo" class="form-control" type="hidden" >
 								<input id="accion2" class="form-control" type="hidden" >
 								<input id="posicion2" class="form-control" type="hidden" >
 							</div>
@@ -684,288 +700,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</script>
 		 -->
 		
-		<script>
-        $(document).ready(function () {
-			
-			$('#year').datepicker({
-
-                format: " yyyy",
-                viewMode: "years",
-                minViewMode: "years",
-                endDate: 'today'
-                
-            });
-			
-			//Propiedades para la lista de direcciones
-			$('#tab_direccion').DataTable({
-				"paging": true,
-				"lengthChange": false,
-				"autoWidth": false,
-				"searching": true,
-				"info": true,
-				"order": [[0, "asc"]],
-				"iDisplayLength": 5,
-				"iDisplayStart": 0,
-				"sPaginationType": "full_numbers",
-				"aLengthMenu": [5, 10, 15],
-				"oLanguage": {"sUrl": "<?= assets_url() ?>js/es.txt"},
-				"aoColumns": [
-					{"sWidth": "15%"},
-					{"sWidth": "15%"},
-					{"sWidth": "20%"},
-					{"sClass": "none", "sWidth": "8%"},
-					{"sClass": "none", "sWidth": "8%"},
-					{"sClass": "none", "sWidth": "8%"},
-					{"sClass": "none", "sWidth": "8%"},
-					{"sWidth": "4%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
-					{"sWidth": "4%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false}
-				]
-			});
-			
-			//Propiedades para la lista de vehículos
-			$('#tab_vehiculo').DataTable({
-				"paging": true,
-				"lengthChange": false,
-				"autoWidth": false,
-				"searching": true,
-				"info": true,
-				"order": [[0, "asc"]],
-				"iDisplayLength": 5,
-				"iDisplayStart": 0,
-				"sPaginationType": "full_numbers",
-				"aLengthMenu": [5, 10, 15],
-				"oLanguage": {"sUrl": "<?= assets_url() ?>js/es.txt"},
-				"aoColumns": [
-					{"sWidth": "15%"},
-					{"sWidth": "15%"},
-					{"sWidth": "15%"},
-					{"sWidth": "15%"},
-					{"sWidth": "15%"},
-					{"sWidth": "4%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false},
-					{"sWidth": "4%", "bSortable": false, "sClass": "center sorting_false", "bSearchable": false}
-				]
-			});
-			
-			//Propiedades para la lista de pedidos (ordenes)
-			$('#tab_order').DataTable({
-				"paging": true,
-				"lengthChange": false,
-				"autoWidth": false,
-				"searching": true,
-				"info": true,
-				dom: '<"html5buttons"B>lTfgitp',
-
-				buttons: [
-					{extend: 'copy'},
-					{extend: 'csv'},
-					{extend: 'excel', title: 'ExampleFile'},
-					{extend: 'pdf', title: 'ExampleFile'},
-
-					{extend: 'print',
-						customize: function (win) {
-							$(win.document.body).addClass('white-bg');
-							$(win.document.body).css('font-size', '10px');
-
-							$(win.document.body).find('table')
-									.addClass('compact')
-									.css('font-size', 'inherit');
-						}
-					}
-				],
-				"iDisplayLength": 5,
-				"iDisplayStart": 0,
-				"sPaginationType": "full_numbers",
-				"aLengthMenu": [5, 10, 15],
-				"oLanguage": {"sUrl": "<?= assets_url() ?>js/es.txt"},
-				"aoColumns": [
-					{"sClass": "registro center", "sWidth": "5%"},
-					{"sClass": "registro center", "sWidth": "10%"},
-					{"sClass": "registro center", "sWidth": "10%"},
-					{"sClass": "registro center", "sWidth": "8%"},
-					{"sClass": "registro center", "sWidth": "5%"},
-					{"sClass": "registro center", "sWidth": "5%"},
-					{"sClass": "none", "sWidth": "8%"},
-					{"sClass": "none", "sWidth": "8%"},
-					{"sClass": "registro center", "sWidth": "5%"},
-				]
-			});
-			
-			// Acciones sobre direcciones y vehpiculos
-			
-			$("#phone, #cell_phone, #zip, #phone_1, #cell_phone_1").numeric(); // Sólo permite valores numéricos
-			
-			$("#i_new_line").click(function (e) {
-				e.preventDefault();  // Para evitar que se envíe por defecto
-				$("#modal_direccion").modal('show');
-				$("span#titulo").text('Registrar');
-				$("#accion").val('Registrar');
-			});
-			
-			$("#i_new_line2").click(function (e) {
-				e.preventDefault();  // Para evitar que se envíe por defecto
-				$("#modal_vehiculo").modal('show');
-				$("span#titulo").text('Registrar');
-				$("#accion2").val('Registrar');
-			});
-			
-			//Registar dirección nueva
-			$("#add_address").click(function (e) {
-				e.preventDefault();  // Para evitar que se envíe por defecto
-
-				if ($('#city').val().trim() == "") {
-				  
-				   swal("Disculpe,", "para continuar debe ingresar el nombre de la ciudad");
-				   $('#zip').removeClass('error');
-				   $('#address_1').removeClass('error');
-				   $('#phone_1').removeClass('error');
-				   $('#city').addClass('error');
-				   $('#city').focus();
-				   
-				} else if ($('#zip').val().trim() === "") {
-				  
-				   swal("Disculpe,", "para continuar debe ingresar el código postal");
-				   $('#city').removeClass('error');
-				   $('#address_1').removeClass('error');
-				   $('#phone_1').removeClass('error');
-				   $('#zip').addClass('error');
-				   $('#zip').focus();
-				   
-				} else if ($('#address_1').val().trim() === "") {
-				  
-				   swal("Disculpe,", "para continuar debe ingresar la dirección");
-				   $('#zip').removeClass('error');
-				   $('#city').removeClass('error');
-				   $('#phone_1').removeClass('error');
-				   $('#address_1').addClass('error');
-				   $('#address_1').focus();
-				   
-				} else if ($('#phone_1').val().trim() === "") {
-				  
-				   swal("Disculpe,", "para continuar debe ingresar el teléfono");
-				   $('#zip').removeClass('error');
-				   $('#address_1').removeClass('error');
-				   $('#city').removeClass('error');
-				   $('#phone_1').removeClass('error');
-				   $('#phone_1').addClass('error');
-				   
-				   
-				} else {
-					$.post('<?php echo base_url(); ?>CClient/addAddress', $('#form_direccion').serialize()+'&'+$.param({'customer_id':$('#customer_id').val()}), function (response) {
-						//~ alert(response);
-						//~ if (response[0] == '1') {
-							//~ swal("Disculpe,", "este nombre se encuentra registrado");
-						//~ } else {
-							//~ swal({
-								//~ title: "Registro",
-								//~ text: "Guardado con exito. Le será enviado un correo de confirmación, por favor revise su bandeja de entrada.",
-								//~ type: "success"
-							//~ },
-							//~ function () {
-								//~ $("#modal_cliente").modal('hide');
-								//~ window.location.href = base_url+'public_perfil';
-							//~ });
-						//~ }
-						// Respuesta temporal
-						swal({
-							title: "Registro",
-							text: "Guardado con exito.",
-							type: "success"
-						},
-						function () {
-							$("#modal_direccion").modal('hide');
-							window.location.href = '<?php echo base_url(); ?>public_perfil';
-						});
-						
-					});
-				}
-			});
-			
-			//Registar vehículo nuevo
-			$("#add_vehicle").click(function (e) {
-				e.preventDefault();  // Para evitar que se envíe por defecto
-
-				if ($('#trademark').val().trim() == "") {
-				  
-				   swal("Disculpe,", "para continuar debe ingresar la marca");
-				   $('#model').removeClass('error');
-				   $('#color').removeClass('error');
-				   $('#year').removeClass('error');
-				   $('#license_plate').removeClass('error');
-				   $('#trademark').addClass('error');
-				   $('#trademark').focus();
-				   
-				} else if ($('#model').val().trim() === "") {
-				  
-				   swal("Disculpe,", "para continuar debe ingresar el modelo");
-				   $('#trademark').removeClass('error');
-				   $('#color').removeClass('error');
-				   $('#year').removeClass('error');
-				   $('#license_plate').removeClass('error');
-				   $('#model').addClass('error');
-				   $('#model').focus();
-				   
-				} else if ($('#color').val().trim() === "") {
-				  
-				   swal("Disculpe,", "para continuar debe ingresar el color");
-				   $('#trademark').removeClass('error');
-				   $('#model').removeClass('error');
-				   $('#year').removeClass('error');
-				   $('#license_plate').removeClass('error');
-				   $('#color').addClass('error');
-				   $('#color').focus();
-				   
-				} else if ($('#year').val().trim() === "") {
-				  
-				   swal("Disculpe,", "para continuar debe ingresar el año");
-				   $('#trademark').removeClass('error');
-				   $('#color').removeClass('error');
-				   $('#model').removeClass('error');
-				   $('#license_plate').removeClass('error');
-				   $('#year').addClass('error');
-				   $('#year').focus();
-				   
-				} else if ($('#license_plate').val().trim() === "") {
-				  
-				   swal("Disculpe,", "para continuar debe ingresar la placa");
-				   $('#trademark').removeClass('error');
-				   $('#color').removeClass('error');
-				   $('#year').removeClass('error');
-				   $('#model').removeClass('error');
-				   $('#license_plate').addClass('error');
-				   $('#license_plate').focus();
-				   
-				} else {
-					$.post('<?php echo base_url(); ?>CClient/addCar', $('#form_vehiculo').serialize()+'&'+$.param({'customer_id2':$('#customer_id').val()}), function (response) {
-						//~ alert(response);
-						//~ if (response[0] == '1') {
-							//~ swal("Disculpe,", "este nombre se encuentra registrado");
-						//~ } else {
-							//~ swal({
-								//~ title: "Registro",
-								//~ text: "Guardado con exito. Le será enviado un correo de confirmación, por favor revise su bandeja de entrada.",
-								//~ type: "success"
-							//~ },
-							//~ function () {
-								//~ $("#modal_cliente").modal('hide');
-								//~ window.location.href = base_url+'public_perfil';
-							//~ });
-						//~ }
-						// Respuesta temporal
-						swal({
-							title: "Registro",
-							text: "Guardado con exito.",
-							type: "success"
-						},
-						function () {
-							$("#modal_vehiculo").modal('hide');
-							window.location.href = '<?php echo base_url(); ?>public_perfil';
-						});
-					});
-				}
-			});
-			
-		})
-		</script>
+		<script src="<?php echo assets_url(); ?>script/public_perfil.js"></script>
 
 	</body>
 </html>
