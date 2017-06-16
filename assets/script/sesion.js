@@ -44,7 +44,7 @@ $(document).ready(function() {
 	}
     
 	//abrir modal de registro/inicio
-	$("#inicio").click(function (e) {
+	$("#inicio,span a.solicitar").click(function (e) {
 		e.preventDefault();  // Para evitar que se envíe por defecto
 		$("#modal_cliente").modal('show');  // Mostramos la modal
 		// Definimos el título y la acción
@@ -249,6 +249,13 @@ $(document).ready(function() {
 		  swal("Disculpe,", "para continuar debe marcar el boton de captcha");
 		   
 		}*/ else {
+			//Fijamos la localización de solicitudes
+			var lugar = String(window.location);
+			if(lugar.indexOf("solicitud") > -1){
+				$('#location').val('solicitud');
+			}else{
+				$('#location').val('');
+			}
 			// Enviamos el formulario
 			$('#form_client').submit();
 		}

@@ -615,15 +615,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="modal-body">
 						<form id="form_vehiculo" action="" method="post" class="form">
 							<div class="form-group">
-								<label >Marca</label>
+								<label >Marca *</label>
 								<input id="trademark" name="trademark" class="form-control" type="text" maxlength="50">
-								<label>Modelo </label>
+								<label>Modelo *</label>
 								<input id="model" name="model" class="form-control" type="text" maxlength="50">
 								<label >Color *</label>
 								<input id="color" name="color" class="form-control" type="text" maxlength="50">
-								<label >Año</label>
+								<label >Año *</label>
 								<input type="text" class="form-control"  id="year" name="year" maxlength="4">
-								<label >Placa</label>
+								<label >Placa *</label>
 								<input id="license_plate" name="license_plate" class="form-control" type="text" maxlength="50">
 								<input id="id_vehiculo" name="id_vehiculo" class="form-control" type="hidden" >
 								<input id="accion2" class="form-control" type="hidden" >

@@ -57,7 +57,11 @@ Class CLogin extends CI_Controller {
 			$respuesta = $this->basicauthpublic->login($usuario, $password);
 			
 			if(!isset($respuesta['error'])){
-				redirect('public_perfil');
+				if($this->input->post('location') !== null){
+					redirect('solicitud');
+				}else{
+					redirect('public_perfil');
+				}
 			}else{
 				$data['error'] = $respuesta['error'];
 				$this->load->view('public', $data);

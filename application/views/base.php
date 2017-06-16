@@ -223,8 +223,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</ul>
 			
 				</nav>
-			</div>					
-			<!-- Validación de acciones -->
-			<?php echo validar_acciones(); ?>
-			<!-- Validación de acciones -->
-		
+			</div>
+			
+		<!-- Validación de acciones -->
+		<?php echo validar_acciones(); ?>
+		<!-- Validación de acciones -->		

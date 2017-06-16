@@ -13,10 +13,10 @@ Class BasicauthPublic
 		$query = $this->CI->db->get_where('customers', array('username'=>$usuario, 'password'=>$password));
 		
 		if($query->num_rows() > 0){
-			echo "Pasó 1";
+			//~ echo "Pasó 1";
 			$query = $this->CI->db->get_where('customers', array('username'=>$usuario, 'password'=>$password, 'status'=>1));
 			if($query->num_rows() > 0){
-				echo "Pasó 2";
+				//~ echo "Pasó 2";
 				// Buscamos los datos de los pedidos, las direcciones y vehículos asociados al usuario
 				$pedidos = array();
 				$ordenes = array();
