@@ -114,6 +114,14 @@ $(document).ready(function () {
 		$("#modal_direccion").modal('show');
 		$("span#titulo").text('Registrar');
 		$("#accion").val('Registrar');
+		// Vaciamos los campos
+		$("#city").val('');
+		$("#zip").val('');
+		$("#description").val('');
+		$("#address_1").val('');
+		$("#address_2").val('');
+		$("#phone_1").val('');
+		$("#cell_phone_1").val('');
 	});
 	
 	$("#i_new_line2").click(function (e) {
@@ -121,6 +129,12 @@ $(document).ready(function () {
 		$("#modal_vehiculo").modal('show');
 		$("span#titulo").text('Registrar');
 		$("#accion2").val('Registrar');
+		// Vaciamos los campos
+		$("#trademark").val('');
+		$("#model").val('');
+		$("#color").val('');
+		$("#year").val('');
+		$("#license_plate").val('');
 	});
 	
 	$(".editar_direccion").click(function (e) {
