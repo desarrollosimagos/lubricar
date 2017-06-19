@@ -54,7 +54,29 @@ class Welcome extends CI_Controller {
 	
 	public function solicitud()
 	{
-		$this->load->view('solicitud');
+		$data['direcciones'] = array();
+        $data['vehiculos'] = array();
+        $data['servicios'] = $this->MServices->obtener();
+		//Armamos la lista de direcciones asociadas
+		if(isset($this->session->userdata['logged_in_public'])){
+			$query_addresses = $this->db->get_where('addresses', array('customer_id'=>$this->session->userdata['logged_in_public']['id']));
+			if($query_addresses->num_rows() > 0){
+				foreach($query_addresses->result() as $address){
+					$data['direcciones'][] = $address;
+				}
+			}
+		}
+		//Armamos la lista de vehículos asociados
+		if(isset($this->session->userdata['logged_in_public'])){
+			$query_vehicles = $this->db->get_where('vehicles', array('customer_id'=>$this->session->userdata['logged_in_public']['id']));
+			if($query_vehicles->num_rows() > 0){
+				foreach($query_vehicles->result() as $vehicle){
+					$data['vehiculos'][] = $vehicle;
+				}
+			}
+		}
+		
+		$this->load->view('solicitud', $data);
 	}
 	
 	public function noticias()
@@ -78,6 +100,15 @@ class Welcome extends CI_Controller {
         $data['status'] = $this->MOrder->obtenerStatus();
         $data['direcciones'] = array();
         $data['vehiculos'] = array();
+        $data['ordenes'] = array();
+		
+		//Armamos la lista de ordenes asociados
+		$query_orders = $this->db->get_where('orders', array('customer_id'=>$this->session->userdata['logged_in_public']['id']));
+		if($query_orders->num_rows() > 0){
+			foreach($query_orders->result() as $order){
+				$data['ordenes'][] = $order;
+			}
+		}
 		//Armamos la lista de direcciones asociadas
 		$query_addresses = $this->db->get_where('addresses', array('customer_id'=>$this->session->userdata['logged_in_public']['id']));
 		if($query_addresses->num_rows() > 0){

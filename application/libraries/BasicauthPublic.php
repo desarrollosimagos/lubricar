@@ -17,27 +17,14 @@ Class BasicauthPublic
 			$query = $this->CI->db->get_where('customers', array('username'=>$usuario, 'password'=>$password, 'status'=>1));
 			if($query->num_rows() > 0){
 				//~ echo "Pasó 2";
-				// Buscamos los datos de los pedidos, las direcciones y vehículos asociados al usuario
-				$pedidos = array();
-				$ordenes = array();
-				
-				//Armamos la lista de ordenes asociados
-				$query_orders = $this->CI->db->get_where('orders', array('customer_id'=>$query->row()->id));
-				if($query_orders->num_rows() > 0){
-					foreach($query_orders->result() as $order){
-						$ordenes[] = $order;
-					}
-				}
-				// Creamos la sesión y le cargamos los datos de usuario
+				// Creamos la sesión y le cargamos los datos de usuario (cliente)
 				$session_data = array(
 					'id' => $query->row()->id,
 					'username' => $usuario,
 					'name' => $query->row()->name,
 					'lastname' => $query->row()->lastname,
 					'phone' => $query->row()->phone,
-					'cell_phone' => $query->row()->cell_phone,
-					'pedidos' => $pedidos,
-					'ordenes' => $ordenes
+					'cell_phone' => $query->row()->cell_phone
 				);
 				$this->CI->session->set_userdata('logged_in_public',$session_data);
 				

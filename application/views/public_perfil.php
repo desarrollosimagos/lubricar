@@ -277,7 +277,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													</thead>
 													<tbody>
 														<?php $i = 1; ?>
-														<?php foreach ($this->session->userdata['logged_in_public']['ordenes'] as $list) { ?>
+														<?php foreach ($ordenes as $list) { ?>
 															<tr style="text-align: center">
 																<td>
 																	<?php echo $i; ?>

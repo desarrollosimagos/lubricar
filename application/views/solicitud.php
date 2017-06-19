@@ -24,20 +24,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<!-- Web Fonts  -->
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
 
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/theme.css">
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/theme-elements.css">
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/theme-blog.css">
+		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/theme-shop.css">
+		
 		<!-- Vendor CSS -->
 		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/vendor/bootstrap/css/bootstrap.min.css">
+		<link href="<?php echo assets_url('css/select2.css');?>" rel="stylesheet">
 		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/vendor/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/vendor/animate/animate.min.css">
 		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/vendor/simple-line-icons/css/simple-line-icons.min.css">
 		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/vendor/owl.carousel/assets/owl.carousel.min.css">
 		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/vendor/owl.carousel/assets/owl.theme.default.min.css">
 		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/vendor/magnific-popup/magnific-popup.min.css">
-
-		<!-- Theme CSS -->
-		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/theme.css">
-		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/theme-elements.css">
-		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/theme-blog.css">
-		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/theme-shop.css">
 
 		<!-- Current Page CSS -->
 		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/vendor/rs-plugin/css/settings.css">
@@ -215,89 +216,134 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</ul>
 						</div>
 		
-						<form class="form-horizontal" novalidate="novalidate">
+						<form class="form-horizontal" id="form_solicitud" novalidate="novalidate">
 							<div class="tab-content">
 								<div id="w4-account" class="tab-pane active">
 									<div class="form-group">
+										<label class="col-sm-3 control-label" for="w4-username">Nombre:</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" name="username" id="w4-username" value="<?php echo $this->session->userdata['logged_in_public']['name']." ".$this->session->userdata['logged_in_public']['lastname'];?>" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+										</div>
+									</div>
+									<div class="form-group">
 										<label class="col-sm-3 control-label" for="w4-username">Correo Electronico:</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" name="username" id="w4-username" value="<?php echo $this->session->userdata['logged_in_public']['username'];?>" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+											<input type="text" class="form-control" name="username" id="w4-username" value="<?php echo $this->session->userdata['logged_in_public']['username'];?>" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-3 control-label" for="w4-username">Teléfono</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" name="username" id="w4-username" value="<?php echo $this->session->userdata['logged_in_public']['phone'];?>" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3 control-label" for="w4-password">Contraseña</label>
-										<div class="col-sm-9">
-											<input type="password" class="form-control" name="password" id="w4-password"  minlength="6" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+											<input type="text" class="form-control" name="username" id="w4-username" value="<?php echo $this->session->userdata['logged_in_public']['phone'];?>" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+											<input type="hidden" name="customer_id" id="customer_id" value="<?php echo $this->session->userdata['logged_in_public']['id']; ?>">
 										</div>
 									</div>
 								</div>
 								<div id="w4-profile" class="tab-pane">
 									<div class="form-group">
-										<label class="col-sm-3 control-label" for="w4-first-name">Nombre del fabricante (P.ej. Fiat)</label>
+										<label class="col-sm-3 control-label" for="w4-vehicle">Vehiculo *</label>
+										<div class="input-group mar-btm col-sm-9">
+											<span class="input-group-addon"><i class="fa fa-car fa-lg"></i></span>
+											<select style="width: 100%" name="vehiculo" id="vehiculo" class="form-control">
+												<option selected="" value="0">Seleccione</option>
+												<?php
+												foreach ($vehiculos as $vehiculo) {
+													?>
+													<option value="<?php echo $vehiculo->id; ?>"><?php echo $vehiculo->license_plate." - ".$vehiculo->trademark; ?></option>
+													<?php
+												}
+												?>
+											</select>
+											<span style="cursor: pointer" class="add_vehiculo input-group-addon" title="Nuevo vehículo"><span class="fa fa-plus" style="color: green"></span></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label" for="w4-vehicle">Servicios *</label>
+										<div class="input-group mar-btm col-sm-9">
+											<span class="input-group-addon"><i class="fa fa-gears fa-lg"></i></span>
+											<select style="width: 100%" id="services_ids" class="form-control" multiple="multiple">
+												<?php
+												foreach ($servicios as $servicio) {
+													?>
+													<option value="<?php echo $servicio->id; ?>"><?php echo $servicio->name; ?></option>
+													<?php
+												}
+												?>
+											</select>
+											<!--<span style="cursor: pointer" class="add_services input-group-addon"><span class="fa fa-plus" style="color: green"></span></span>-->
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label" for="w4-first-name">Marca (P.ej. Fiat)</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" name="first-name" id="w4-first-name"  aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+											<input type="text" class="form-control" id="w4-marca" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-3 control-label" for="w4-last-name">Modelo (P.ej ej. Vectra)</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" name="last-name" id="w4-last-name"  aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+											<input type="text" class="form-control" id="w4-modelo" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-3 control-label" for="w4-last-name">Combustible (Ej: Gasolina)</label>
+										<label class="col-sm-3 control-label" for="w4-last-name">Color (Ej: Gasolina)</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" name="last-name" id="w4-last-name"  aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+											<input type="text" class="form-control" id="w4-color" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-3 control-label" for="w4-last-name">Año / modelo (Ej: Año 2009, 2010)</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" name="last-name" id="w4-last-name"  aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+											<input type="text" class="form-control" id="w4-anyo" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 										</div>
 									</div>
 								</div>
 								<div id="w4-billing" class="tab-pane">
 									<div class="form-group">
+										<label class="col-sm-3 control-label" for="w4-vehicle">Dirección *</label>
+										<div class="input-group mar-btm col-sm-9">
+											<span class="input-group-addon"><i class="fa fa-address-card fa-lg"></i></span>
+											<select style="width: 100%" name="address" id="address" class="form-control">
+												<option selected="" value="0">Seleccione</option>
+												<?php
+												foreach ($direcciones as $direccion) {
+													?>
+													<option value="<?php echo $direccion->id; ?>"><?php echo $direccion->city." - ".$direccion->address_1; ?></option>
+													<?php
+												}
+												?>
+											</select>
+											<span style="cursor: pointer" class="add_direccion input-group-addon"><span class="fa fa-plus" style="color: green"></span></span>
+										</div>
+									</div>
+									<div class="form-group">
 										<label class="col-sm-3 control-label" for="w4-cc">Ciudad (Ej: Panama City)</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" name="cc-number" id="w4-cc"  aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+											<input type="text" class="form-control" id="w4-ciudad" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-3 control-label" for="w4-cc">Calle (nombre de la calle y sin abreviaturas)</label>
+										<label class="col-sm-3 control-label" for="w4-cc">Teléfono</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" name="cc-number" id="w4-cc"  aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+											<input type="text" class="form-control" id="w4-telefono" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-3 control-label" for="w4-cc">Número (Ex 213)</label>
+										<label class="col-sm-3 control-label" for="w4-cc">Móvil</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" name="cc-number" id="w4-cc"  aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+											<input type="text" class="form-control" id="w4-movil" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-3 control-label" for="w4-cc">Sector (Introduzca el nombre del distrito)</label>
+										<label class="col-sm-3 control-label" for="w4-cc">Descripción</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" name="cc-number" id="w4-cc"  aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3 control-label" for="w4-cc">Referencia</label>
-										<div class="col-sm-9">
-											<input type="text" class="form-control" name="cc-number" id="w4-cc"  aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+											<input type="text" class="form-control" id="w4-descripcion" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-3 control-label" for="w4-cc">Código Postal (Ej: 12020-050)</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" name="cc-number" id="w4-cc"  aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+											<input type="text" class="form-control" id="w4-zip" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 										</div>
 									</div>
 								</div>
@@ -305,14 +351,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<div class="form-group">
 										<label class="col-sm-3 control-label" for="w4-email">Fecha y Confirmación</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" name="email" id="w4-email"  aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+											<input type="text" class="form-control" name="fecha" id="w4-fecha"  aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-sm-3"></div>
 										<div class="col-sm-9">
-											<div class="checkbox-custom">
-												<input type="checkbox" name="terms" id="w4-terms"  aria-required="true">
+											<div>
+												<input type="checkbox" name="terms" id="w4-terms">
+												<input type="hidden" id="terms_accept">
 												<label for="w4-terms">Estoy de acuerdo con los términos de servicio.</label>
 											</div>
 										</div>
@@ -327,7 +374,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<li class="previous disabled">
 								<a><i class="fa fa-angle-left"></i> Anterior</a>
 							</li>
-							<li class="finish hidden pull-right">
+							<!--<li id="finalizar" class="finish hidden pull-right">-->
+							<li id="finalizar" class="finish hidden pull-right">
 								<a>Finalizar</a>
 							</li>
 							<li class="next">
@@ -454,6 +502,84 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 		<!--Modal de registro/inicio de sesión-->
+		
+		<!--Modal de registro de direcciones-->
+		<div class="modal inmodal fade" id="modal_direccion" tabindex="-1" role="dialog"  aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close cerrar_modal" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h5 class="modal-title"><span id="titulo"></span> Dirección</h5>
+					</div>
+					<div class="modal-body" >
+						<form id="form_direccion" action="" method="post" class="form">
+							<div class="form-group">
+								<label >Ciudad *</label>
+								<input id="city" name="city" class="form-control" type="text" maxlength="100">
+								<label>Código Postal *</label>
+								<input id="zip" name="zip" class="form-control" type="text" maxlength="20" >
+								<label>Descripción</label>
+								<input id="description" name="description" class="form-control" type="text" maxlength="50" >
+								<label>Dirección 1 *</label>
+								<input id="address_1" name="address_1" class="form-control" type="text" maxlength="150" >
+								<label >Dirección 2</label>
+								<input id="address_2" name="address_2" class="form-control" type="text" maxlength="150">
+								<label>Teléfono 1 *</label>
+								<input id="phone_1" name="phone_1" class="form-control" type="text" maxlength="20">
+								<label>Teléfono 2</label>
+								<input id="cell_phone_1" name="cell_phone" class="form-control" type="text" maxlength="20">
+								<input id="id_direccion" name="id_direccion" class="form-control" type="hidden" >
+								<input id="accion"  class="form-control" type="hidden" >
+								<input id="posicion"  class="form-control" type="hidden" >
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer" >
+						<button class="btn btn-primary" type="button" id="add_address">
+							Aceptar
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Modal de registro de direcciones-->
+		
+		<!--Modal de registro de vehículos-->
+		<div class="modal inmodal fade" id="modal_vehiculo" tabindex="-1" role="dialog"  aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close cerrar_modal" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title"><span id="titulo"></span> Vehiculo</h4>
+					</div>
+					<div class="modal-body">
+						<form id="form_vehiculo" action="" method="post" class="form">
+							<div class="form-group">
+								<label >Marca *</label>
+								<input id="trademark" name="trademark" class="form-control" type="text" maxlength="50">
+								<label>Modelo *</label>
+								<input id="model" name="model" class="form-control" type="text" maxlength="50">
+								<label >Color *</label>
+								<input id="color" name="color" class="form-control" type="text" maxlength="50">
+								<label >Año *</label>
+								<input type="text" class="form-control"  id="year" name="year" maxlength="4">
+								<label >Placa *</label>
+								<input id="license_plate" name="license_plate" class="form-control" type="text" maxlength="50">
+								<input id="id_vehiculo" name="id_vehiculo" class="form-control" type="hidden" >
+								<input id="accion2" class="form-control" type="hidden" >
+								<input id="posicion2" class="form-control" type="hidden" >
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer" >
+						<button class="btn btn-primary" type="button" id="add_vehicle">
+							Aceptar
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Modal de registro de vehículos-->
 
 		<!-- Vendor -->
 		<script src="<?php echo assets_url(); ?>public/vendor/jquery/jquery.min.js"></script>
@@ -470,6 +596,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<script src="<?php echo assets_url(); ?>public/vendor/owl.carousel/owl.carousel.min.js"></script>
 		<script src="<?php echo assets_url(); ?>public/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 		<script src="<?php echo assets_url(); ?>public/vendor/vide/vide.min.js"></script>
+		<link href="<?php echo assets_url('css/plugins/datapicker/datepicker3.css');?>" rel="stylesheet">
+		<script src="<?php echo assets_url('js/select2.js');?>"></script>
 		
 		<!-- Theme Base, Components and Settings -->
 		<script src="<?php echo assets_url(); ?>public/js/theme.js"></script>
@@ -489,6 +617,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		<!-- Theme Initialization Files -->
 		<script src="<?php echo assets_url(); ?>public/js/theme.init.js"></script>
+		
+		<!-- Data picker -->
+		<script src="<?php echo assets_url('js/plugins/datapicker/bootstrap-datepicker.js');?>"></script>
 		
 		<!-- Sweet alert -->
 		<script src="<?php echo assets_url('js/plugins/sweetalert/sweetalert.min.js');?>"></script>
@@ -523,6 +654,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		 -->
 		
 		<script src="<?php echo assets_url(); ?>script/public_solicitud.js"></script>
+		
+		<script>
+			$(document).ready(function () {
+				// Aplicamos select2() a todos los combos select
+				$("select").select2();
+			});
+		</script>
 
 	</body>
 </html>

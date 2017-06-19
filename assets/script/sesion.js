@@ -202,7 +202,7 @@ $(document).ready(function() {
 		  swal("Disculpe,", "para continuar debe marcar el boton de captcha");
 		   
 		} else {
-			$.post(base_url+'CClient/add3', $('#form_client').serialize(), function (response) {
+			$.post(base_url+'CClientPublic/add3', $('#form_client').serialize(), function (response) {
 				//~ alert(response);
 				if (response[0] == '1') {
 					swal("Disculpe,", "este nombre se encuentra registrado");
