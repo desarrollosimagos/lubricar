@@ -139,6 +139,26 @@ class MClient extends CI_Model {
         else
             return $query->result();
     }
+    
+    // Método público, para obterner las direcciones por cliente id
+    public function obtenerAddressId($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get('addresses');
+        if ($query->num_rows() > 0)
+            return $query->result();
+        else
+            return $query->result();
+    }
+
+    // Método público, para obterner los vehiculos por cliente id
+    public function obtenerCarsId($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get('vehicles');
+        if ($query->num_rows() > 0)
+            return $query->result();
+        else
+            return $query->result();
+    }
 
     // Public method to update a record 
     public function update_status($datos) {

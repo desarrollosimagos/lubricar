@@ -468,6 +468,16 @@ class CClient extends CI_Controller {
         $result = $this->MClient->obtenerAddress($id);
         echo json_encode($result);
     }
+
+    public function ajax_car_id($id) {
+        $result = $this->MClient->obtenerCarsId($id);
+        echo json_encode($result);
+    }
+
+    public function ajax_address_id($id) {
+        $result = $this->MClient->obtenerAddressId($id);
+        echo json_encode($result);
+    }
     
     // Método para validar el correo de un cliente y proceder a activarlo
     public function validar_mail() {

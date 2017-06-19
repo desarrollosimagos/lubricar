@@ -218,7 +218,7 @@ $(document).ready(function () {
 		   
 		} else {
 			if($("#accion").val() == 'Registrar'){
-				$.post(base_url+'CClient/addAddressPublic', $('#form_direccion').serialize()+'&'+$.param({'customer_id':$('#customer_id').val()}), function (response) {
+				$.post(base_url+'CClientPublic/addAddressPublic', $('#form_direccion').serialize()+'&'+$.param({'customer_id':$('#customer_id').val()}), function (response) {
 					//~ alert(response);
 					if (response == 'existe direccion') {
 						swal("Disculpe,", "esta dirección se encuentra registrada");
@@ -235,7 +235,7 @@ $(document).ready(function () {
 					}
 				});
 			}else if($("#accion").val() == 'Editar'){
-				$.post(base_url+'CClient/updateAddressPublic', $('#form_direccion').serialize()+'&'+$.param({'customer_id':$('#customer_id').val()}), function (response) {
+				$.post(base_url+'CClientPublic/updateAddressPublic', $('#form_direccion').serialize()+'&'+$.param({'customer_id':$('#customer_id').val()}), function (response) {
 					//~ alert(response);
 					if (response == 'existe direccion') {
 						swal("Disculpe,", "esta dirección se encuentra registrada");
@@ -311,7 +311,7 @@ $(document).ready(function () {
 		   
 		} else {
 			if($("#accion2").val() == 'Registrar'){
-				$.post(base_url+'CClient/addCar', $('#form_vehiculo').serialize()+'&'+$.param({'customer_id2':$('#customer_id').val()}), function (response) {
+				$.post(base_url+'CClientPublic/addCar', $('#form_vehiculo').serialize()+'&'+$.param({'customer_id2':$('#customer_id').val()}), function (response) {
 					//~ alert(response);
 					if (response == 'existe vehiculo') {
 						swal("Disculpe,", "este vehículo se encuentra registrado");
@@ -328,7 +328,7 @@ $(document).ready(function () {
 					}
 				});
 			}else if($("#accion2").val() == 'Editar'){
-				$.post(base_url+'CClient/updateCarPublic', $('#form_vehiculo').serialize()+'&'+$.param({'customer_id2':$('#customer_id').val()}), function (response) {
+				$.post(base_url+'CClientPublic/updateCarPublic', $('#form_vehiculo').serialize()+'&'+$.param({'customer_id2':$('#customer_id').val()}), function (response) {
 					//~ alert(response);
 					if (response == 'existe vehiculo') {
 						swal("Disculpe,", "este vehículo se encuentra registrado");
@@ -367,7 +367,7 @@ $(document).ready(function () {
 		function(isConfirm){
 			if (isConfirm) {
 
-				$.post(base_url+'CClient/deleteAddressPublic/' + id + '', function (response) {
+				$.post(base_url+'CClientPublic/deleteAddressPublic/' + id + '', function (response) {
 					if (response == 'existe address') {
 						swal("Disculpe,", "esta dirección está asociada a algúna orden");
 					} else {
@@ -408,7 +408,7 @@ $(document).ready(function () {
 		function(isConfirm){
 			if (isConfirm) {
 
-				$.post(base_url+'CClient/deleteCarPublic/' + id + '', function (response) {
+				$.post(base_url+'CClientPublic/deleteCarPublic/' + id + '', function (response) {
 					if (response == 'existe vehicle') {
 						swal("Disculpe,", "este vehículo está asociado a algúna orden");
 					} else {
