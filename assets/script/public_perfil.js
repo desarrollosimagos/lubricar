@@ -4,10 +4,11 @@ $(document).ready(function () {
 			
 	$('#year').datepicker({
 
-		format: " yyyy",
+		format: "yyyy",
 		viewMode: "years",
 		minViewMode: "years",
-		endDate: 'today'
+		endDate: 'today',
+		autoclose: true,
 		
 	});
 	

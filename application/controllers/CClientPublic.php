@@ -9,6 +9,8 @@ class CClientPublic extends CI_Controller {
 
         // Load database
         $this->load->model('MClient');
+        $this->load->model('MFranchises');
+        $this->load->model('MServices');
         $this->load->model('MMails');
     }
 
@@ -173,6 +175,16 @@ class CClientPublic extends CI_Controller {
 
     public function ajax_address_id($id) {
         $result = $this->MClient->obtenerAddressId($id);
+        echo json_encode($result);
+    }
+
+    public function ajax_services_franchise_id($id) {
+        $result = $this->MFranchises->obtenerServicesFranchiseIdDetail($id);
+        echo json_encode($result);
+    }
+
+    public function ajax_service_id($id) {
+        $result = $this->MServices->obtenerServices($id);
         echo json_encode($result);
     }
     

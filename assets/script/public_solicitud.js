@@ -62,6 +62,58 @@ $(document).ready(function() {
 			$("#w4-anyo").val('');
 		}
 	});
+	
+    // Al cambiar la selección de la franquicia
+	$("#franquicia").change(function () {
+		if($(this).val() != '0'){
+			//~ $('#services_ids').find('option:gt(0)').remove().end().select2('val', '0');
+			$('#services_ids').find('option').remove().end();
+			$.get(base_url+'CClientPublic/ajax_services_franchise_id/' + $(this).val() + '', function (data) {
+				var option = "";
+				$.each(data, function (i) {
+					option += "<option value=" + data[i]['service_id'] + ">" + data[i]['name'] + "</option>";
+				});
+
+				$('#services_ids').append(option);
+				
+			}, 'json');
+		}
+	});
+	
+    // Al cambiar la selección de los servicios
+	$("#services_ids").on('change',function () {
+		var sub_total = 0;
+		var iva = 12;  // Valor estático temporalmente
+		var impuesto = 0;
+		var total = 0;
+		if($(this).val() != ""){
+			$.each($(this).select2('data'), function (index, value){
+				
+				//~ alert(""+index+" - "+value.id+"vdf");
+				$.get(base_url+'CClientPublic/ajax_service_id/' + value.id + '', function (data) {
+					$.each(data, function (i) {
+						
+						sub_total += parseFloat(data[i]['price']);
+						impuesto = parseFloat(sub_total) * parseFloat(iva) / 100;
+						total = parseFloat(sub_total) + parseFloat(impuesto);
+						
+						//~ alert("Sub-total: "+sub_total+" - Impuesto: "+impuesto+" - Total: "+total);
+						
+						$("#sub_total").val(parseFloat(sub_total));
+						$("#impuesto").val(parseFloat(impuesto));						
+						$("#total").val(parseFloat(total));
+						
+					});
+					
+				}, 'json');
+			});
+		}else{
+			$("#sub_total").val(parseFloat(sub_total));
+			$("#impuesto").val(parseFloat(impuesto));						
+			$("#total").val(parseFloat(total));
+		}
+		
+	});
 
 	// Agregar vehículo nuevo
 	$("#add_vehicle").click(function (e) {
@@ -275,52 +327,68 @@ $(document).ready(function() {
 		if ($('#vehiculo').val() == "0") {
 		  
 		   swal("Disculpe,", "para continuar debe seleccionar el vehículo");
-		   $('#model').removeClass('error');
-		   $('#color').removeClass('error');
-		   $('#year').removeClass('error');
-		   $('#license_plate').removeClass('error');
-		   $('#trademark').addClass('error');
-		   $('#trademark').focus();
+		   $('#franquicia').removeClass('error');
+		   $('#services_ids').removeClass('error');
+		   $('#address').removeClass('error');
+		   $('#w4-fecha').removeClass('error');
+		   $('#terms_accept').removeClass('error');
+		   $('#vehiculo').addClass('error');
+		   $('#vehiculo').focus();
+		   
+		} else if ($('#franquicia').val() == "0") {
+		  
+		   swal("Disculpe,", "para continuar debe seleccionar la franquicia");
+		   $('#vehiculo').removeClass('error');
+		   $('#services_ids').removeClass('error');
+		   $('#address').removeClass('error');
+		   $('#w4-fecha').removeClass('error');
+		   $('#terms_accept').removeClass('error');
+		   $('#franquicia').addClass('error');
+		   $('#franquicia').focus();
 		   
 		} else if ($('#services_ids').val() == "") {
 		  
 		   swal("Disculpe,", "para continuar debe seleccionar el(los) servicio(s)");
-		   $('#trademark').removeClass('error');
-		   $('#color').removeClass('error');
-		   $('#year').removeClass('error');
-		   $('#license_plate').removeClass('error');
-		   $('#model').addClass('error');
-		   $('#model').focus();
+		   $('#franquicia').removeClass('error');
+		   $('#vehiculo').removeClass('error');
+		   $('#address').removeClass('error');
+		   $('#w4-fecha').removeClass('error');
+		   $('#terms_accept').removeClass('error');
+		   $('#services_ids').addClass('error');
+		   $('#services_ids').focus();
 		   
 		} else if ($('#address').val() == "0") {
 		  
 		   swal("Disculpe,", "para continuar debe seleccionar la dirección");
-		   $('#trademark').removeClass('error');
-		   $('#model').removeClass('error');
-		   $('#year').removeClass('error');
-		   $('#license_plate').removeClass('error');
-		   $('#color').addClass('error');
-		   $('#color').focus();
+		   $('#franquicia').removeClass('error');
+		   $('#services_ids').removeClass('error');
+		   $('#vehiculo').removeClass('error');
+		   $('#w4-fecha').removeClass('error');
+		   $('#terms_accept').removeClass('error');
+		   $('#address').addClass('error');
+		   $('#address').focus();
 		   
 		} else if ($('#w4-fecha').val().trim() === "") {
 		  
 		   swal("Disculpe,", "para continuar debe ingresar la fecha del servicio");
-		   $('#trademark').removeClass('error');
-		   $('#color').removeClass('error');
-		   $('#model').removeClass('error');
-		   $('#license_plate').removeClass('error');
-		   $('#year').addClass('error');
-		   $('#year').focus();
+		   $('#franquicia').removeClass('error');
+		   $('#services_ids').removeClass('error');
+		   $('#address').removeClass('error');
+		   $('#vehiculo').removeClass('error');
+		   $('#terms_accept').removeClass('error');
+		   $('#w4-fecha').addClass('error');
+		   $('#w4-fecha').focus();
 		   
 		} else if ($('#terms_accept').val().trim() == "" || $('#terms_accept').val().trim() == "0") {
 		  
 		   swal("Disculpe,", "para continuar debe aceptar los terminos del servicio");
-		   $('#trademark').removeClass('error');
-		   $('#color').removeClass('error');
-		   $('#year').removeClass('error');
-		   $('#model').removeClass('error');
-		   $('#license_plate').addClass('error');
-		   $('#license_plate').focus();
+		   $('#franquicia').removeClass('error');
+		   $('#services_ids').removeClass('error');
+		   $('#address').removeClass('error');
+		   $('#w4-fecha').removeClass('error');
+		   $('#vehiculo').removeClass('error');
+		   $('#terms_accept').addClass('error');
+		   $('#terms_accept').focus();
 		   
 		}else{
 			//~ alert("Registrando...");
