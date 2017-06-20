@@ -54,6 +54,19 @@ class MFranchises extends CI_Model {
         else
             return $query->result();
     }
+    
+    // Public method to obtain the services of the franchises by franchise_id
+    public function obtenerServicesFranchiseIdDetail($id_franchise) {
+		$this->db->select('f_s.service_id, s.name');
+		$this->db->from('franchises_services f_s');
+		$this->db->join('services s', 's.id = f_s.service_id');
+        $this->db->where('franchise_id', $id_franchise);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0)
+            return $query->result();
+        else
+            return $query->result();
+    }
 
     // Public method to update a record 
     public function update($datos) {

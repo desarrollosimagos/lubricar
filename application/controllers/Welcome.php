@@ -56,6 +56,7 @@ class Welcome extends CI_Controller {
 	{
 		$data['direcciones'] = array();
         $data['vehiculos'] = array();
+        $data['franquicias'] = $this->MFranchises->obtener();
         $data['servicios'] = $this->MServices->obtener();
 		//Armamos la lista de direcciones asociadas
 		if(isset($this->session->userdata['logged_in_public'])){

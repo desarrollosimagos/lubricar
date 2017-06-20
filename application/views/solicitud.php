@@ -258,6 +258,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</div>
 									</div>
 									<div class="form-group">
+										<label class="col-sm-3 control-label" for="w4-vehicle">Franquicia *</label>
+										<div class="input-group mar-btm col-sm-9">
+											<span class="input-group-addon"><i class="fa fa-building fa-lg"></i></span>
+											<select style="width: 100%" name="franquicia" id="franquicia" class="form-control">
+												<option selected="" value="0">Seleccione</option>
+												<?php
+												foreach ($franquicias as $franquicia) {
+													?>
+													<option value="<?php echo $franquicia->id; ?>"><?php echo $franquicia->name; ?></option>
+													<?php
+												}
+												?>
+											</select>
+											<!--<span style="cursor: pointer" class="add_vehiculo input-group-addon" title="Nuevo vehículo"><span class="fa fa-plus" style="color: green"></span></span>-->
+										</div>
+									</div>
+									<div class="form-group">
 										<label class="col-sm-3 control-label" for="w4-vehicle">Servicios *</label>
 										<div class="input-group mar-btm col-sm-9">
 											<span class="input-group-addon"><i class="fa fa-gears fa-lg"></i></span>
@@ -270,6 +287,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												}
 												?>
 											</select>
+											<input type="hidden" name="sub_total" id="sub_total" value="0">
+											<input type="hidden" name="impuesto" id="impuesto" value="0">
+											<input type="hidden" name="total" id="total" value="0">
 											<!--<span style="cursor: pointer" class="add_services input-group-addon"><span class="fa fa-plus" style="color: green"></span></span>-->
 										</div>
 									</div>
