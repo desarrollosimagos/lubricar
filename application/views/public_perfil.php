@@ -338,7 +338,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																<td>
 																	<?php foreach ($status as $listar) { ?>
 																		<?php if ($listar->id == $list->status){ ?>
-																			<span class='<?php echo $listar->labels; ?>'><?php echo $listar->name; ?></span>
+																			<span <?php if($listar->name != 'ABIERTO'){echo "class='".$listar->labels."'";} ?>><?php echo $listar->name; ?></span>
 																		<?php } ?>
 																	<?php } ?>
 																</td>

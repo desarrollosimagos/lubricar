@@ -242,7 +242,7 @@ $(document).ready(function () {
 						swal("Disculpe,", "esta dirección se encuentra registrada");
 					} else {
 						swal({
-							title: "Registro",
+							title: "Edición",
 							text: "Actualizado con exito.",
 							type: "success"
 						},
@@ -335,7 +335,7 @@ $(document).ready(function () {
 						swal("Disculpe,", "este vehículo se encuentra registrado");
 					} else {
 						swal({
-							title: "Registro",
+							title: "Edición",
 							text: "Actualizado con exito.",
 							type: "success"
 						},
