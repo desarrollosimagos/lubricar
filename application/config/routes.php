@@ -61,6 +61,7 @@ $route['home'] = 'Home/home/';
 $route['admin'] = 'Welcome/admin/';
 /* page public*/
 $route['public'] = 'welcome';
+$route['public_perfil'] = 'welcome/public_perfil';
 $route['somos'] = 'welcome/somos';
 $route['servicios'] = 'welcome/servicios';
 $route['solicitud'] = 'welcome/solicitud';
