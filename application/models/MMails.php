@@ -33,11 +33,11 @@ class MMails extends CI_Model {
 	
 	//configuracion para mailtrap
 	private $config = Array(
-	  'protocol' => 'smtp',
-	  'smtp_host' => 'smtp.mailtrap.io',
-	  'smtp_port' => 2525,
-	  'smtp_user' => '7070f0ddfd21e6',
-	  'smtp_pass' => '0d07237bfd1f66',
+	  //~ 'protocol' => 'smtp',
+	  //~ 'smtp_host' => 'smtp.mailtrap.io',
+	  //~ 'smtp_port' => 2525,
+	  //~ 'smtp_user' => '7070f0ddfd21e6',
+	  //~ 'smtp_pass' => '0d07237bfd1f66',
 	  'mailtype' => 'html',
 	  'crlf' => "\r\n",
 	  'newline' => "\r\n"
@@ -216,7 +216,11 @@ class MMails extends CI_Model {
 		$this->email->to($para);
 		$this->email->subject($título);
 		$this->email->message($mensaje);
-		$this->email->send();
+		if($this->email->send()){
+			echo "Email enviado";
+		}else{
+			echo $this->email->print_debugger();
+		}
 		// con esto podemos ver el resultado
 		//~ var_dump($this->email->print_debugger());
 	}
@@ -318,7 +322,7 @@ class MMails extends CI_Model {
 						  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;">
 							<tr>
 							  <td>
-								<img src="http://192.168.1.132/hooks/assets/public/img/demos/medical/logo-medical.png" alt="No se pudo mostrar" width="80px;" height="50px;">
+								<img src="'.assets_url().'public/img/demos/medical/logo-medical.png" alt="No se pudo mostrar" width="80px;" height="50px;">
 							  </td>
 							</tr>
 							<tr>

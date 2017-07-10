@@ -245,8 +245,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<h4>Datos Personales</h4>
 											<ul class="list list-icons list-icons-style-3 mt-xlg">
 												<li><i class="fa fa-id-card"></i> <strong>Nombre:</strong> <?php echo $this->session->userdata['logged_in_public']['name']; ?> <?php echo $this->session->userdata['logged_in_public']['lastname']; ?></li>
-												<li><i class="fa fa-phone"></i> <strong>Télefono:</strong> <?php echo $this->session->userdata['logged_in_public']['phone']; ?></li>
-												<li><i class="fa fa-mobile"></i> <strong>Móvil:</strong> <?php echo $this->session->userdata['logged_in_public']['cell_phone']; ?></li>
+												<li>
+													<i class="fa fa-phone"></i>
+													<strong>Télefono:</strong> 
+													<span id="span_phone"><?php echo $this->session->userdata['logged_in_public']['phone']; ?></span>
+													&nbsp;<i class="fa fa-edit editar_telefonos" style="cursor:pointer;" title="Editar"></i>
+												</li>
+												<li>
+													<i class="fa fa-mobile"></i> 
+													<strong>Móvil:</strong> 
+													<span id="span_cellphone"><?php echo $this->session->userdata['logged_in_public']['cell_phone']; ?></span>
+													&nbsp;<i class="fa fa-edit editar_telefonos" style="cursor:pointer;" title="Editar"></i>
+												</li>
 												<li><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:mail@example.com"><?php echo $this->session->userdata['logged_in_public']['username']; ?></a></li>
 											</ul>
 											<input type="hidden" id="customer_id" value="<?php echo $this->session->userdata['logged_in_public']['id']; ?>">
@@ -640,6 +650,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 		<!--Modal de registro de vehículos-->
+		
+		<!--Modal de edición de teléfonos-->
+		<div class="modal inmodal fade" id="modal_telefonos" tabindex="-1" role="dialog"  aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close cerrar_modal" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title"><span id="titulo"></span> Teléfonos</h4>
+					</div>
+					<div class="modal-body">
+						<form id="form_phones" action="" method="post" class="form">
+							<div class="form-group">
+								<label >Teléfono </label>
+								<input id="phone_2" name="phone_2" class="form-control" type="text" maxlength="50">
+								<label>Móvil </label>
+								<input id="cell_phone_2" name="cell_phone_2" class="form-control" type="text" maxlength="50">
+								<input id="accion3" class="form-control" type="hidden" >
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer" >
+						<button class="btn btn-primary" type="button" id="edit_phones">
+							Aceptar
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Modal de edición de teléfonos-->
 
 		<!-- Vendor -->
 		<script src="<?php echo assets_url(); ?>public/vendor/jquery/jquery.min.js"></script>
