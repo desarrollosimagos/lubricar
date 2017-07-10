@@ -176,6 +176,15 @@ $(document).ready(function () {
 		$("#license_plate").val(values_line[5]);
 	});
 	
+	$(".editar_telefonos").click(function (e) {
+		e.preventDefault();  // Para evitar que se envíe por defecto
+		$("#modal_telefonos").modal('show');
+		$("span#titulo").text('Editar');
+		$("#accion3").val('Editar');
+		$("#phone_2").val($("#span_phone").text());
+		$("#cell_phone_2").val($("#span_cellphone").text());
+	});
+	
 	//Registar dirección nueva
 	$("#add_address").click(function (e) {
 		e.preventDefault();  // Para evitar que se envíe por defecto
@@ -346,6 +355,40 @@ $(document).ready(function () {
 					}
 				});
 			}
+		}
+	});
+	
+	//Editar teléfonos
+	$("#edit_phones").click(function (e) {
+		e.preventDefault();  // Para evitar que se envíe por defecto
+
+		if ($('#phone_2').val().trim() == "" && $('#cell_phone_2').val().trim() === "") {
+		  
+		   swal("Disculpe,", "para continuar debe ingresar un teléfono");
+		   $('#phone').addClass('error');
+		   $('#cell_phone').addClass('error');
+		   
+		} else {
+			$.post(base_url+'CClientPublic/update_phones', $('#form_phones').serialize()+'&'+$.param({'customer_id3':$('#customer_id').val()}), function (response) {
+				//~ alert(response);
+				swal({
+					title: "Edición",
+					text: "Actualizado con exito.",
+					type: "success"
+				},
+				function () {
+					// Recarga de datos con ajax
+					$.post(base_url+'CClientPublic/ajax_client2/'+$('#customer_id').val(), function (response2) {
+						//~ alert(response2);
+						$.each(response2, function (i) {
+							$('#span_phone').text(response2[i]['phone']);
+							$('#span_cellphone').text(response2[i]['cell_phone']);
+						});
+					}, 'json');
+					$("#modal_telefonos").modal('hide');
+					//~ window.location.href = base_url+'public_perfil';
+				});
+			});
 		}
 	});
 	

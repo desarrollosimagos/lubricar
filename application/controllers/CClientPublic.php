@@ -147,6 +147,24 @@ class CClientPublic extends CI_Controller {
         
         echo $result;
     }
+    
+    // Método para actualizar de forma directa los teléfonos de un cliente
+    public function update_phones() {
+        $datos = array(
+            'id' => $this->input->post('customer_id3'),
+            'phone' => $this->input->post('phone_2'),
+            'cell_phone' => $this->input->post('cell_phone_2')
+        );
+        // Reescribimos los teléfonos en los datos de sesión
+        $this->session->userdata['logged_in_public']['phone'] = $this->input->post('phone_2');
+        //~ echo $this->session->userdata['logged_in_public']['phone'];
+        $this->session->userdata['logged_in_public']['cell_phone'] = $this->input->post('cell_phone_2');
+        //~ echo $this->session->userdata['logged_in_public']['cell_phone'];
+        // Actualizamos el cliente
+        $result = $this->MClient->update($datos);
+        
+        echo $result;
+    }
 
     public function ajax_client() {
         $result = $this->MClient->clients();
