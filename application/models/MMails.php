@@ -188,7 +188,7 @@ class MMails extends CI_Model {
 						  <td class="content-block" style="font-family:sans-serif;font-size:14px;vertical-align:top;color:#999999;font-size:12px;text-align:center;">
 							<span class="apple-link" style="color:#999999;font-size:12px;text-align:center;">Lubricar Delibery, 3 Abbey Road, San Francisco CA 94102</span>
 							<br>
-							 Don\'t like these emails? <a href="http://i.imgur.com/CScmqnj.gif" style="color:#3498db;text-decoration:underline;color:#999999;font-size:12px;text-align:center;">Unsubscribe</a>.
+							 <!--Don\'t like these emails? <a href="http://i.imgur.com/CScmqnj.gif" style="color:#3498db;text-decoration:underline;color:#999999;font-size:12px;text-align:center;">Unsubscribe</a>.-->
 						  </td>
 						</tr>
 						<tr>
@@ -366,7 +366,7 @@ class MMails extends CI_Model {
 						  <td class="content-block" style="font-family:sans-serif;font-size:14px;vertical-align:top;color:#999999;font-size:12px;text-align:center;">
 							<span class="apple-link" style="color:#999999;font-size:12px;text-align:center;">Lubricar Delibery, 3 Abbey Road, San Francisco CA 94102</span>
 							<br>
-							 Don\'t like these emails? <a href="http://i.imgur.com/CScmqnj.gif" style="color:#3498db;text-decoration:underline;color:#999999;font-size:12px;text-align:center;">Unsubscribe</a>.
+							 <!--Don\'t like these emails? <a href="http://i.imgur.com/CScmqnj.gif" style="color:#3498db;text-decoration:underline;color:#999999;font-size:12px;text-align:center;">Unsubscribe</a>.-->
 						  </td>
 						</tr>
 						<tr>
