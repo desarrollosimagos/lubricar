@@ -134,7 +134,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 														</a>
 													</li>
 													<li class="dropdown dropdown-full-color dropdown-secondary">
-														<a class="dropdown-toggle" href="servicios">
+														<!--<a class="dropdown-toggle" href="servicios">-->
+														<a href="servicios">
 															Servicios
 														</a>
 														<!--<ul class="dropdown-menu">
@@ -180,7 +181,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="col-md-12">
 							<h1 class="mt-xs">Solicitud de Servicios <span>Nos contactaremos con usted tan pronto como recibamos la solicitud</span></h1>
 							<ul class="breadcrumb breadcrumb-valign-mid">
-								<li><a href="#">Inicio</a></li>
+								<li><a href="public">Inicio</a></li>
 								<li class="active">Solicitud de Servicios</li>
 							</ul>
 						</div>

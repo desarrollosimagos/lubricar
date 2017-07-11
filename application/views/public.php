@@ -155,7 +155,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 														</a>
 													</li>
 													<li class="dropdown dropdown-full-color dropdown-secondary">
-														<a class="dropdown-toggle" href="servicios">
+														<a href="servicios">
 															Servicios
 														</a>
 														<!--<ul class="dropdown-menu">
@@ -282,7 +282,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<div class="col-lg-3 box-two background-color-tertiary appear-animation" data-appear-animation="fadeInLeft" data-appear-animation-delay="600">
 							<h5 class="m-none">
-								<a href="request.html" title="">
+								<a href="servicios" title="">
 									Agendar un servicio 
 									<i class="icon-arrow-right-circle icons"></i>
 								</a>
@@ -334,7 +334,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<img src="<?php echo assets_url(); ?>public/img/demos/medical/<?php echo $servicio->icon; ?>" alt class="img-responsive" />
 								</div>
 								<div class="feature-box-info ml-md">
-									<h4 class="font-weight-semibold"><a href="services-detail.html" class="text-decoration-none"><?php echo $servicio->name; ?></a></h4>
+									<h4 class="font-weight-semibold"><a href="servicios" class="text-decoration-none"><?php echo $servicio->name; ?></a></h4>
 									<p><?php echo $servicio->description; ?></p>
 								</div>	
 							</div>
@@ -359,7 +359,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit, leo vitae interdum pretium, tortor risus dapibus tortor, eu suscipit orci leo sed nisl. Integer et ipsum eu nulla auctor mattis sit amet in diam. Vestibulum non ornare arcu. Class aptent taciti sociosqu ad...</p>
 
-							<a class="btn btn-borders btn-quaternary custom-button text-uppercase mt-lg mb-lg font-weight-bold">Saber mas</a>
+							<a class="btn btn-borders btn-quaternary custom-button text-uppercase mt-lg mb-lg font-weight-bold" href="somos">Saber mas</a>
 						</div>
 						<div class="col-sm-4 col-md-4">
 							<img src="<?php echo assets_url(); ?>public/img/demos/medical/mecanica_automotriz_-1024x682.jpg" alt class="img-responsive box-shadow-custom" /> 
@@ -381,8 +381,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<div class="col-md-4">
 							<div class="get-started">
-								<a href="#" class="btn btn-lg btn-primary">Contactanos</a>
-								<div class="learn-more">O<a href="index.html"> Lea más...</a></div>
+								<a href="contacto" class="btn btn-lg btn-primary">Contactanos</a>
+								<div class="learn-more">O<a href="public"> Lea más...</a></div>
 							</div>
 						</div>
 					</div>

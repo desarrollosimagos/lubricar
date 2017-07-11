@@ -98,7 +98,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="header-row">
 							<div class="header-column">
 								<div class="header-logo">
-									<a href="index.html">
+									<a href="public">
 										<img alt="Porto" width="143" height="40" src="<?php echo assets_url(); ?>public/img/demos/medical/logo-medical.png">
 									</a>
 								</div>
@@ -123,7 +123,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 														</a>
 													</li>
 													<li class="dropdown activedropdown-full-color dropdown-secondary">
-														<a class="dropdown-toggle" href="servicios">
+														<!--<a class="dropdown-toggle" href="servicios">-->
+														<a href="servicios">
 															Servicios
 														</a>
 														<!--<ul class="dropdown-menu">
@@ -169,7 +170,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="col-md-12">
 							<h1 class="mt-xs">Servicios <span>Lorem ipsum dolor sit amet</span></h1>
 							<ul class="breadcrumb breadcrumb-valign-mid">
-								<li><a href="#">Inicio</a></li>
+								<li><a href="public">Inicio</a></li>
 								<li class="active">Servicios</li>
 							</ul>
 						</div>
