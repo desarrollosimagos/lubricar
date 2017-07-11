@@ -32,8 +32,10 @@ class Welcome extends CI_Controller {
 	 
 	public function index()
 	{
+		$data['pagina'] = 'public.php';
+		$data['section'] = 'public';
 		$data['servicios'] = $this->MServices->obtener();
-		$this->load->view('public', $data);
+		$this->load->view('base_public', $data);
 	}
 	
 	public function admin()
@@ -43,17 +45,23 @@ class Welcome extends CI_Controller {
 	
 	public function somos()
 	{
-		$this->load->view('somos');
+		$data['pagina'] = 'somos.php';
+		$data['section'] = 'somos';
+		$this->load->view('base_public', $data);
 	}
 	
 	public function servicios()
 	{
+		$data['pagina'] = 'servicios.php';
+		$data['section'] = 'servicios';
 		$data['servicios'] = $this->MServices->obtener();
-		$this->load->view('servicios', $data);
+		$this->load->view('base_public', $data);
 	}
 	
 	public function solicitud()
 	{
+		$data['pagina'] = 'solicitud.php';
+		$data['section'] = 'solicitud';
 		$data['direcciones'] = array();
         $data['vehiculos'] = array();
         $data['franquicias'] = $this->MFranchises->obtener();
@@ -77,21 +85,27 @@ class Welcome extends CI_Controller {
 			}
 		}
 		
-		$this->load->view('solicitud', $data);
+		$this->load->view('base_public', $data);
 	}
 	
 	public function noticias()
 	{
-		$this->load->view('noticias');
+		$data['pagina'] = 'noticias.php';
+		$data['section'] = 'noticias';
+		$this->load->view('base_public', $data);
 	}
 	
 	public function contacto()
 	{
-		$this->load->view('contacto');
+		$data['pagina'] = 'contacto.php';
+		$data['section'] = 'contacto';
+		$this->load->view('base_public', $data);
 	}
 	
 	public function public_perfil()
 	{
+		$data['pagina'] = 'public_perfil.php';
+		$data['section'] = 'public';
         $data['list_orders_services'] = $this->MOrder->getServices();
         $data['list_orders_products'] = $this->MOrder->getProducts();
         $data['list_serv'] = $this->MServices->obtener();
@@ -124,7 +138,7 @@ class Welcome extends CI_Controller {
 				$data['vehiculos'][] = $vehicle;
 			}
 		}
-		$this->load->view('public_perfil', $data);
+		$this->load->view('base_public', $data);
 	}
 	
 }
