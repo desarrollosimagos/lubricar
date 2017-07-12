@@ -37,6 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link href="<?php echo assets_url('js/datatables.net-bs/css/dataTables.bootstrap.css'); ?>" rel="stylesheet" />
 		<link rel="stylesheet" href="<?php echo assets_url('css/dataTables.responsive.css'); ?>">
 		<link href="<?php echo assets_url('js/datatables.net-responsive-bs/css/responsive.bootstrap.min.css'); ?>">
+		<link href="<?php echo assets_url('css/plugins/datapicker/datepicker3.css');?>" rel="stylesheet">
 
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="<?php echo assets_url(); ?>public/css/theme.css">
@@ -108,9 +109,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<?php 
 											if(isset($_GET['error'])){
 												if($_GET['error'] == '1'){
-													echo 'Usuario o contraseña incorrectos';
+													echo $this->lang->line('top_bar_message1');
 												}else if($_GET['error'] == '2'){
-													echo 'Disculpe, el usuario no tiene acceso, consulte con el administrador del sistema';
+													echo $this->lang->line('top_bar_message2');
 												}else{
 													echo "";
 												}
@@ -120,7 +121,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</span>
 									</li>
 									<li class="hidden-xs" id="li_cerrar">
-										<span class="ws-nowrap"><i class="icon-logout icons"></i><a href="#" id="cerrar">Salir</a></span>
+										<span class="ws-nowrap"><i class="icon-logout icons"></i><a href="#" id="cerrar"><?php echo $this->lang->line('top_bar_logout'); ?></a></span>
 									</li>
 									<li class="hidden-xs" id="li_perfil">
 										<span class="ws-nowrap">
@@ -129,7 +130,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</span>
 									</li>
 									<li class="hidden-xs" id="li_inicio">
-										<span class="ws-nowrap"><i class="icon-login icons"></i> <a href="#" id="inicio">Iniciar Sesión</a></span>
+										<span class="ws-nowrap"><i class="icon-login icons"></i> <a href="#" id="inicio"><?php echo $this->lang->line('top_bar_login'); ?></a></span>
 									</li>
 									<li class="hidden-xs">
 										<span class="ws-nowrap"><i class="icon-envelope-open icons"></i> <a class="text-decoration-none" href="mailto:contacto@lubricardelivery.com">contacto@lubricardelivery.com</a></span>
@@ -144,8 +145,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="header-container container">
 						<div class="header-row">
 							<div class="header-column">
-								<div classindex.html
-									<a href="index.html">
+								<div class="header-row">
+									<a href="public">
 										<img alt="Porto" width="143" height="40" src="<?php echo assets_url(); ?>public/img/demos/medical/logo-medical.png">
 									</a>
 								</div>
@@ -161,18 +162,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<ul class="nav nav-pills" id="mainNav">
 													<li id="li_public" class="dropdown-full-color dropdown-secondary">
 														<a href="public">
-															Inicio
+															<?php echo $this->lang->line('menu_bar_menu1'); ?>
 														</a>
 													</li>
 													<li id="li_somos" class="dropdown-full-color dropdown-secondary">
 														<a href="somos">
-															Quienes Somos
+															<?php echo $this->lang->line('menu_bar_menu2'); ?>
 														</a>
 													</li>
 													<li id="li_servicios" class="dropdown-full-color dropdown-secondary">
 														<!--<a class="dropdown-toggle" href="servicios">-->
 														<a href="servicios">
-															Servicios
+															<?php echo $this->lang->line('menu_bar_menu3'); ?>
 														</a>
 														<!--<ul class="dropdown-menu">
 															<li><a href="services-detail.html">Cardiology</a></li>
@@ -185,7 +186,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													</li>
 													<li id="li_solicitud" class="dropdown-full-color dropdown-secondary">
 														<a href="solicitud">
-															Solicitud de Servicios
+															<?php echo $this->lang->line('menu_bar_menu4'); ?>
 														</a>
 													</li>
 													<!--<li class="dropdown-full-color dropdown-secondary">
@@ -195,7 +196,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													</li>-->
 													<li id="li_contacto" class="dropdown-full-color dropdown-secondary">
 														<a href="contacto">
-															Contactos
+															<?php echo $this->lang->line('menu_bar_menu5'); ?>
 														</a>
 													</li>
 												</ul>
@@ -221,26 +222,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="row">
 						
 						<div class="col-md-3">
-							<h4 class="mb-xlg">Horario de Atención</h4>
+							<h4 class="mb-xlg"><?php echo $this->lang->line('title1_footer'); ?></h4>
 							<div class="info custom-info">
-								<span>Lun-Vie</span>
+								<span><?php echo $this->lang->line('days1_footer'); ?></span>
 								<span>8:30 am to 5:00 pm</span>
 							</div>
 							<div class="info custom-info">
-								<span>Sabados</span>
+								<span><?php echo $this->lang->line('days2_footer'); ?></span>
 								<span>9:30 am to 1:00 pm</span>
 							</div>
 						</div>
-						<div class="col-md-3 col-md-offset-1">
+						<!--<div class="col-md-3 col-md-offset-1">-->
+						<div class="col-md-3">
 							<div class="contact-details">
-								<h4 class="mb-xlg">Contáctenos</h4>
+								<h4 class="mb-xlg"><?php echo $this->lang->line('title2_footer'); ?></h4>
 								<a class="text-decoration-none" href="tel:1234567890">
 									<strong class="font-weight-light">(800)123-4567</strong>
 								</a>
 							</div>
 						</div>
 						<div class="col-md-2">
-							<h4 class="mb-xlg">Redes Sociales</h4>
+							<h4 class="mb-xlg"><?php echo $this->lang->line('title3_footer'); ?></h4>
 							<ul class="social-icons">
 								<li class="social-icons-facebook">
 									<a href="http://www.facebook.com/" target="_blank" title="Facebook">
@@ -260,13 +262,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</li>
 							</ul>
 						</div>
+						<div class="col-md-4">
+							<div class="contact-details">
+								<h4 class="mb-xlg"><?php echo $this->lang->line('title4_footer'); ?></h4>
+								<select onchange="javascript:if(this.value != 'seleccione'){window.location.href='<?php echo base_url(); ?>LanguageSwitcher/switchLang/'+this.value;}">
+									<option value="seleccione">Seleccione</option>
+									<option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>><?php echo $this->lang->line('tag_language1'); ?></option>
+									<option value="portuguese" <?php if($this->session->userdata('site_lang') == 'portuguese') echo 'selected="selected"'; ?>><?php echo $this->lang->line('tag_language2'); ?></option>
+									<option value="spanish" <?php if($this->session->userdata('site_lang') == 'spanish') echo 'selected="selected"'; ?>><?php echo $this->lang->line('tag_language3'); ?></option>   
+								</select>
+								<!--<p><?php echo $this->lang->line('welcome_message'); ?></p>-->
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="footer-copyright pt-md pb-md">
 					<div class="container">
 						<div class="row">
 							<div class="col-md-12 center m-none">
-								<p>© Copyright 2017. All Rights Reserved.</p>
+								<p><?php echo $this->lang->line('rights_message'); ?></p>
 							</div>
 						</div>
 					</div>
@@ -433,6 +447,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<script src="<?php echo assets_url(); ?>public/vendor/jquery.easing/jquery.easing.min.js"></script>
 		<script src="<?php echo assets_url(); ?>public/vendor/jquery-cookie/jquery-cookie.min.js"></script>
 		<script src="<?php echo assets_url(); ?>public/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="<?php echo assets_url('js/select2.js');?>"></script>
 		<script src="<?php echo assets_url(); ?>public/vendor/common/common.min.js"></script>
 		<script src="<?php echo assets_url(); ?>public/vendor/jquery.validation/jquery.validation.min.js"></script>
 		<script src="<?php echo assets_url(); ?>public/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
@@ -442,12 +457,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<script src="<?php echo assets_url(); ?>public/vendor/owl.carousel/owl.carousel.min.js"></script>
 		<script src="<?php echo assets_url(); ?>public/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 		<script src="<?php echo assets_url(); ?>public/vendor/vide/vide.min.js"></script>
-		<link href="<?php echo assets_url('css/plugins/datapicker/datepicker3.css');?>" rel="stylesheet">
 		<script src="<?php echo assets_url('js/plugins/dataTables/datatables.min.js');?>"></script>
 		<script src="<?php echo assets_url('js/datatables.net/js/jquery.dataTables.min.js'); ?>"></script>
 		<script src="<?php echo assets_url('js/datatables.net-bs/js/dataTables.bootstrap.min.js'); ?>"></script>
 		<script src="<?php echo assets_url('js/datatables.net-responsive/js/dataTables.responsive.min.js'); ?>"></script>
-		<script src="<?php echo assets_url('js/select2.js');?>"></script>
 		
 		<!-- Theme Base, Components and Settings -->
 		<script src="<?php echo assets_url(); ?>public/js/theme.js"></script>
