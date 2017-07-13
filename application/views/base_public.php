@@ -593,6 +593,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		<script src="<?php echo assets_url(); ?>script/public_solicitud.js"></script>
 		
+		<script src="<?php echo assets_url(); ?>script/contact.js"></script>
+		
 		<script>
 			$(document).ready(function () {
 				// Aplicamos select2() a todos los combos select

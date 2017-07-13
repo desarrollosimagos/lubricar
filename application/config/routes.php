@@ -68,6 +68,7 @@ $route['solicitud'] = 'welcome/solicitud';
 $route['noticias'] = 'welcome/noticias';
 //~ $route['cuenta'] = 'welcome/cuenta';
 $route['contacto'] = 'welcome/contacto';
+$route['send_message'] = 'CMessages/add_message';
 
 /* perfiles */
 $route['profile'] = 'CPerfil';
