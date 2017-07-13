@@ -77,38 +77,42 @@
 				<span class="font-size-xs mt-sm display-block" id="mailErrorMessage"></span>
 			</div>
 
-			<form id="contactForm" action="php/contact-form.php" method="POST">
+			<form id="contactForm" method="POST">
 				<div class="row">
 					<div class="form-group">
 						<div class="col-md-12">
-							<input type="text" placeholder="Tu nombre" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" id="name" required>
+							<!--<input type="text" placeholder="Tu nombre" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" id="name" required>-->
+							<input type="text" placeholder="Tu nombre" value="" maxlength="100" class="form-control" name="name" id="name">
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group">
 						<div class="col-md-12">
-							<input type="email" placeholder="Tu Correo Electrónico" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email" required>
+							<!--<input type="email" placeholder="Tu Correo Electrónico" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email" required>-->
+							<input type="email" placeholder="Tu Correo Electrónico" value="" maxlength="100" class="form-control" name="email" id="email">
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group">
 						<div class="col-md-12">
-							<input type="text" placeholder="Asunto" value="" data-msg-required="Please enter the subject." maxlength="100" class="form-control" name="subject" id="subject" required>
+							<!--<input type="text" placeholder="Asunto" value="" data-msg-required="Please enter the subject." maxlength="100" class="form-control" name="subject" id="subject" required>-->
+							<input type="text" placeholder="Asunto" value="" maxlength="100" class="form-control" name="subject" id="subject">
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group">
 						<div class="col-md-12">
-							<textarea maxlength="5000" placeholder="Mensaje" data-msg-required="Please enter your message." rows="5" class="form-control" name="message" id="message" required></textarea>
+							<!--<textarea maxlength="5000" placeholder="Mensaje" data-msg-required="Please enter your message." rows="5" class="form-control" name="message" id="message" required></textarea>-->
+							<textarea maxlength="5000" placeholder="Mensaje" rows="5" class="form-control" name="message" id="message"></textarea>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<input type="submit" value="Enviar" class="btn btn-primary btn-lg mb-xlg" data-loading-text="Loading...">
+						<input id="send_message" type="submit" value="Enviar" class="btn btn-primary btn-lg mb-xlg">
 					</div>
 				</div>
 			</form>
