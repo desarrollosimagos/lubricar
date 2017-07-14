@@ -2,10 +2,11 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h1 class="mt-xs">Solicitud de Servicios <span>Nos contactaremos con usted tan pronto como recibamos la solicitud</span></h1>
+				<h1 class="mt-xs"><?php echo $this->lang->line('header_title_s'); ?> 
+				<span><?php echo $this->lang->line('header_title_span_s'); ?></span></h1>
 				<ul class="breadcrumb breadcrumb-valign-mid">
-					<li><a href="public">Inicio</a></li>
-					<li class="active">Solicitud de Servicios</li>
+					<li><a href="public"><?php echo $this->lang->line('header_li1_s'); ?></a></li>
+					<li class="active"><?php echo $this->lang->line('header_li2_s'); ?></li>
 				</ul>
 			</div>
 		</div>
@@ -26,16 +27,16 @@
 				</div>
 				<ul class="wizard-steps">
 					<li class="active">
-						<a href="#w4-account" data-toggle="tab"><span>1</span>Datos Personales:</a>
+						<a href="#w4-account" data-toggle="tab"><span>1</span><?php echo $this->lang->line('wizard_li1'); ?></a>
 					</li>
 					<li>
-						<a href="#w4-profile" data-toggle="tab"><span>2</span>Vehiculo</a>
+						<a href="#w4-profile" data-toggle="tab"><span>2</span><?php echo $this->lang->line('wizard_li2'); ?></a>
 					</li>
 					<li>
-						<a href="#w4-billing" data-toggle="tab"><span>3</span>Dirección</a>
+						<a href="#w4-billing" data-toggle="tab"><span>3</span><?php echo $this->lang->line('wizard_li3'); ?></a>
 					</li>
 					<li>
-						<a href="#w4-confirm" data-toggle="tab"><span>4</span>Confirmación</a>
+						<a href="#w4-confirm" data-toggle="tab"><span>4</span><?php echo $this->lang->line('wizard_li4'); ?></a>
 					</li>
 				</ul>
 			</div>
@@ -44,19 +45,19 @@
 				<div class="tab-content">
 					<div id="w4-account" class="tab-pane active">
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="w4-username">Nombre:</label>
+							<label class="col-sm-3 control-label" for="w4-username"><?php echo $this->lang->line('wizard_li1_label1'); ?></label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" name="username" id="w4-username" value="<?php echo $this->session->userdata['logged_in_public']['name']." ".$this->session->userdata['logged_in_public']['lastname'];?>" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="w4-username">Correo Electronico:</label>
+							<label class="col-sm-3 control-label" for="w4-username"><?php echo $this->lang->line('wizard_li1_label2'); ?></label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" name="username" id="w4-username" value="<?php echo $this->session->userdata['logged_in_public']['username'];?>" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="w4-username">Teléfono</label>
+							<label class="col-sm-3 control-label" for="w4-username"><?php echo $this->lang->line('wizard_li1_label3'); ?></label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" name="username" id="w4-username" value="<?php echo $this->session->userdata['logged_in_public']['phone'];?>" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
 								<input type="hidden" name="customer_id" id="customer_id" value="<?php echo $this->session->userdata['logged_in_public']['id']; ?>">
@@ -65,7 +66,7 @@
 					</div>
 					<div id="w4-profile" class="tab-pane">
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="w4-vehicle">Vehiculo *</label>
+							<label class="col-sm-3 control-label" for="w4-vehicle"><?php echo $this->lang->line('wizard_li2_label1'); ?> *</label>
 							<div class="input-group mar-btm col-sm-9">
 								<span class="input-group-addon"><i class="fa fa-car fa-lg"></i></span>
 								<select style="width: 100%" name="vehiculo" id="vehiculo" class="form-control">
@@ -82,7 +83,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="w4-vehicle">Franquicia *</label>
+							<label class="col-sm-3 control-label" for="w4-vehicle"><?php echo $this->lang->line('wizard_li2_label2'); ?> *</label>
 							<div class="input-group mar-btm col-sm-9">
 								<span class="input-group-addon"><i class="fa fa-building fa-lg"></i></span>
 								<select style="width: 100%" name="franquicia" id="franquicia" class="form-control">
@@ -99,7 +100,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="w4-vehicle">Servicios *</label>
+							<label class="col-sm-3 control-label" for="w4-vehicle"><?php echo $this->lang->line('wizard_li2_label3'); ?> *</label>
 							<div class="input-group mar-btm col-sm-9">
 								<span class="input-group-addon"><i class="fa fa-gears fa-lg"></i></span>
 								<select style="width: 100%" id="services_ids" class="form-control" multiple="multiple">
@@ -118,25 +119,25 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="w4-first-name">Marca (P.ej. Fiat)</label>
+							<label class="col-sm-3 control-label" for="w4-first-name"><?php echo $this->lang->line('wizard_li2_label4'); ?></label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="w4-marca" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="w4-last-name">Modelo (P.ej ej. Vectra)</label>
+							<label class="col-sm-3 control-label" for="w4-last-name"><?php echo $this->lang->line('wizard_li2_label5'); ?></label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="w4-modelo" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="w4-last-name">Color (Ej: Gasolina)</label>
+							<label class="col-sm-3 control-label" for="w4-last-name"><?php echo $this->lang->line('wizard_li2_label6'); ?></label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="w4-color" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="w4-last-name">Año / modelo (Ej: Año 2009, 2010)</label>
+							<label class="col-sm-3 control-label" for="w4-last-name"><?php echo $this->lang->line('wizard_li2_label7'); ?></label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="w4-anyo" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 							</div>
@@ -144,7 +145,7 @@
 					</div>
 					<div id="w4-billing" class="tab-pane">
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="w4-vehicle">Dirección *</label>
+							<label class="col-sm-3 control-label" for="w4-vehicle"><?php echo $this->lang->line('wizard_li3_label1'); ?> *</label>
 							<div class="input-group mar-btm col-sm-9">
 								<span class="input-group-addon"><i class="fa fa-address-card fa-lg"></i></span>
 								<select style="width: 100%" name="address" id="address" class="form-control">
@@ -161,31 +162,31 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="w4-cc">Ciudad (Ej: Panama City)</label>
+							<label class="col-sm-3 control-label" for="w4-cc"><?php echo $this->lang->line('wizard_li3_label2'); ?></label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="w4-ciudad" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="w4-cc">Teléfono</label>
+							<label class="col-sm-3 control-label" for="w4-cc"><?php echo $this->lang->line('wizard_li3_label3'); ?></label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="w4-telefono" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="w4-cc">Móvil</label>
+							<label class="col-sm-3 control-label" for="w4-cc"><?php echo $this->lang->line('wizard_li3_label4'); ?></label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="w4-movil" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="w4-cc">Descripción</label>
+							<label class="col-sm-3 control-label" for="w4-cc"><?php echo $this->lang->line('wizard_li3_label5'); ?></label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="w4-descripcion" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="w4-cc">Código Postal (Ej: 12020-050)</label>
+							<label class="col-sm-3 control-label" for="w4-cc"><?php echo $this->lang->line('wizard_li3_label6'); ?></label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="w4-zip" readonly="true" aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 							</div>
@@ -193,7 +194,7 @@
 					</div>
 					<div id="w4-confirm" class="tab-pane">
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="w4-email">Fecha y Confirmación</label>
+							<label class="col-sm-3 control-label" for="w4-email"><?php echo $this->lang->line('wizard_li4_label1'); ?></label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" name="fecha" id="w4-fecha"  aria-required="true" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
 							</div>
@@ -204,7 +205,7 @@
 								<div>
 									<input type="checkbox" name="terms" id="w4-terms">
 									<input type="hidden" id="terms_accept">
-									<label for="w4-terms">Estoy de acuerdo con los términos de servicio.</label>
+									<label for="w4-terms"><?php echo $this->lang->line('wizard_li4_check_terms'); ?></label>
 								</div>
 							</div>
 						</div>
@@ -216,14 +217,14 @@
 		<div class="panel-footer">
 			<ul class="pager">
 				<li class="previous disabled">
-					<a><i class="fa fa-angle-left"></i> Anterior</a>
+					<a><i class="fa fa-angle-left"></i> <?php echo $this->lang->line('button_previous'); ?></a>
 				</li>
 				<!--<li id="finalizar" class="finish hidden pull-right">-->
 				<li id="finalizar" class="finish hidden pull-right">
-					<a>Finalizar</a>
+					<a><?php echo $this->lang->line('button_end'); ?></a>
 				</li>
 				<li class="next">
-					<a>Siguiente <i class="fa fa-angle-right"></i></a>
+					<a><?php echo $this->lang->line('button_next'); ?> <i class="fa fa-angle-right"></i></a>
 				</li>
 			</ul>
 		</div>
@@ -233,8 +234,10 @@
 	}else{
 	?>
 	<p class="lead font-weight-normal mb-xlg pb-xlg">
-		Antes de realizar cualquier solicitud debe iniciar sesión.
-		<span class="ws-nowrap"><i class="icon-login icons"></i> <a class="solicitar" style="cursor:pointer;">Iniciar Sesión</a></span>
+		<?php echo $this->lang->line('row1_text'); ?>
+		<span class="ws-nowrap"><i class="icon-login icons"></i> 
+		<a class="solicitar" style="cursor:pointer;"><?php echo $this->lang->line('row1_link'); ?></a>
+		</span>
 	</p>
 	<?php
 	}
