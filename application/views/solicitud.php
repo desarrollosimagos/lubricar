@@ -79,7 +79,7 @@
 									}
 									?>
 								</select>
-								<span style="cursor: pointer" class="add_vehiculo input-group-addon" title="Nuevo vehículo"><span class="fa fa-plus" style="color: green"></span></span>
+								<span style="cursor: pointer" class="add_vehiculo input-group-addon" title="<?php echo $this->lang->line('wizard_li2_btn_add'); ?>"><span class="fa fa-plus" style="color: green"></span></span>
 							</div>
 						</div>
 						<div class="form-group">
@@ -158,7 +158,7 @@
 									}
 									?>
 								</select>
-								<span style="cursor: pointer" class="add_direccion input-group-addon"><span class="fa fa-plus" style="color: green"></span></span>
+								<span style="cursor: pointer" class="add_direccion input-group-addon" title="<?php echo $this->lang->line('wizard_li3_btn_add'); ?>"><span class="fa fa-plus" style="color: green"></span></span>
 							</div>
 						</div>
 						<div class="form-group">
