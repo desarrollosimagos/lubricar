@@ -294,24 +294,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close cerrar_modal" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<h5 class="modal-title text-center"><span id="titulo"></span></h5>
+						<h5 class="modal-title text-center" id="titulo1"><span><?php echo $this->lang->line('modal_title_s'); ?></span></h5>
+						<h5 class="modal-title text-center" id="titulo2"><span><?php echo $this->lang->line('modal_title_s2'); ?></span></h5>
 					</div>
 					<div class="modal-body" >
 						<form id="form_client" action="login_public" method="post" class="form">
 							<div class="form-group">
-								<label class="username">Usuario *</label>
+								<label class="username"><?php echo $this->lang->line('modal_input1_s'); ?> *</label>
 								<input id="username" name="username" class="form-control" type="text" maxlength="100">
-								<label class="password">Contraseña *</label>
+								<label class="password"><?php echo $this->lang->line('modal_input2_s'); ?> *</label>
 								<input id="password" name="password" class="form-control" type="password" maxlength="20" >
-								<label class="confirm">Repetir Contraseña *</label>
+								<label class="confirm"><?php echo $this->lang->line('modal_input3_s'); ?> *</label>
 								<input id="confirm" name="confirm" class="form-control" type="password" maxlength="20" >
-								<label class="name">Nombre *</label>
+								<label class="name"><?php echo $this->lang->line('modal_input4_s'); ?> *</label>
 								<input id="name" name="name" class="form-control" type="text" maxlength="150">
-								<label class="lastname">Apellido *</label>
+								<label class="lastname"><?php echo $this->lang->line('modal_input5_s'); ?> *</label>
 								<input id="lastname" name="lastname" class="form-control" type="text" maxlength="20">
-								<label class="phone">Telefono 1 *</label>
+								<label class="phone"><?php echo $this->lang->line('modal_input6_s'); ?> *</label>
 								<input id="phone" name="phone" class="form-control" type="text" maxlength="20">
-								<label class="cell_phone">Teléfono 2</label>
+								<label class="cell_phone"><?php echo $this->lang->line('modal_input7_s'); ?></label>
 								<input id="cell_phone" name="cell_phone" class="form-control" type="text" maxlength="20">
 								<input id="status" name="status" class="form-control" type="hidden" value="0" maxlength="20">
 								<input id="base_url" type="hidden" value="<?php echo base_url(); ?>"/>
@@ -321,14 +322,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>						
 							</div>
 						</form>
-						<button id="iniciar" type="button" class="btn btn-primary full-width m-b text-center">Iniciar</button>
-						<button class="btn btn-primary full-width m-b text-center" type="button" id="add_client">Registrar</button>
+						<button id="iniciar" type="button" class="btn btn-primary full-width m-b text-center"><?php echo $this->lang->line('modal_btn_send_s'); ?></button>
+						<button class="btn btn-primary full-width m-b text-center" type="button" id="add_client"><?php echo $this->lang->line('modal_btn_send_s2'); ?></button>
 					</div>
 					<div class="modal-footer text-center" >
 					</div>
-					<p class="text-muted text-center" id="question_account"><small>¿No tiene una cuenta?</small></p>
-					<a class="btn btn-sm btn-white btn-block" id="reg_client" href="#">Crea una cuenta</a>
-					<a class="btn btn-sm btn-white btn-block" id="hidden_reg_client" href="#">Ya poseo una cuenta</a>
+					<p class="text-muted text-center" id="question_account"><small><?php echo $this->lang->line('modal_q_s'); ?></small></p>
+					<a class="btn btn-sm btn-white btn-block" id="reg_client" href="#"><?php echo $this->lang->line('modal_link_add_s'); ?></a>
+					<a class="btn btn-sm btn-white btn-block" id="hidden_reg_client" href="#"><?php echo $this->lang->line('modal_link_login_s2'); ?></a>
 				</div>
 			</div>
 		</div>

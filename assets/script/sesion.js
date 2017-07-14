@@ -14,7 +14,9 @@ $(document).ready(function() {
 		function () {
 			$("#modal_cliente").modal('show');
 			// Definimos el título y la acción
-			$("span#titulo").text('Iniciar sesión');
+			//~ $("span#titulo").text('Iniciar sesión');
+			$("#titulo1").show();
+			$("#titulo2").hide();
 			$("#accion").val('Iniciar');
 			// Mostramos y ocultamos los campos y textos necesarios
 			$("label.username").css('display','block');
@@ -48,7 +50,9 @@ $(document).ready(function() {
 		e.preventDefault();  // Para evitar que se envíe por defecto
 		$("#modal_cliente").modal('show');  // Mostramos la modal
 		// Definimos el título y la acción
-		$("span#titulo").text('Iniciar sesión');
+		//~ $("span#titulo").text('Iniciar sesión');
+		$("#titulo1").show();
+		$("#titulo2").hide();
 		$("#accion").val('Iniciar');
 		// Mostramos y ocultamos los campos y textos necesarios
 		$("label.username").css('display','block');
@@ -79,7 +83,9 @@ $(document).ready(function() {
 	//Preparar modal de registro de usuario cliente
 	$("#reg_client").click(function (e) {
 		// Definimos el título y la acción
-		$("span#titulo").text('Registrar cliente');
+		//~ $("span#titulo").text('Registrar cliente');
+		$("#titulo1").hide();
+		$("#titulo2").show();
 		$("#accion").val('Registrar');
 		// Mostramos y ocultamos los campos necesarios
 		$("label.username").css('display','block');
@@ -111,7 +117,9 @@ $(document).ready(function() {
 	//Preparar modal de inicio de sesión
 	$("#hidden_reg_client").click(function (e) {
 		// Definimos el título y la acción
-		$("span#titulo").text('Iniciar sesión');
+		//~ $("span#titulo").text('Iniciar sesión');
+		$("#titulo1").show();
+		$("#titulo2").hide();
 		$("#accion").val('Registrar');
 		// Mostramos y ocultamos los campos necesarios
 		$("label.username").css('display','block');
