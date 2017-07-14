@@ -21,6 +21,7 @@ $lang['wizard_li1_label2'] = 'Correo Electrónico';
 $lang['wizard_li1_label3'] = 'Teléfono';
 
 $lang['wizard_li2_label1'] = 'Vehículo';
+$lang['wizard_li2_btn_add'] = 'Nuevo vehículo';
 $lang['wizard_li2_label2'] = 'Franquicia';
 $lang['wizard_li2_label3'] = 'Servicios';
 $lang['wizard_li2_label4'] = 'Marca (P.ej. Fiat)';
@@ -29,6 +30,7 @@ $lang['wizard_li2_label6'] = 'Color (Ej: Azul)';
 $lang['wizard_li2_label7'] = 'Año / modelo (Ej: Año 2009, 2010)';
 
 $lang['wizard_li3_label1'] = 'Dirección';
+$lang['wizard_li3_btn_add'] = 'Nueva dirección';
 $lang['wizard_li3_label2'] = 'Ciudad (Ej: Panama City)';
 $lang['wizard_li3_label3'] = 'Teléfono';
 $lang['wizard_li3_label4'] = 'Móvil';

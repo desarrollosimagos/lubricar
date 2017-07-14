@@ -21,6 +21,7 @@ $lang['wizard_li1_label2'] = 'Correio eletrônico';
 $lang['wizard_li1_label3'] = 'Telefone';
 
 $lang['wizard_li2_label1'] = 'Veículo';
+$lang['wizard_li2_btn_add'] = 'Novo veículo';
 $lang['wizard_li2_label2'] = 'Franquia';
 $lang['wizard_li2_label3'] = 'Serviços';
 $lang['wizard_li2_label4'] = 'Marca (por exemplo, VW)';
@@ -29,6 +30,7 @@ $lang['wizard_li2_label6'] = 'Cor (por exemplo, azul)';
 $lang['wizard_li2_label7'] = 'Ano / modelo (por exemplo, no ano de 2009, 2010)';
 
 $lang['wizard_li3_label1'] = 'Endereço';
+$lang['wizard_li3_btn_add'] = 'Nova direção';
 $lang['wizard_li3_label2'] = 'City (eg Cidade do Panamá)';
 $lang['wizard_li3_label3'] = 'Telefone';
 $lang['wizard_li3_label4'] = 'Móvel';
