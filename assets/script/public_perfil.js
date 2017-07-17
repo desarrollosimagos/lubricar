@@ -113,7 +113,11 @@ $(document).ready(function () {
 	$("#i_new_line").click(function (e) {
 		e.preventDefault();  // Para evitar que se envíe por defecto
 		$("#modal_direccion").modal('show');
-		$("span#titulo").text('Registrar');
+		//~ $("span#titulo").text('Registrar');
+		$("#titulo_a1").show();
+		$("#titulo_a2").hide();
+		$("#send_a1").show();
+		$("#send_a2").hide();
 		$("#accion").val('Registrar');
 		// Vaciamos los campos
 		$("#city").val('');
@@ -128,7 +132,11 @@ $(document).ready(function () {
 	$("#i_new_line2").click(function (e) {
 		e.preventDefault();  // Para evitar que se envíe por defecto
 		$("#modal_vehiculo").modal('show');
-		$("span#titulo").text('Registrar');
+		//~ $("span#titulo").text('Registrar');
+		$("#titulo_v1").show();
+		$("#titulo_v2").hide();
+		$("#send_v1").show();
+		$("#send_v2").hide();
 		$("#accion2").val('Registrar');
 		// Vaciamos los campos
 		$("#trademark").val('');
@@ -141,7 +149,11 @@ $(document).ready(function () {
 	$(".editar_direccion").click(function (e) {
 		e.preventDefault();  // Para evitar que se envíe por defecto
 		$("#modal_direccion").modal('show');
-		$("span#titulo").text('Editar');
+		//~ $("span#titulo").text('Editar');
+		$("#titulo_a1").hide();
+		$("#titulo_a2").show();
+		$("#send_a1").hide();
+		$("#send_a2").show();
 		$("#accion").val('Editar');
 		// Construimos el id del campo oculto que contiene los datos de la línea  a partir de la clase y el id del link clickeado
 		var id_values_line = "#"+$(this).attr('class')+"_"+$(this).attr('id')
@@ -161,7 +173,11 @@ $(document).ready(function () {
 	$(".editar_vehiculo").click(function (e) {
 		e.preventDefault();  // Para evitar que se envíe por defecto
 		$("#modal_vehiculo").modal('show');
-		$("span#titulo").text('Editar');
+		//~ $("span#titulo").text('Editar');
+		$("#titulo_v1").hide();
+		$("#titulo_v2").show();
+		$("#send_v1").hide();
+		$("#send_v2").show();
 		$("#accion2").val('Editar');
 		// Construimos el id del campo oculto que contiene los datos de la línea  a partir de la clase y el id del link clickeado
 		var id_values_line = "#"+$(this).attr('class')+"_"+$(this).attr('id')
@@ -179,7 +195,7 @@ $(document).ready(function () {
 	$(".editar_telefonos").click(function (e) {
 		e.preventDefault();  // Para evitar que se envíe por defecto
 		$("#modal_telefonos").modal('show');
-		$("span#titulo").text('Editar');
+		//~ $("span#titulo").text('Editar');
 		$("#accion3").val('Editar');
 		$("#phone_2").val($("#span_phone").text());
 		$("#cell_phone_2").val($("#span_cellphone").text());
