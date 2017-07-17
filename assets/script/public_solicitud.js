@@ -30,9 +30,13 @@ $(document).ready(function() {
     // Abrir modal vehículo
 	$(".add_vehiculo").click(function (e) {
 		e.preventDefault();  // Para evitar que se envíe por defecto
-		
 		$("#modal_vehiculo").modal('show');
-		$("span#titulo").text('Registrar');
+		//~ $("span#titulo").text('Registrar');
+		$("#titulo_v1").show();
+		$("#titulo_v2").hide();
+		$("#send_v1").show();
+		$("#send_v2").hide();
+		$("#accion2").val('Registrar');
 		// Vaciamos los campos
 		$("#trademark").val('');
 		$("#model").val('');
@@ -204,7 +208,12 @@ $(document).ready(function() {
 		e.preventDefault();  // Para evitar que se envíe por defecto
 
 		$("#modal_direccion").modal('show');
-		$("span#titulo").text('Registrar');
+		//~ $("span#titulo").text('Registrar');
+		$("#titulo_a1").show();
+		$("#titulo_a2").hide();
+		$("#send_a1").show();
+		$("#send_a2").hide();
+		$("#accion").val('Registrar');
 		// Vaciamos los campos
 		$("#city").val('');
 		$("#zip").val('');

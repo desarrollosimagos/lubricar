@@ -341,24 +341,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close cerrar_modal" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<h5 class="modal-title"><span id="titulo"></span> Dirección</h5>
+						<h5 class="modal-title" id="titulo_a1"><span><?php echo $this->lang->line('modal_title_a'); ?></span></h5>
+						<h5 class="modal-title" id="titulo_a2"><span><?php echo $this->lang->line('modal_title_a2'); ?></span></h5>
 					</div>
 					<div class="modal-body" >
 						<form id="form_direccion" action="" method="post" class="form">
 							<div class="form-group">
-								<label >Ciudad *</label>
+								<label ><?php echo $this->lang->line('modal_input1_a'); ?> *</label>
 								<input id="city" name="city" class="form-control" type="text" maxlength="100">
-								<label>Código Postal *</label>
+								<label><?php echo $this->lang->line('modal_input2_a'); ?> *</label>
 								<input id="zip" name="zip" class="form-control" type="text" maxlength="20" >
-								<label>Descripción</label>
+								<label><?php echo $this->lang->line('modal_input3_a'); ?></label>
 								<input id="description" name="description" class="form-control" type="text" maxlength="50" >
-								<label>Dirección 1 *</label>
+								<label><?php echo $this->lang->line('modal_input4_a'); ?> *</label>
 								<input id="address_1" name="address_1" class="form-control" type="text" maxlength="150" >
-								<label >Dirección 2</label>
+								<label ><?php echo $this->lang->line('modal_input5_a'); ?></label>
 								<input id="address_2" name="address_2" class="form-control" type="text" maxlength="150">
-								<label>Teléfono 1 *</label>
+								<label><?php echo $this->lang->line('modal_input6_a'); ?> *</label>
 								<input id="phone_1" name="phone_1" class="form-control" type="text" maxlength="20">
-								<label>Teléfono 2</label>
+								<label><?php echo $this->lang->line('modal_input7_a'); ?></label>
 								<input id="cell_phone_1" name="cell_phone" class="form-control" type="text" maxlength="20">
 								<input id="id_direccion" name="id_direccion" class="form-control" type="hidden" >
 								<input id="accion"  class="form-control" type="hidden" >
@@ -368,7 +369,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 					<div class="modal-footer" >
 						<button class="btn btn-primary" type="button" id="add_address">
-							Aceptar
+							<span id="send_a1"><?php echo $this->lang->line('modal_btn_send_a1'); ?></span>
+							<span id="send_a2"><?php echo $this->lang->line('modal_btn_send_a2'); ?></span>
 						</button>
 					</div>
 				</div>
@@ -382,20 +384,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close cerrar_modal" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<h4 class="modal-title"><span id="titulo"></span> Vehiculo</h4>
+						<h4 class="modal-title" id="titulo_v1"><span><?php echo $this->lang->line('modal_title_v'); ?></span></h4>
+						<h4 class="modal-title" id="titulo_v2"><span><?php echo $this->lang->line('modal_title_v2'); ?></span></h4>
 					</div>
 					<div class="modal-body">
 						<form id="form_vehiculo" action="" method="post" class="form">
 							<div class="form-group">
-								<label >Marca *</label>
+								<label ><?php echo $this->lang->line('modal_input1_v'); ?> *</label>
 								<input id="trademark" name="trademark" class="form-control" type="text" maxlength="50">
-								<label>Modelo *</label>
+								<label><?php echo $this->lang->line('modal_input2_v'); ?> *</label>
 								<input id="model" name="model" class="form-control" type="text" maxlength="50">
-								<label >Color *</label>
+								<label ><?php echo $this->lang->line('modal_input3_v'); ?> *</label>
 								<input id="color" name="color" class="form-control" type="text" maxlength="50">
-								<label >Año *</label>
+								<label ><?php echo $this->lang->line('modal_input4_v'); ?> *</label>
 								<input type="text" class="form-control"  id="year" name="year" maxlength="4">
-								<label >Placa *</label>
+								<label ><?php echo $this->lang->line('modal_input5_v'); ?> *</label>
 								<input id="license_plate" name="license_plate" class="form-control" type="text" maxlength="50">
 								<input id="id_vehiculo" name="id_vehiculo" class="form-control" type="hidden" >
 								<input id="accion2" class="form-control" type="hidden" >
@@ -405,7 +408,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 					<div class="modal-footer" >
 						<button class="btn btn-primary" type="button" id="add_vehicle">
-							Aceptar
+							<span id="send_v1"><?php echo $this->lang->line('modal_btn_send_v1'); ?></span>
+							<span id="send_v2"><?php echo $this->lang->line('modal_btn_send_v2'); ?></span>
 						</button>
 					</div>
 				</div>
@@ -419,14 +423,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close cerrar_modal" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<h4 class="modal-title"><span id="titulo"></span> Teléfonos</h4>
+						<h4 class="modal-title" id="titulo_phones"><span><?php echo $this->lang->line('modal_title_t'); ?></span></h4>
 					</div>
 					<div class="modal-body">
 						<form id="form_phones" action="" method="post" class="form">
 							<div class="form-group">
-								<label >Teléfono </label>
+								<label ><?php echo $this->lang->line('modal_input1_t'); ?> </label>
 								<input id="phone_2" name="phone_2" class="form-control" type="text" maxlength="50">
-								<label>Móvil </label>
+								<label><?php echo $this->lang->line('modal_input2_t'); ?> </label>
 								<input id="cell_phone_2" name="cell_phone_2" class="form-control" type="text" maxlength="50">
 								<input id="accion3" class="form-control" type="hidden" >
 							</div>
@@ -434,7 +438,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 					<div class="modal-footer" >
 						<button class="btn btn-primary" type="button" id="edit_phones">
-							Aceptar
+							<?php echo $this->lang->line('modal_btn_send_t'); ?>
 						</button>
 					</div>
 				</div>
@@ -589,10 +593,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			ga('send', 'pageview');
 		</script>
 		 -->
-		
-		<script src="<?php echo assets_url(); ?>script/public_perfil.js"></script>
-		
-		<script src="<?php echo assets_url(); ?>script/public_solicitud.js"></script>
+		<?php
+			// Habilitamos el js de validaciones correspondiente a la página actual
+			$url_relativa = $_SERVER['REQUEST_URI'];
+
+			// Nótese el uso de !==. Puesto que != simple no funcionará como se espera
+			// porque la posición de 'a' está en el 1° (primer) caracter.
+			if (strpos($url_relativa, 'public_perfil') !== false) {
+				echo '<script src="'.assets_url().'script/public_perfil.js"></script>';
+			}else if(strpos($url_relativa, 'solicitud') !== false){
+				echo '<script src="'.assets_url().'script/public_solicitud.js"></script>';
+			}
+		?>
 		
 		<script src="<?php echo assets_url(); ?>script/contact.js"></script>
 		
